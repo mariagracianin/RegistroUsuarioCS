@@ -1,7 +1,9 @@
 plugins {
+	id 'application'
 	id 'org.springframework.boot' version '2.7.3'
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 	id 'java'
+	id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 group = 'com.tictok'
@@ -19,4 +21,14 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+javafx {
+	version = "17.0.1"
+	modules = ['javafx.controls', 'javafx.fxml']
+}
+
+
+application {
+	mainClassName = "com.tictok.RUCliente.Main"
 }
