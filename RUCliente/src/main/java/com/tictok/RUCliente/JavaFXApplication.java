@@ -13,7 +13,7 @@ public class JavaFXApplication extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-		root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("vista_archivo.fxml"));
+		root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("vista1_archivo.fxml"));
 		primaryStage.setTitle("Registro usuario");
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
