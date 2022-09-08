@@ -1,4 +1,4 @@
-package com.tictok.RUServidor;
+package com.tictok.RUServidor.Usuario;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.tictok.RUServidor;
+package com.tictok.RUServidor.Usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
