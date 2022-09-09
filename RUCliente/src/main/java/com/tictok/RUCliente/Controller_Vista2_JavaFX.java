@@ -1,5 +1,8 @@
 package com.tictok.RUCliente;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,17 +41,20 @@ public class Controller_Vista2_JavaFX implements Initializable {
 
 
     @FXML
-    public void guardarDatos(ActionEvent actionEvent) {
+    public void guardarDatos(ActionEvent actionEvent) throws UnirestException {
+        String nombre = txtNombre.getText();
+        String direc = txtDirec.getText();
+        String tel = txtTel.getText();
 
-        System.out.println(txtNombre.getText());
-
-        //Acá hay que hacer la request
+        Unirest.setTimeouts(0, 0);
+        HttpResponse<String> response = Unirest.post("http://localhost:8080/usuario")
+                .header("Content-Type", "application/json")
+                .body("{\r\n  \"nombre\": \""+ txtNombre.getText() + "\",\r\n  \"direc\": \" " + txtDirec.getText() + "\",\r\n  \"telefono\": \" " + txtTel.getText() + "\"\r\n}")
+                .asString();
 
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close();
-
-
     }
 
 
