@@ -1,0 +1,12 @@
+###
+POST http://localhost:8080/usuario
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "direc": "Soriano 1510",
+  "telefono": "123456789"
+}
+
+###
+GET http://localhost:8080/usuario
