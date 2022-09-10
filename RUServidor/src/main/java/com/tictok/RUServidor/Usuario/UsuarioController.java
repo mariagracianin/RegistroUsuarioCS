@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//@Controller
 @RestController
+//PATH
 public class UsuarioController  {
 
     private final UsuarioService usuarioService;
