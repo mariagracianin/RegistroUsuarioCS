@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -22,6 +23,9 @@ import java.util.ResourceBundle;
 
 @Component
 public class Controller_Vista2_JavaFX implements Initializable {
+
+    @Autowired
+    private UsuarioRest usuarioRest;
 
     @FXML
     public Button btnGuardar;
@@ -46,11 +50,7 @@ public class Controller_Vista2_JavaFX implements Initializable {
         String direc = txtDirec.getText();
         String tel = txtTel.getText();
 
-        Unirest.setTimeouts(0, 0);
-        HttpResponse<String> response = Unirest.post("http://localhost:8080/usuario")
-                .header("Content-Type", "application/json")
-                .body("{\r\n  \"nombre\": \""+ txtNombre.getText() + "\",\r\n  \"direc\": \" " + txtDirec.getText() + "\",\r\n  \"telefono\": \" " + txtTel.getText() + "\"\r\n}")
-                .asString();
+        usuarioRest.guardarUsuario(nombre, direc, tel);
 
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
