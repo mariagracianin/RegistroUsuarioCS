@@ -23,4 +23,5 @@ public class UsuarioService {
         System.out.println(newUsuario);
         return usuarioRepository.save(newUsuario);
     }
+
 }
