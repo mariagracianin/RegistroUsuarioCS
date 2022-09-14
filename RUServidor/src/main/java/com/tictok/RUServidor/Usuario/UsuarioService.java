@@ -21,11 +21,19 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario newUsuario) {
-        System.out.println(newUsuario);
+        boolean isFound = true;
         try {
-            usuarioRepository.getReferenceById(newUsuario.getTelefono());
-            throw new UsuarioYaExisteException(newUsuario.getTelefono());
+            Usuario user = usuarioRepository.getReferenceById(newUsuario.getTelefono());
+            System.out.println("El telefono es" + user.getDirec());
         }catch (EntityNotFoundException e){
+            System.out.println("Llega aca");
+            isFound = false;
+        }
+        if (isFound){
+            System.out.println("Lo encontro");
+            throw new UsuarioYaExisteException(newUsuario.getTelefono());
+        }else {
+            System.out.println("No lo encontro");
             return usuarioRepository.save(newUsuario);
         }
     }
