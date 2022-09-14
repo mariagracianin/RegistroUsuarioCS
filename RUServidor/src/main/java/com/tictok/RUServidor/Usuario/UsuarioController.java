@@ -22,7 +22,6 @@ public class UsuarioController  {
         return usuarioService.findAll();
     }
 
-
     @PostMapping
     public Usuario postNewUsuario(@RequestBody Usuario newUsuario) {
         return usuarioService.save(newUsuario);
