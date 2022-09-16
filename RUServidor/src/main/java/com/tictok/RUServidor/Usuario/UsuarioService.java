@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -21,21 +22,15 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario newUsuario) {
-        boolean isFound = true;
-        try {
-            Usuario user = usuarioRepository.getReferenceById(newUsuario.getTelefono());
-            System.out.println("El telefono es" + user.getDirec());
-        }catch (EntityNotFoundException e){
-            System.out.println("Llega aca");
-            isFound = false;
-        }
-        if (isFound){
-            System.out.println("Lo encontro");
-            throw new UsuarioYaExisteException(newUsuario.getTelefono());
-        }else {
-            System.out.println("No lo encontro");
-            return usuarioRepository.save(newUsuario);
-        }
+            Optional<Usuario> user = usuarioRepository.findById(newUsuario.getTelefono());
+
+            if (user.isPresent()){
+                System.out.println("Lo encontro");
+                throw new UsuarioYaExisteException(newUsuario.getTelefono());
+            } else{
+                System.out.println("No lo encontro");
+                return usuarioRepository.save(newUsuario);
+                }
     }
 
 }
