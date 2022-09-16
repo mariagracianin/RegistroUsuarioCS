@@ -13,13 +13,13 @@ public class Usuario {
     @Column (name= "nombre")
     private String nombre;
     @Column
-    private String direc;
+    private String apellido;
     @Id
     private String telefono;
 
     public Usuario(String nombre, String direc, String telefono) {
         this.nombre = nombre;
-        this.direc = direc;
+        this.apellido = direc;
         this.telefono = telefono;
     }
 
@@ -35,12 +35,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getDirec() {
-        return direc;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setDirec(String direc) {
-        this.direc = direc;
+    public void setApellido(String direc) {
+        this.apellido = direc;
     }
 
     public String getTelefono() {

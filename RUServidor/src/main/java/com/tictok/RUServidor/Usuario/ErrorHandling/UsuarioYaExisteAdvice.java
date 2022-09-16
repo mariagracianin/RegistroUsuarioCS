@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UsuarioYaExisteAdvice {
 
 
-    @ResponseBody
+    @ResponseBody()
     @ExceptionHandler(UsuarioYaExisteException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    String employeeNotFoundHandler(UsuarioYaExisteException ex) {
+    String usuarioNotFoundHandler(UsuarioYaExisteException ex) {
         return ex.getMessage();
     }
 }
