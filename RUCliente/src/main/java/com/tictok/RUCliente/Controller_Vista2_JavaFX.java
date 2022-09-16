@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 @Component
 public class Controller_Vista2_JavaFX implements Initializable {
 
+
     @Autowired
     private UsuarioRest usuarioRest;
 
@@ -33,6 +34,8 @@ public class Controller_Vista2_JavaFX implements Initializable {
     public TextField txtNombre;
     public TextField txtDirec;
     public TextField txtTel;
+
+    public Button btnOK;
 
 
     public Controller_Vista2_JavaFX() {
@@ -45,18 +48,33 @@ public class Controller_Vista2_JavaFX implements Initializable {
 
 
     @FXML
-    public void guardarDatos(ActionEvent actionEvent) throws UnirestException {
+    public void guardarDatos(ActionEvent actionEvent) throws UnirestException, IOException {
         String nombre = txtNombre.getText();
         String direc = txtDirec.getText();
         String tel = txtTel.getText();
 
-        usuarioRest.guardarUsuario(nombre, direc, tel);
+        Integer responseCode = usuarioRest.guardarUsuario(nombre, direc, tel);
+        if (responseCode==409){
+            abrirVentanaEmergenteError();
+        }
 
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close();
     }
 
+    public void abrirVentanaEmergenteError() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(Controller_Vista2_JavaFX.class.getResourceAsStream("vent_emergente_error.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Error");
+
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
 
     public void volverAVista1(ActionEvent actionEvent) throws IOException {
         //en realidad no vuelvo a cargar la vista 1 pq sino se me duplican las ventanas, solo cierro la 2
@@ -65,5 +83,11 @@ public class Controller_Vista2_JavaFX implements Initializable {
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close(); //cierro la ventana en la que estoy
 
+    }
+
+    public void cerrarVentEmergError(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        stageActual.close(); //cierro la ventana en la que estoy
     }
 }
