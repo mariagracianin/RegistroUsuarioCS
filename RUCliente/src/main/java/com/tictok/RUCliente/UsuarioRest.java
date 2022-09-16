@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class UsuarioRest {
 
-    public int guardarUsuario(String nombre, String direc, String telefono){
+    public int guardarUsuario(String nombre, String direc, String telefono) {
         String json = "";
-        try{
+        try {
             ObjectMapper mapper = new ObjectMapper();
             ObjectNode rest = mapper.createObjectNode();
             rest.put("nombre", nombre);
             rest.put("direc", direc);
             rest.put("telefono", telefono);
             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rest);
-        }catch (Exception e){
+        } catch (Exception e) {
         }
 
         try {
@@ -30,10 +30,9 @@ public class UsuarioRest {
                     .body(json).asJson();
             return response.getCode();
 
-        }catch (Exception t){
+        } catch (Exception t) {
             throw new RuntimeException(t);
         }
-
     }
 
 }

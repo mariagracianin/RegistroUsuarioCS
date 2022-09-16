@@ -33,8 +33,7 @@ public class Controller_Vista1_JavaFX {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
+        stage.show(); //no es ventana emergente
 
     }
 }
