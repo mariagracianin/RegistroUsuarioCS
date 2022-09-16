@@ -26,7 +26,7 @@ public class UsuarioService {
 
             if (user.isPresent()){
                 System.out.println("Lo encontro");
-                throw new UsuarioYaExisteException(newUsuario.getTelefono());
+                throw new com.tictok.RUServidor.Usuario.UsuarioYaExisteException(newUsuario.getTelefono());
             } else{
                 System.out.println("No lo encontro");
                 return usuarioRepository.save(newUsuario);
