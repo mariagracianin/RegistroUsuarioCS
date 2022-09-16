@@ -1,18 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="122.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Controller_Vista1_JavaFX">
-   <effect>
-      <Glow />
-   </effect>
-   <children>
-      <Button fx:id="btnSalir" layoutX="111.0" layoutY="75.0" mnemonicParsing="false" onAction="#salir" text="Salir" />
-      <Button fx:id="btnRegistrarNC" layoutX="61.0" layoutY="36.0" mnemonicParsing="false" onAction="#pasarAVista2" text="Registrar nuevo cliente" />
-      <Label layoutX="161.0" layoutY="52.0" />
-   </children>
-</AnchorPane>
+<BorderPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Controller_Vista1_JavaFX">
+   <center>
+      <VBox prefHeight="145.0" prefWidth="200.0" style="-fx-background-color: #ADC3B7;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnRegistrarNC" mnemonicParsing="false" onAction="#pasarAVista2" prefHeight="25.0" prefWidth="201.0" style="-fx-background-color: #d0d7d5;" stylesheets="@CSS.css" text="Registrar nuevo usuario">
+               <VBox.margin>
+                  <Insets left="50.0" right="10.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font></Button>
+            <Button fx:id="btnLiquidacion" layoutX="20.0" layoutY="25.0" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="25.0" prefWidth="201.0" style="-fx-background-color: #d0d7d5;" text="Ver liquidación">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" right="10.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <top>
+      <AnchorPane prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #517470;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" lineSpacing="6.0" prefHeight="21.0" prefWidth="177.0" text="Empresa">
+               <font>
+                  <Font name="Microsoft JhengHei Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: #B5C6B4;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: #B5C6B4;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="400.0" style="-fx-background-color: #B5C6B4;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnSalir" layoutX="263.0" layoutY="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#salir" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #d0d7d5;" text="Salir">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

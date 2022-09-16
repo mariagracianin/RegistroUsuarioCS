@@ -54,13 +54,29 @@ public class Controller_Vista2_JavaFX implements Initializable {
         String tel = txtTel.getText();
 
         Integer responseCode = usuarioRest.guardarUsuario(nombre, direc, tel);
-        if (responseCode==409){
+        if (responseCode==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
+            //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
             abrirVentanaEmergenteError();
+        }else if (responseCode==200){
+            abrirVentanaEmergenteExito();
         }
 
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close();
+    }
+
+    private void abrirVentanaEmergenteExito() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(Controller_Vista2_JavaFX.class.getResourceAsStream("vent_emergente_exito.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Éxito");
+
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     public void abrirVentanaEmergenteError() throws IOException {
