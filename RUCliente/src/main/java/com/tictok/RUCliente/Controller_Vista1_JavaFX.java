@@ -32,8 +32,12 @@ public class Controller_Vista1_JavaFX {
         Parent root = fxmlLoader.load(Controller_Vista2_JavaFX.class.getResourceAsStream("vista2_archivo.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Registrar nuevo empleado");
 
         stage.show(); //no es ventana emergente
 
+    }
+
+    public void mostrarLiquidacion(ActionEvent actionEvent) {
     }
 }

@@ -14,7 +14,7 @@ public class JavaFXApplication extends Application {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 		root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("vista1_archivo.fxml"));
-		primaryStage.setTitle("Registro usuario");
+		primaryStage.setTitle("Empresa");
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
 	}
@@ -23,17 +23,5 @@ public class JavaFXApplication extends Application {
 	public void stop(){
 		Main.getContext().close();
 	}
-/*
-	private void guardarDatos(TextField nombreInput, TextField direcInput, TextField telInput){
 
-			Usuario usuario1 = new Usuario(nombreInput.getText(), direcInput.getText(), telInput.getText());
-			//UsuarioControllerImpl usuarioController1 = applicationContext.getBean("usuarioControllerImpl", UsuarioControllerImpl.class);
-
-			//como llamo la clase que es una bean???
-			//UsuarioControllerImpl usuarioController = applicationContext.getBean("usuarioControllerImpl", UsuarioControllerImpl.class);
-
-			//aca llamaria metodo que haga Mery para q guarde en la base de datos al cliente
-			//para referirme a los datos ingresados TextField.getText()
-	}
-*/
 }
