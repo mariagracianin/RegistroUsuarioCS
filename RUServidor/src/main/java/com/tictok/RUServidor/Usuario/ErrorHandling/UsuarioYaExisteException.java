@@ -1,7 +1,7 @@
-package com.tictok.RUServidor.Usuario;
+package com.tictok.RUServidor.Usuario.ErrorHandling;
 
 public class UsuarioYaExisteException extends RuntimeException {
-    UsuarioYaExisteException(String telefono) {
+    public UsuarioYaExisteException(String telefono) {
         super("Ya existe el usuario con telefono" + telefono);
         }
 }

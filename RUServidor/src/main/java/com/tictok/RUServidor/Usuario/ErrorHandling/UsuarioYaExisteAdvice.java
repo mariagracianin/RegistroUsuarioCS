@@ -1,4 +1,4 @@
-package com.tictok.RUServidor.Usuario;
+package com.tictok.RUServidor.Usuario.ErrorHandling;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
