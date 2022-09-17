@@ -3,9 +3,16 @@ POST http://localhost:8080/usuario
 Content-Type: application/json
 
 {
+  "mail": "juan@mail.com",
+  "apellido": "Diaz",
+  "cedula": 123456788,
   "nombre": "Juan",
-  "direc": "Soriano 1510",
-  "telefono": "123456788"
+  "password": "Contrasena",
+  "saldo": 1.00,
+  "saldo_base": 1.00,
+  "sobregiro": 2.00,
+  "telefono": "097 824 674",
+  "vencimiento_carne": "02/07/2002"
 }
 
 ###
