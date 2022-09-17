@@ -22,6 +22,7 @@ public class UsuarioRest {
             rest.put("telefono", telefono);
             json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rest);
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         try {

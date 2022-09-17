@@ -56,6 +56,7 @@ public class Controller_Vista2_JavaFX implements Initializable {
         Integer responseCode = usuarioRest.guardarUsuario(nombre, direc, tel);
         if (responseCode==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
+            System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkk");
             abrirVentanaEmergenteError();
         }else if (responseCode==200){
             abrirVentanaEmergenteExito();
