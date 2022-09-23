@@ -25,7 +25,7 @@ public class Usuario {
     @Column (name = "apellido", nullable = false)
     private String apellido;
 
-    @Column (name = "telefono", nullable = false)
+    @Column (name = "telefono", nullable = true)
     private String telefono;
     @Column (name = "saldoBase", nullable = false)
     private double saldoBase;
