@@ -16,7 +16,7 @@ public class JavaFXApplication extends Application {
 		root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
 		primaryStage.setTitle("Login");
 		Scene escena = new Scene(root);
-		escena.getStylesheets().add(getClass().getResource("CSS.css").toExternalForm());
+		escena.getStylesheets().add("/com/tictok/RUCliente/CSS.css");
 		primaryStage.setScene(escena);
 		primaryStage.show();
 	}
