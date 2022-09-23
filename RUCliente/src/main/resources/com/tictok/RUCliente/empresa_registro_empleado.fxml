@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="460.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empresa_RegistroEmpl_Controller">
+   <children>
+      <Button fx:id="btnGuardar" defaultButton="true" layoutX="263.0" layoutY="344.0" mnemonicParsing="false" onAction="#guardarDatos" style="-fx-background-color: #49cead;" text="Guardar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCancelar" cancelButton="true" layoutX="341.0" layoutY="344.0" mnemonicParsing="false" onAction="#volverAEmpresa" style="-fx-background-color: #f96d51;" text="Cancelar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtNombre" layoutX="204.0" layoutY="86.0" prefHeight="25.0" prefWidth="187.0" promptText="Pepe Hernandez" />
+      <TextField fx:id="txtDirec" layoutX="204.0" layoutY="197.0" prefHeight="25.0" prefWidth="187.0" promptText="Calle Este 1234" />
+      <TextField fx:id="txtTel" layoutX="204.0" layoutY="230.0" prefHeight="25.0" prefWidth="187.0" promptText="091234567" />
+      <Label layoutX="102.0" layoutY="89.0" prefHeight="20.0" prefWidth="89.0" text="Nombres">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font></Label>
+      <Label layoutX="102.0" layoutY="201.0" prefHeight="17.0" prefWidth="68.0" text="Dirección">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font></Label>
+      <Label layoutX="102.0" layoutY="234.0" prefHeight="17.0" prefWidth="68.0" text="Teléfono">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font></Label>
+      <Pane layoutY="-1.0" prefHeight="79.0" prefWidth="460.0" style="-fx-background-color: #50c1e8;">
+         <children>
+            <Label layoutX="33.0" layoutY="19.0" lineSpacing="6.0" prefHeight="42.0" prefWidth="395.0" text="Registro nuevo usuario empleado">
+               <font>
+                  <Font name="ChunkFivePrint" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="102.0" layoutY="124.0" prefHeight="20.0" prefWidth="99.0" text="Apellidos">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNombre1" layoutX="204.0" layoutY="121.0" prefHeight="25.0" prefWidth="187.0" promptText="Pepe Hernandez" />
+      <Label layoutX="102.0" layoutY="163.0" prefHeight="20.0" prefWidth="99.0" text="Cédula">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNombre11" layoutX="204.0" layoutY="160.0" prefHeight="25.0" prefWidth="187.0" promptText="Pepe Hernandez" />
+      <TextField fx:id="txtNombre2" layoutX="204.0" layoutY="267.0" prefHeight="25.0" prefWidth="187.0" promptText="Pepe Hernandez" />
+      <Label layoutX="71.0" layoutY="279.0" prefHeight="63.0" prefWidth="129.0" text="Fecha vencimiento">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="322.0" prefHeight="17.0" prefWidth="129.0" text="carnet de salud">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <DatePicker layoutX="210.0" layoutY="307.0" />
+      <Label layoutX="102.0" layoutY="267.0" prefHeight="25.0" prefWidth="89.0" text="Saldo inicial">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font>
+      </Label>
+   </children>
+   <effect>
+      <Glow />
+   </effect>
+</AnchorPane>

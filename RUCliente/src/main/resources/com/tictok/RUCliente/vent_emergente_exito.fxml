@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="102.0" prefWidth="139.0" style="-fx-background-color: #ADC3B7;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Controller_Vista2_JavaFX">
+<AnchorPane prefHeight="102.0" prefWidth="139.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empresa_RegistroEmpl_Controller">
    <effect>
       <Glow />
    </effect>
@@ -16,6 +16,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnOK" layoutX="53.0" layoutY="63.0" mnemonicParsing="false" onAction="#cerrarVentEmergError" style="-fx-background-color: #d0d7d5;" text="OK" />
+      <Button fx:id="btnOK" layoutX="53.0" layoutY="63.0" mnemonicParsing="false" onAction="#cerrarVentEmergError" style="-fx-background-color: #49cead;" text="OK" />
    </children>
 </AnchorPane>

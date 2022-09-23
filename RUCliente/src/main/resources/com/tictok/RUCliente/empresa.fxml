@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empresa_Controller">
+   <top>
+      <AnchorPane prefHeight="79.0" prefWidth="460.0" style="-fx-background-color: #50c1e8;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="29.0" layoutY="19.0" lineSpacing="6.0" prefHeight="21.0" prefWidth="177.0" text="Empresa">
+               <font>
+                  <Font name="ChunkFivePrint" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnSalir" layoutX="332.0" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#salir" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #f96d51;" text="Salir">
+               <font>
+                  <Font name="Magneto Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnRegistrarNC" layoutX="88.0" layoutY="63.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #49cead;" stylesheets="@CSS.css" text="Registrar nuevo usuario">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLiquidacion" layoutX="88.0" layoutY="115.0" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #49cead;" stylesheets="@CSS.css" text="Ver liquidación">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
