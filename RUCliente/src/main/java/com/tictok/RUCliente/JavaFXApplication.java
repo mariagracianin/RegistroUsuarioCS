@@ -13,9 +13,11 @@ public class JavaFXApplication extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-		root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("vista1_archivo.fxml"));
-		primaryStage.setTitle("Empresa");
-		primaryStage.setScene(new Scene(root));
+		root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
+		primaryStage.setTitle("Login");
+		Scene escena = new Scene(root);
+		escena.getStylesheets().add("/com/tictok/RUCliente/CSS.css");
+		primaryStage.setScene(escena);
 		primaryStage.show();
 	}
 

@@ -1,7 +1,5 @@
 package com.tictok.RUCliente;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,7 +21,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class Controller_Vista2_JavaFX implements Initializable {
+public class Empresa_RegistroEmpl_Controller implements Initializable {
+
 
 
     @Autowired
@@ -35,10 +35,12 @@ public class Controller_Vista2_JavaFX implements Initializable {
     public TextField txtDirec;
     public TextField txtTel;
 
+    public Label etVariableMensajeError;
+
     public Button btnOK;
 
 
-    public Controller_Vista2_JavaFX() {
+    public Empresa_RegistroEmpl_Controller() {
         System.out.println("COnstructor!!!");
     }
     @Override
@@ -57,6 +59,7 @@ public class Controller_Vista2_JavaFX implements Initializable {
         if (responseCode==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
             System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+            etVariableMensajeError.setText("mensaje error que viene del server");
             abrirVentanaEmergenteError();
         }else if (responseCode==200){
             abrirVentanaEmergenteExito();
@@ -71,7 +74,7 @@ public class Controller_Vista2_JavaFX implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Controller_Vista2_JavaFX.class.getResourceAsStream("vent_emergente_exito.fxml"));
+        Parent root = fxmlLoader.load(Empresa_RegistroEmpl_Controller.class.getResourceAsStream("vent_emergente_exito.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Éxito");
@@ -84,7 +87,7 @@ public class Controller_Vista2_JavaFX implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Controller_Vista2_JavaFX.class.getResourceAsStream("vent_emergente_error.fxml"));
+        Parent root = fxmlLoader.load(Empresa_RegistroEmpl_Controller.class.getResourceAsStream("vent_emergente_error.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Error");
@@ -93,7 +96,7 @@ public class Controller_Vista2_JavaFX implements Initializable {
         stage.showAndWait();
     }
 
-    public void volverAVista1(ActionEvent actionEvent) throws IOException {
+    public void volverAEmpresa(ActionEvent actionEvent) throws IOException {
         //en realidad no vuelvo a cargar la vista 1 pq sino se me duplican las ventanas, solo cierro la 2
 
         Node source = (Node)  actionEvent.getSource();
