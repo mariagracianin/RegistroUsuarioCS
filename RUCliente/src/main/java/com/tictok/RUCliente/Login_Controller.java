@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+
 @Component
 public class Login_Controller {
     public Button btnIngresar;

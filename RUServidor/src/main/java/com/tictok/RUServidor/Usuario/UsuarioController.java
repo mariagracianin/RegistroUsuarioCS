@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Usuario;
 
+import com.tictok.Commons.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +18,15 @@ public class UsuarioController  {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping
+    //Nos de un USUARIODTO y no un USUARIO
+    /*@GetMapping
     public List<Usuario> getAllUsuario() {
         return usuarioService.findAll();
-    }
+    }*/
 
     @PostMapping
-    public Usuario postNewUsuario(@RequestBody Usuario newUsuario) {
-        return usuarioService.save(newUsuario);
+    public Usuario postNewUsuario(@RequestBody UsuarioDTO newUsuarioDTO) {
+        return usuarioService.save(newUsuarioDTO);
     }
 
 
