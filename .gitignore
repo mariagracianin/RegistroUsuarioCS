@@ -26,6 +26,6 @@ hs_err_pid*
 RUCliente/.gradle*
 RUServidor/.gradle*
 Commons/.gradle*
-RUCliente/build*
-RUServidor/build*
-Commons/build*
+RUCliente/build/*
+RUServidor/build/*
+Commons/build/*
