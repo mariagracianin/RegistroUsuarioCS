@@ -1,14 +1,13 @@
-package com.tictok.RUServidor.Usuario;
+package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.UsuarioDTO;
-import com.tictok.RUServidor.Usuario.ErrorHandling.UsuarioMalDefinido;
-import com.tictok.RUServidor.Usuario.ErrorHandling.UsuarioNoExisteException;
-import com.tictok.RUServidor.Usuario.ErrorHandling.UsuarioYaExisteException;
-import com.tictok.RUServidor.mapper.UsuarioMapper;
+import com.tictok.RUServidor.Entities.Usuario;
+import com.tictok.RUServidor.Repositories.UsuarioRepository;
+import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
+import com.tictok.RUServidor.Mappers.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +18,7 @@ public class UsuarioService {
     @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
+        System.out.println("Constuctor ");
     }
 
 

@@ -1,4 +1,4 @@
-package com.tictok.RUServidor.Usuario.ErrorHandling;
+package com.tictok.RUServidor.Exceptions;
 
 public class UsuarioNoExisteException extends Exception{
 }

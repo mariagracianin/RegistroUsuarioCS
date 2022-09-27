@@ -1,6 +1,6 @@
-package com.tictok.RUServidor.Administrador;
+package com.tictok.RUServidor.Controllers;
 
-import com.tictok.RUServidor.Empresa.EmpresaService;
+import com.tictok.RUServidor.Services.AdministradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

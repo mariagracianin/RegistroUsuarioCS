@@ -1,6 +1,6 @@
-package com.tictok.RUServidor.Administrador;
+package com.tictok.RUServidor.Services;
 
-import com.tictok.RUServidor.Usuario.UsuarioRepository;
+import com.tictok.RUServidor.Repositories.AdministradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +12,6 @@ public class AdministradorService {
     @Autowired
     public AdministradorService(AdministradorRepository administradorRepository) {
         this.administradorRepository = administradorRepository;
+        System.out.println("Constuctor Admin");
     }
 }

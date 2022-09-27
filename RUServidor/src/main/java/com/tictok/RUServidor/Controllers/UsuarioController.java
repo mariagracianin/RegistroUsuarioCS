@@ -1,11 +1,10 @@
-package com.tictok.RUServidor.Usuario;
+package com.tictok.RUServidor.Controllers;
 
 import com.tictok.Commons.UsuarioDTO;
+import com.tictok.RUServidor.Entities.Usuario;
+import com.tictok.RUServidor.Services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")

@@ -1,6 +1,6 @@
-package com.tictok.RUServidor.mapper;
+package com.tictok.RUServidor.Mappers;
 
-import com.tictok.RUServidor.Usuario.Usuario;
+import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.Commons.UsuarioDTO;
 
 public class UsuarioMapper {
@@ -9,7 +9,6 @@ public class UsuarioMapper {
         if(userDTO != null){
             return null;
         }
-
         return new Usuario(userDTO.getMail(),userDTO.getPassword(),userDTO.getCedula(),userDTO.getVencimientoCarne(),userDTO.getNombre(),userDTO.getApellido(),userDTO.getTelefono(),userDTO.getSaldoBase(),userDTO.getSobregiro(),userDTO.getSaldo());
     }
 

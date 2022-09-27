@@ -1,6 +1,6 @@
-package com.tictok.RUServidor.Empresa;
+package com.tictok.RUServidor.Services;
 
-import com.tictok.RUServidor.Usuario.UsuarioRepository;
+import com.tictok.RUServidor.Repositories.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,5 +11,6 @@ public class EmpresaService {
     @Autowired
     public EmpresaService(EmpresaRepository empresaRepository) {
         this.empresaRepository = empresaRepository;
+        System.out.println("Constuctor Empresa");
     }
 }

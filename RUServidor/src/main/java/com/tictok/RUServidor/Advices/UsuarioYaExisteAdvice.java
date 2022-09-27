@@ -1,5 +1,6 @@
-package com.tictok.RUServidor.Usuario.ErrorHandling;
+package com.tictok.RUServidor.Advices;
 
+import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
