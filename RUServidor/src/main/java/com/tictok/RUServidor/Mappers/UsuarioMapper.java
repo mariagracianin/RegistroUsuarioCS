@@ -6,10 +6,12 @@ import com.tictok.Commons.UsuarioDTO;
 public class UsuarioMapper {
     public static Usuario toUsuario(UsuarioDTO userDTO){
 
-        if(userDTO != null){
-            return null;
-        }
-        return new Usuario(userDTO.getMail(),userDTO.getPassword(),userDTO.getCedula(),userDTO.getVencimientoCarne(),userDTO.getNombre(),userDTO.getApellido(),userDTO.getTelefono(),userDTO.getSaldoBase(),userDTO.getSobregiro(),userDTO.getSaldo());
+//        if(userDTO != null){
+//            return null;
+//        }
+        return new Usuario(userDTO.getMail(),userDTO.getPassword(),userDTO.getCedula(),
+                userDTO.getVencimientoCarne(),userDTO.getNombre(),userDTO.getApellido(),
+                userDTO.getTelefono(),userDTO.getSaldoBase(),userDTO.getSobregiro(),userDTO.getSaldo());
     }
 
     public static UsuarioDTO toUsuarioDTO(UsuarioDTO user){

@@ -43,6 +43,7 @@ public class UsuarioService {
 
     public Usuario save(UsuarioDTO newUsuarioDTO) {
         Usuario newUsuario = UsuarioMapper.toUsuario(newUsuarioDTO);
+        System.out.println(newUsuario.getMail());
             /*Optional<Usuario> user = usuarioRepository.findById(newUsuario.getMail());
 
             if (!newUsuario.telefonoCorrecto()){
