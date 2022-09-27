@@ -6,6 +6,8 @@ import com.tictok.RUServidor.Services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController  {
@@ -18,10 +20,10 @@ public class UsuarioController  {
     }
 
     //Nos de un USUARIODTO y no un USUARIO
-    /*@GetMapping
-    public List<Usuario> getAllUsuario() {
+    @GetMapping
+    public List<UsuarioDTO> getAllUsuario() {
         return usuarioService.findAll();
-    }*/
+    }
 
     @PostMapping
     public Usuario postNewUsuario(@RequestBody UsuarioDTO newUsuarioDTO) {

@@ -14,11 +14,11 @@ public class UsuarioMapper {
                 userDTO.getTelefono(),userDTO.getSaldoBase(),userDTO.getSobregiro(),userDTO.getSaldo());
     }
 
-    public static UsuarioDTO toUsuarioDTO(UsuarioDTO user){
+    public static UsuarioDTO toUsuarioDTO(Usuario user){
 
-        if(user != null){
-            return null;
-        }
+//        if(user != null){
+//            return null;
+//        }
 
         return new UsuarioDTO(user.getMail(),user.getPassword(),user.getCedula(),user.getVencimientoCarne(),user.getNombre(),user.getApellido(),user.getTelefono(),user.getSaldoBase(),user.getSobregiro(),user.getSaldo());
     }

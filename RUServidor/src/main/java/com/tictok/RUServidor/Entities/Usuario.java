@@ -78,6 +78,26 @@ public class Usuario {
         return nombre;
     }
 
+    public int getCedula() {
+        return cedula;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public double getSaldoBase() {
+        return saldoBase;
+    }
+
+    public double getSobregiro() {
+        return sobregiro;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
