@@ -9,10 +9,12 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import com.tictok.Commons.UsuarioDTO;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class UsuarioRest {
 
-    public int guardarUsuario(String nombre, String direc, String telefono) {
+    public int guardarUsuario(String mail, String password, int cedula, LocalDate vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
         String usuarioJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();

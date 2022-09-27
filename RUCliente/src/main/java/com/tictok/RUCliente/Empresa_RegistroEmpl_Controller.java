@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -18,12 +19,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 @Component
 public class Empresa_RegistroEmpl_Controller implements Initializable {
-
-
 
     @Autowired
     private UsuarioRest usuarioRest;
@@ -31,13 +31,21 @@ public class Empresa_RegistroEmpl_Controller implements Initializable {
     @FXML
     public Button btnGuardar;
     public Button btnCancelar;
-    public TextField txtNombre;
-    public TextField txtDirec;
-    public TextField txtTel;
+    public Button btnOK;
+
+    public TextField nombres;
+    public TextField direccion;
+    public TextField tel;
+    public TextField apellidos;
+    public TextField cedula;
+    public TextField saldoInicial;
+    public DatePicker fechaVenCarne;
+    public TextField mail;
+    public TextField contraseña;
+    public TextField saldoSobregiro;
 
     public Label etVariableMensajeError;
 
-    public Button btnOK;
 
 
     public Empresa_RegistroEmpl_Controller() {
@@ -51,11 +59,18 @@ public class Empresa_RegistroEmpl_Controller implements Initializable {
 
     @FXML
     public void guardarDatos(ActionEvent actionEvent) throws UnirestException, IOException {
-        String nombre = txtNombre.getText();
-        String direc = txtDirec.getText();
-        String tel = txtTel.getText();
+        String nombresTxt = nombres.getText();
+        String apellidosTxt = apellidos.getText();
+        int cedulaTxt = Integer.parseInt(cedula.getText());
+        String direccionTxt = direccion.getText();
+        String telTxt = tel.getText();
+        Double saldoInicialNum = Double.parseDouble(saldoInicial.getText());
+        Double saldoSobregiroNum = Double.parseDouble(saldoSobregiro.getText());
+        String mailTxt = mail.getText();
+        String passwordTxt = contraseña.getText();
+        LocalDate vencimientoCarne = fechaVenCarne.getValue();
 
-        Integer responseCode = usuarioRest.guardarUsuario(nombre, direc, tel);
+        Integer responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum);
         if (responseCode==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
             System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkk");
