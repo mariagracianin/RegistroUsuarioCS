@@ -25,38 +25,17 @@ public class UsuarioRest {
         }
 
         try {
-            HttpResponse<String> response = Unirest.post("http://localhost:8080/usuario")
-                    .header("Content-Type", "application/json")
-                    .body(usuarioJSON)
-                    .asString();
-        }catch (Exception e){
-            throw new RuntimeException("nooo");
-        }
-        return 0;
-    }
-
-    public int guardarUsuario2(String nombre, String direc, String telefono) {
-        String json = "";
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            ObjectNode rest = mapper.createObjectNode();
-            rest.put("nombre", nombre);
-            rest.put("direc", direc);
-            rest.put("telefono", telefono);
-            json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rest);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
             HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/usuario")
                     .header("Content-Type", "application/json")
-                    .body(json).asJson();
+                    .body(usuarioJSON).asJson();
             return response.getCode();
-
-        } catch (Exception t) {
-            throw new RuntimeException(t);
+        }catch (Exception e){
+            throw new RuntimeException(e);
         }
+    }
+
+    public void obtenerUsuarios(){
+
     }
 
 }
