@@ -34,7 +34,8 @@ public class UsuarioRest {
         }
     }
 
-    public void obtenerUsuarios(){
+    public void obtenerUsuarios(String nombreEmpresa){
+
 
     }
 
