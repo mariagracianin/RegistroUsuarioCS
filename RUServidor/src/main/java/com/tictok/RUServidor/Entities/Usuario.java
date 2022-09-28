@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -18,7 +19,7 @@ public class Usuario {
     private int cedula;
 
     @Column (name = "vencimiento_carne", nullable = true)
-    private Date vencimientoCarne;
+    private LocalDate vencimientoCarne;
 
     @Column (name= "nombre", nullable = false)
     private String nombre;
@@ -35,7 +36,7 @@ public class Usuario {
     private double saldo;
 
 
-    public Usuario(String mail, String password, int cedula, Date vencimientoCarne,
+    public Usuario(String mail, String password, int cedula, LocalDate vencimientoCarne,
                    String nombre, String apellido, String telefono, double saldoBase,
                    double sobregiro, double saldo) {
         this.mail = mail;
@@ -54,11 +55,11 @@ public class Usuario {
         return true;
     }
 
-    public Date getVencimientoCarne() {
+    public LocalDate getVencimientoCarne() {
         return vencimientoCarne;
     }
 
-    public void setVencimientoCarne(Date vencimientoCarne) {
+    public void setVencimientoCarne(LocalDate vencimientoCarne) {
         this.vencimientoCarne = vencimientoCarne;
     }
 

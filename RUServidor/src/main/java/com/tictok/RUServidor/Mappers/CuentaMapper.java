@@ -1,4 +1,4 @@
 package com.tictok.RUServidor.Mappers;
 
-public class AdministradorMapper {
+public class CuentaMapper {
 }

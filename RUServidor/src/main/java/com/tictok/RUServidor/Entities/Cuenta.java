@@ -6,20 +6,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "administrador")
-public class Administrador {
+@Table(name = "cuenta")
+public class Cuenta {
     @Id
     @Column(name = "mail", nullable = false)
     private String mail;
 
-    public Administrador(String mail, String password, String entidadPadre, String tipo) {
+    public Cuenta(String mail, String password, String entidadPadre, String tipo) {
         this.mail = mail;
         this.password = password;
         this.entidadPadre = entidadPadre;
         this.tipo = tipo;
     }
 
-    public Administrador() {
+    public Cuenta() {
     }
 
     @Column(name = "password", length = 20)
