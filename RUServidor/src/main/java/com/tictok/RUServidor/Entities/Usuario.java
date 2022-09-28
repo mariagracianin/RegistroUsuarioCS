@@ -19,7 +19,7 @@ public class Usuario {
     private int cedula;
 
     @Column (name = "vencimiento_carne", nullable = true)
-    private LocalDate vencimientoCarne;
+    private String vencimientoCarne;
 
     @Column (name= "nombre", nullable = false)
     private String nombre;
@@ -36,7 +36,7 @@ public class Usuario {
     private double saldo;
 
 
-    public Usuario(String mail, String password, int cedula, LocalDate vencimientoCarne,
+    public Usuario(String mail, String password, int cedula, String vencimientoCarne,
                    String nombre, String apellido, String telefono, double saldoBase,
                    double sobregiro, double saldo) {
         this.mail = mail;
@@ -55,11 +55,11 @@ public class Usuario {
         return true;
     }
 
-    public LocalDate getVencimientoCarne() {
+    public String getVencimientoCarne() {
         return vencimientoCarne;
     }
 
-    public void setVencimientoCarne(LocalDate vencimientoCarne) {
+    public void setVencimientoCarne(String vencimientoCarne) {
         this.vencimientoCarne = vencimientoCarne;
     }
 

@@ -14,15 +14,14 @@ import java.time.LocalDate;
 @Component
 public class UsuarioRest {
 
-    public int guardarUsuario(String mail, String password, int cedula, LocalDate vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
+    public int guardarUsuario(String mail, String password, int cedula, String vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
         String usuarioJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            UsuarioDTO usuarioDTO = new UsuarioDTO();
-
+            UsuarioDTO usuarioDTO = new UsuarioDTO(mail, password, cedula, vencCarne, nombres, apellidos, telefono, saldoBase, sobregiro, 0);
             usuarioJSON = jsonObjectMapper.writeValueAsString(usuarioDTO);
         }catch (Exception e){
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
 
         try {
@@ -31,11 +30,8 @@ public class UsuarioRest {
                     .body(usuarioJSON)
                     .asString();
         }catch (Exception e){
-            throw new RuntimeException();
+            throw new RuntimeException("nooo");
         }
-
-
-
         return 0;
     }
 
