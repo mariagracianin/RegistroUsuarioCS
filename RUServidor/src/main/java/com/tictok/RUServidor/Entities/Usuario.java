@@ -1,9 +1,6 @@
 package com.tictok.RUServidor.Entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -35,6 +32,29 @@ public class Usuario {
     @Column
     private double saldo;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "empresa_nombre_empresa", nullable = false)
+    private Empresa empresa;
+
+    @OneToOne(optional = false, orphanRemoval = true)
+    @JoinColumn(name = "cuenta_mail", nullable = false)
+    private Cuenta cuenta;
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 
     public Usuario(String mail, String password, int cedula, String vencimientoCarne,
                    String nombre, String apellido, String telefono, double saldoBase,

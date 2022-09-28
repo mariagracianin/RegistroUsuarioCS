@@ -1,9 +1,6 @@
 package com.tictok.RUServidor.Entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cuenta")
@@ -11,6 +8,13 @@ public class Cuenta {
     @Id
     @Column(name = "mail", nullable = false)
     private String mail;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_nombre_empresa")
+    private Empresa empresa;
+
+    @OneToOne(mappedBy = "cuenta", orphanRemoval = true)
+    private Usuario usuario;
 
     public Cuenta(String mail, String password, String entidadPadre, String tipo) {
         this.mail = mail;
@@ -30,6 +34,22 @@ public class Cuenta {
 
     @Column(name = "tipo", length = 10)
     private String tipo;
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public String getEntidadPadre() {
         return entidadPadre;
