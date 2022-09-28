@@ -17,3 +17,14 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/usuario
+
+###
+POST http://localhost:8080/cuenta
+Content-Type: application/json
+
+{
+  "mail": "maria@mail.com",
+  "password": "Contrasena",
+  "entidadPadre": null,
+  "tipo": "usuario"
+}
