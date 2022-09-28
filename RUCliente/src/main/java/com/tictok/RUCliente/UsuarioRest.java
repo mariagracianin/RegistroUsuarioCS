@@ -18,7 +18,7 @@ public class UsuarioRest {
         String usuarioJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            UsuarioDTO usuarioDTO = new UsuarioDTO(mail, password, cedula, vencCarne, nombres, apellidos, telefono, saldoBase, sobregiro, 0);
+            UsuarioDTO usuarioDTO = new UsuarioDTO(mail, password, cedula, vencCarne, nombres, apellidos, telefono, saldoBase, sobregiro, saldoBase);
             usuarioJSON = jsonObjectMapper.writeValueAsString(usuarioDTO);
         }catch (Exception e){
             throw new RuntimeException(e);
@@ -27,7 +27,8 @@ public class UsuarioRest {
         try {
             HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/usuario")
                     .header("Content-Type", "application/json")
-                    .body(usuarioJSON).asJson();
+                    .body(usuarioJSON)
+                    .asJson();
             return response.getCode();
         }catch (Exception e){
             throw new RuntimeException(e);
@@ -35,8 +36,12 @@ public class UsuarioRest {
     }
 
     public void obtenerUsuarios(String nombreEmpresa){
-
-
+        try {
+            HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/usuario/empresa{"+nombreEmpresa+"}/all")
+                    .asJson();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
 }
