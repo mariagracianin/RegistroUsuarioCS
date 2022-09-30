@@ -30,15 +30,13 @@ public class CuentaService {
     }
 
     private void crearPrimerAdministrador(){
-        Cuenta primerAdmin = new Cuenta("admin", "contra",
-                null,"admin");
+        Cuenta primerAdmin = new Cuenta("admin", "contra","admin");
         cuentaRepository.save(primerAdmin);
         System.out.println("Administrador padre creado");
     }
 
     private void crearPrimeraEmpresa(){
-        Cuenta primeraEmpresa = new Cuenta("empresa@mail", "contra",
-                null,"empresa");
+        Cuenta primeraEmpresa = new Cuenta("empresa@mail", "contra","empresa");
         cuentaRepository.save(primeraEmpresa);
         System.out.println("Empresa 1 creada");
     }
@@ -65,5 +63,6 @@ public class CuentaService {
         }
         return cuentaRepository.save(newCuenta);
     }
+
 
 }

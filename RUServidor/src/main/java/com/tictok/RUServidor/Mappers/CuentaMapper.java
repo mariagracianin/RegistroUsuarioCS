@@ -8,12 +8,11 @@ public class CuentaMapper {
     public static Object toCuentaDTO(Cuenta cuenta) {
 
         return new CuentaDTO(cuenta.getId(), cuenta.getPassword(),
-                cuenta.getEntidadPadre(), cuenta.getTipo());
+                cuenta.getTipo());
 
     }
 
     public static Cuenta toCuenta(CuentaDTO cuentaDTO) {
-        return new Cuenta(cuentaDTO.getMail(), cuentaDTO.getPassword(),
-                cuentaDTO.getEntidadPadre(), cuentaDTO.getTipo());
+        return new Cuenta(cuentaDTO.getMail(), cuentaDTO.getPassword(), cuentaDTO.getTipo());
     }
 }
