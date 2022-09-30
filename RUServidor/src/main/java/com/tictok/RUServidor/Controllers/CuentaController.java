@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cuenta")
+@RequestMapping("/cuentas")
 public class CuentaController {
 
     private final CuentaService cuentaService;
@@ -32,7 +32,4 @@ public class CuentaController {
     public Cuenta postNewCuenta(@RequestBody CuentaDTO newCuentaDTO) throws CuentaYaExisteException {
         return cuentaService.save(newCuentaDTO);
     }
-
-
-
 }
