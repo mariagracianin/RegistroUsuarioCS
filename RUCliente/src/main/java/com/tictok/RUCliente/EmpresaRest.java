@@ -12,5 +12,5 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-public class EmpresaRest {
+public class EmpresaRest{
 }

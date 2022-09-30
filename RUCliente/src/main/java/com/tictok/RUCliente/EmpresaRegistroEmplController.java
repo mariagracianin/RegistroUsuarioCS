@@ -73,7 +73,7 @@ public class EmpresaRegistroEmplController implements Initializable {
         LocalDate vencimientoCarneDATE = fechaVenCarne.getValue();
         String vencimientoCarne = vencimientoCarneDATE.toString();
 
-        HttpResponse<JsonNode> responseCode = usuarioRest.guardarUsuario(mailTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum);
+        HttpResponse<JsonNode> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum);
         if (responseCode.getCode()==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
             etVariableMensajeError.setText("mensaje error que viene del server");

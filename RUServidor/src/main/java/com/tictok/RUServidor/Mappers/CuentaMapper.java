@@ -8,7 +8,6 @@ import com.tictok.RUServidor.Entities.Usuario;
 
 public class CuentaMapper {
     public static CuentaDTO toCuentaDTO(Cuenta cuenta) {
-
         return new CuentaDTO(cuenta.getId(), cuenta.getPassword(),
                 cuenta.getTipo());
 
