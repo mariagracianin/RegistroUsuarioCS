@@ -57,15 +57,14 @@ public class UsuarioService {
 
     public Usuario save(UsuarioDTO newUsuarioDTO) {
         Usuario newUsuario = UsuarioMapper.toUsuario(newUsuarioDTO);
-        System.out.println(newUsuario.getMail());
-            Optional<Usuario> user = usuarioRepository.findById(newUsuario.getMail());
+            Optional<Usuario> user = usuarioRepository.findById(newUsuario.getStringCuenta());
 
             if (!newUsuario.telefonoCorrecto()){
                 throw new UsuarioMalDefinido();
             }
             if (user.isPresent()){
                 System.out.println("Lo encontro");
-                throw new UsuarioYaExisteException(newUsuario.getMail());
+                throw new UsuarioYaExisteException(newUsuario.getStringCuenta());
             } else{
                 System.out.println("No lo encontro");
                 }

@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsuarioDTO {
-    private String mail;
-    private String password;
+
+    private String cuentaMail;
     private int cedula;
     private String vencimientoCarne;
     private String nombre;
@@ -20,9 +20,8 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String mail, String password, int cedula, String vencimientoCarne, String nombre, String apellido, String telefono, double saldoBase, double sobregiro, double saldo) {
-        this.mail = mail;
-        this.password = password;
+    public UsuarioDTO(String cuentaMail, int cedula, String vencimientoCarne, String nombre, String apellido, String telefono, double saldoBase, double sobregiro, double saldo) {
+        this.cuentaMail = cuentaMail;
         this.cedula = cedula;
         this.vencimientoCarne = vencimientoCarne;
         this.nombre = nombre;
@@ -33,22 +32,10 @@ public class UsuarioDTO {
         this.saldo = saldo;
     }
 
-    public String getMail() {
-        return mail;
-    }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public String getCuentaMail() {
+        return cuentaMail;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public int getCedula() {
         return cedula;
     }
