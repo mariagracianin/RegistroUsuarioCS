@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class Login_Controller {
+public class LoginController {
     public Button btnIngresar;
     public TextField correoElectronico;
     public TextField contraseña;
@@ -31,7 +31,7 @@ public class Login_Controller {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Empresa_RegistroEmpl_Controller.class.getResourceAsStream("empresa.fxml"));
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Empresa");

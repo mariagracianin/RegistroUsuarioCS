@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empresa_Controller">
+<BorderPane prefHeight="400.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.EmpresaController">
    <top>
       <AnchorPane prefHeight="79.0" prefWidth="460.0" style="-fx-background-color: #50c1e8;" BorderPane.alignment="CENTER">
          <children>
@@ -38,12 +38,17 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnRegistrarNC" layoutX="88.0" layoutY="63.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #49cead;" stylesheets="@CSS.css" text="Registrar nuevo usuario">
+            <Button fx:id="btnRegistrarNC" layoutX="70.0" layoutY="63.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="36.0" prefWidth="221.0" style="-fx-background-color: #49cead;" stylesheets="@CSS.css" text="Registrar nuevo usuario">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" layoutX="88.0" layoutY="115.0" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #49cead;" stylesheets="@CSS.css" text="Ver liquidación">
+            <Button fx:id="btnLiquidacion" layoutX="69.0" layoutY="152.0" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="36.0" prefWidth="222.0" style="-fx-background-color: #49cead;" stylesheets="@CSS.css" text="Ver liquidación">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVerTablaEmpleados" layoutX="69.0" layoutY="107.0" mnemonicParsing="false" onAction="#mostrarTablaEmpleados" prefHeight="36.0" prefWidth="222.0" style="-fx-background-color: #49cead;" stylesheets="@CSS.css" text="Ver empleados registrados">
                <font>
                   <Font size="15.0" />
                </font>

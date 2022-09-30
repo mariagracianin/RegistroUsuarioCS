@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 @Component
-public class Empresa_RegistroEmpl_Controller implements Initializable {
+public class EmpresaRegistroEmplController implements Initializable {
 
     @Autowired
     private UsuarioRest usuarioRest;
@@ -48,7 +48,7 @@ public class Empresa_RegistroEmpl_Controller implements Initializable {
 
 
 
-    public Empresa_RegistroEmpl_Controller() {
+    public EmpresaRegistroEmplController() {
         System.out.println("COnstructor!!!");
     }
     @Override
@@ -89,7 +89,7 @@ public class Empresa_RegistroEmpl_Controller implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Empresa_RegistroEmpl_Controller.class.getResourceAsStream("vent_emergente_exito.fxml"));
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("vent_emergente_exito.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Éxito");
@@ -102,7 +102,7 @@ public class Empresa_RegistroEmpl_Controller implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Empresa_RegistroEmpl_Controller.class.getResourceAsStream("vent_emergente_error.fxml"));
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("vent_emergente_error.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Error");

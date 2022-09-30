@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component //importante!!!!!
-public class Empresa_Controller {
+public class EmpresaController {
     public Button btnSalir;
     public Button btnRegistrarNC;
+    public Button btnVerTablaEmpleados;
 
     public void salir(ActionEvent actionEvent) {
         Node source = (Node)  actionEvent.getSource();
@@ -28,7 +29,7 @@ public class Empresa_Controller {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Empresa_RegistroEmpl_Controller.class.getResourceAsStream("empresa_registro_empleado.fxml"));
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa_registro_empleado.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Registrar nuevo empleado");
@@ -38,5 +39,16 @@ public class Empresa_Controller {
     }
 
     public void mostrarLiquidacion(ActionEvent actionEvent) {
+    }
+
+    public void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpresaTablaEmplController.class.getResourceAsStream("empresa_tablaEmpleados.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+
+        stage.show(); //no es ventana emergente
     }
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="553.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.EmpresaTablaEmplController">
+   <top>
+      <AnchorPane prefHeight="62.0" prefWidth="460.0" style="-fx-background-color: #50c1e8;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="21.0" layoutY="10.0" lineSpacing="6.0" prefHeight="42.0" prefWidth="419.0" text="Empleados registrados">
+               <font>
+                  <Font name="ChunkFivePrint" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnActualizar" layoutX="612.0" layoutY="13.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
+         </children></AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="466.0" prefWidth="654.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tablEmpl" layoutY="40.0" prefHeight="465.0" prefWidth="612.0">
+              <columns>
+                <TableColumn fx:id="colCorreo" prefWidth="115.0" text="Correo Electrónico" />
+                <TableColumn fx:id="colNombres" minWidth="9.0" prefWidth="100.0" text="Nombres" />
+                  <TableColumn fx:id="colApellidos" prefWidth="100.0" text="Apellidos" />
+                  <TableColumn fx:id="colCedula" prefWidth="100.0" text="Cédula" />
+                  <TableColumn fx:id="colVenCarne" prefWidth="120.0" text="Vencimiento Carné" />
+                  <TableColumn fx:id="colSaldo" prefWidth="76.0" text="Saldo" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

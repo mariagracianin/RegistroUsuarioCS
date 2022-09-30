@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="405.0" prefWidth="666.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empresa_RegistroEmpl_Controller">
+<AnchorPane prefHeight="405.0" prefWidth="666.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.EmpresaRegistroEmplController">
    <children>
       <Button fx:id="btnGuardar" defaultButton="true" layoutX="463.0" layoutY="342.0" mnemonicParsing="false" onAction="#guardarDatos" style="-fx-background-color: #49cead;" text="Guardar">
          <font>
