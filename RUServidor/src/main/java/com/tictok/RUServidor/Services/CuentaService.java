@@ -35,6 +35,7 @@ public class CuentaService {
         System.out.println("Administrador padre creado");
     }
 
+    //Esto no parece estar bien
     private void crearPrimeraEmpresa(){
         Cuenta primeraEmpresa = new Cuenta("empresa@mail", "contra","empresa");
         cuentaRepository.save(primeraEmpresa);

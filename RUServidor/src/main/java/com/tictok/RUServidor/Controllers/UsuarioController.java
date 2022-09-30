@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Controllers;
 
 import com.tictok.Commons.CuentaDTO;
+import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
@@ -30,11 +31,8 @@ public class UsuarioController  {
     }
 
     @PostMapping
-    public Usuario postNewUsuario(@RequestBody UsuarioDTO newUsuarioDTO) throws CuentaYaExisteException {
-        CuentaDTO newCuenta = new CuentaDTO(newUsuarioDTO.getCuentaMail(),
-                String.valueOf(newUsuarioDTO.getCedula()), "user");
-        cuentaService.save(newCuenta);
-        return usuarioService.save(newUsuarioDTO);
+    public void postNewUsuario(@RequestBody MegaUsuarioDTO megaUsuarioDTO) throws CuentaYaExisteException {
+        Usuario usuario = usuarioService.saveNewUsurio(megaUsuarioDTO);
     }
 
 
