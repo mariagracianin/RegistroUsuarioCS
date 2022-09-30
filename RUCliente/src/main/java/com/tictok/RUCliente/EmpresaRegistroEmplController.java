@@ -68,7 +68,8 @@ public class EmpresaRegistroEmplController implements Initializable {
         Double saldoSobregiroNum = Double.parseDouble(saldoSobregiro.getText());
         String mailTxt = mail.getText();
         String passwordTxt = contraseña.getText();
-        LocalDate vencimientoCarne = fechaVenCarne.getValue();
+        LocalDate vencimientoCarneDATE = fechaVenCarne.getValue();
+        String vencimientoCarne = vencimientoCarneDATE.toString();
 
         Integer responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum);
         if (responseCode==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
