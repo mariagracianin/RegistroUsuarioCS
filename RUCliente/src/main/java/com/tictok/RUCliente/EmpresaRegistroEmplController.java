@@ -1,5 +1,7 @@
 package com.tictok.RUCliente;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,13 +73,12 @@ public class EmpresaRegistroEmplController implements Initializable {
         LocalDate vencimientoCarneDATE = fechaVenCarne.getValue();
         String vencimientoCarne = vencimientoCarneDATE.toString();
 
-        Integer responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum);
-        if (responseCode==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
+        HttpResponse<JsonNode> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum);
+        if (responseCode.getCode()==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
-            System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkk");
             etVariableMensajeError.setText("mensaje error que viene del server");
             abrirVentanaEmergenteError();
-        }else if (responseCode==200){
+        }else if (responseCode.getCode()==200){
             abrirVentanaEmergenteExito();
         }
 

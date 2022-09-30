@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Component
 public class UsuarioRest {
 
-    public int guardarUsuario(String mail, String password, int cedula, String vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
+    public HttpResponse<JsonNode> guardarUsuario(String mail, String password, int cedula, String vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
         String usuarioJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
@@ -29,16 +29,18 @@ public class UsuarioRest {
                     .header("Content-Type", "application/json")
                     .body(usuarioJSON)
                     .asJson();
-            return response.getCode();
+            return response;
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    public void obtenerUsuarios(String nombreEmpresa){
+    public HttpResponse<JsonNode> obtenerUsuarios(String nombreEmpresa){
         try {
             HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/usuario/empresa{"+nombreEmpresa+"}/all")
+                    .header("Content-Type", "application/json")
                     .asJson();
+            return response;
         }catch (Exception e){
             throw new RuntimeException(e);
         }
