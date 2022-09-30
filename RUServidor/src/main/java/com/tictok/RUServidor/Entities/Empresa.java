@@ -11,17 +11,54 @@ public class Empresa {
     @Id
     private String nombreEmpresa;
 
-    @Column
-    private String password;
+    @Column(name = "adress", nullable = false)
+    private String adress;
 
-    @Column
-    private String newCoso;
+    @Column(name = "telefono", nullable = false, unique = true, length = 20)
+    private String telefono;
+
+    @Column(name = "encargado", nullable = false, length = 50)
+    private String encargado;
 
     @OneToMany(mappedBy = "empresa", orphanRemoval = true)
     private List<Usuario> usuarios = new ArrayList<>();
 
     @OneToMany(mappedBy = "empresa", orphanRemoval = true)
     private List<Cuenta> cuentas = new ArrayList<>();
+
+    public Empresa(String nombreEmpresa, String adress, String telefono, String encargado) {
+        this.nombreEmpresa = nombreEmpresa;
+        this.adress = adress;
+        this.telefono = telefono;
+        this.encargado = encargado;
+    }
+
+    public Empresa() {
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public String getEncargado() {
+        return encargado;
+    }
+
+    public void setEncargado(String encargado) {
+        this.encargado = encargado;
+    }
 
     public List<Cuenta> getCuentas() {
         return cuentas;
