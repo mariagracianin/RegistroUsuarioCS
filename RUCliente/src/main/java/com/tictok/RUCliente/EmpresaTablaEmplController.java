@@ -37,7 +37,7 @@ public class EmpresaTablaEmplController {
         this.colSaldo.setCellValueFactory(new PropertyValueFactory("saldo"));
 
 
-        UsuarioDTO prueba = new UsuarioDTO("hola@ex.com","holahola",54967202,LocalDate.now(),"María","del Campo","093498330",10,5,10);
+        UsuarioDTO prueba = new UsuarioDTO("hola@ex.com", 54967202,LocalDate.now().toString(),"María","del Campo","093498330",10,5,10);
         this.empleados.add(prueba);
         this.tablEmpl.setItems(empleados);
         //this.empleados.add(cada uno de la request sql)

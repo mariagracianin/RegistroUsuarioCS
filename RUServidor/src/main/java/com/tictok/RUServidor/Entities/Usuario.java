@@ -8,11 +8,6 @@ import java.util.Date;
 @Table
 public class Usuario {
     @Id
-    private String mail;
-    @Column (name = "password", nullable = false)
-    private String password;
-
-    @Column (name = "cedula", nullable = false)
     private int cedula;
 
     @Column (name = "vencimiento_carne", nullable = true)
@@ -43,6 +38,9 @@ public class Usuario {
     public Cuenta getCuenta() {
         return cuenta;
     }
+    public String getStringCuenta() {
+        return cuenta.getId();
+    }
 
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
@@ -56,11 +54,8 @@ public class Usuario {
         this.empresa = empresa;
     }
 
-    public Usuario(String mail, String password, int cedula, String vencimientoCarne,
-                   String nombre, String apellido, String telefono, double saldoBase,
-                   double sobregiro, double saldo) {
-        this.mail = mail;
-        this.password = password;
+    public Usuario(int cedula, String vencimientoCarne, String nombre, String apellido,
+                   String telefono, double saldoBase, double sobregiro, double saldo) {
         this.cedula = cedula;
         this.vencimientoCarne = vencimientoCarne;
         this.nombre = nombre;
@@ -81,14 +76,6 @@ public class Usuario {
 
     public void setVencimientoCarne(String vencimientoCarne) {
         this.vencimientoCarne = vencimientoCarne;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Usuario() {
@@ -131,11 +118,4 @@ public class Usuario {
         this.apellido = direc;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 }

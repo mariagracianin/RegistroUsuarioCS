@@ -9,9 +9,8 @@ public class UsuarioMapper {
 //        if(userDTO != null){
 //            return null;
 //        }
-        return new Usuario(userDTO.getMail(),userDTO.getPassword(),userDTO.getCedula(),
-                userDTO.getVencimientoCarne(),userDTO.getNombre(),userDTO.getApellido(),
-                userDTO.getTelefono(),userDTO.getSaldoBase(),userDTO.getSobregiro(),userDTO.getSaldo());
+        return new Usuario(userDTO.getCedula(), userDTO.getVencimientoCarne(),userDTO.getNombre(),
+                userDTO.getApellido(), userDTO.getTelefono(),userDTO.getSaldoBase(),userDTO.getSobregiro(),userDTO.getSaldo());
     }
 
     public static UsuarioDTO toUsuarioDTO(Usuario user){
@@ -20,7 +19,8 @@ public class UsuarioMapper {
 //            return null;
 //        }
 
-        return new UsuarioDTO(user.getMail(),user.getPassword(),user.getCedula(),user.getVencimientoCarne(),user.getNombre(),user.getApellido(),user.getTelefono(),user.getSaldoBase(),user.getSobregiro(),user.getSaldo());
+        return new UsuarioDTO(user.getStringCuenta(), user.getCedula(),user.getVencimientoCarne(),user.getNombre(),user.getApellido(),user.getTelefono()
+                ,user.getSaldoBase(),user.getSobregiro(),user.getSaldo());
     }
 
     public static Usuario toUpdateUsuario(Usuario user, Usuario updateUser){
