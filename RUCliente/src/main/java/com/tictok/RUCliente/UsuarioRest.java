@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Component
 public class UsuarioRest {
 
-    public HttpResponse<JsonNode> guardarUsuario(String mail,String password, int cedula, String vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
+    public HttpResponse<String> guardarUsuario(String mail,String password, int cedula, String vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
         String usuarioJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
@@ -26,10 +26,10 @@ public class UsuarioRest {
         }
 
         try {
-            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/usuario")
+            HttpResponse<String> response = Unirest.post("http://localhost:8080/usuario")
                     .header("Content-Type", "application/json")
                     .body(usuarioJSON)
-                    .asJson();
+                    .asString();
             return response;
         }catch (Exception e){
             throw new RuntimeException(e);
@@ -38,7 +38,7 @@ public class UsuarioRest {
 
     public HttpResponse<JsonNode> obtenerUsuariosFromEmpresaX(String nombreEmpresa){
         try {
-            HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/usuario/empresa{"+nombreEmpresa+"}/all")
+            HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/usuario/all")
                     .header("Content-Type", "application/json")
                     .asJson();
             return response;

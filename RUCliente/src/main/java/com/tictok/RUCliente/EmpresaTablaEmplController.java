@@ -51,6 +51,7 @@ public class EmpresaTablaEmplController {
 
         HttpResponse<JsonNode> response = usuarioRest.obtenerUsuariosFromEmpresaX(null);
         String responseBody = response.getBody().toString();
+        System.out.println(responseBody);
 
         ObjectMapper mapper = new ObjectMapper();
         ObservableList<UsuarioDTO> listUsuariosDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, UsuarioDTO.class));
