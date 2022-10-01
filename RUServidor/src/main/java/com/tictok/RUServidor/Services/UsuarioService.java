@@ -91,4 +91,13 @@ public class UsuarioService {
         usuario.setEmpresa(empresa);
         return usuarioRepository.save(usuario);
     }
+
+    public List<UsuarioDTO> findByEmpresa(Empresa empresa) {
+        List usuariosList = usuarioRepository.findByEmpresa(empresa);
+        List usuarioDTOList = new ArrayList<UsuarioDTO>(usuariosList.size());
+        for (int i = 0; i<usuariosList.size(); i++){
+            usuarioDTOList.add(UsuarioMapper.toUsuarioDTO((Usuario) usuariosList.get(i)));
+        }
+        return usuarioDTOList;
+    }
 }
