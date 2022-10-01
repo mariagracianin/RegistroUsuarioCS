@@ -5,6 +5,8 @@ import com.tictok.RUServidor.Repositories.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmpresaService {
     private final EmpresaRepository empresaRepository;
@@ -20,5 +22,13 @@ public class EmpresaService {
     private void crearPrimeraEmpresa(){
         Empresa empresa = new Empresa("empresa", "direccion", "telefono", "encargado");
         empresaRepository.save(empresa);
+    }
+
+    public Empresa findById(String nombreEmpresa) throws Exception {
+        Optional<Empresa> empresa1 = empresaRepository.findById(nombreEmpresa);
+        if (empresa1.isEmpty()){
+            throw new Exception(); //Todo mandar cosos
+        }
+        return empresa1.get();
     }
 }
