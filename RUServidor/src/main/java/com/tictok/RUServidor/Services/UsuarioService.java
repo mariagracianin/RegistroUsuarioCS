@@ -48,23 +48,23 @@ public class UsuarioService {
     }
 
 
-    public Usuario findOnebyId(String id) throws UsuarioNoExisteException {
+    public Usuario findOnebyId(Integer id) throws UsuarioNoExisteException {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
         if (usuario.isPresent()) {
             return usuario.get();
         }
         else {
-            throw new UsuarioNoExisteException();
+            throw new UsuarioNoExisteException(id);
         }
     }
 
-    public List<Usuario> findbyId(List<String> idList){
+    public List<Usuario> findbyId(List<Integer> idList){
         return usuarioRepository.findAllById(idList);
     }
 
     public Usuario save(UsuarioDTO newUsuarioDTO) {
         Usuario newUsuario = UsuarioMapper.toUsuario(newUsuarioDTO);
-            Optional<Usuario> user = usuarioRepository.findById(newUsuario.getStringCuenta());
+            Optional<Usuario> user = usuarioRepository.findById(newUsuario.getCedula());
 
             if (!newUsuario.telefonoCorrecto()){
                 throw new UsuarioMalDefinido();
@@ -92,12 +92,12 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public List<UsuarioDTO> findByEmpresa(Empresa empresa) {
-        List usuariosList = usuarioRepository.findByEmpresa(empresa);
-        List usuarioDTOList = new ArrayList<UsuarioDTO>(usuariosList.size());
-        for (int i = 0; i<usuariosList.size(); i++){
-            usuarioDTOList.add(UsuarioMapper.toUsuarioDTO((Usuario) usuariosList.get(i)));
-        }
-        return usuarioDTOList;
-    }
+//    public List<UsuarioDTO> findByEmpresa(Empresa empresa) {
+//        List usuariosList = usuarioRepository.findByEmpresa(empresa);
+//        List usuarioDTOList = new ArrayList<UsuarioDTO>(usuariosList.size());
+//        for (int i = 0; i<usuariosList.size(); i++){
+//            usuarioDTOList.add(UsuarioMapper.toUsuarioDTO((Usuario) usuariosList.get(i)));
+//        }
+//        return usuarioDTOList;
+//    }
 }

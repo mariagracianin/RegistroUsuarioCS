@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, String>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     @Query("select u from Usuario u where u.empresa = ?1")
     List<Usuario> findByEmpresa(@NonNull Empresa empresa);
 

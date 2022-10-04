@@ -28,3 +28,8 @@ Content-Type: application/json
   "entidadPadre": null,
   "tipo": "usuario"
 }
+
+###
+GET http://localhost:8080/empresa/usuarios/empresa
+Content-Type: application/json
+

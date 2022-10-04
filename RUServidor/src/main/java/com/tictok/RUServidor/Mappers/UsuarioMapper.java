@@ -4,6 +4,9 @@ import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.Commons.UsuarioDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UsuarioMapper {
     public static Usuario toUsuario(UsuarioDTO userDTO){
 
@@ -34,7 +37,13 @@ public class UsuarioMapper {
     }
 
     //
-
+    public static List<UsuarioDTO> toUsuarioDTOList(List<Usuario> usuariosList){
+        List usuarioDTOList = new ArrayList<UsuarioDTO>(usuariosList.size());
+        for (int i = 0; i<usuariosList.size(); i++) {
+            usuarioDTOList.add(UsuarioMapper.toUsuarioDTO((Usuario) usuariosList.get(i)));
+        }
+        return usuarioDTOList;
+    }
     public static Usuario toUpdateUsuario(Usuario user, Usuario updateUser){
         //?
         return null;
