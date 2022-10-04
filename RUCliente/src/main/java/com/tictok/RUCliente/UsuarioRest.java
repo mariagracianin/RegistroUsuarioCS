@@ -18,7 +18,7 @@ public class UsuarioRest {
         String usuarioJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            UsuarioDTO usuarioDTO = new UsuarioDTO(mail, password, cedula, vencCarne, nombres, apellidos, telefono, saldoBase, sobregiro, saldoBase);
+            UsuarioDTO usuarioDTO = new UsuarioDTO(mail, cedula, vencCarne, nombres, apellidos, telefono, saldoBase, sobregiro, saldoBase);
             usuarioJSON = jsonObjectMapper.writeValueAsString(usuarioDTO);
         }catch (Exception e){
             throw new RuntimeException(e);

@@ -1,13 +1,21 @@
-.button
-{
-    -fx-background-color:  #d0d7d5;
+.mainPane{
+    -fx-background-color: #ffffff;
 }
-
-.button:hover
-{
-    -fx-background-color: #000000 ;
+.topPane{
+    -fx-background-color: #49cead;
 }
-.button:pressed
-{
-    -fx-background-color: #000000;
+.leftPane{
+    -fx-background-color: #ffffff;
+}
+.rightPane{
+    -fx-background-color: #ffffff;
+}
+.button{
+    -fx-background-color: #49cead;
+}
+.button:hover{
+    -fx-background-color: #6dedcd;
+}
+.button:pressed{
+    -fx-background-color: ;
 }
