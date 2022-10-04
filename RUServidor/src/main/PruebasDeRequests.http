@@ -30,6 +30,6 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/empresa/usuarios/empresa
+GET http://localhost:8080/empresa/empresa/usuarios
 Content-Type: application/json
 

@@ -23,7 +23,7 @@ public class EmpresaController {
         this.empresaService = empresaService;
     }
 
-    @GetMapping("/usuarios/{nombreEmpresa}")
+    @GetMapping("/{nombreEmpresa}/usuarios")
     public List<UsuarioDTO> getUsuariosFromEmpresa(@PathVariable String nombreEmpresa) throws EmpresaNoExisteException {
         return empresaService.findUsuariosFromEmpresa(nombreEmpresa);
     }
