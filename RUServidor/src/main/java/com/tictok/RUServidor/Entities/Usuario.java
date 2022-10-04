@@ -28,7 +28,7 @@ public class Usuario {
     private double saldo;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "empresa_nombre_empresa", nullable = false)
+    @JoinColumn(name = "empresa_nombre_empresa", nullable = true) //TODO hay que ponerlo como false
     private Empresa empresa;
 
     @OneToOne(optional = false, orphanRemoval = true)

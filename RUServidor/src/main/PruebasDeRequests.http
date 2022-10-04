@@ -3,16 +3,16 @@ POST http://localhost:8080/usuario
 Content-Type: application/json
 
 {
-  "mail": "maria@mail.com",
+  "cuentaMail": "maria@mail.com",
+  "password": "coso",
   "apellido": "Diaz",
   "cedula": 123456888,
   "nombre": "Juan",
-  "password": "Contrasena",
   "saldo": 1.00,
   "saldo_base": 1.00,
   "sobregiro": 2.00,
   "telefono": "097 824 674",
-  "vencimiento_carne": "02/07/2002"
+  "vencimientoCarne": "02/07/2002"
 }
 
 ###
@@ -28,3 +28,8 @@ Content-Type: application/json
   "entidadPadre": null,
   "tipo": "usuario"
 }
+
+###
+GET http://localhost:8080/empresa/empresa/usuarios
+Content-Type: application/json
+

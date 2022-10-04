@@ -21,10 +21,10 @@ public class Empresa {
     private String encargado;
 
     @OneToMany(mappedBy = "empresa", orphanRemoval = true)
-    private List<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> usuarios = new ArrayList<Usuario>();
 
     @OneToMany(mappedBy = "empresa", orphanRemoval = true)
-    private List<Cuenta> cuentas = new ArrayList<>();
+    private List<Cuenta> cuentas = new ArrayList<Cuenta>();
 
     public Empresa(String nombreEmpresa, String adress, String telefono, String encargado) {
         this.nombreEmpresa = nombreEmpresa;

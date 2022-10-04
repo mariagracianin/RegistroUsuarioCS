@@ -16,10 +16,9 @@ public class Cuenta {
     @OneToOne(mappedBy = "cuenta", orphanRemoval = true)
     private Usuario usuario;
 
-    public Cuenta(String mail, String password, String entidadPadre, String tipo) {
+    public Cuenta(String mail, String password, String tipo) {
         this.mail = mail;
         this.password = password;
-        this.entidadPadre = entidadPadre;
         this.tipo = tipo;
     }
 
@@ -28,9 +27,6 @@ public class Cuenta {
 
     @Column(name = "password", length = 20)
     private String password;
-
-    @Column(name = "entidad_padre", length = 150)
-    private String entidadPadre;
 
     @Column(name = "tipo", length = 10)
     private String tipo;
@@ -50,15 +46,6 @@ public class Cuenta {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public String getEntidadPadre() {
-        return entidadPadre;
-    }
-
-    public void setEntidadPadre(String entidadPadre) {
-        this.entidadPadre = entidadPadre;
-    }
-
     public String getTipo() {
         return tipo;
     }
