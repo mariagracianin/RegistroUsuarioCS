@@ -27,7 +27,7 @@ public class UsuarioController  {
         this.cuentaService = cuentaService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<UsuarioDTO> getAllUsuario() {
         return usuarioService.findAll();
     }
