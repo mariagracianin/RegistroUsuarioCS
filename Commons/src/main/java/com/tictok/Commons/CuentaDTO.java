@@ -15,6 +15,11 @@ public class CuentaDTO {
         this.tipo = tipo;
     }
 
+    public CuentaDTO(String mail, String password) {
+        this.mail = mail;
+        this.password = password;
+    }
+
     public String getMail() {
         return mail;
     }

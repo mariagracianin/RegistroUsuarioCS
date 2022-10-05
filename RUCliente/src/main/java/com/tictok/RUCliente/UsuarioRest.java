@@ -36,6 +36,7 @@ public class UsuarioRest {
     }
 
     public HttpResponse<String> obtenerUsuariosFromEmpresaX(String nombreEmpresa){
+        //nombreEmpresa es con la que entre a la app
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/"+ "empresa" +"/usuarios")
                     .header("Content-Type", "application/json")

@@ -32,4 +32,9 @@ public class CuentaController {
     public Cuenta postNewCuenta(@RequestBody CuentaDTO newCuentaDTO) throws CuentaYaExisteException {
         return cuentaService.save(newCuentaDTO);
     }
+
+    @GetMapping("/autenticar")
+    public CuentaDTO autenticar(@RequestBody CuentaDTO cuentaDTOaAutenticar) {
+        return cuentaService.autenticar(cuentaDTOaAutenticar);
+    }
 }
