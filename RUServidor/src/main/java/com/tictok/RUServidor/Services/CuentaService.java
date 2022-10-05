@@ -4,9 +4,7 @@ import com.tictok.Commons.CuentaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
-import com.tictok.RUServidor.Exceptions.CuentaYaExisteException;
-import com.tictok.RUServidor.Exceptions.UsuarioMalDefinido;
-import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
+import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
 import com.tictok.RUServidor.Mappers.UsuarioMapper;
 import com.tictok.RUServidor.Repositories.CuentaRepository;
@@ -63,6 +61,34 @@ public class CuentaService {
             throw new CuentaYaExisteException();
         }
         return cuentaRepository.save(newCuenta);
+    }
+
+    public Cuenta findOnebyId(String id) throws CuentaNoExisteException {
+        Optional<Cuenta> cuenta = cuentaRepository.findById(id);
+        if (cuenta.isPresent()) {
+            return cuenta.get();
+        }
+        else {
+            throw new CuentaNoExisteException(id);
+        }
+    }
+
+    public CuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar){
+        String mailDTO = cuentaDTOaAutenticar.getMail();
+        String passwordDTO = cuentaDTOaAutenticar.getPassword();
+        Cuenta cuentaConEseMail;
+
+        try {
+            cuentaConEseMail = findOnebyId(mailDTO);
+        }catch(CuentaNoExisteException e){
+            return null;
+        }
+
+        if (cuentaConEseMail.getPassword()==passwordDTO){
+            return CuentaMapper.toCuentaDTO(cuentaConEseMail);
+        }else{
+            return null;
+        }
     }
 
 
