@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="@entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.AdministradorRegCentroController">
+   <left>
+      <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@entidad_style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Administrador" textAlignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#registrarEmpresa" prefHeight="50.0" prefWidth="202.0" text="Registrar empresa">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRegistrarCentro" mnemonicParsing="false" prefHeight="50.0" prefWidth="202.0" text="Registrar centro deportivo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="50.0" prefWidth="202.0" text="Ver empresas">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVerCentros" mnemonicParsing="false" onAction="#mostrarTablaCentros" prefHeight="50.0" prefWidth="202.0" text="Ver centros deportivos">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="50.0" prefWidth="202.0" text="Ver liquidación">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Salir">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@entidad_style.css" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="nombre" layoutX="194.0" layoutY="128.0" prefHeight="25.0" prefWidth="220.0" promptText="Empresa SA" />
+            <TextField fx:id="encargado" layoutX="194.0" layoutY="248.0" prefHeight="25.0" prefWidth="220.0" promptText="Juan Perez" />
+            <TextField fx:id="direccion" layoutX="194.0" layoutY="168.0" prefHeight="25.0" prefWidth="220.0" promptText="Calle Este 1234" />
+            <TextField fx:id="tel" layoutX="194.0" layoutY="208.0" prefHeight="25.0" prefWidth="220.0" promptText="24001212" />
+            <Label layoutX="104.0" layoutY="128.0" prefHeight="20.0" prefWidth="89.0" text="Nombre" textFill="WHITE">
+               <font>
+                  <Font name="Candara Light" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="104.0" layoutY="168.0" prefHeight="17.0" prefWidth="68.0" text="Dirección" textFill="WHITE">
+               <font>
+                  <Font name="Candara Light" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="104.0" layoutY="208.0" prefHeight="17.0" prefWidth="68.0" text="Teléfono" textFill="WHITE">
+               <font>
+                  <Font name="Candara Light" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="104.0" layoutY="248.0" prefHeight="20.0" prefWidth="99.0" text="Encargado" textFill="WHITE">
+               <font>
+                  <Font name="Candara Light" size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnGuardar" defaultButton="true" layoutX="346.0" layoutY="340.0" mnemonicParsing="false" onAction="#guardarDatos" stylesheets="@entidad_style.css" text="Guardar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="104.0" layoutY="58.0" text="Registrar Centro Deportivo" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

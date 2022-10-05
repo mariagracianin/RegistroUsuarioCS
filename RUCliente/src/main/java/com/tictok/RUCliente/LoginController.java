@@ -33,7 +33,9 @@ public class LoginController {
 
         Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa.fxml"));
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Empresa");
 
         stage.show(); //no es ventana emergente

@@ -5,55 +5,58 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Component //importante!!!!!
-public class EmpresaController {
-    public Button btnSalir;
-    public Button btnRegistrarNC;
-    public Button btnVerTablaEmpleados;
-
+@Component
+public class AdministradorController {
+    
     public void salir(ActionEvent actionEvent) {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close();
 
     }
-
-    public void registrarUsuario(ActionEvent actionEvent) throws IOException {
+    
+    public void registrarEmpresa(ActionEvent actionEvent) throws IOException {
         this.salir(actionEvent);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa_registro_empleado.fxml"));
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("adminRegistroEmpresa.fxml"));
         Stage stage = new Stage();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        stage.setTitle("Registrar nuevo empleado");
+        stage.setTitle("Registrar nueva empresa");
 
         stage.show(); //no es ventana emergente
+    }
 
+    public void mostrarTablaEmpresas(ActionEvent actionEvent) {
+    }
+
+    public void mostrarTablaCentros(ActionEvent actionEvent) {
     }
 
     public void mostrarLiquidacion(ActionEvent actionEvent) {
     }
 
-    public void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
+    public void registrarCentro(ActionEvent actionEvent) throws IOException {
         this.salir(actionEvent);
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(EmpresaTablaEmplController.class.getResourceAsStream("empresa_tablaEmpleados.fxml"));
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("adminRegistroCentro.fxml"));
         Stage stage = new Stage();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Registrar nuevo centro");
 
         stage.show(); //no es ventana emergente
     }

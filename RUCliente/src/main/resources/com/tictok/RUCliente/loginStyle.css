@@ -1,14 +1,14 @@
 .mainPane{
-    -fx-background-color: #ffffff;
+    -fx-background-color: #4A4A4A;
 }
 .topPane{
     -fx-background-color: #49cead;
 }
 .leftPane{
-    -fx-background-color: #ffffff;
+    -fx-background-color: #282828;
 }
 .rightPane{
-    -fx-background-color: #ffffff;
+    -fx-background-color: #282828;
 }
 .button{
     -fx-background-color: #49cead;
@@ -17,5 +17,5 @@
     -fx-background-color: #6dedcd;
 }
 .button:pressed{
-    -fx-background-color: ;
+    -fx-background-color: #84f5d9;
 }
