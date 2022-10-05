@@ -4,6 +4,7 @@ import com.tictok.Commons.CuentaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
+import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.CuentaYaExisteException;
 import com.tictok.RUServidor.Services.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class CuentaController {
     }
 
     @GetMapping("/autenticar")
-    public CuentaDTO autenticar(@RequestBody CuentaDTO cuentaDTOaAutenticar) {
+    public CuentaDTO autenticar(@RequestBody CuentaDTO cuentaDTOaAutenticar) throws CuentaNoExisteException {
         return cuentaService.autenticar(cuentaDTOaAutenticar);
     }
 }

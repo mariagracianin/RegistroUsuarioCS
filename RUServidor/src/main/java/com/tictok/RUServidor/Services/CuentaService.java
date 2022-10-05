@@ -73,16 +73,14 @@ public class CuentaService {
         }
     }
 
-    public CuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar){
+    public CuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar) throws CuentaNoExisteException {
         String mailDTO = cuentaDTOaAutenticar.getMail();
         String passwordDTO = cuentaDTOaAutenticar.getPassword();
         Cuenta cuentaConEseMail;
 
-        try {
-            cuentaConEseMail = findOnebyId(mailDTO);
-        }catch(CuentaNoExisteException e){
-            return null;
-        }
+
+        cuentaConEseMail = findOnebyId(mailDTO);
+
 
         if (cuentaConEseMail.getPassword().equals(passwordDTO)){
             return CuentaMapper.toCuentaDTO(cuentaConEseMail);
