@@ -42,4 +42,17 @@ public class LoginController {
 
         stage.show(); //no es ventana emergente
     }
+    public void cargarVistaAdmin() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("administrador.fxml"));
+        Stage stage = new Stage();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Administrador");
+
+        stage.show(); //no es ventana emergente
+    }
 }

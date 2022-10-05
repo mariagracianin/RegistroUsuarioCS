@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,11 +26,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ResourceBundle;
 
 @Component
-public class EmpresaTablaEmplController {
+public class EmpresaTablaEmplController implements Initializable {
 
     @Autowired
     private UsuarioRest usuarioRest;
@@ -46,9 +49,11 @@ public class EmpresaTablaEmplController {
     public TableView<UsuarioDTO> tablEmpl;
     private ObservableList<UsuarioDTO> empleados;
 
-
-    public void actualizar(ActionEvent actionEvent) throws JsonProcessingException {
-        empleados = FXCollections.observableArrayList();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.refrescar();
+    }
+    private void refrescar(){
         this.colNombres.setCellValueFactory(new PropertyValueFactory("nombre"));
         this.colApellidos.setCellValueFactory(new PropertyValueFactory("apellido"));
         this.colCedula.setCellValueFactory(new PropertyValueFactory("cedula"));
@@ -62,12 +67,15 @@ public class EmpresaTablaEmplController {
             ObjectMapper mapper = new ObjectMapper();
             List<UsuarioDTO> listUsuariosDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, UsuarioDTO.class));
 
-            ObservableList<UsuarioDTO> observableListUsuariosDTO = FXCollections.observableList(listUsuariosDTO);
-            this.empleados = observableListUsuariosDTO;
+            this.empleados = FXCollections.observableList(listUsuariosDTO);
             this.tablEmpl.setItems(empleados);
         }catch (Exception e){
             throw new RuntimeException(e);
         }
+    }
+
+    public void actualizar(ActionEvent actionEvent) throws JsonProcessingException {
+        this.refrescar();
     }
     public void registrarUsuario(ActionEvent actionEvent) throws IOException {
         empresaController.registrarUsuario(actionEvent);
