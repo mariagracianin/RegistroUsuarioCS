@@ -17,7 +17,7 @@ public class LoginRest {
 
     public HttpResponse<String> autenticar(String mail, String password) {
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/cuenta/autenticar?mail=admin&password=contra")
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/cuenta/autenticar?mail="+mail+"&password="+ password)
                     .header("Content-Type", "application/json")
                     .asString();
             return response;

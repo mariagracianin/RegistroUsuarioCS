@@ -32,6 +32,7 @@ public class LoginController {
 
     public void ingresar(ActionEvent actionEvent) throws IOException {
         HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(), password.getText());
+        System.out.println("ke");
         System.out.println(response.getCode() + "---code");
         System.out.println(response.getBody() + "---body");
         if (response.getCode() == 200) {
