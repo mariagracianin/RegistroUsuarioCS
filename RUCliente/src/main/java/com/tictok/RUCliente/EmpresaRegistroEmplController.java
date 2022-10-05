@@ -29,6 +29,10 @@ public class EmpresaRegistroEmplController implements Initializable {
 
     @Autowired
     private UsuarioRest usuarioRest;
+    @Autowired
+    LoginController loginController;
+    @Autowired
+    EmpresaController empresaController;
 
     @FXML
     public Button btnGuardar;
@@ -76,7 +80,7 @@ public class EmpresaRegistroEmplController implements Initializable {
         HttpResponse<String> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum);
         if (responseCode.getCode()==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
-           // etVariableMensajeError.setText("mensaje error que viene del server");
+            etVariableMensajeError.setText("mensaje error que viene del server");
             abrirVentanaEmergenteError();
         }else if (responseCode.getCode()==200){
             abrirVentanaEmergenteExito();
@@ -98,6 +102,9 @@ public class EmpresaRegistroEmplController implements Initializable {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+
+        loginController.cargarVistaEmpresa();
+
     }
 
     public void abrirVentanaEmergenteError() throws IOException {
@@ -111,6 +118,7 @@ public class EmpresaRegistroEmplController implements Initializable {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        loginController.cargarVistaEmpresa();
     }
 
     public void salir(ActionEvent actionEvent) throws IOException {
@@ -128,17 +136,7 @@ public class EmpresaRegistroEmplController implements Initializable {
         stageActual.close(); //cierro la ventana en la que estoy
     }
     public void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
-        this.salir(actionEvent);
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(EmpresaTablaEmplController.class.getResourceAsStream("empresa_tablaEmpleados.fxml"));
-        Stage stage = new Stage();
-        Scene escena = new Scene(root);
-        stage.setScene(escena);
-        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-
-        stage.show(); //no es ventana emergente
+        empresaController.mostrarTablaEmpleados(actionEvent);
     }
 
     public void mostrarLiquidacion(ActionEvent actionEvent) {
