@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Component
 public class UsuarioRest {
 
-    public HttpResponse<JsonNode> guardarUsuario(String mail, String password, int cedula, String vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
+    public HttpResponse<String> guardarUsuario(String mail, String password, int cedula, String vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
         String usuarioJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
@@ -25,21 +25,22 @@ public class UsuarioRest {
         }
 
         try {
-            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/usuario")
+            HttpResponse<String> response = Unirest.post("http://localhost:8080/usuario")
                     .header("Content-Type", "application/json")
                     .body(usuarioJSON)
-                    .asJson();
+                    .asString();
             return response;
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    public HttpResponse<JsonNode> obtenerUsuarios(String nombreEmpresa){
+    public HttpResponse<String> obtenerUsuariosFromEmpresaX(String nombreEmpresa){
+        //"http://localhost:8080/usuario/empresa{"+nombreEmpresa+"}/all"
         try {
-            HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/usuario/empresa{"+nombreEmpresa+"}/all")
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/all")
                     .header("Content-Type", "application/json")
-                    .asJson();
+                    .asString();
             return response;
         }catch (Exception e){
             throw new RuntimeException(e);

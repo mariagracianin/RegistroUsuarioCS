@@ -48,16 +48,18 @@ public class EmpresaTablaEmplController {
         this.colVenCarne.setCellValueFactory(new PropertyValueFactory("vencimientoCarne"));
         this.colSaldo.setCellValueFactory(new PropertyValueFactory("saldo"));
 
+        try {
+            HttpResponse<String> response = usuarioRest.obtenerUsuariosFromEmpresaX(null);
+            String responseBody = response.getBody();
+            ObjectMapper mapper = new ObjectMapper();
+            List<UsuarioDTO> listUsuariosDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, UsuarioDTO.class));
 
-        HttpResponse<JsonNode> response = usuarioRest.obtenerUsuariosFromEmpresaX(null);
-        String responseBody = response.getBody().toString();
-        System.out.println(responseBody);
-
-        ObjectMapper mapper = new ObjectMapper();
-        ObservableList<UsuarioDTO> listUsuariosDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, UsuarioDTO.class));
-
-        this.empleados = listUsuariosDTO;
-        this.tablEmpl.setItems(empleados);
+            ObservableList<UsuarioDTO> observableListUsuariosDTO = FXCollections.observableList(listUsuariosDTO);
+            this.empleados = observableListUsuariosDTO;
+            this.tablEmpl.setItems(empleados);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
         //this.empleados.add(cada uno de la request sql)
     }
 }
