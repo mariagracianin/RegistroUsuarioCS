@@ -25,6 +25,7 @@ public class CuentaService {
         this.cuentaRepository = cuentaRepository;
         System.out.println("Constuctor Admin");
         crearPrimerAdministrador();
+        crearPrimeraEmpresa();
     }
 
     private void crearPrimerAdministrador(){
