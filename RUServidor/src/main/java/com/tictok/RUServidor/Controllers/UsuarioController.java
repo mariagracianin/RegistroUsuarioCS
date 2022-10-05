@@ -5,6 +5,7 @@ import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Empresa;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.CuentaYaExisteException;
+import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Services.CuentaService;
 import com.tictok.RUServidor.Services.EmpresaService;
 import com.tictok.RUServidor.Services.UsuarioService;
@@ -32,11 +33,10 @@ public class UsuarioController  {
         return usuarioService.findAll();
     }
 
-//    @GetMapping("/empresa/{nombreEmpresa}")
-//    public List<UsuarioDTO> getUsuariosFromEmpresa(@PathVariable String empresa) throws Exception {
-//        Empresa empresa1 = empresaService.findById(empresa);
-//        return usuarioService.findByEmpresa(empresa1);
-//    }
+    @GetMapping("id/{id}")
+    public UsuarioDTO getUsuarioById(@PathVariable int id) throws UsuarioNoExisteException {
+        return usuarioService.findOnebyId(id);
+    }
 
     @PostMapping
     public void postNewUsuario(@RequestBody MegaUsuarioDTO megaUsuarioDTO) throws CuentaYaExisteException {

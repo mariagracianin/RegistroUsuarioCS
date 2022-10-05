@@ -48,10 +48,10 @@ public class UsuarioService {
     }
 
 
-    public Usuario findOnebyId(Integer id) throws UsuarioNoExisteException {
+    public UsuarioDTO findOnebyId(Integer id) throws UsuarioNoExisteException {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
         if (usuario.isPresent()) {
-            return usuario.get();
+            return UsuarioMapper.toUsuarioDTO(usuario.get());
         }
         else {
             throw new UsuarioNoExisteException(id);

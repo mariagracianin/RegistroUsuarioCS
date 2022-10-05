@@ -1,5 +1,9 @@
 package com.tictok.Commons;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class NuevaEmpresaDTO {
 
     private String mail;
