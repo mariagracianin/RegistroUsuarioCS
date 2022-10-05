@@ -21,13 +21,12 @@ public class AdministradorController {
     }
     
     public void registrarEmpresa(ActionEvent actionEvent) throws IOException {
-        this.salir(actionEvent);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("adminRegistroEmpresa.fxml"));
-        Stage stage = new Stage();
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
@@ -46,13 +45,12 @@ public class AdministradorController {
     }
 
     public void registrarCentro(ActionEvent actionEvent) throws IOException {
-        this.salir(actionEvent);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("adminRegistroCentro.fxml"));
-        Stage stage = new Stage();
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");

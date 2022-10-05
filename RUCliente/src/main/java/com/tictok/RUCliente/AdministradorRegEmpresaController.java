@@ -6,27 +6,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
 public class AdministradorRegEmpresaController {
+    @Autowired
+    AdministradorController administradorController;
 
     public void registrarCentro(ActionEvent actionEvent) throws IOException {
-        this.salir(actionEvent);
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("adminRegistroCentro.fxml"));
-        Stage stage = new Stage();
-        Scene escena = new Scene(root);
-        stage.setScene(escena);
-        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        stage.setTitle("Registrar nuevo centro");
-
-        stage.show(); //no es ventana emergente
+        administradorController.registrarCentro(actionEvent);
     }
 
     public void mostrarTablaEmpresas(ActionEvent actionEvent) {

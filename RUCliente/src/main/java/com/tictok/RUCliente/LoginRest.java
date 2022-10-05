@@ -19,7 +19,7 @@ public class LoginRest {
         String cuentaEmpresaJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            CuentaDTO cuentaDTO = new CuentaDTO(mail, password);
+            CuentaDTO cuentaDTO = new CuentaDTO(mail, password,"");
             cuentaEmpresaJSON = jsonObjectMapper.writeValueAsString(cuentaDTO);
         } catch (Exception e) {
             throw new RuntimeException(e);

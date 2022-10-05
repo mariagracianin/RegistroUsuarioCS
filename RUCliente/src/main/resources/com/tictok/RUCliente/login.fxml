@@ -17,8 +17,8 @@
                   <Font name="ChunkFivePrint" size="50.0" />
                </font>
             </Label>
-            <TextField fx:id="correoElectronico" layoutX="223.0" layoutY="195.0" prefHeight="28.0" prefWidth="206.0" />
-            <TextField fx:id="contraseña" layoutX="223.0" layoutY="147.0" prefHeight="28.0" prefWidth="206.0" />
+            <TextField fx:id="password" layoutX="223.0" layoutY="195.0" prefHeight="28.0" prefWidth="206.0" />
+            <TextField fx:id="correoElectronico" layoutX="223.0" layoutY="147.0" prefHeight="28.0" prefWidth="206.0" />
             <Label ellipsisString="" layoutX="72.0" layoutY="145.0" prefHeight="32.0" prefWidth="148.0" text="correo electrónico" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="18.0" />
