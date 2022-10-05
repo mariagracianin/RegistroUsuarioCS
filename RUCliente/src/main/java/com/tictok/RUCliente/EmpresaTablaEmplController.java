@@ -33,6 +33,8 @@ public class EmpresaTablaEmplController {
 
     @Autowired
     private UsuarioRest usuarioRest;
+    @Autowired
+    EmpresaController empresaController;
 
     public Button btnActualizar;
     public TableColumn<TableView<UsuarioDTO>,String> colCorreo;
@@ -66,21 +68,9 @@ public class EmpresaTablaEmplController {
         }catch (Exception e){
             throw new RuntimeException(e);
         }
-        //this.empleados.add(cada uno de la request sql)
     }
     public void registrarUsuario(ActionEvent actionEvent) throws IOException {
-        this.salir(actionEvent);
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa_registro_empleado.fxml"));
-        Stage stage = new Stage();
-        Scene escena = new Scene(root);
-        stage.setScene(escena);
-        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        stage.setTitle("Registrar nuevo empleado");
-
-        stage.show(); //no es ventana emergente
+        empresaController.registrarUsuario(actionEvent);
     }
 
     public void mostrarLiquidacion(ActionEvent actionEvent) {
