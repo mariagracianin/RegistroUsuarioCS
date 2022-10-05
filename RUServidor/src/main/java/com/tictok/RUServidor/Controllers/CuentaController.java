@@ -30,12 +30,17 @@ public class CuentaController {
 
     @PostMapping
     public CuentaDTO postNewCuenta(@RequestBody CuentaDTO newCuentaDTO) throws CuentaYaExisteException {
-        String hola = "HOLA";
         return cuentaService.save(newCuentaDTO);
     }
 
     @GetMapping("/autenticar")
-    public CuentaDTO autenticar(@RequestBody CuentaDTO cuentaDTOaAutenticar) {
+    public CuentaDTO autenticar(@RequestParam(name = "mail") String mail, @RequestParam(name = "password") String password) {
+        CuentaDTO cuentaDTOaAutenticar = new CuentaDTO(mail,password,"");
+        return cuentaService.autenticar(cuentaDTOaAutenticar);
+    }
+
+    @GetMapping("/autenticar2")
+    public CuentaDTO autenticar2(@RequestBody CuentaDTO cuentaDTOaAutenticar) {
         return cuentaService.autenticar(cuentaDTOaAutenticar);
     }
 }

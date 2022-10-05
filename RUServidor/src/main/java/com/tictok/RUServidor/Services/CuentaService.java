@@ -8,6 +8,7 @@ import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
 import com.tictok.RUServidor.Mappers.UsuarioMapper;
 import com.tictok.RUServidor.Repositories.CuentaRepository;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

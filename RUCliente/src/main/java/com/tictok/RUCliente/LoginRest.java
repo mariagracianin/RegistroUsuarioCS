@@ -16,19 +16,9 @@ import java.time.LocalDate;
 public class LoginRest {
 
     public HttpResponse<String> autenticar(String mail, String password) {
-        String cuentaEmpresaJSON = "";
         try {
-            ObjectMapper jsonObjectMapper = new ObjectMapper();
-            CuentaDTO cuentaDTO = new CuentaDTO(mail, password,"");
-            cuentaEmpresaJSON = jsonObjectMapper.writeValueAsString(cuentaDTO);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            HttpResponse<String> response = Unirest.post("http://localhost:8080/cuentas/autenticar")
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/cuenta/autenticar?mail=admin&password=contra")
                     .header("Content-Type", "application/json")
-                    .body(cuentaEmpresaJSON)
                     .asString();
             return response;
         } catch (Exception e) {

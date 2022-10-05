@@ -3,7 +3,7 @@ GET http://localhost:8080/cuenta/autenticar
 Content-Type: application/json
 
 {
-  "mail": "admin",
+  "mail": "empresa@mail",
   "password": "contra",
   "tipo": ""
 }

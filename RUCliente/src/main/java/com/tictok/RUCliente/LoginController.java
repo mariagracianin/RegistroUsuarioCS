@@ -1,6 +1,7 @@
 package com.tictok.RUCliente;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.CuentaDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 @Component
 public class LoginController {
@@ -20,37 +22,45 @@ public class LoginController {
     @Autowired
     LoginRest loginRest;
 
-    ObjectMapper jsonObjectMapper = new ObjectMapper();
-
     public Button btnIngresar;
     public TextField correoElectronico;
     public TextField password;
 
-    public void ingresar(ActionEvent actionEvent) throws IOException {
-        cargarVistaEmpresa();
-
-        /*System.out.println(password.getText()+"---------------------------------------------------------------");
-        if(!validarDatos(correoElectronico.getText(), password.getText())){
-            //
-        }else{
-            String responseBody = loginRest.autenticar(correoElectronico.getText(),password.getText()).getBody();
-            CuentaDTO cuenta = jsonObjectMapper.readValue(responseBody, CuentaDTO.class);
-
-            if(cuenta.getTipo().equals("empresa")){
-                cargarVistaEmpresa();
+    public void ingresar(ActionEvent actionEvent) throws IOException{
+        /*HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(),password.getText());
+        System.out.println(response.getCode()+"---code");
+        System.out.println(response.getBody()+"---body");
+        if(response.getCode()==200) {
+            System.out.println("ok--------------------------");
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                CuentaDTO car = objectMapper.readValue(response.getBody(), CuentaDTO.class);
+                System.out.println("ok2----------------------------");
+            }catch (Exception e){
+                throw new RuntimeException(e+"------------------");
             }
-            if(cuenta.getTipo().equals("usuario")){
+
+
+            /*if(cuentaDTO.getTipo().equals("empresa")){
+                //cargarVistaEmpresa();
+            }
+            if(cuentaDTO.getTipo().equals("user")){
                 //cargarVistaUsuario();
             }
-            if(cuenta.getTipo().equals("admin")){
+            if(cuentaDTO.getTipo().equals("admin")){
+                cargarVistaEmpresa();
                 //cargarVistaAdmin();
             }
+        }else {
+            cargarVistaAdmin();
         }*/
+
+
+
+
+        cargarVistaEmpresa();
     }
-    public boolean validarDatos(String correo, String contraseña){
-        //hacer chequeos, si alguno facha return false
-        return true;
-    }
+
     public void cargarVistaEmpresa() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
