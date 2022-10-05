@@ -1,0 +1,18 @@
+.mainPane{
+    -fx-background-color: #4A4A4A;
+}
+.leftPane{
+    -fx-background-color: #49cead;
+}
+.button{
+    -fx-background-color: #50e6c0;
+}
+.button:hover{
+    -fx-background-color: #6dedcd;
+}
+.button:pressed{
+    -fx-background-color: #84f5d9;
+}
+.table-view{
+    -fx-background-color: #4A4A4A;
+}

@@ -4,48 +4,57 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="553.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.EmpresaTablaEmplController">
-   <top>
-      <AnchorPane prefHeight="62.0" prefWidth="460.0" style="-fx-background-color: #50c1e8;" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.EmpresaTablaEmplController">
+   <left>
+      <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="21.0" layoutY="10.0" lineSpacing="6.0" prefHeight="42.0" prefWidth="419.0" text="Empleados registrados">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Empresa" textAlignment="CENTER">
                <font>
-                  <Font name="ChunkFivePrint" size="25.0" />
+                  <Font size="22.0" />
                </font>
             </Label>
+            <Button fx:id="btnRegistrarNC" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="50.0" prefWidth="202.0" stylesheets="@entidad_style.css" text="Registrar nuevo usuario">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVerTablaEmpleados" mnemonicParsing="false" prefHeight="50.0" prefWidth="202.0" text="Ver empleados registrados">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="50.0" prefWidth="202.0" text="Ver liquidación">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Salir">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
-      </AnchorPane>
-   </top>
-   <left>
-      <AnchorPane prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+      </VBox>
    </left>
-   <right>
-      <AnchorPane prefHeight="100.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
-   </right>
-   <bottom>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnActualizar" layoutX="612.0" layoutY="13.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
-         </children></AnchorPane>
-   </bottom>
    <center>
-      <AnchorPane prefHeight="466.0" prefWidth="654.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+      <VBox fx:id="mainPane" prefHeight="200.0" prefWidth="100.0" styleClass="mainPane" stylesheets="@entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tablEmpl" layoutY="40.0" prefHeight="465.0" prefWidth="612.0">
-              <columns>
-                <TableColumn fx:id="colCorreo" prefWidth="115.0" text="Correo Electrónico" />
-                <TableColumn fx:id="colNombres" minWidth="9.0" prefWidth="100.0" text="Nombres" />
+            <TableView fx:id="tablEmpl" prefHeight="463.0" prefWidth="498.0" stylesheets="@entidad_style.css">
+               <columns>
+                  <TableColumn fx:id="colCorreo" prefWidth="115.0" text="Correo Electrónico" />
+                  <TableColumn fx:id="colNombres" minWidth="9.0" prefWidth="100.0" text="Nombres" />
                   <TableColumn fx:id="colApellidos" prefWidth="100.0" text="Apellidos" />
                   <TableColumn fx:id="colCedula" prefWidth="100.0" text="Cédula" />
                   <TableColumn fx:id="colVenCarne" prefWidth="120.0" text="Vencimiento Carné" />
                   <TableColumn fx:id="colSaldo" prefWidth="76.0" text="Saldo" />
-              </columns>
+               </columns>
             </TableView>
+            <Button fx:id="btnActualizar" alignment="CENTER" mnemonicParsing="false" onAction="#actualizar" prefHeight="37.0" prefWidth="76.0" text="Actualizar" />
          </children>
-      </AnchorPane>
+      </VBox>
    </center>
 </BorderPane>

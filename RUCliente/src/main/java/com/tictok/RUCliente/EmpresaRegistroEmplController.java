@@ -113,7 +113,7 @@ public class EmpresaRegistroEmplController implements Initializable {
         stage.showAndWait();
     }
 
-    public void volverAEmpresa(ActionEvent actionEvent) throws IOException {
+    public void salir(ActionEvent actionEvent) throws IOException {
         //en realidad no vuelvo a cargar la vista 1 pq sino se me duplican las ventanas, solo cierro la 2
 
         Node source = (Node)  actionEvent.getSource();
@@ -126,5 +126,21 @@ public class EmpresaRegistroEmplController implements Initializable {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close(); //cierro la ventana en la que estoy
+    }
+    public void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
+        this.salir(actionEvent);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpresaTablaEmplController.class.getResourceAsStream("empresa_tablaEmpleados.fxml"));
+        Stage stage = new Stage();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+
+        stage.show(); //no es ventana emergente
+    }
+
+    public void mostrarLiquidacion(ActionEvent actionEvent) {
     }
 }
