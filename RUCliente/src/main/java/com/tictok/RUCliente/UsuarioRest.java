@@ -36,9 +36,8 @@ public class UsuarioRest {
     }
 
     public HttpResponse<String> obtenerUsuariosFromEmpresaX(String nombreEmpresa){
-        //"http://localhost:8080/usuario/empresa{"+nombreEmpresa+"}/all"
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/all")
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/"+ "empresa" +"/usuarios")
                     .header("Content-Type", "application/json")
                     .asString();
             return response;

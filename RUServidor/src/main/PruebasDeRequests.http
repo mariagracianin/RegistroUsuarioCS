@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/usuario/all
+GET http://localhost:8080/usuario
 
 ###
 POST http://localhost:8080/cuenta

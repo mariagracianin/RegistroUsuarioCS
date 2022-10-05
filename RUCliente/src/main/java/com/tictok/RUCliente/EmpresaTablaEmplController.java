@@ -44,7 +44,7 @@ public class EmpresaTablaEmplController {
         this.colNombres.setCellValueFactory(new PropertyValueFactory("nombre"));
         this.colApellidos.setCellValueFactory(new PropertyValueFactory("apellido"));
         this.colCedula.setCellValueFactory(new PropertyValueFactory("cedula"));
-        this.colCorreo.setCellValueFactory(new PropertyValueFactory("mail"));
+        this.colCorreo.setCellValueFactory(new PropertyValueFactory("cuentaMail"));
         this.colVenCarne.setCellValueFactory(new PropertyValueFactory("vencimientoCarne"));
         this.colSaldo.setCellValueFactory(new PropertyValueFactory("saldo"));
 
