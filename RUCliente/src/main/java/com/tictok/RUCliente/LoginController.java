@@ -1,11 +1,9 @@
 package com.tictok.RUCliente;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.CuentaDTO;
-import com.tictok.Commons.UsuarioDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,22 +30,11 @@ public class LoginController {
 
     public void ingresar(ActionEvent actionEvent) throws IOException {
         HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(), password.getText());
-        System.out.println("ke");
-        System.out.println(response.getCode() + "---code");
-        System.out.println(response.getBody() + "---body");
         if (response.getCode() == 200) {
-            System.out.println("ok--------------------------");
-            //CuentaDTO cuentaDTO = new CuentaDTO("admin","contra","admin");
-            //CuentaDTO cuentaDTO = new CuentaDTO("empresa@mail","contra","empresa");
-            try {
-                ObjectMapper objectMapper = new ObjectMapper();
-                CuentaDTO cuentaDTO = objectMapper.readValue(response.getBody(), CuentaDTO.class);
-                System.out.println("ok2----------------------------");
-            } catch (Exception e) {
-                throw new RuntimeException(e + "------------------");
-            }
+            ObjectMapper objectMapper = new ObjectMapper();
+            CuentaDTO cuentaDTO = objectMapper.readValue(response.getBody(), CuentaDTO.class);
 
-            /*if(cuentaDTO.getTipo().equals("empresa")){
+            if(cuentaDTO.getTipo().equals("empresa")){
                 cargarVistaEmpresa();
             }
             if(cuentaDTO.getTipo().equals("user")){
@@ -55,7 +42,7 @@ public class LoginController {
             }
             if(cuentaDTO.getTipo().equals("admin")){
                 cargarVistaAdmin();
-            }*/
+            }
         }else {
             //se queda en el login
         }
