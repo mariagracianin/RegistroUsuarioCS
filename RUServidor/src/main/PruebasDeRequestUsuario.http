@@ -1,0 +1,26 @@
+###
+POST http://localhost:8080/usuario
+Content-Type: application/json
+
+{
+  "cuentaMail": "maria@mail.com",
+  "password": "coso",
+  "apellido": "Diaz",
+  "cedula": 123456888,
+  "nombre": "Juan",
+  "saldo": 1.00,
+  "saldo_base": 1.00,
+  "sobregiro": 2.00,
+  "telefono": "097 824 674",
+  "vencimientoCarne": "02/07/2002"
+}
+
+###
+GET http://localhost:8080/usuario/id/123456888
+
+
+###
+GET http://localhost:8080/usuario/all
+
+
+

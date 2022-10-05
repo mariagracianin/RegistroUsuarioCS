@@ -5,6 +5,7 @@ import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Empresa;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.CuentaYaExisteException;
+import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Services.CuentaService;
 import com.tictok.RUServidor.Services.EmpresaService;
 import com.tictok.RUServidor.Services.UsuarioService;
@@ -30,6 +31,11 @@ public class UsuarioController  {
     @GetMapping("/all")
     public List<UsuarioDTO> getAllUsuario() {
         return usuarioService.findAll();
+    }
+
+    @GetMapping("id/{id}")
+    public UsuarioDTO getUsuarioById(@PathVariable int id) throws UsuarioNoExisteException {
+        return usuarioService.findOnebyId(id);
     }
 
     @PostMapping
