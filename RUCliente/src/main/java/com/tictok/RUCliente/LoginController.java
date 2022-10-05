@@ -1,8 +1,11 @@
 package com.tictok.RUCliente;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.CuentaDTO;
+import com.tictok.Commons.UsuarioDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.List;
 
 @Component
 public class LoginController {
@@ -26,39 +30,34 @@ public class LoginController {
     public TextField correoElectronico;
     public TextField password;
 
-    public void ingresar(ActionEvent actionEvent) throws IOException{
-        /*HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(),password.getText());
-        System.out.println(response.getCode()+"---code");
-        System.out.println(response.getBody()+"---body");
-        if(response.getCode()==200) {
+    public void ingresar(ActionEvent actionEvent) throws IOException {
+        HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(), password.getText());
+        System.out.println(response.getCode() + "---code");
+        System.out.println(response.getBody() + "---body");
+        if (response.getCode() == 200) {
             System.out.println("ok--------------------------");
+            //CuentaDTO cuentaDTO = new CuentaDTO("admin","contra","admin");
+            //CuentaDTO cuentaDTO = new CuentaDTO("empresa@mail","contra","empresa");
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
-                CuentaDTO car = objectMapper.readValue(response.getBody(), CuentaDTO.class);
+                CuentaDTO cuentaDTO = objectMapper.readValue(response.getBody(), CuentaDTO.class);
                 System.out.println("ok2----------------------------");
-            }catch (Exception e){
-                throw new RuntimeException(e+"------------------");
+            } catch (Exception e) {
+                throw new RuntimeException(e + "------------------");
             }
 
-
             /*if(cuentaDTO.getTipo().equals("empresa")){
-                //cargarVistaEmpresa();
+                cargarVistaEmpresa();
             }
             if(cuentaDTO.getTipo().equals("user")){
                 //cargarVistaUsuario();
             }
             if(cuentaDTO.getTipo().equals("admin")){
-                cargarVistaEmpresa();
-                //cargarVistaAdmin();
-            }
+                cargarVistaAdmin();
+            }*/
         }else {
-            cargarVistaAdmin();
-        }*/
-
-
-
-
-        cargarVistaEmpresa();
+            //se queda en el login
+        }
     }
 
     public void cargarVistaEmpresa() throws IOException {
