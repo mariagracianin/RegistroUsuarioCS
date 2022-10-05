@@ -32,12 +32,6 @@ public class UsuarioController  {
         return usuarioService.findAll();
     }
 
-//    @GetMapping("/empresa/{nombreEmpresa}")
-//    public List<UsuarioDTO> getUsuariosFromEmpresa(@PathVariable String empresa) throws Exception {
-//        Empresa empresa1 = empresaService.findById(empresa);
-//        return usuarioService.findByEmpresa(empresa1);
-//    }
-
     @PostMapping
     public void postNewUsuario(@RequestBody MegaUsuarioDTO megaUsuarioDTO) throws CuentaYaExisteException {
         Usuario usuario = usuarioService.saveNewUsurio(megaUsuarioDTO);

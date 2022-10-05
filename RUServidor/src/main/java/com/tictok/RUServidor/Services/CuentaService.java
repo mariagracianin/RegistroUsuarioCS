@@ -53,14 +53,14 @@ public class CuentaService {
         return cuentaDTOList;
     }
 
-    public Cuenta save (CuentaDTO newCuentaDTO) throws CuentaYaExisteException {
+    public CuentaDTO save (CuentaDTO newCuentaDTO) throws CuentaYaExisteException {
         Cuenta newCuenta = CuentaMapper.toCuenta(newCuentaDTO);
         Optional<Cuenta> cuenta = cuentaRepository.findById(newCuenta.getId());
 
         if (cuenta.isPresent()){
             throw new CuentaYaExisteException();
         }
-        return cuentaRepository.save(newCuenta);
+        return CuentaMapper.toCuentaDTO(cuentaRepository.save(newCuenta));
     }
 
     public Cuenta findOnebyId(String id) throws CuentaNoExisteException {
@@ -84,7 +84,7 @@ public class CuentaService {
             return null;
         }
 
-        if (cuentaConEseMail.getPassword()==passwordDTO){
+        if (cuentaConEseMail.getPassword().equals(passwordDTO)){
             return CuentaMapper.toCuentaDTO(cuentaConEseMail);
         }else{
             return null;
