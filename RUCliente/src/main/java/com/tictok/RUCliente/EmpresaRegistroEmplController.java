@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class EmpresaRegistroEmplController implements Initializable {
@@ -64,18 +66,19 @@ public class EmpresaRegistroEmplController implements Initializable {
 
 
     @FXML
-    public void guardarDatos(ActionEvent actionEvent) throws UnirestException, IOException {
-        String nombresTxt = nombres.getText();
-        String apellidosTxt = apellidos.getText();
-        int cedulaTxt = Integer.parseInt(cedula.getText());
-        String direccionTxt = direccion.getText();
-        String telTxt = tel.getText();
-        Double saldoInicialNum = Double.parseDouble(saldoInicial.getText());
-        Double saldoSobregiroNum = Double.parseDouble(saldoSobregiro.getText());
-        String mailTxt = mail.getText();
-        String passwordTxt = contraseña.getText();
-        LocalDate vencimientoCarneDATE = fechaVenCarne.getValue();
-        String vencimientoCarne = vencimientoCarneDATE.toString();
+    private void guardarDatos(ActionEvent actionEvent) throws UnirestException, IOException {
+        try {
+            String nombresTxt = nombres.getText();
+            String apellidosTxt = apellidos.getText();
+            int cedulaTxt = Integer.parseInt(cedula.getText());
+            String direccionTxt = direccion.getText();
+            String telTxt = tel.getText();
+            Double saldoInicialNum = Double.parseDouble(saldoInicial.getText());
+            Double saldoSobregiroNum = Double.parseDouble(saldoSobregiro.getText());
+            String mailTxt = mail.getText();
+            String passwordTxt = contraseña.getText();
+            LocalDate vencimientoCarneDATE = fechaVenCarne.getValue();
+            String vencimientoCarne = vencimientoCarneDATE.toString();
 
         HttpResponse<String> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum, direccionTxt);
         if (responseCode.getCode()==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
@@ -86,9 +89,48 @@ public class EmpresaRegistroEmplController implements Initializable {
             abrirVentanaEmergenteExito();
         }
 
+        } catch (NumberFormatException e){
+            abrirVentanaEmergenteError();
+        }
+
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close();
+    }
+    private void chequeoDatos(String nombresTxt, String apellidosTxt, String direccionTxt, String telTxt,
+                             String mailTxt, String passwordTxt) throws IOException {
+        if ( nombresTxt.isEmpty() || apellidosTxt.isEmpty() || direccionTxt.isEmpty() ||
+                telTxt.isEmpty() || mailTxt.isEmpty() || passwordTxt.isEmpty() ||
+                hasANumber(nombresTxt)|| hasANumber(apellidosTxt)|| (!isAnEmail(mailTxt)) ){
+            //mail: chequea q tenga un arroba, un punto algo, alguna letra mas, en minusculas, permite numeros y puntos
+            abrirVentanaEmergenteError();
+        }
+        try{
+            //cedula,saldos ya estan chequeados arriba cuando los parseo
+            //direccion,contraseña chequeo?
+            Integer.parseInt(telTxt);
+
+
+        }catch (NumberFormatException e){
+            abrirVentanaEmergenteError();
+        }
+
+    }
+    private static boolean hasANumber(String str) {
+        char[] chars = str.toCharArray();
+        for (char c : chars) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    private static boolean isAnEmail(String mail){
+        Pattern pat = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+        Matcher mather = pat.matcher(mail);
+
+        return mather.find();
+
     }
 
     private void abrirVentanaEmergenteExito() throws IOException {
@@ -107,7 +149,7 @@ public class EmpresaRegistroEmplController implements Initializable {
 
     }
 
-    public void abrirVentanaEmergenteError() throws IOException {
+    private void abrirVentanaEmergenteError() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
@@ -121,24 +163,20 @@ public class EmpresaRegistroEmplController implements Initializable {
         loginController.cargarVistaEmpresa();
     }
 
-    public void salir(ActionEvent actionEvent) throws IOException {
-        //en realidad no vuelvo a cargar la vista 1 pq sino se me duplican las ventanas, solo cierro la 2
-
-        Node source = (Node)  actionEvent.getSource();
-        Stage stageActual  = (Stage) source.getScene().getWindow();
-        stageActual.close(); //cierro la ventana en la que estoy
-
+    private void salir(ActionEvent actionEvent) throws IOException {
+        empresaController.salir(actionEvent);
     }
 
-    public void cerrarVentEmergError(ActionEvent actionEvent) {
+    private void cerrarVentEmergError(ActionEvent actionEvent) {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close(); //cierro la ventana en la que estoy
     }
-    public void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
+    private void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
         empresaController.mostrarTablaEmpleados(actionEvent);
     }
 
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
+    private void mostrarLiquidacion(ActionEvent actionEvent) {
     }
+
 }
