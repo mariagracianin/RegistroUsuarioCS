@@ -14,7 +14,7 @@ public class UsuarioMapper {
             return null;
         }
         return new Usuario(userDTO.getCedula(), userDTO.getVencimientoCarne(),userDTO.getNombre(),
-                userDTO.getApellido(), userDTO.getTelefono(),userDTO.getSaldoBase(),userDTO.getSobregiro(),userDTO.getSaldo());
+                userDTO.getApellido(), userDTO.getTelefono(),userDTO.getSaldoBase(),userDTO.getSobregiro(),userDTO.getSaldo(), userDTO.getAddress());
     }
 
     public static UsuarioDTO toUsuarioDTO(Usuario user){
@@ -24,7 +24,7 @@ public class UsuarioMapper {
         }
 
         return new UsuarioDTO(user.getStringCuenta(), user.getCedula(),user.getVencimientoCarne(),user.getNombre(),user.getApellido(),user.getTelefono()
-                ,user.getSaldoBase(),user.getSobregiro(),user.getSaldo());
+                ,user.getSaldoBase(),user.getSobregiro(),user.getSaldo(), user.getAddress());
     }
 
     public static Usuario toUsuarioFromMegaUsuarioDTO(MegaUsuarioDTO megauserDTO){
@@ -32,7 +32,8 @@ public class UsuarioMapper {
             return null;
         }
         return new Usuario(megauserDTO.getCedula(), megauserDTO.getVencimientoCarne(),megauserDTO.getNombre(),
-                megauserDTO.getApellido(), megauserDTO.getTelefono(),megauserDTO.getSaldoBase(),megauserDTO.getSobregiro(),megauserDTO.getSaldo());
+                megauserDTO.getApellido(), megauserDTO.getTelefono(),megauserDTO.getSaldoBase(),megauserDTO.getSobregiro(),
+                megauserDTO.getSaldo(), megauserDTO.getAddress());
 
     }
 

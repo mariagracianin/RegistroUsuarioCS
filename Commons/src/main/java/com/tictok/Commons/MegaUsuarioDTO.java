@@ -17,11 +17,13 @@ public class MegaUsuarioDTO {
     private double saldoBase;
     private double sobregiro;
     private double saldo;
+    private String address;
 
     public MegaUsuarioDTO() {
     }
 
-    public MegaUsuarioDTO(String cuentaMail,String password, int cedula, String vencimientoCarne, String nombre, String apellido, String telefono, double saldoBase, double sobregiro, double saldo) {
+    public MegaUsuarioDTO(String cuentaMail,String password, int cedula, String vencimientoCarne, String nombre, String apellido, String telefono,
+                          double saldoBase, double sobregiro, double saldo, String address) {
         this.cuentaMail = cuentaMail;
         this.password = password;
         this.cedula = cedula;
@@ -32,6 +34,7 @@ public class MegaUsuarioDTO {
         this.saldoBase = saldoBase;
         this.sobregiro = sobregiro;
         this.saldo = saldo;
+        this.address = address;
     }
 
 
@@ -113,5 +116,13 @@ public class MegaUsuarioDTO {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

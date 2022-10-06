@@ -26,6 +26,8 @@ public class Usuario {
     private double sobregiro;
     @Column
     private double saldo;
+    @Column(name = "address", length = 100)
+    private String address;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "empresa_nombre_empresa", nullable = true) //TODO hay que ponerlo como false
@@ -35,9 +37,7 @@ public class Usuario {
     @JoinColumn(name = "cuenta_mail", nullable = false)
     private Cuenta cuenta;
 
-    public Cuenta getCuenta() {
-        return cuenta;
-    }
+
     public String getStringCuenta() {
         return cuenta.getId();
     }
@@ -54,8 +54,12 @@ public class Usuario {
         this.empresa = empresa;
     }
 
+    public Usuario() {
+
+    }
+
     public Usuario(int cedula, String vencimientoCarne, String nombre, String apellido,
-                   String telefono, double saldoBase, double sobregiro, double saldo) {
+                   String telefono, double saldoBase, double sobregiro, double saldo, String address) {
         this.cedula = cedula;
         this.vencimientoCarne = vencimientoCarne;
         this.nombre = nombre;
@@ -64,6 +68,7 @@ public class Usuario {
         this.saldoBase = saldoBase;
         this.sobregiro = sobregiro;
         this.saldo = saldo;
+        this.address = address;
     }
 
     public boolean telefonoCorrecto(){
@@ -78,8 +83,8 @@ public class Usuario {
         this.vencimientoCarne = vencimientoCarne;
     }
 
-    public Usuario() {
-
+    public Cuenta getCuenta() {
+        return cuenta;
     }
 
     public String getNombre() {
@@ -116,6 +121,14 @@ public class Usuario {
 
     public void setApellido(String direc) {
         this.apellido = direc;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }
