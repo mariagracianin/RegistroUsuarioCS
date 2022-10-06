@@ -9,6 +9,9 @@ public class CuentaDTO {
     private String password;
     private String tipo;
 
+    public CuentaDTO() {
+    }
+
     public CuentaDTO(String mail, String password, String tipo) {
         this.mail = mail;
         this.password = password;

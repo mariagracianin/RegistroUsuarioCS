@@ -14,6 +14,9 @@ public class EmpresaDTO {
     private String encargado;
     private List<CuentaDTO> cuentas = new ArrayList<CuentaDTO>();
 
+    public EmpresaDTO() {
+    }
+
     public EmpresaDTO(String nombreEmpresa, String adress, String telefono, String encargado, List<CuentaDTO> cuentas) {
         this.nombreEmpresa = nombreEmpresa;
         this.adress = adress;

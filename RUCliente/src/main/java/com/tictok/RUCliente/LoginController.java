@@ -1,5 +1,9 @@
 package com.tictok.RUCliente;
 
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.CuentaDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,24 +15,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.List;
 
 @Component
 public class LoginController {
 
+    @Autowired
+    LoginRest loginRest;
+
     public Button btnIngresar;
     public TextField correoElectronico;
-    public TextField contraseña;
+    public TextField password;
 
     public void ingresar(ActionEvent actionEvent) throws IOException {
-        boolean validar = validarDatos(correoElectronico.getText(),contraseña.getText());
-        //buscar por mail en cada tabla, obtener objeto tipo de usuario
-        //if (tipoUsuario == Empresa){
-        cargarVistaEmpresa();
+        HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(), password.getText());
+        if (response.getCode() == 200) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            CuentaDTO cuentaDTO = objectMapper.readValue(response.getBody(), CuentaDTO.class);
+
+            if(cuentaDTO.getTipo().equals("empresa")){
+                cargarVistaEmpresa();
+            }
+            if(cuentaDTO.getTipo().equals("user")){
+                //cargarVistaUsuario();
+            }
+            if(cuentaDTO.getTipo().equals("admin")){
+                cargarVistaAdmin();
+            }
+        }else {
+            //se queda en el login
+        }
     }
-    public boolean validarDatos(String correo, String contraseña){
-        //hacer chequeos, si alguno facha return false
-        return true;
-    }
+
     public void cargarVistaEmpresa() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);

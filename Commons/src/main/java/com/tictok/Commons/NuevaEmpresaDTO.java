@@ -13,6 +13,9 @@ public class NuevaEmpresaDTO {
     private String telefono;
     private String encargado;
 
+    public NuevaEmpresaDTO() {
+    }
+
     public NuevaEmpresaDTO(String mail, String password, String nombreEmpresa, String adress, String telefono, String encargado) {
         this.mail = mail;
         this.password = password;

@@ -8,6 +8,7 @@ import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
 import com.tictok.RUServidor.Mappers.UsuarioMapper;
 import com.tictok.RUServidor.Repositories.CuentaRepository;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class CuentaService {
         this.cuentaRepository = cuentaRepository;
         System.out.println("Constuctor Admin");
         crearPrimerAdministrador();
+        crearPrimeraEmpresa();
     }
 
     private void crearPrimerAdministrador(){
@@ -73,16 +75,14 @@ public class CuentaService {
         }
     }
 
-    public CuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar){
+    public CuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar) throws CuentaNoExisteException {
         String mailDTO = cuentaDTOaAutenticar.getMail();
         String passwordDTO = cuentaDTOaAutenticar.getPassword();
         Cuenta cuentaConEseMail;
 
-        try {
-            cuentaConEseMail = findOnebyId(mailDTO);
-        }catch(CuentaNoExisteException e){
-            return null;
-        }
+
+        cuentaConEseMail = findOnebyId(mailDTO);
+
 
         if (cuentaConEseMail.getPassword().equals(passwordDTO)){
             return CuentaMapper.toCuentaDTO(cuentaConEseMail);
