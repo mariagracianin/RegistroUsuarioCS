@@ -3,33 +3,40 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.LoginController">
+<BorderPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.LoginController">
    <center>
-      <AnchorPane fx:id="mainPane" prefHeight="400.0" prefWidth="394.0" styleClass="mainPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="mainPane" prefHeight="300.0" prefWidth="700.0" styleClass="mainPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="180.0" layoutY="25.0" prefHeight="62.0" prefWidth="141.0" text="Login" textFill="#58ebc6">
+            <ImageView fitHeight="430.0" fitWidth="700.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/tictok/RUCliente/fotologin.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="280.0" layoutY="56.0" prefHeight="62.0" prefWidth="141.0" text="Login" textFill="#58ebc6">
                <font>
                   <Font name="ChunkFivePrint" size="50.0" />
                </font>
             </Label>
-            <TextField fx:id="password" layoutX="223.0" layoutY="195.0" prefHeight="28.0" prefWidth="206.0" />
-            <TextField fx:id="correoElectronico" layoutX="223.0" layoutY="147.0" prefHeight="28.0" prefWidth="206.0" />
-            <Label ellipsisString="" layoutX="72.0" layoutY="145.0" prefHeight="32.0" prefWidth="148.0" text="correo electrónico" textFill="WHITE">
+            <TextField fx:id="password" alignment="CENTER" layoutX="332.0" layoutY="208.0" prefHeight="28.0" prefWidth="206.0" />
+            <TextField fx:id="correoElectronico" alignment="CENTER" layoutX="332.0" layoutY="160.0" prefHeight="28.0" prefWidth="206.0" />
+            <Label alignment="CENTER" ellipsisString="" layoutX="164.0" layoutY="158.0" prefHeight="32.0" prefWidth="165.0" text="correo electrónico" textFill="WHITE">
                <font>
-                  <Font name="Candara Light" size="18.0" />
+                  <Font name="Candara Light" size="20.0" />
                </font>
             </Label>
-            <Label ellipsisString="" layoutX="124.0" layoutY="193.0" prefHeight="32.0" prefWidth="96.0" text="contraseña" textFill="WHITE">
+            <Label alignment="CENTER" ellipsisString="" layoutX="226.0" layoutY="206.0" prefHeight="32.0" prefWidth="96.0" text="contraseña" textFill="WHITE">
                <font>
-                  <Font name="Candara Light" size="18.0" />
+                  <Font name="Candara Light" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnIngresar" layoutX="333.0" layoutY="296.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="39.0" prefWidth="96.0" stylesheets="@loginStyle.css" text="Ingresar">
+            <Button fx:id="btnIngresar" alignment="CENTER" contentDisplay="CENTER" layoutX="442.0" layoutY="280.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="39.0" prefWidth="96.0" stylesheets="@loginStyle.css" text="Ingresar">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
@@ -37,13 +44,7 @@
          </children>
       </AnchorPane>
    </center>
-   <left>
-      <AnchorPane fx:id="rightPane" prefHeight="200.0" prefWidth="100.0" styleClass="mainPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <AnchorPane fx:id="leftPane" prefHeight="200.0" prefWidth="100.0" styleClass="mainPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER" />
-   </right>
    <top>
-      <HBox fx:id="topPane" prefHeight="70.0" prefWidth="700.0" styleClass="topPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER" />
+      <HBox fx:id="topPane" prefHeight="69.0" prefWidth="700.0" styleClass="topPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>

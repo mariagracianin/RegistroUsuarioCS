@@ -107,7 +107,7 @@ public class EmpresaRegistroEmplController implements Initializable {
         }
         try{
             //cedula,saldos ya estan chequeados arriba cuando los parseo
-            //direccion, contraseña chequeo?
+            //direccion,contraseña chequeo?
             Integer.parseInt(telTxt);
 
 
