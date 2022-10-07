@@ -25,6 +25,7 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final CuentaRepository cuentaRepository;
     private final EmpresaRepository empresaRepository;
+
     @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository, EmpresaRepository empresaRepository) {
         this.usuarioRepository = usuarioRepository;

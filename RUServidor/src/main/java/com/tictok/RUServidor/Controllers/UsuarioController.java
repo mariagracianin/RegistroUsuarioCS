@@ -39,7 +39,7 @@ public class UsuarioController  {
     }
 
     @PostMapping
-    public void postNewUsuario(@RequestBody MegaUsuarioDTO megaUsuarioDTO) throws CuentaYaExisteException {
+    public void postNewUsuario(@RequestBody MegaUsuarioDTO megaUsuarioDTO) {
         Usuario usuario = usuarioService.saveNewUsurio(megaUsuarioDTO);
     }
 

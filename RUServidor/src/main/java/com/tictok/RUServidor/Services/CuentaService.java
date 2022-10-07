@@ -75,7 +75,7 @@ public class CuentaService {
         }
     }
 
-    public CuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar) throws CuentaNoExisteException {
+    public CuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar) throws CuentaNoExisteException, PasswordDoesNotMatchException {
         String mailDTO = cuentaDTOaAutenticar.getMail();
         String passwordDTO = cuentaDTOaAutenticar.getPassword();
         Cuenta cuentaConEseMail;
@@ -87,7 +87,7 @@ public class CuentaService {
         if (cuentaConEseMail.getPassword().equals(passwordDTO)){
             return CuentaMapper.toCuentaDTO(cuentaConEseMail);
         }else{
-            return null;
+            throw new PasswordDoesNotMatchException();
         }
     }
 
