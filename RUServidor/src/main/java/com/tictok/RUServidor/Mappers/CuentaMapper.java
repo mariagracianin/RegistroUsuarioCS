@@ -2,6 +2,7 @@ package com.tictok.RUServidor.Mappers;
 
 import com.tictok.Commons.CuentaDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
+import com.tictok.Commons.NuevaEmpresaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
@@ -22,5 +23,12 @@ public class CuentaMapper {
             return null;
         }
         return new Cuenta(megauserDTO.getCuentaMail(),megauserDTO.getPassword(),"user");
+    }
+
+    public static Cuenta toCuentaFromNuevaEmpresaDTO(NuevaEmpresaDTO nuevaEmpresaDTO){
+        if(nuevaEmpresaDTO == null){
+            return null;
+        }
+        return new Cuenta(nuevaEmpresaDTO.getMail(),nuevaEmpresaDTO.getPassword(),"empresa");
     }
 }

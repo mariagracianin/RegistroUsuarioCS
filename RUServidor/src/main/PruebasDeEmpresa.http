@@ -1,5 +1,17 @@
+###
+GET http://localhost:8080/empresa/empresa/usuarios
 
 
 ###
-GET http://localhost:8080/empresa/empresa/usuarios
+POST http://localhost:8080/empresa
+Content-Type: application/json
+
+{
+  "mail": "maria@mail.com",
+  "password": "coso",
+  "nombreEmpresa": "Diaz",
+  "adress": "no",
+  "telefono": "Juan",
+  "encargado": "si"
+}
 

@@ -68,6 +68,8 @@ public class Empresa {
         this.cuentas = cuentas;
     }
 
+    public void setCuenta(Cuenta cuenta){this.cuentas.add(cuenta);}
+
 //    @OneToMany(mappedBy = "cuenta")
 //    private List<Cuenta>
 

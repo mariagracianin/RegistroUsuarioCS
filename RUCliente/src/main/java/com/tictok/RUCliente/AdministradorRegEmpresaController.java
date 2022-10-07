@@ -14,6 +14,8 @@ import java.io.IOException;
 
 @Component
 public class AdministradorRegEmpresaController {
+    @Autowired
+    EmpresaRest empresaRest;
 
     @Autowired
     AdministradorController administradorController;
@@ -38,5 +40,6 @@ public class AdministradorRegEmpresaController {
     }
 
     public void guardarDatos(ActionEvent actionEvent) {
+        empresaRest.guardarEmpresa("mgnin@correo","gatito","gatitoSA","esqu","2817392","gatoEncargado");
     }
 }

@@ -46,6 +46,7 @@ public class Cuenta {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
     public String getTipo() {
         return tipo;
     }
@@ -70,4 +71,7 @@ public class Cuenta {
         this.mail = mail;
     }
 
+    public String getMail() {
+        return mail;
+    }
 }
