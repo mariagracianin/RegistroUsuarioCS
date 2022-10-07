@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class LoginController {
 
     public Button btnIngresar;
     public TextField correoElectronico;
-    public TextField password;
+    public PasswordField password;
 
     public void ingresar(ActionEvent actionEvent) throws IOException {
         HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(), password.getText());
