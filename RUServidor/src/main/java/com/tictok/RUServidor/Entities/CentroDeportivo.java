@@ -24,6 +24,17 @@ public class CentroDeportivo {
     @OneToMany(mappedBy = "centroDeportivo", orphanRemoval = true)
     private List<Cuenta> cuentas = new ArrayList<>();
 
+    @OneToMany(mappedBy = "centroDeportivo", orphanRemoval = true)
+    private List<Actividad> actividades = new ArrayList<>();
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
+    }
+
     public List<Cuenta> getCuentas() {
         return cuentas;
     }
