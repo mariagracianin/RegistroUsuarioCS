@@ -89,7 +89,7 @@ public class EmpresaRegistroEmplController implements Initializable {
         HttpResponse<String> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum, direccionTxt);
         if (responseCode.getCode()==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
-            //etVariableMensajeError.setText("mensaje error que viene del server");
+            etVariableMensajeError.setText("mensaje error que viene del server");
             abrirVentanaEmergenteError();
         }else if (responseCode.getCode()==200){
             abrirVentanaEmergenteExito();
@@ -107,7 +107,7 @@ public class EmpresaRegistroEmplController implements Initializable {
                 telTxt.isEmpty() || mailTxt.isEmpty() || passwordTxt.isEmpty() ||
                 hasANumber(nombresTxt)|| hasANumber(apellidosTxt)|| (!isAnEmail(mailTxt)) || cedula.length()!=8 ){
             //mail: chequea q tenga un arroba, un punto algo, alguna letra mas, en minusculas, permite numeros y puntos
-            //etVariableMensajeError.setText("alguno de los datos ingresados no es válido");
+            etVariableMensajeError.setText("alguno de los datos ingresados no es válido");
             sonValidos=false;
 
         }
@@ -168,8 +168,24 @@ public class EmpresaRegistroEmplController implements Initializable {
     }
 
     @FXML
-    private void salir(ActionEvent actionEvent) throws IOException {
-        empresaController.salir(actionEvent);
+    private void salirVentanasEmergentes(ActionEvent actionEvent){
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        stageActual.close();
+    }
+    @FXML
+    public void salir(ActionEvent actionEvent) throws IOException {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
+        stageActual.setTitle("Login");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
+        stageActual.setScene(escena);
+        stageActual.show();
+
     }
 
     @FXML

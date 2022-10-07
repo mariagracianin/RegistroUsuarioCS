@@ -21,7 +21,6 @@ public class JavaFXApplication extends Application {
 		primaryStage.show();
 	}
 
-
 	@Override
 	public void stop(){
 		Main.getContext().close();

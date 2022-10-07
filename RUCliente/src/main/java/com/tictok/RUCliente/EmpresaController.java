@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -16,14 +17,25 @@ import java.util.ResourceBundle;
 
 @Component //importante!!!!!
 public class EmpresaController implements Initializable {
+
+    @Autowired
+    LoginController loginController;
+
     public Button btnSalir;
     public Button btnRegistrarNC;
     public Button btnVerTablaEmpleados;
 
-    public void salir(ActionEvent actionEvent) {
+    public void salir(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
-        stageActual.close();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
+        stageActual.setTitle("Login");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
+        stageActual.setScene(escena);
+        stageActual.show();
 
     }
 

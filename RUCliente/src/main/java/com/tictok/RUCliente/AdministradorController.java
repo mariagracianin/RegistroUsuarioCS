@@ -22,10 +22,17 @@ public class AdministradorController {
     public Button btnSalir;
 
     @FXML
-    public void salir(ActionEvent actionEvent) {
+    public void salir(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
-        stageActual.close();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
+        stageActual.setTitle("Login");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
+        stageActual.setScene(escena);
+        stageActual.show();
 
     }
     @FXML

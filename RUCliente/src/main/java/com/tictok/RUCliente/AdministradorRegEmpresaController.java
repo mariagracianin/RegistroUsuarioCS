@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,12 @@ import java.io.IOException;
 @Component
 public class AdministradorRegEmpresaController {
 
+    public TextField nombre;
+    public TextField encargado;
+    public TextField direccion;
+    public TextField tel;
+    public TextField mailCuenta1;
+    public TextField contraseñaCuenta1;
     @Autowired
     AdministradorController administradorController;
     @FXML
@@ -31,10 +38,8 @@ public class AdministradorRegEmpresaController {
     public void mostrarLiquidacion(ActionEvent actionEvent) {
     }
     @FXML
-    public void salir(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stageActual  = (Stage) source.getScene().getWindow();
-        stageActual.close();
+    public void salir(ActionEvent actionEvent) throws IOException {
+        administradorController.salir(actionEvent);
     }
 
     public void guardarDatos(ActionEvent actionEvent) {

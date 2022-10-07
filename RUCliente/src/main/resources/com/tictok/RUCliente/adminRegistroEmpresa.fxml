@@ -72,12 +72,12 @@
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="104.0" layoutY="248.0" prefHeight="20.0" prefWidth="99.0" text="Encargado" textFill="WHITE">
+            <Label layoutX="104.0" layoutY="250.0" prefHeight="20.0" prefWidth="99.0" text="Encargado" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="btnGuardar" defaultButton="true" layoutX="346.0" layoutY="340.0" mnemonicParsing="false" onAction="#guardarDatos" stylesheets="@entidad_style.css" text="Guardar">
+            <Button fx:id="btnGuardar" defaultButton="true" layoutX="346.0" layoutY="368.0" mnemonicParsing="false" onAction="#guardarDatos" stylesheets="@entidad_style.css" text="Guardar">
                <font>
                   <Font size="14.0" />
                </font>
@@ -85,6 +85,18 @@
             <Label layoutX="104.0" layoutY="58.0" text="Registrar Empresa" textFill="WHITE">
                <font>
                   <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="mailCuenta1" layoutX="194.0" layoutY="291.0" prefHeight="25.0" prefWidth="220.0" promptText="hola@ejemplo.com" />
+            <Label layoutX="104.0" layoutY="293.0" prefHeight="20.0" prefWidth="99.0" text="Mail" textFill="WHITE">
+               <font>
+                  <Font name="Candara Light" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="contraseñaCuenta1" layoutX="194.0" layoutY="328.0" prefHeight="25.0" prefWidth="220.0" promptText="*********" />
+            <Label layoutX="104.0" layoutY="330.0" prefHeight="20.0" prefWidth="99.0" text="Contraseña" textFill="WHITE">
+               <font>
+                  <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
          </children>
