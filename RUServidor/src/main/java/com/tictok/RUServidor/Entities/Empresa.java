@@ -9,6 +9,7 @@ import java.util.List;
 public class Empresa {
 
     @Id
+    @Column(name = "nombre_empresa")
     private String nombreEmpresa;
 
     @Column(name = "adress", nullable = false)

@@ -8,6 +8,11 @@ public class Cuenta {
     @Id
     @Column(name = "mail", nullable = false)
     private String mail;
+    @Column(name = "password", length = 20)
+    private String password;
+
+    @Column(name = "tipo", length = 10)
+    private String tipo;
 
     @ManyToOne
     @JoinColumn(name = "empresa_nombre_empresa")
@@ -15,6 +20,11 @@ public class Cuenta {
 
     @OneToOne(mappedBy = "cuenta", orphanRemoval = true)
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "centro_deportivo_nombre_centro")
+    private CentroDeportivo centroDeportivo;
+
 
     public Cuenta(String mail, String password, String tipo) {
         this.mail = mail;
@@ -24,12 +34,6 @@ public class Cuenta {
 
     public Cuenta() {
     }
-
-    @Column(name = "password", length = 20)
-    private String password;
-
-    @Column(name = "tipo", length = 10)
-    private String tipo;
 
     public Empresa getEmpresa() {
         return empresa;
@@ -73,5 +77,13 @@ public class Cuenta {
 
     public String getMail() {
         return mail;
+    }
+
+    public CentroDeportivo getCentroDeportivo() {
+        return centroDeportivo;
+    }
+
+    public void setCentroDeportivo(CentroDeportivo centroDeportivo) {
+        this.centroDeportivo = centroDeportivo;
     }
 }
