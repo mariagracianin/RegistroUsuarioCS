@@ -6,6 +6,7 @@ import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.CuentaYaExisteException;
+import com.tictok.RUServidor.Exceptions.PasswordDoesNotMatchException;
 import com.tictok.RUServidor.Services.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class CuentaController {
     }
 
     @GetMapping("/autenticar")
-    public CuentaDTO autenticar(@RequestParam(name = "mail") String mail, @RequestParam(name = "password") String password) throws CuentaNoExisteException {
+    public CuentaDTO autenticar(@RequestParam(name = "mail") String mail, @RequestParam(name = "password") String password) throws CuentaNoExisteException, PasswordDoesNotMatchException {
         CuentaDTO cuentaDTOaAutenticar = new CuentaDTO(mail,password,"");
         return cuentaService.autenticar(cuentaDTOaAutenticar);
     }

@@ -17,7 +17,7 @@ public class CuentaAdvice {
     //TODO Revisar el mensaje de error
     @ResponseBody()
     @ExceptionHandler(PasswordDoesNotMatchException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     public String PasswordDoesNotMatchAdvice(PasswordDoesNotMatchException ex) {
         return ex.getMessage();
     }
