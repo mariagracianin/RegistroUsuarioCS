@@ -17,10 +17,13 @@ public class UsuarioDTO {
     private double sobregiro;
     private double saldo;
 
+    private String address;
+
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String cuentaMail, int cedula, String vencimientoCarne, String nombre, String apellido, String telefono, double saldoBase, double sobregiro, double saldo) {
+    public UsuarioDTO(String cuentaMail, int cedula, String vencimientoCarne, String nombre, String apellido,
+                      String telefono, double saldoBase, double sobregiro, double saldo, String address) {
         this.cuentaMail = cuentaMail;
         this.cedula = cedula;
         this.vencimientoCarne = vencimientoCarne;
@@ -30,6 +33,7 @@ public class UsuarioDTO {
         this.saldoBase = saldoBase;
         this.sobregiro = sobregiro;
         this.saldo = saldo;
+        this.address = address;
     }
 
 
@@ -98,5 +102,13 @@ public class UsuarioDTO {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -15,11 +15,12 @@ import java.time.LocalDate;
 @Component
 public class UsuarioRest {
 
-    public HttpResponse<String> guardarUsuario(String mail, String password, int cedula, String vencCarne, String nombres, String apellidos, String telefono, double saldoBase,  double sobregiro) {
+    public HttpResponse<String> guardarUsuario(String mail, String password, int cedula, String vencCarne, String nombres, String apellidos,
+                                               String telefono, double saldoBase,  double sobregiro, String address) {
         String megaUsuarioJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            MegaUsuarioDTO megaUsuarioDTO = new MegaUsuarioDTO(mail,password, cedula, vencCarne, nombres, apellidos, telefono, saldoBase, sobregiro, saldoBase);
+            MegaUsuarioDTO megaUsuarioDTO = new MegaUsuarioDTO(mail,password, cedula, vencCarne, nombres, apellidos, telefono, saldoBase, sobregiro, saldoBase, address);
             megaUsuarioJSON = jsonObjectMapper.writeValueAsString(megaUsuarioDTO);
         }catch (Exception e){
             throw new RuntimeException(e);
