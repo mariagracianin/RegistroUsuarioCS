@@ -6,6 +6,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.CuentaDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,16 +37,30 @@ public class LoginController {
             CuentaDTO cuentaDTO = objectMapper.readValue(response.getBody(), CuentaDTO.class);
 
             if(cuentaDTO.getTipo().equals("empresa")){
+                Node source = (Node)  actionEvent.getSource();
+                Stage stageActual  = (Stage) source.getScene().getWindow();
+                stageActual.close();
                 cargarVistaEmpresa();
             }
             if(cuentaDTO.getTipo().equals("user")){
                 //cargarVistaUsuario();
             }
             if(cuentaDTO.getTipo().equals("admin")){
+                Node source = (Node)  actionEvent.getSource();
+                Stage stageActual  = (Stage) source.getScene().getWindow();
+                stageActual.close();
                 cargarVistaAdmin();
             }
         }else {
-            //se queda en el login
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+            Parent root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
+            Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Login");
+            Scene escena = new Scene(root);
+            escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
+            stage.setScene(escena);
+            stage.show();
         }
     }
 

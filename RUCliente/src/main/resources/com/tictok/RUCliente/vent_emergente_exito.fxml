@@ -16,6 +16,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnOK" layoutX="53.0" layoutY="63.0" mnemonicParsing="false" onAction="#cerrarVentEmergError" style="-fx-background-color: #49cead;" text="OK" />
+      <Button fx:id="btnOK" layoutX="53.0" layoutY="63.0" mnemonicParsing="false" onAction="#salir" style="-fx-background-color: #49cead;" text="OK" />
    </children>
 </AnchorPane>

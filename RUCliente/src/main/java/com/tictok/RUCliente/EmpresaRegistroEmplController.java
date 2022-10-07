@@ -80,30 +80,36 @@ public class EmpresaRegistroEmplController implements Initializable {
             LocalDate vencimientoCarneDATE = fechaVenCarne.getValue();
             String vencimientoCarne = vencimientoCarneDATE.toString();
 
+            boolean validos = chequeoDatos(actionEvent,nombresTxt,apellidosTxt,direccionTxt,telTxt,mailTxt,passwordTxt,cedula.getText());
+            if (!validos) {
+                actionEvent.consume();
+                abrirVentanaEmergenteError();
+            }
+
         HttpResponse<String> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum, direccionTxt);
         if (responseCode.getCode()==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
-            etVariableMensajeError.setText("mensaje error que viene del server");
+            //etVariableMensajeError.setText("mensaje error que viene del server");
             abrirVentanaEmergenteError();
         }else if (responseCode.getCode()==200){
             abrirVentanaEmergenteExito();
+            loginController.cargarVistaEmpresa();
         }
 
         } catch (NumberFormatException e){
             abrirVentanaEmergenteError();
         }
-
-        Node source = (Node)  actionEvent.getSource();
-        Stage stageActual  = (Stage) source.getScene().getWindow();
-        stageActual.close();
     }
-    private void chequeoDatos(String nombresTxt, String apellidosTxt, String direccionTxt, String telTxt,
-                             String mailTxt, String passwordTxt) throws IOException {
+    private boolean chequeoDatos(ActionEvent actionEvent, String nombresTxt, String apellidosTxt, String direccionTxt, String telTxt,
+                             String mailTxt, String passwordTxt, String cedula) throws IOException {
+        boolean sonValidos = true;
         if ( nombresTxt.isEmpty() || apellidosTxt.isEmpty() || direccionTxt.isEmpty() ||
                 telTxt.isEmpty() || mailTxt.isEmpty() || passwordTxt.isEmpty() ||
-                hasANumber(nombresTxt)|| hasANumber(apellidosTxt)|| (!isAnEmail(mailTxt)) ){
+                hasANumber(nombresTxt)|| hasANumber(apellidosTxt)|| (!isAnEmail(mailTxt)) || cedula.length()!=8 ){
             //mail: chequea q tenga un arroba, un punto algo, alguna letra mas, en minusculas, permite numeros y puntos
-            abrirVentanaEmergenteError();
+            //etVariableMensajeError.setText("alguno de los datos ingresados no es válido");
+            sonValidos=false;
+
         }
         try{
             //cedula,saldos ya estan chequeados arriba cuando los parseo
@@ -112,9 +118,9 @@ public class EmpresaRegistroEmplController implements Initializable {
 
 
         }catch (NumberFormatException e){
-            abrirVentanaEmergenteError();
+            sonValidos=false;
         }
-
+        return sonValidos;
     }
     private static boolean hasANumber(String str) {
         char[] chars = str.toCharArray();
@@ -133,6 +139,7 @@ public class EmpresaRegistroEmplController implements Initializable {
 
     }
 
+    @FXML
     private void abrirVentanaEmergenteExito() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
@@ -145,10 +152,8 @@ public class EmpresaRegistroEmplController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
 
-        loginController.cargarVistaEmpresa();
-
     }
-
+    @FXML
     private void abrirVentanaEmergenteError() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
@@ -160,22 +165,19 @@ public class EmpresaRegistroEmplController implements Initializable {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        loginController.cargarVistaEmpresa();
     }
 
+    @FXML
     private void salir(ActionEvent actionEvent) throws IOException {
         empresaController.salir(actionEvent);
     }
 
-    private void cerrarVentEmergError(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stageActual  = (Stage) source.getScene().getWindow();
-        stageActual.close(); //cierro la ventana en la que estoy
-    }
+    @FXML
     private void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
         empresaController.mostrarTablaEmpleados(actionEvent);
     }
 
+    @FXML
     private void mostrarLiquidacion(ActionEvent actionEvent) {
     }
 
