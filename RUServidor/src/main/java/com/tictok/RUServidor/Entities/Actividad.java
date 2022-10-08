@@ -8,8 +8,8 @@ import java.util.List;
 @Table
 public class Actividad {
     @Id
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
+    @Column(name = "nombre_actividad", nullable = false)
+    private String nombreActividad;
 
     @Column(name = "precio", nullable = false)
     private Integer precio;
@@ -21,20 +21,20 @@ public class Actividad {
     @Column(name = "cupos", nullable = false)
     private Integer cupos;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "centro_deportivo_nombre_centro")
     private CentroDeportivo centroDeportivo;
 
-    public CentroDeportivo getCentroDeportivo() {
-        return centroDeportivo;
-    }
-
-    public void setCentroDeportivo(CentroDeportivo centroDeportivo) {
-        this.centroDeportivo = centroDeportivo;
-    }
-
 
     public Actividad() {
+    }
+
+    public Actividad(String nombreActividad, Integer precio, List<Horario> horario, Integer cupos) {
+        this.nombreActividad = nombreActividad;
+        this.precio = precio;
+        this.horario = horario;
+        this.cupos = cupos;
     }
 
     public List<Horario> getHorario() {
@@ -62,11 +62,19 @@ public class Actividad {
         this.precio = precio;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreActividad() {
+        return nombreActividad;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreActividad(String nombre) {
+        this.nombreActividad = nombre;
+    }
+
+    public CentroDeportivo getCentroDeportivo() {
+        return centroDeportivo;
+    }
+
+    public void setCentroDeportivo(CentroDeportivo centroDeportivo) {
+        this.centroDeportivo = centroDeportivo;
     }
 }
