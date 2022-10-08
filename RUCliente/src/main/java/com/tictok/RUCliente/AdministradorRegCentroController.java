@@ -21,8 +21,13 @@ public class AdministradorRegCentroController {
     public TextField tel;
     public TextField mailCuenta1;
     public TextField contraseñaCuenta1;
+
     @Autowired
     AdministradorController administradorController;
+
+    @Autowired
+    CentroDeportivoRest centroDeportivoRest;
+
     @FXML
     public void registrarEmpresa(ActionEvent actionEvent) throws IOException {
         administradorController.registrarEmpresa(actionEvent);
@@ -42,5 +47,6 @@ public class AdministradorRegCentroController {
     }
 
     public void guardarDatos(ActionEvent actionEvent) {
+        centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText());
     }
 }

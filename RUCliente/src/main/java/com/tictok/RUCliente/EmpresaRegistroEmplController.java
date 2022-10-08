@@ -40,7 +40,6 @@ public class EmpresaRegistroEmplController implements Initializable {
     public Button btnGuardar;
     public Button btnCancelar;
     public Button btnOK;
-
     public TextField nombres;
     public TextField direccion;
     public TextField tel;
@@ -51,7 +50,6 @@ public class EmpresaRegistroEmplController implements Initializable {
     public TextField mail;
     public TextField contraseña;
     public TextField saldoSobregiro;
-
     public Label etVariableMensajeError;
 
 
@@ -89,7 +87,7 @@ public class EmpresaRegistroEmplController implements Initializable {
         HttpResponse<String> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum, direccionTxt);
         if (responseCode.getCode()==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
             //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
-            etVariableMensajeError.setText("mensaje error que viene del server");
+            //etVariableMensajeError.setText("mensaje error que viene del server");
             abrirVentanaEmergenteError();
         }else if (responseCode.getCode()==200){
             abrirVentanaEmergenteExito();
@@ -107,7 +105,7 @@ public class EmpresaRegistroEmplController implements Initializable {
                 telTxt.isEmpty() || mailTxt.isEmpty() || passwordTxt.isEmpty() ||
                 hasANumber(nombresTxt)|| hasANumber(apellidosTxt)|| (!isAnEmail(mailTxt)) || cedula.length()!=8 ){
             //mail: chequea q tenga un arroba, un punto algo, alguna letra mas, en minusculas, permite numeros y puntos
-            etVariableMensajeError.setText("alguno de los datos ingresados no es válido");
+            //etVariableMensajeError.setText("alguno de los datos ingresados no es válido");
             sonValidos=false;
 
         }
