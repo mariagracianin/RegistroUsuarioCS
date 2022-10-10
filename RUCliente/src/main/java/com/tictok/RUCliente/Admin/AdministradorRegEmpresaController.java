@@ -43,6 +43,6 @@ public class AdministradorRegEmpresaController {
     }
 
     public void guardarDatos(ActionEvent actionEvent) {
-        empresaRest.guardarEmpresa("mgnin@correo","gatito","gatitoSA","esqu","2817392","gatoEncargado");
+        empresaRest.guardarEmpresa(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText());
     }
 }

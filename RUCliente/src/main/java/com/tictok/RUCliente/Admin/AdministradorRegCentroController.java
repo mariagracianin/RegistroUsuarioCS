@@ -1,5 +1,6 @@
 package com.tictok.RUCliente.Admin;
 
+import com.tictok.RUCliente.CentroDeportivoRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -18,8 +19,13 @@ public class AdministradorRegCentroController {
     public TextField contraseñaCuenta1;
     public TextField rut;
     public TextField razonSocial;
+
     @Autowired
     AdministradorController administradorController;
+
+    @Autowired
+    CentroDeportivoRest centroDeportivoRest;
+
     @FXML
     public void registrarEmpresa(ActionEvent actionEvent) throws IOException {
         administradorController.registrarEmpresa(actionEvent);
@@ -39,5 +45,6 @@ public class AdministradorRegCentroController {
     }
 
     public void guardarDatos(ActionEvent actionEvent) {
+        centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText());
     }
 }

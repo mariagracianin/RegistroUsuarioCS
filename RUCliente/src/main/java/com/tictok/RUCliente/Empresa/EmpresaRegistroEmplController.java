@@ -69,7 +69,6 @@ public class EmpresaRegistroEmplController implements Initializable {
 
 
     public EmpresaRegistroEmplController() {
-        System.out.println("COnstructor!!!");
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -92,7 +91,7 @@ public class EmpresaRegistroEmplController implements Initializable {
             LocalDate vencimientoCarneDATE = fechaVenCarne.getValue();
             String vencimientoCarne = vencimientoCarneDATE.toString();
 
-            boolean validos = chequeoDatos(actionEvent,nombresTxt,apellidosTxt,direccionTxt,telTxt,mailTxt,passwordTxt,cedula.getText());
+            boolean validos = chequeoDatos(nombresTxt,apellidosTxt,direccionTxt,telTxt,mailTxt,passwordTxt,cedula.getText());
             if (!validos) {
                 abrirVentanaEmergenteError();
             }else {
@@ -106,11 +105,12 @@ public class EmpresaRegistroEmplController implements Initializable {
                     abrirVentanaEmergenteExito();
                 }
             }
+
         } catch (NumberFormatException e){
             abrirVentanaEmergenteError();
         }
     }
-    private boolean chequeoDatos(ActionEvent actionEvent, String nombresTxt, String apellidosTxt, String direccionTxt, String telTxt,
+    private boolean chequeoDatos(String nombresTxt, String apellidosTxt, String direccionTxt, String telTxt,
                              String mailTxt, String passwordTxt, String cedula) throws IOException {
         boolean sonValidos = true;
         if ( nombresTxt.isEmpty() || apellidosTxt.isEmpty() || direccionTxt.isEmpty() ||
