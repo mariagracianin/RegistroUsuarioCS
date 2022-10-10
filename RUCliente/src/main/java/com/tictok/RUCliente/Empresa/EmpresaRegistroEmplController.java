@@ -1,8 +1,11 @@
-package com.tictok.RUCliente;
+package com.tictok.RUCliente.Empresa;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.tictok.RUCliente.JavaFXApplication;
+import com.tictok.RUCliente.LoginController;
+import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,20 +41,29 @@ public class EmpresaRegistroEmplController implements Initializable {
 
     @FXML
     public Button btnGuardar;
-    public Button btnCancelar;
+    @FXML
     public Button btnOK;
-
+    @FXML
     public TextField nombres;
+    @FXML
     public TextField direccion;
+    @FXML
     public TextField tel;
+    @FXML
     public TextField apellidos;
+    @FXML
     public TextField cedula;
+    @FXML
     public TextField saldoInicial;
+    @FXML
     public DatePicker fechaVenCarne;
+    @FXML
     public TextField mail;
+    @FXML
     public TextField contraseña;
+    @FXML
     public TextField saldoSobregiro;
-
+    @FXML
     public Label etVariableMensajeError;
 
 
@@ -82,20 +94,18 @@ public class EmpresaRegistroEmplController implements Initializable {
 
             boolean validos = chequeoDatos(actionEvent,nombresTxt,apellidosTxt,direccionTxt,telTxt,mailTxt,passwordTxt,cedula.getText());
             if (!validos) {
-                actionEvent.consume();
                 abrirVentanaEmergenteError();
+            }else {
+                HttpResponse<String> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum, direccionTxt);
+
+                if (responseCode.getCode() == 409) { //este es el error especifico de que el usuario ya existe, tenemos q ver
+                    //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
+                    abrirVentanaEmergenteError();
+                } else if (responseCode.getCode() == 200) {
+                    empresaController.volverAVistaEmpresa(actionEvent);
+                    abrirVentanaEmergenteExito();
+                }
             }
-
-        HttpResponse<String> responseCode = usuarioRest.guardarUsuario(mailTxt, passwordTxt, cedulaTxt, vencimientoCarne, nombresTxt, apellidosTxt, telTxt, saldoInicialNum, saldoSobregiroNum, direccionTxt);
-        if (responseCode.getCode()==409){ //este es el error especifico de que el usuario ya existe, tenemos q ver
-            //si puedo mostrar una variable en la pantalla que diga el mensaje? para no hacer n vistas distintas
-            etVariableMensajeError.setText("mensaje error que viene del server");
-            abrirVentanaEmergenteError();
-        }else if (responseCode.getCode()==200){
-            abrirVentanaEmergenteExito();
-            loginController.cargarVistaEmpresa();
-        }
-
         } catch (NumberFormatException e){
             abrirVentanaEmergenteError();
         }
@@ -107,7 +117,6 @@ public class EmpresaRegistroEmplController implements Initializable {
                 telTxt.isEmpty() || mailTxt.isEmpty() || passwordTxt.isEmpty() ||
                 hasANumber(nombresTxt)|| hasANumber(apellidosTxt)|| (!isAnEmail(mailTxt)) || cedula.length()!=8 ){
             //mail: chequea q tenga un arroba, un punto algo, alguna letra mas, en minusculas, permite numeros y puntos
-            etVariableMensajeError.setText("alguno de los datos ingresados no es válido");
             sonValidos=false;
 
         }
@@ -175,16 +184,7 @@ public class EmpresaRegistroEmplController implements Initializable {
     }
     @FXML
     public void salir(ActionEvent actionEvent) throws IOException {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stageActual  = (Stage) source.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-        Parent root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
-        stageActual.setTitle("Login");
-        Scene escena = new Scene(root);
-        escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
-        stageActual.setScene(escena);
-        stageActual.show();
+        empresaController.salir(actionEvent);
 
     }
 
@@ -197,4 +197,7 @@ public class EmpresaRegistroEmplController implements Initializable {
     private void mostrarLiquidacion(ActionEvent actionEvent) {
     }
 
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        empresaController.agregarCuenta(actionEvent);
+    }
 }

@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.EmpresaTablaEmplController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empresa.EmpresaTablaEmplController">
    <left>
-      <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@entidad_style.css" BorderPane.alignment="CENTER">
+      <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Empresa" textAlignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="btnRegistrarNC" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="50.0" prefWidth="202.0" stylesheets="@entidad_style.css" text="Registrar nuevo usuario">
+            <Button fx:id="btnRegistrarNC" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="50.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar nuevo usuario">
                <font>
                   <Font size="14.0" />
                </font>
@@ -27,12 +27,17 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="btnAgregarCuenta" mnemonicParsing="false" onAction="#agregarCuenta" prefHeight="50.0" prefWidth="202.0" text="Agregar cuenta asociada">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
             <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="50.0" prefWidth="202.0" text="Ver liquidación">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Salir">
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Cerrar sesión">
                <font>
                   <Font size="14.0" />
                </font>
@@ -41,9 +46,9 @@
       </VBox>
    </left>
    <center>
-      <VBox fx:id="mainPane" prefHeight="200.0" prefWidth="100.0" styleClass="mainPane" stylesheets="@entidad_style.css" BorderPane.alignment="CENTER">
+      <VBox fx:id="mainPane" prefHeight="200.0" prefWidth="100.0" styleClass="mainPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tablEmpl" prefHeight="463.0" prefWidth="498.0" stylesheets="@entidad_style.css">
+            <TableView fx:id="tablEmpl" prefHeight="463.0" prefWidth="498.0" stylesheets="@../entidad_style.css">
                <columns>
                   <TableColumn fx:id="colCorreo" prefWidth="115.0" text="Correo Electrónico" />
                   <TableColumn fx:id="colNombres" minWidth="9.0" prefWidth="100.0" text="Nombres" />

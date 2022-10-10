@@ -1,5 +1,7 @@
-package com.tictok.RUCliente;
+package com.tictok.RUCliente.Admin;
 
+import com.tictok.RUCliente.JavaFXApplication;
+import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

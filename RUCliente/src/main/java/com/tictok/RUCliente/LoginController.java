@@ -4,6 +4,7 @@ package com.tictok.RUCliente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.CuentaDTO;
+import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,8 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
-import java.util.List;
 
 @Component
 public class LoginController {
@@ -81,7 +80,7 @@ public class LoginController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("administrador.fxml"));
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/com/tictok/RUCliente/Admin/administrador.fxml"));
         Stage stage = new Stage();
         Scene escena = new Scene(root);
         stage.setScene(escena);

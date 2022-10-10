@@ -2,7 +2,7 @@
     -fx-background-color: #4A4A4A;
 }
 .topPane{
-    -fx-background-color: #49cead;
+    -fx-background-color: linear-gradient(#47a18c,#49CEAD);
 }
 .leftPane{
     -fx-background-color: #282828;

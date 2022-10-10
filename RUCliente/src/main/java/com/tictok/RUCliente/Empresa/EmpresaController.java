@@ -1,5 +1,8 @@
-package com.tictok.RUCliente;
+package com.tictok.RUCliente.Empresa;
 
+import com.tictok.RUCliente.JavaFXApplication;
+import com.tictok.RUCliente.LoginController;
+import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,7 +41,19 @@ public class EmpresaController implements Initializable {
         stageActual.show();
 
     }
+    public void volverAVistaEmpresa(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
+        Parent root = fxmlLoader.load(EmpresaController.class.getResourceAsStream("empresa.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Registrar nuevo empleado");
+
+        stage.show(); //no es ventana emergente
+    }
     public void registrarUsuario(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -75,5 +90,18 @@ public class EmpresaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpresaController.class.getResourceAsStream("empresaAgregarCuenta.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+
+        stage.show(); //no es ventana emergente
     }
 }

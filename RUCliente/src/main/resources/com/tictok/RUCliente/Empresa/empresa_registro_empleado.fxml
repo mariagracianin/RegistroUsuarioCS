@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="mainPane" stylesheets="@entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.EmpresaRegistroEmplController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController">
    <left>
-      <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@entidad_style.css" BorderPane.alignment="CENTER">
+      <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Empresa" textAlignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="btnRegistrarNC" mnemonicParsing="false" prefHeight="50.0" prefWidth="202.0" stylesheets="@entidad_style.css" text="Registrar nuevo usuario">
+            <Button fx:id="btnRegistrarNC" mnemonicParsing="false" prefHeight="50.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar nuevo usuario">
                <font>
                   <Font size="14.0" />
                </font>
@@ -28,12 +28,17 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="btnAgregarCuenta" mnemonicParsing="false" onAction="#agregarCuenta" prefHeight="50.0" prefWidth="202.0" text="Agregar cuenta asociada">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
             <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="50.0" prefWidth="202.0" text="Ver liquidación">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Salir">
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Cerrar sesión">
                <font>
                   <Font size="14.0" />
                </font>
@@ -42,7 +47,7 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@entidad_style.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="nombres" layoutX="190.0" layoutY="59.0" prefHeight="25.0" prefWidth="200.0" promptText="Juan José" />
             <TextField fx:id="apellidos" layoutX="190.0" layoutY="92.0" prefHeight="25.0" prefWidth="200.0" promptText="Hernandez Fernandez" />
@@ -109,7 +114,7 @@
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="btnGuardar" defaultButton="true" layoutX="332.0" layoutY="440.0" mnemonicParsing="false" onAction="#guardarDatos" stylesheets="@entidad_style.css" text="Guardar">
+            <Button fx:id="btnGuardar" defaultButton="true" layoutX="332.0" layoutY="440.0" mnemonicParsing="false" onAction="#guardarDatos" stylesheets="@../entidad_style.css" text="Guardar">
                <font>
                   <Font size="14.0" />
                </font>

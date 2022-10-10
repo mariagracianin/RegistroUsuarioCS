@@ -1,27 +1,21 @@
-package com.tictok.RUCliente;
+package com.tictok.RUCliente.Empresa;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.UsuarioDTO;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalDateStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -84,10 +78,11 @@ public class EmpresaTablaEmplController implements Initializable {
     public void mostrarLiquidacion(ActionEvent actionEvent) {
     }
 
-    public void salir(ActionEvent actionEvent) {
+    public void salir(ActionEvent actionEvent) throws IOException {
+    empresaController.salir(actionEvent);
+    }
 
-        Node source = (Node)  actionEvent.getSource();
-        Stage stageActual  = (Stage) source.getScene().getWindow();
-        stageActual.close();
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        empresaController.agregarCuenta(actionEvent);
     }
 }
