@@ -43,6 +43,8 @@ public class CentroDeportivo {
         this.cuentas = cuentas;
     }
 
+    public void setCuenta(Cuenta cuenta){this.cuentas.add(cuenta);}
+
     public CentroDeportivo() {
     }
 

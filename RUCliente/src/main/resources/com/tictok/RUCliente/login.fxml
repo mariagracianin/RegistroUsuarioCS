@@ -11,34 +11,35 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.LoginController">
+<BorderPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.LoginController">
    <center>
       <AnchorPane fx:id="mainPane" prefHeight="300.0" prefWidth="700.0" styleClass="mainPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="430.0" fitWidth="700.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="639.0" fitWidth="909.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/com/tictok/RUCliente/fotologin.png" />
-               </image></ImageView>
-            <Label alignment="CENTER" layoutX="280.0" layoutY="56.0" prefHeight="62.0" prefWidth="141.0" text="Login" textFill="#58ebc6">
+                  <Image url="/com/tictok/RUCliente/fotologin.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="etLogin" alignment="CENTER" layoutX="379.0" layoutY="162.0" prefHeight="62.0" prefWidth="141.0" text="Login" textFill="#58ebc6">
                <font>
                   <Font name="ChunkFivePrint" size="50.0" />
                </font>
             </Label>
-            <TextField fx:id="correoElectronico" layoutX="332.0" layoutY="160.0" prefHeight="28.0" prefWidth="206.0" />
-            <PasswordField fx:id="password" layoutX="332.0" layoutY="210.0" prefHeight="28.0" prefWidth="206.0" />
-            <Button fx:id="btnIngresar" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="442.0" layoutY="280.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="39.0" prefWidth="96.0" stylesheets="@loginStyle.css" text="Ingresar">
+            <TextField fx:id="correoElectronico" layoutX="431.0" layoutY="266.0" prefHeight="28.0" prefWidth="206.0" />
+            <PasswordField fx:id="password" layoutX="431.0" layoutY="316.0" prefHeight="28.0" prefWidth="206.0" />
+            <Button fx:id="btnIngresar" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="541.0" layoutY="386.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="39.0" prefWidth="96.0" stylesheets="@loginStyle.css" text="Ingresar">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" ellipsisString="" layoutX="164.0" layoutY="158.0" prefHeight="32.0" prefWidth="165.0" text="correo electrónico" textFill="WHITE">
+            <Label fx:id="etCorreo" alignment="CENTER" ellipsisString="" layoutX="218.0" layoutY="264.0" prefHeight="32.0" prefWidth="210.0" text="correo electrónico" textFill="WHITE">
                <font>
-                  <Font name="Candara Light" size="20.0" />
+                  <Font name="Candara Light" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" ellipsisString="" layoutX="226.0" layoutY="206.0" prefHeight="32.0" prefWidth="96.0" text="contraseña" textFill="WHITE">
+            <Label fx:id="etContraseña" alignment="CENTER" ellipsisString="" layoutX="291.0" layoutY="312.0" prefHeight="32.0" prefWidth="130.0" text="contraseña" textFill="WHITE">
                <font>
-                  <Font name="Candara Light" size="20.0" />
+                  <Font name="Candara Light" size="24.0" />
                </font>
             </Label>
          </children>
