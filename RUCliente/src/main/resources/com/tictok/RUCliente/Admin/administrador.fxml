@@ -11,22 +11,22 @@
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Administrador" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Administrador" textAlignment="CENTER" textFill="#03dac6">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="btnRegistrarEmpresa" mnemonicParsing="false" onAction="#registrarEmpresa" prefHeight="50.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar empresa">
+            <Button fx:id="btnRegistrarEmpresa" mnemonicParsing="false" onAction="#registrarEmpresa" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar empresa">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnRegistrarCentro" mnemonicParsing="false" onAction="#registrarCentro" prefHeight="50.0" prefWidth="202.0" text="Registrar centro deportivo">
+            <Button fx:id="btnRegistrarCentro" mnemonicParsing="false" onAction="#registrarCentro" prefHeight="35.0" prefWidth="202.0" text="Registrar centro deportivo">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="50.0" prefWidth="202.0" text="Ver empresas">
+            <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="35.0" prefWidth="202.0" text="Ver empresas">
                <font>
                   <Font size="14.0" />
                </font>
@@ -36,12 +36,12 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="50.0" prefWidth="202.0" text="Ver liquidación">
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Ver liquidación">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Cerrar sesión">
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" text="Cerrar sesión">
                <font>
                   <Font size="14.0" />
                </font>

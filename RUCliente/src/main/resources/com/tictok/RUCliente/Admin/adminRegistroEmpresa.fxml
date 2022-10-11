@@ -12,22 +12,22 @@
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Administrador" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Administrador" textAlignment="CENTER" textFill="#03dac6">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="202.0" text="Registrar empresa">
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" text="Registrar empresa">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnRegistrarCentro" mnemonicParsing="false" onAction="#registrarCentro" prefHeight="50.0" prefWidth="202.0" text="Registrar centro deportivo">
+            <Button fx:id="btnRegistrarCentro" mnemonicParsing="false" onAction="#registrarCentro" prefHeight="35.0" prefWidth="202.0" text="Registrar centro deportivo">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="50.0" prefWidth="202.0" text="Ver empresas">
+            <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="35.0" prefWidth="202.0" text="Ver empresas">
                <font>
                   <Font size="14.0" />
                </font>
@@ -37,12 +37,12 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="50.0" prefWidth="202.0" text="Ver liquidación">
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Ver liquidación">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Cerrar sesión">
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" text="Cerrar sesión">
                <font>
                   <Font size="14.0" />
                </font>
@@ -53,26 +53,26 @@
    <center>
       <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="nombre" layoutX="203.0" layoutY="74.0" prefHeight="25.0" prefWidth="220.0" promptText="Empresa SA" />
-            <TextField fx:id="encargado" layoutX="203.0" layoutY="274.0" prefHeight="25.0" prefWidth="220.0" promptText="Juan Perez" />
-            <TextField fx:id="direccion" layoutX="203.0" layoutY="114.0" prefHeight="25.0" prefWidth="220.0" promptText="Calle Este 1234" />
-            <TextField fx:id="tel" layoutX="203.0" layoutY="154.0" prefHeight="25.0" prefWidth="220.0" promptText="24001212" />
-            <Label layoutX="104.0" layoutY="74.0" prefHeight="20.0" prefWidth="89.0" text="Nombre" textFill="WHITE">
+            <TextField fx:id="nombre" layoutX="189.0" layoutY="85.0" prefHeight="25.0" prefWidth="220.0" promptText="Empresa SA" />
+            <TextField fx:id="encargado" layoutX="189.0" layoutY="285.0" prefHeight="25.0" prefWidth="220.0" promptText="Juan Perez" />
+            <TextField fx:id="direccion" layoutX="189.0" layoutY="125.0" prefHeight="25.0" prefWidth="220.0" promptText="Calle Este 1234" />
+            <TextField fx:id="tel" layoutX="189.0" layoutY="165.0" prefHeight="25.0" prefWidth="220.0" promptText="24001212" />
+            <Label layoutX="90.0" layoutY="85.0" prefHeight="20.0" prefWidth="89.0" text="Nombre" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="104.0" layoutY="114.0" prefHeight="17.0" prefWidth="68.0" text="Dirección" textFill="WHITE">
+            <Label layoutX="90.0" layoutY="125.0" prefHeight="17.0" prefWidth="68.0" text="Dirección" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="104.0" layoutY="154.0" prefHeight="17.0" prefWidth="68.0" text="Teléfono" textFill="WHITE">
+            <Label layoutX="90.0" layoutY="165.0" prefHeight="17.0" prefWidth="68.0" text="Teléfono" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="104.0" layoutY="274.0" prefHeight="20.0" prefWidth="99.0" text="Encargado" textFill="WHITE">
+            <Label layoutX="90.0" layoutY="285.0" prefHeight="20.0" prefWidth="99.0" text="Encargado" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
@@ -82,36 +82,36 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label layoutX="104.0" layoutY="32.0" text="Registrar Empresa" textFill="WHITE">
+            <Label layoutX="90.0" layoutY="43.0" text="Registrar Empresa" textFill="#3700b3">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="mailCuenta1" layoutX="194.0" layoutY="355.0" prefHeight="25.0" prefWidth="220.0" promptText="hola@ejemplo.com" />
-            <Label layoutX="104.0" layoutY="357.0" prefHeight="20.0" prefWidth="99.0" text="Mail" textFill="WHITE">
+            <TextField fx:id="mailCuenta1" layoutX="180.0" layoutY="366.0" prefHeight="25.0" prefWidth="220.0" promptText="hola@ejemplo.com" />
+            <Label layoutX="90.0" layoutY="368.0" prefHeight="20.0" prefWidth="99.0" text="Mail" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="contraseñaCuenta1" layoutX="194.0" layoutY="392.0" prefHeight="25.0" prefWidth="220.0" promptText="*********" />
-            <Label layoutX="104.0" layoutY="394.0" prefHeight="20.0" prefWidth="99.0" text="Contraseña" textFill="WHITE">
+            <TextField fx:id="contraseñaCuenta1" layoutX="180.0" layoutY="403.0" prefHeight="25.0" prefWidth="220.0" promptText="*********" />
+            <Label layoutX="90.0" layoutY="405.0" prefHeight="20.0" prefWidth="99.0" text="Contraseña" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="rut" layoutX="203.0" layoutY="194.0" prefHeight="25.0" prefWidth="220.0" />
-            <Label layoutX="104.0" layoutY="194.0" prefHeight="20.0" prefWidth="99.0" text="RUT" textFill="WHITE">
+            <TextField fx:id="rut" layoutX="189.0" layoutY="205.0" prefHeight="25.0" prefWidth="220.0" />
+            <Label layoutX="90.0" layoutY="205.0" prefHeight="20.0" prefWidth="99.0" text="RUT" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="104.0" layoutY="317.0" text="Datos de la cuenta asociada" textFill="WHITE">
+            <Label layoutX="90.0" layoutY="328.0" text="Datos de la cuenta asociada" textFill="#3700b3">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="razonSocial" layoutX="203.0" layoutY="234.0" prefHeight="25.0" prefWidth="220.0" />
-            <Label layoutX="104.0" layoutY="234.0" prefHeight="20.0" prefWidth="99.0" text="Razón social" textFill="WHITE">
+            <TextField fx:id="razonSocial" layoutX="189.0" layoutY="245.0" prefHeight="25.0" prefWidth="220.0" />
+            <Label layoutX="90.0" layoutY="245.0" prefHeight="20.0" prefWidth="99.0" text="Razón social" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>

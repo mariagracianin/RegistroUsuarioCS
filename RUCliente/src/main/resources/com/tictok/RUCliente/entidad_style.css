@@ -1,18 +1,33 @@
 .mainPane{
-    -fx-background-color: #4A4A4A;
+    -fx-background-color: #000000;
 }
 .leftPane{
-    -fx-background-color: #49cead;
+    -fx-background-color: #121212;
 }
 .button{
-    -fx-background-color: #50e6c0;
+    -fx-background-color: #121212;
+    -fx-text-fill: #ffffff;
+    -fx-alignment: center-left;
+    -fx-border-radius: 3;
 }
 .button:hover{
-    -fx-background-color: #6dedcd;
+    -fx-background-color: #03DAC6;
+    -fx-border-radius: 3;
 }
 .button:pressed{
     -fx-background-color: #84f5d9;
+    -fx-border-radius: 3;
 }
 .table-view{
     -fx-background-color: #4A4A4A;
+}
+.table-column{
+    -fx-background-color: #84f5d9;
+}
+.text-field{
+    -fx-border-color: #121212;
+    -fx-border-width: 2;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #121212;
+    -fx-border-radius: 3;
 }

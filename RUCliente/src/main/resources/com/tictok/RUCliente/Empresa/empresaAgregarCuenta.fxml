@@ -12,17 +12,17 @@
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Empresa" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Empresa" textAlignment="CENTER" textFill="#03dac6">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="btnRegistrarNC" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="50.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar nuevo usuario">
+            <Button fx:id="btnRegistrarNC" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar nuevo empleado">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerTablaEmpleados" mnemonicParsing="false" onAction="#mostrarTablaEmpleados" prefHeight="50.0" prefWidth="202.0" text="Ver empleados registrados">
+            <Button fx:id="btnVerTablaEmpleados" mnemonicParsing="false" onAction="#mostrarTablaEmpleados" prefHeight="35.0" prefWidth="202.0" text="Ver empleados registrados">
                <font>
                   <Font size="14.0" />
                </font>
@@ -32,12 +32,12 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="50.0" prefWidth="202.0" text="Ver liquidación">
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Ver liquidación">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="50.0" prefWidth="202.0" text="Cerrar sesión">
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" text="Cerrar sesión">
                <font>
                   <Font size="14.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="110.0" layoutY="97.0" text="Agregar cuenta asociada" textFill="WHITE">
+            <Label layoutX="110.0" layoutY="97.0" text="Agregar cuenta asociada" textFill="#3700b3">
                <font>
                   <Font size="20.0" />
                </font>

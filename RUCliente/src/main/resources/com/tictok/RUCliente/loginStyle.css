@@ -1,8 +1,8 @@
 .mainPane{
-    -fx-background-color: #4A4A4A;
+    -fx-background-color: #000000;
 }
 .topPane{
-    -fx-background-color: linear-gradient(#47a18c,#49CEAD);
+    -fx-background-color: #03DAC6;
 }
 .leftPane{
     -fx-background-color: #282828;
@@ -18,4 +18,11 @@
 }
 .button:pressed{
     -fx-background-color: #84f5d9;
+}
+.text-field{
+    -fx-border-color: #84f5d9;
+    -fx-border-width: 2;
+    -fx-background-color: #121212;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 5;
 }

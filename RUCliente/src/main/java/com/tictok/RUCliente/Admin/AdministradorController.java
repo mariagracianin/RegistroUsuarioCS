@@ -76,4 +76,5 @@ public class AdministradorController {
 
         stage.show(); //no es ventana emergente
     }
+
 }
