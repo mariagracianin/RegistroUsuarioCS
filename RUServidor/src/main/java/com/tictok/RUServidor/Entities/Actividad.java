@@ -11,6 +11,11 @@ public class Actividad {
     @Column(name = "nombre_actividad", nullable = false)
     private String nombreActividad;
 
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn (name = "centro_deportivo_nombre_centro")
+    private CentroDeportivo centroDeportivo;
+
     @Column(name = "precio", nullable = false)
     private Integer precio;
 
@@ -20,11 +25,6 @@ public class Actividad {
 
     @Column(name = "cupos", nullable = false)
     private Integer cupos;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "centro_deportivo_nombre_centro")
-    private CentroDeportivo centroDeportivo;
 
 
     public Actividad() {
