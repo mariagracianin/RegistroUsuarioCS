@@ -51,6 +51,18 @@ public class UsuarioRest {
         }
     }
 
+    public HttpResponse<String> buscarDatosUsuarioFromMail(String mail){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/cuenta/mail?mail="+ mail)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    //NO FUNCIONA SEGURO :(
     public HttpResponse<String> hacerReserva(String mailUsuario, String nombreCentro, String nombreActividad, HorarioDTO horario){
         String reservarJSON = "";
         try {

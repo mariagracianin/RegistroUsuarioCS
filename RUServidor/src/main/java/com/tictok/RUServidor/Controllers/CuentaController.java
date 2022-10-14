@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Controllers;
 
 import com.tictok.Commons.CuentaDTO;
+import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Cuenta;
@@ -40,6 +41,11 @@ public class CuentaController {
     public MiniCuentaDTO autenticar(@RequestParam(name = "mail") String mail, @RequestParam(name = "password") String password) throws CuentaNoExisteException, PasswordDoesNotMatchException {
         CuentaDTO cuentaDTOaAutenticar = new CuentaDTO(mail,password,"");
         return cuentaService.autenticar(cuentaDTOaAutenticar);
+    }
+
+    @GetMapping("/mail")
+    public MegaUsuarioDTO getMegaUsuarioDTOfromMail(@RequestParam(name = "mail") String mail) throws CuentaNoExisteException {
+        return cuentaService.getMegaUsuarioDTOfromMail(mail);
     }
 
 }
