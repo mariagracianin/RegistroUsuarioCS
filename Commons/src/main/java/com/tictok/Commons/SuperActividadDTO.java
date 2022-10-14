@@ -8,16 +8,18 @@ import java.util.List;
 public class SuperActividadDTO {
     private String nombreServicio;
     private Integer precio;
-    private Integer cupos; //ver
-    private Boolean paseLibre; //ver
+    private Integer cupos;
+    private Boolean paseLibre;
     private String nombreCentro;
     private String address;
     private String barrio;
     private String telefono;
-    private List<String> horarios;
+    private List<HorarioDTO> horarios;
 
 
     public SuperActividadDTO() {
     }
+
+
 
 }
