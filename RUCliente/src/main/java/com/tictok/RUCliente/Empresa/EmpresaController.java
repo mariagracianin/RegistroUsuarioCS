@@ -50,7 +50,7 @@ public class EmpresaController implements Initializable {
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        stage.setTitle("Registrar nuevo empleado");
+        stage.setTitle("Empresa");
 
         stage.show(); //no es ventana emergente
     }

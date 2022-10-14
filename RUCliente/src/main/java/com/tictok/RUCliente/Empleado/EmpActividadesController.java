@@ -1,5 +1,6 @@
 package com.tictok.RUCliente.Empleado;
 
+import com.tictok.Commons.SuperActividadDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,29 +9,43 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+@Component
 public class EmpActividadesController implements Initializable {
     @Autowired
     EmpleadoController empleadoController;
 
     @FXML
     private GridPane contenedorAct;
-    private List<ActividadDTO> actividadesActuales;
+    private List<SuperActividadDTO> actividadesActuales= new ArrayList<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //actividadesActuales = actualizar;
+        ArrayList<String> h = new ArrayList<String>();
+        h.add("a");
+        h.add("b");
+        h.add("c");
+        SuperActividadDTO a1= new SuperActividadDTO("Yoga", 500, 15, false, "Club Bigua","direc","Pocitos","12345678",h,"/com/tictok/RUCliente/fotologin.jpg");
+        SuperActividadDTO a2= new SuperActividadDTO("GYM", 400, -1, true, "ACJ","direc","Centro","12345678",h,"/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg");
+        System.out.println("llegue a empActController");
+        actividadesActuales.add(a1);
+        actividadesActuales.add(a2);
+
         int column=0;
         int row=1;
         try {
-        for (ActividadDTO act : actividadesActuales){
+        for (SuperActividadDTO act : actividadesActuales){
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("cardActividad.fxml"));
 
-                VBox actBox = fxmlLoader.load();
+            VBox actBox = fxmlLoader.load();
             CardActividadController cardController = fxmlLoader.getController();
             cardController.setDatos(act);
 

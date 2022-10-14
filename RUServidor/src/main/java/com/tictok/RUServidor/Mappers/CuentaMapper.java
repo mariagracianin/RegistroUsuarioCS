@@ -11,6 +11,10 @@ public class CuentaMapper {
 
     }
 
+    public static MiniCuentaDTO toMiniCuentaDTO(Cuenta cuenta){
+        return new MiniCuentaDTO(cuenta.getMail(), cuenta.getTipo());
+    }
+
     public static Cuenta toCuenta(CuentaDTO cuentaDTO) {
         return new Cuenta(cuentaDTO.getMail(), cuentaDTO.getPassword(), cuentaDTO.getTipo());
     }

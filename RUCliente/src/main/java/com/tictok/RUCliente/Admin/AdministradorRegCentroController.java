@@ -1,6 +1,7 @@
 package com.tictok.RUCliente.Admin;
 
 import com.tictok.RUCliente.CentroDeportivoRest;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,9 +26,9 @@ public class AdministradorRegCentroController implements Initializable {
     public TextField contraseñaCuenta1;
     public TextField rut;
     public TextField razonSocial;
-    @FXML
     public ChoiceBox opcionesBarrios;
-    ObservableList<String> opcionesBarriosList = FXCollections.observableArrayList("Ciudad Vieja","Centro","Barrio Sur","Cordón","Palermo","Parque Rodó", "Punta Carretas", "Pocitos","Buceo", "La Unión", "La Blanqueada", "Parque Batlle", "Villa Dolores", "Malvín", "Malvín Norte", "Punta Gorda","Carrasco","Carrasco Norte", "Tres Cruces", "La Comercial", "Villa Muñoz", "Goes", "Aguada", "Reducto", "Arroyo Seco", "Bella Vista", "La Figurita", "Jacinto Vera", "Larrañaga", "Maroñas","Flor de Maroñas","Villa Española", "Mercado Modelo", "Brazo Oriental", "Atahualpa", "Prado","Capurro","Paso Molino", "Belvedere","Sayago","Aires Puros","Cerrito de la Victoria", "Ituzaingó", "Bella Italia","Punta de Rieles", "Jardines del Hipódromo", "Piedras Blancas", "Casavalle","Manga", "Peñarol", "Nuevo París", "La Teja","Cerro Norte", "Villa del Cerro");
+
+    private ObservableList<String> opcionesBarriosList = FXCollections.observableArrayList("Pocitos","Centro","Ciudad Vieja","Tres Cruces");
 
     @Autowired
     AdministradorController administradorController;
@@ -54,13 +55,12 @@ public class AdministradorRegCentroController implements Initializable {
     }
 
     public void guardarDatos(ActionEvent actionEvent) {
-        //opcionesBarrios.getValue(); <- con esto obtenemos el valor de la choicebox
-        centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText());
+        //opcionesBarrios.getValue();
+        centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText(), rut.getText(),razonSocial.getText());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         opcionesBarrios.setItems(opcionesBarriosList);
-
     }
 }

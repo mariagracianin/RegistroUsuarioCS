@@ -30,7 +30,7 @@ public class EmpleadoController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(EmpleadoController.class.getResourceAsStream("empActividades.fxml"));
+        Parent root = fxmlLoader.load(EmpleadoController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empActividades.fxml"));
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);

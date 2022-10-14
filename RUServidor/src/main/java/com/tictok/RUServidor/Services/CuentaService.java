@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.CuentaDTO;
+import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
@@ -75,7 +76,7 @@ public class CuentaService {
         }
     }
 
-    public CuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar) throws CuentaNoExisteException, PasswordDoesNotMatchException {
+    public MiniCuentaDTO autenticar(CuentaDTO cuentaDTOaAutenticar) throws CuentaNoExisteException, PasswordDoesNotMatchException {
         String mailDTO = cuentaDTOaAutenticar.getMail();
         String passwordDTO = cuentaDTOaAutenticar.getPassword();
         Cuenta cuentaConEseMail;
@@ -85,7 +86,7 @@ public class CuentaService {
 
 
         if (cuentaConEseMail.getPassword().equals(passwordDTO)){
-            return CuentaMapper.toCuentaDTO(cuentaConEseMail);
+            return CuentaMapper.toMiniCuentaDTO(cuentaConEseMail);
         }else{
             throw new PasswordDoesNotMatchException();
         }

@@ -4,6 +4,7 @@ package com.tictok.RUCliente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.CuentaDTO;
+import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ public class LoginController {
 
     @Autowired
     LoginRest loginRest;
+    MiniCuenta miniCuenta;
 
     public Button btnIngresar;
     public TextField correoElectronico;
@@ -33,18 +35,18 @@ public class LoginController {
         HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(), password.getText());
         if (response.getCode() == 200) {
             ObjectMapper objectMapper = new ObjectMapper();
-            CuentaDTO cuentaDTO = objectMapper.readValue(response.getBody(), CuentaDTO.class);
+            MiniCuentaDTO miniCuentaDTO = objectMapper.readValue(response.getBody(), MiniCuentaDTO.class);
 
-            if(cuentaDTO.getTipo().equals("empresa")){
+            if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("empresa")){
                 Node source = (Node)  actionEvent.getSource();
                 Stage stageActual  = (Stage) source.getScene().getWindow();
                 stageActual.close();
                 cargarVistaEmpresa();
             }
-            if(cuentaDTO.getTipo().equals("user")){
-                //cargarVistaUsuario();
+            if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("user")){
+                cargarVistaUsuario();
             }
-            if(cuentaDTO.getTipo().equals("admin")){
+            if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("admin")){
                 Node source = (Node)  actionEvent.getSource();
                 Stage stageActual  = (Stage) source.getScene().getWindow();
                 stageActual.close();
@@ -63,16 +65,16 @@ public class LoginController {
         }
     }
 
-    public void cargarVistaEmpresa() throws IOException {
+    private void cargarVistaUsuario() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa.fxml"));
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empleado.fxml"));
         Stage stage = new Stage();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        stage.setTitle("Empresa");
+        stage.setTitle("GetFit");
 
         stage.show(); //no es ventana emergente
     }
@@ -89,4 +91,19 @@ public class LoginController {
 
         stage.show(); //no es ventana emergente
     }
+
+    public void cargarVistaEmpresa() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa.fxml"));
+        Stage stage = new Stage();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Empresa");
+
+        stage.show(); //no es ventana emergente
+    }
+
 }

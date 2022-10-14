@@ -23,7 +23,7 @@
          <children>
             <ImageView fitHeight="117.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@GETFIT.png" />
+                  <Image url="/com/tictok/RUCliente/Empleado/GETFIT.png" />
                </image>
             </ImageView>
          </children></HBox>
@@ -49,7 +49,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@reserva.png" />
+                        <Image url="/com/tictok/RUCliente/Empleado/reserva.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="8.0" right="8.0" top="8.0" />
@@ -62,7 +62,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@actividad.png" />
+                        <Image url="/com/tictok/RUCliente/Empleado/actividad.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="8.0" right="8.0" top="8.0" />
@@ -75,7 +75,7 @@
                <children>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@cancha.png" />
+                        <Image url="/com/tictok/RUCliente/Empleado/cancha.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" top="5.0" />
@@ -88,7 +88,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@datos.png" />
+                        <Image url="/com/tictok/RUCliente/Empleado/datos.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="8.0" right="8.0" top="8.0" />
@@ -101,7 +101,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@reservaspasadas.png" />
+                        <Image url="/com/tictok/RUCliente/Empleado/reservaspasadas.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="8.0" right="8.0" top="8.0" />
