@@ -1,5 +1,6 @@
 package com.tictok.RUCliente.Empleado;
 
+import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,10 +29,13 @@ public class EmpActividadesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<String> h = new ArrayList<String>();
-        h.add("a");
-        h.add("b");
-        h.add("c");
+        HorarioDTO h1 = new HorarioDTO(3,13,14);
+        HorarioDTO h2 = new HorarioDTO(4,13,14);
+        HorarioDTO h3 = new HorarioDTO(3,13,14);
+        ArrayList<HorarioDTO> h = new ArrayList<HorarioDTO>();
+        h.add(h1);
+        h.add(h2);
+        h.add(h3);
         SuperActividadDTO a1= new SuperActividadDTO("Yoga", 500, 15, false, "Club Bigua","direc","Pocitos","12345678",h,"/com/tictok/RUCliente/fotologin.jpg");
         SuperActividadDTO a2= new SuperActividadDTO("GYM", 400, -1, true, "ACJ","direc","Centro","12345678",h,"/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg");
         System.out.println("llegue a empActController");

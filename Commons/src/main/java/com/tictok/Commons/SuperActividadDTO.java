@@ -8,19 +8,20 @@ import java.util.List;
 public class SuperActividadDTO {
     private String nombreServicio;
     private Integer precio;
-    private Integer cupos; //ver
-    private Boolean paseLibre; //ver
+    private Integer cupos;
+    private Boolean paseLibre;
     private String nombreCentro;
     private String address;
     private String barrio;
     private String telefono;
-    private List<String> horarios;
     private String imageSrc;
+
+    private List<HorarioDTO> horarios;
 
     public SuperActividadDTO() {
     }
 
-    public SuperActividadDTO(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono, List<String> horarios, String imageSrc) {
+    public SuperActividadDTO(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono, List<HorarioDTO> horarios, String imageSrc) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.cupos = cupos;
@@ -105,11 +106,12 @@ public class SuperActividadDTO {
         this.telefono = telefono;
     }
 
-    public List<String> getHorarios() {
+    public List<HorarioDTO> getHorarios() {
         return horarios;
     }
 
-    public void setHorarios(List<String> horarios) {
+    public void setHorarios(List<HorarioDTO> horarios) {
         this.horarios = horarios;
     }
+
 }

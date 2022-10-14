@@ -27,6 +27,16 @@ public class UsuarioMapper {
                 ,user.getSaldoBase(),user.getSobregiro(),user.getSaldo(), user.getAddress());
     }
 
+    public static MegaUsuarioDTO toMegaUsuarioDTO(Usuario user){
+
+        if(user == null){
+            return null;
+        }
+
+        return new MegaUsuarioDTO(user.getStringCuenta(),user.getCuenta().getPassword(), user.getCedula(),user.getVencimientoCarne(),user.getNombre(),user.getApellido(),user.getTelefono()
+                ,user.getSaldoBase(),user.getSobregiro(),user.getSaldo(), user.getAddress());
+    }
+
     public static Usuario toUsuarioFromMegaUsuarioDTO(MegaUsuarioDTO megauserDTO){
         if(megauserDTO == null){
             return null;

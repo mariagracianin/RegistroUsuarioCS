@@ -1,6 +1,8 @@
 package com.tictok.RUServidor.Entities;
 
 import javax.persistence.*;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +19,37 @@ public class Cancha {
     @JoinColumn(name = "centro_deportivo_nombre_centro", nullable = false)
     private CentroDeportivo centroDeportivo;
 
+    @Id
+    @Column(name = "dia")
+    private DayOfWeek dia;
+
+    @Id
+    private LocalTime horaInicio;
+
+    @Id
+    @Column(name = "hora_fin")
+    private LocalTime horaFin;
+
     @Column(name = "precio", nullable = false)
     private Integer precio;
 
     @Column(name = "cupos")
     private Integer cupos;
 
-    @ElementCollection
-    @CollectionTable(name = "cancha_horario", joinColumns = {
-            @JoinColumn(name = "cancha_id"),
-            @JoinColumn(name = "centro_deportivo_id")
+
+    public Cancha() {
     }
-    )
-    private List<Horario> horarios = new ArrayList<>();
+
+    public Cancha(String nombreServicio, CentroDeportivo centroDeportivo, DayOfWeek dia, LocalTime horaInicio, LocalTime horaFin, Integer precio, Integer cupos) {
+        this.nombreServicio = nombreServicio;
+        this.centroDeportivo = centroDeportivo;
+        this.dia = dia;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.precio = precio;
+        this.cupos = cupos;
+    }
+
     public Integer getCupos() {
         return cupos;
     }
@@ -62,11 +82,5 @@ public class Cancha {
         this.nombreServicio = nombreServicio;
     }
 
-    public List<Horario> getHorarios() {
-        return horarios;
-    }
 
-    public void setHorarios(List<Horario> horarios) {
-        this.horarios = horarios;
-    }
 }

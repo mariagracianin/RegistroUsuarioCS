@@ -9,11 +9,14 @@ import java.time.LocalTime;
 public class Horario implements Serializable {
 
     private DayOfWeek dia;
-    private LocalTime hora;
+    private LocalTime horaInicio;
 
-    public Horario(DayOfWeek dia, LocalTime hora) {
+    private LocalTime horaFin;
+
+    public Horario(DayOfWeek dia, LocalTime horaInicio, LocalTime horaFin) {
         this.dia = dia;
-        this.hora = hora;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
     }
 
     public Horario() {
@@ -28,11 +31,19 @@ public class Horario implements Serializable {
         this.dia = dia;
     }
 
-    public LocalTime getHora() {
-        return hora;
+    public LocalTime getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
+    public void setHoraInicio(LocalTime hora) {
+        this.horaInicio = hora;
+    }
+
+    public LocalTime getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(LocalTime horaFin) {
+        this.horaFin = horaFin;
     }
 }
