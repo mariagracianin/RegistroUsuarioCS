@@ -4,17 +4,30 @@ import javax.persistence.*;
 
 @Entity
 @Table
+@IdClass(ServicioId.class)
 public class Cancha {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "nombre_cancha", nullable = false, length = 100)
-    private String nombreCancha;
+    private String nombreServicio;
 
-    public String getNombreCancha() {
-        return nombreCancha;
+    @Id
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "centro_deportivo_nombre_centro", nullable = false)
+    private CentroDeportivo centroDeportivo;
+
+    public CentroDeportivo getCentroDeportivo() {
+        return centroDeportivo;
     }
 
-    public void setNombreCancha(String nombreCancha) {
-        this.nombreCancha = nombreCancha;
+    public void setCentroDeportivo(CentroDeportivo centroDeportivo) {
+        this.centroDeportivo = centroDeportivo;
+    }
+
+    public String getNombreServicio() {
+        return nombreServicio;
+    }
+
+    public void setNombreServicio(String nombreServicio) {
+        this.nombreServicio = nombreServicio;
     }
 }

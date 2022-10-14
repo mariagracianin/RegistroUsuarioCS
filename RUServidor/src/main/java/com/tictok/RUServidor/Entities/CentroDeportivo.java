@@ -2,8 +2,10 @@ package com.tictok.RUServidor.Entities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "centro_deportivo")
@@ -15,6 +17,9 @@ public class CentroDeportivo {
     @Column(name = "address", nullable = false)
     private String address;
 
+    @Column(name = "barrio", length = 50)
+    private String barrio;
+
     @Column(name = "telefono", nullable = false, unique = true, length = 20)
     private String telefono;
 
@@ -25,25 +30,15 @@ public class CentroDeportivo {
     private List<Cuenta> cuentas = new ArrayList<>();
 
     @OneToMany(mappedBy = "centroDeportivo", orphanRemoval = true)
-    private List<Actividad> actividades = new ArrayList<>();
+    private List<Cancha> canchas = new ArrayList<>();
 
-    public List<Actividad> getActividades() {
-        return actividades;
+    public List<Cancha> getCanchas() {
+        return canchas;
     }
 
-    public void setActividades(List<Actividad> actividades) {
-        this.actividades = actividades;
+    public void setCanchas(List<Cancha> canchas) {
+        this.canchas = canchas;
     }
-
-    public List<Cuenta> getCuentas() {
-        return cuentas;
-    }
-
-    public void setCuentas(List<Cuenta> cuentas) {
-        this.cuentas = cuentas;
-    }
-
-    public void setCuenta(Cuenta cuenta){this.cuentas.add(cuenta);}
 
     public CentroDeportivo() {
     }
@@ -57,4 +52,35 @@ public class CentroDeportivo {
 
 
 
+    public String getBarrio() {
+        return barrio;
+    }
+
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
+    }
+
+
+    public List<Cuenta> getCuentas() {
+        return cuentas;
+    }
+
+    public void setCuentas(List<Cuenta> cuentas) {
+        this.cuentas = cuentas;
+    }
+
+    public void setCuenta(Cuenta cuenta){this.cuentas.add(cuenta);}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CentroDeportivo that = (CentroDeportivo) o;
+        return nombreCentro.equals(that.nombreCentro);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombreCentro);
+    }
 }
