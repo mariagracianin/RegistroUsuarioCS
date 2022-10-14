@@ -82,6 +82,38 @@ public class CentroDeportivo {
 
     public void setCuenta(Cuenta cuenta){this.cuentas.add(cuenta);}
 
+    public String getNombreCentro() {
+        return nombreCentro;
+    }
+
+    public void setNombreCentro(String nombreCentro) {
+        this.nombreCentro = nombreCentro;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEncargado() {
+        return encargado;
+    }
+
+    public void setEncargado(String encargado) {
+        this.encargado = encargado;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

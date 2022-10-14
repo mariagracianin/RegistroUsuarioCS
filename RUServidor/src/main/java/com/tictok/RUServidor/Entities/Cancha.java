@@ -29,7 +29,7 @@ public class Cancha {
             @JoinColumn(name = "centro_deportivo_id")
     }
     )
-    private List<Horario> horario = new ArrayList<>();
+    private List<Horario> horarios = new ArrayList<>();
     public Integer getCupos() {
         return cupos;
     }
@@ -60,5 +60,13 @@ public class Cancha {
 
     public void setNombreServicio(String nombreServicio) {
         this.nombreServicio = nombreServicio;
+    }
+
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
     }
 }
