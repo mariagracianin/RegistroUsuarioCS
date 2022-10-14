@@ -10,9 +10,9 @@ import java.util.List;
 public class CanchaMapper {
     public static SuperChanchaDTO toSuperChanchaDTO(Cancha cancha){
         List<HorarioDTO> horariosDTO = null;
-        for(int i=0; i<cancha.getHorarios().size(); i++){
+        /*for(int i=0; i<cancha.getHorarios().size(); i++){
             //hacer que la lista sea de horarios dto
-        }
+        }*/
         return new SuperChanchaDTO(cancha.getNombreServicio(),cancha.getPrecio(),cancha.getCupos(),cancha.getCentroDeportivo().getNombreCentro(),cancha.getCentroDeportivo().getAddress(),cancha.getCentroDeportivo().getBarrio(),cancha.getCentroDeportivo().getTelefono(),horariosDTO);
     }
 }
