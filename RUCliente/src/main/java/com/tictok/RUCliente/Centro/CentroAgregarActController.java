@@ -28,4 +28,7 @@ public class CentroAgregarActController implements Initializable {
     public void salir(ActionEvent actionEvent) throws IOException {
         centroController.salir(actionEvent);
     }
+
+    public void agregarCancha(ActionEvent actionEvent) {
+    }
 }
