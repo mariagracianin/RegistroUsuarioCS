@@ -21,6 +21,11 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="btnAgregarCancha" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar cancha">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
             <Button fx:id="btnVerActividades" mnemonicParsing="false" onAction="#verActividades" prefHeight="35.0" prefWidth="202.0" text="Ver actividades activas">
                <font>
                   <Font size="14.0" />

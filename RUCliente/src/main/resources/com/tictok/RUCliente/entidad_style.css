@@ -26,8 +26,13 @@
 }
 .text-field{
     -fx-border-color: #121212;
-    -fx-border-width: 2;
+    -fx-border-width: 3;
     -fx-background-color: #ffffff;
     -fx-text-fill: #121212;
-    -fx-border-radius: 3;
+    -fx-border-radius: 11;
+    -fx-background-radius: 19;
+}
+.round-layout{
+    -fx-border-radius: 40;
+    -fx-border-color: #121212;
 }
