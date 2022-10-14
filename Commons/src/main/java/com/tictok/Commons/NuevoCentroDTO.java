@@ -12,17 +12,21 @@ public class NuevoCentroDTO {
     private String adress;
     private String telefono;
     private String encargado;
+    private String rut;
+    private String razonSocial;
 
     public NuevoCentroDTO() {
     }
 
-    public NuevoCentroDTO(String mail, String password, String nombreCentro, String adress, String telefono, String encargado) {
+    public NuevoCentroDTO(String mail, String password, String nombreCentro, String adress, String telefono, String encargado, String rut, String razonSocial) {
         this.mail = mail;
         this.password = password;
         this.nombreCentro = nombreCentro;
         this.adress = adress;
         this.telefono = telefono;
         this.encargado = encargado;
+        this.rut = rut;
+        this.razonSocial = razonSocial;
     }
 
     public String getMail() {
@@ -71,5 +75,21 @@ public class NuevoCentroDTO {
 
     public void setEncargado(String encargado) {
         this.encargado = encargado;
+    }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
     }
 }

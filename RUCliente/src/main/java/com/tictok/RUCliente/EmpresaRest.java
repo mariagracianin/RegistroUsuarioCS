@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmpresaRest {
 
-    public HttpResponse<String> guardarEmpresa(String mail, String password, String nombreEmpresa, String adress, String telefono, String encargado) {
+    public HttpResponse<String> guardarEmpresa(String mail, String password, String nombreEmpresa, String adress, String telefono, String encargado, String rut, String razonsocial) {
         String nuevaEmpresaJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            NuevaEmpresaDTO nuevaEmpresaDTO = new NuevaEmpresaDTO(mail, password, nombreEmpresa, adress, telefono, encargado);
+            NuevaEmpresaDTO nuevaEmpresaDTO = new NuevaEmpresaDTO(mail, password, nombreEmpresa, adress, telefono, encargado, rut, razonsocial);
             nuevaEmpresaJSON = jsonObjectMapper.writeValueAsString(nuevaEmpresaDTO);
         } catch (Exception e) {
             throw new RuntimeException(e);

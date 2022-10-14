@@ -81,4 +81,6 @@ public class Cancha {
     public void setNombreServicio(String nombreServicio) {
         this.nombreServicio = nombreServicio;
     }
+
+
 }

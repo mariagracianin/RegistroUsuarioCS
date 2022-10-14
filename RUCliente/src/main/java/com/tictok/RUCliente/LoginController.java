@@ -4,6 +4,7 @@ package com.tictok.RUCliente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.CuentaDTO;
+import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ public class LoginController {
 
     @Autowired
     LoginRest loginRest;
+    MiniCuenta miniCuenta;
 
     public Button btnIngresar;
     public TextField correoElectronico;
@@ -33,18 +35,18 @@ public class LoginController {
         HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(), password.getText());
         if (response.getCode() == 200) {
             ObjectMapper objectMapper = new ObjectMapper();
-            CuentaDTO cuentaDTO = objectMapper.readValue(response.getBody(), CuentaDTO.class);
+            MiniCuentaDTO miniCuentaDTO = objectMapper.readValue(response.getBody(), MiniCuentaDTO.class);
 
-            if(cuentaDTO.getTipo().equals("empresa")){
+            if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("empresa")){
                 Node source = (Node)  actionEvent.getSource();
                 Stage stageActual  = (Stage) source.getScene().getWindow();
                 stageActual.close();
                 cargarVistaEmpresa();
             }
-            if(cuentaDTO.getTipo().equals("user")){
+            if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("user")){
                 //cargarVistaUsuario();
             }
-            if(cuentaDTO.getTipo().equals("admin")){
+            if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("admin")){
                 Node source = (Node)  actionEvent.getSource();
                 Stage stageActual  = (Stage) source.getScene().getWindow();
                 stageActual.close();
