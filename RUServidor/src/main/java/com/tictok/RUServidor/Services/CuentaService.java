@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.CuentaDTO;
+import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Cuenta;
@@ -89,6 +90,16 @@ public class CuentaService {
             return CuentaMapper.toMiniCuentaDTO(cuentaConEseMail);
         }else{
             throw new PasswordDoesNotMatchException();
+        }
+    }
+
+    public MegaUsuarioDTO getMegaUsuarioDTOfromMail(String mail) throws CuentaNoExisteException {
+        Cuenta cuentaConEseMail = findOnebyId(mail);
+
+        if(cuentaConEseMail.getTipo().equals("user")){
+            return UsuarioMapper.toMegaUsuarioDTO(cuentaConEseMail.getUsuario());
+        }else{
+            throw new RuntimeException("LA FUNCION ESTA SOLO TIENE QUE SER PARA CUENTAS DE USUSARIO, LA ESTAS PIDIENDO CON OTRA COSA");
         }
     }
 

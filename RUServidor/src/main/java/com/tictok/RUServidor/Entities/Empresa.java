@@ -21,20 +21,28 @@ public class Empresa {
     @Column(name = "encargado", nullable = false, length = 50)
     private String encargado;
 
+    @Column(name = "rut", nullable = false, length = 50)
+    private String rut;
+
+    @Column(name = "razon_social", nullable = false, length = 50)
+    private String razonSocial;
+
     @OneToMany(mappedBy = "empresa", orphanRemoval = true)
     private List<Usuario> usuarios = new ArrayList<Usuario>();
 
     @OneToMany(mappedBy = "empresa", orphanRemoval = true)
     private List<Cuenta> cuentas = new ArrayList<Cuenta>();
 
-    public Empresa(String nombreEmpresa, String adress, String telefono, String encargado) {
+    public Empresa() {
+    }
+
+    public Empresa(String nombreEmpresa, String adress, String telefono, String encargado, String rut, String razonSocial) {
         this.nombreEmpresa = nombreEmpresa;
         this.adress = adress;
         this.telefono = telefono;
         this.encargado = encargado;
-    }
-
-    public Empresa() {
+        this.rut = rut;
+        this.razonSocial = razonSocial;
     }
 
     public String getTelefono() {
@@ -80,5 +88,29 @@ public class Empresa {
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
     }
 }

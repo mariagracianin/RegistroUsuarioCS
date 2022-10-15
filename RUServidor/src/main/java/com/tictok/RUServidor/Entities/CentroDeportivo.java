@@ -26,6 +26,12 @@ public class CentroDeportivo {
     @Column(name = "encargado", nullable = false, length = 50)
     private String encargado;
 
+    @Column(name = "rut", nullable = false, length = 50)
+    private String rut;
+
+    @Column(name = "razon_social", nullable = false, length = 50)
+    private String razonSocial;
+
     @OneToMany(mappedBy = "centroDeportivo", orphanRemoval = true)
     private List<Cuenta> cuentas = new ArrayList<>();
 
@@ -54,14 +60,15 @@ public class CentroDeportivo {
     public CentroDeportivo() {
     }
 
-    public CentroDeportivo(String nombreCentro, String address, String telefono, String encargado) {
+    public CentroDeportivo(String nombreCentro, String address, String barrio, String telefono, String encargado, String rut, String razonSocial) {
         this.nombreCentro = nombreCentro;
         this.address = address;
+        this.barrio = barrio;
         this.telefono = telefono;
         this.encargado = encargado;
+        this.rut = rut;
+        this.razonSocial = razonSocial;
     }
-
-
 
     public String getBarrio() {
         return barrio;
@@ -127,5 +134,19 @@ public class CentroDeportivo {
         return Objects.hash(nombreCentro);
     }
 
+    public String getRut() {
+        return rut;
+    }
 
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
 }

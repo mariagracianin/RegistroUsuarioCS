@@ -7,12 +7,12 @@ public class ReservarDTO {
     private String mailUsuario;
     private String nombreCentro;
     private String nombreActividad;
-    private String horario; //ver
+    private HorarioDTO horario;
 
     public ReservarDTO() {
     }
 
-    public ReservarDTO(String mailUsuario, String nombreCentro, String nombreActividad, String horario) {
+    public ReservarDTO(String mailUsuario, String nombreCentro, String nombreActividad, HorarioDTO horario) {
         this.mailUsuario = mailUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
@@ -43,11 +43,11 @@ public class ReservarDTO {
         this.nombreActividad = nombreActividad;
     }
 
-    public String getHorario() {
+    public HorarioDTO getHorario() {
         return horario;
     }
 
-    public void setHorario(String horario) {
+    public void setHorario(HorarioDTO horario) {
         this.horario = horario;
     }
 }

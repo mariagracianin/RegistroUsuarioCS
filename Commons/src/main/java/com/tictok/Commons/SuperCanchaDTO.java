@@ -9,20 +9,20 @@ public class SuperCanchaDTO {
     private String nombreServicio;
     private Integer precio;
     private Integer cupos;
-    private String nombreCeentro;
+    private String nombreCentro;
     private String address;
     private String barrio;
     private String telefono;
-    private List<String> horarios;
+    private List<HorarioDTO> horarios;
 
     public SuperCanchaDTO(){
     }
 
-    public SuperCanchaDTO(String nombreServicio, Integer precio, Integer cupos, String nombreCeentro, String address, String barrio, String telefono, List<String> horarios) {
+    public SuperCanchaDTO(String nombreServicio, Integer precio, Integer cupos, String nombreCeentro, String address, String barrio, String telefono, List<HorarioDTO> horarios) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.cupos = cupos;
-        this.nombreCeentro = nombreCeentro;
+        this.nombreCentro = nombreCeentro;
         this.address = address;
         this.barrio = barrio;
         this.telefono = telefono;
@@ -53,12 +53,12 @@ public class SuperCanchaDTO {
         this.cupos = cupos;
     }
 
-    public String getNombreCeentro() {
-        return nombreCeentro;
+    public String getNombreCentro() {
+        return nombreCentro;
     }
 
-    public void setNombreCeentro(String nombreCeentro) {
-        this.nombreCeentro = nombreCeentro;
+    public void setNombreCentro(String nombreCeentro) {
+        this.nombreCentro = nombreCeentro;
     }
 
     public String getAddress() {
@@ -85,12 +85,11 @@ public class SuperCanchaDTO {
         this.telefono = telefono;
     }
 
-    public List<String> getHorarios() {
+    public List<HorarioDTO> getHorarios() {
         return horarios;
     }
 
-    public void setHorarios(List<String> horarios) {
+    public void setHorarios(List<HorarioDTO> horarios) {
         this.horarios = horarios;
     }
-
 }

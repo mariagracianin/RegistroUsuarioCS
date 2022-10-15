@@ -14,11 +14,12 @@ public class NuevoCentroDTO {
     private String encargado;
     private String rut;
     private String razonSocial;
+    private String barrio;
 
     public NuevoCentroDTO() {
     }
 
-    public NuevoCentroDTO(String mail, String password, String nombreCentro, String adress, String telefono, String encargado, String rut, String razonSocial) {
+    public NuevoCentroDTO(String mail, String password, String nombreCentro, String adress, String telefono, String encargado, String rut, String razonSocial, String barrio) {
         this.mail = mail;
         this.password = password;
         this.nombreCentro = nombreCentro;
@@ -27,6 +28,7 @@ public class NuevoCentroDTO {
         this.encargado = encargado;
         this.rut = rut;
         this.razonSocial = razonSocial;
+        this.barrio = barrio;
     }
 
     public String getMail() {
@@ -91,5 +93,13 @@ public class NuevoCentroDTO {
 
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
+    }
+
+    public String getBarrio() {
+        return barrio;
+    }
+
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
     }
 }

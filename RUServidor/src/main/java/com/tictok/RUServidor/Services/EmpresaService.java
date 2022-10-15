@@ -35,7 +35,7 @@ public class EmpresaService {
 
 
     private void crearPrimeraEmpresa(){
-        Empresa empresa = new Empresa("empresa", "direccion", "telefono", "encargado");
+        Empresa empresa = new Empresa("empresa", "direccion", "telefono", "encargado","rut","razonSocial");
         empresaRepository.save(empresa);
     }
 

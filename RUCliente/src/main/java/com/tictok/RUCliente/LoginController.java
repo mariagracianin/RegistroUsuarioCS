@@ -44,7 +44,7 @@ public class LoginController {
                 cargarVistaEmpresa();
             }
             if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("user")){
-                //cargarVistaUsuario();
+                cargarVistaUsuario();
             }
             if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("admin")){
                 Node source = (Node)  actionEvent.getSource();
@@ -65,16 +65,16 @@ public class LoginController {
         }
     }
 
-    public void cargarVistaEmpresa() throws IOException {
+    private void cargarVistaUsuario() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa.fxml"));
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empleado.fxml"));
         Stage stage = new Stage();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        stage.setTitle("Empresa");
+        stage.setTitle("GetFit");
 
         stage.show(); //no es ventana emergente
     }
@@ -91,4 +91,19 @@ public class LoginController {
 
         stage.show(); //no es ventana emergente
     }
+
+    public void cargarVistaEmpresa() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa.fxml"));
+        Stage stage = new Stage();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Empresa");
+
+        stage.show(); //no es ventana emergente
+    }
+
 }
