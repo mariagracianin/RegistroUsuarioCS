@@ -2,9 +2,7 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.UsuarioDTO;
-import com.tictok.RUServidor.Entities.Cuenta;
-import com.tictok.RUServidor.Entities.Empresa;
-import com.tictok.RUServidor.Entities.Usuario;
+import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.UsuarioMalDefinido;
 import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
@@ -26,8 +24,10 @@ public class UsuarioService {
     private final CuentaRepository cuentaRepository;
     private final EmpresaRepository empresaRepository;
 
+
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository, EmpresaRepository empresaRepository) {
+    public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
+                          EmpresaRepository empresaRepository) {
         this.usuarioRepository = usuarioRepository;
         this.cuentaRepository = cuentaRepository;
         this.empresaRepository = empresaRepository;

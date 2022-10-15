@@ -126,4 +126,6 @@ public class CentroDeportivo {
     public int hashCode() {
         return Objects.hash(nombreCentro);
     }
+
+
 }

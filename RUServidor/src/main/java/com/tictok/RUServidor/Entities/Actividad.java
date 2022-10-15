@@ -1,32 +1,21 @@
 package com.tictok.RUServidor.Entities;
 
+import com.tictok.RUServidor.Entities.NotTables.ServicioId;
+
 import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table
-@IdClass(ServicioId.class)
 public class Actividad {
-    @Id
-    @Column(name = "actividad_nombre", nullable = false)
-    private String nombreServicio;
+    @EmbeddedId
+    private ServicioId actividadId;
 
-    @Id
     @ManyToOne(optional = false)
     @JoinColumn(name = "centro_deportivo_nombre_centro", nullable = false)
+    @MapsId("centroDeportivo")
     private CentroDeportivo centroDeportivo;
-
-    @Id
-    private DayOfWeek dia;
-
-    @Id
-    private LocalTime horaInicio;
-
-    @Id
-    private LocalTime horaFin;
 
     @Column(name = "precio")
     private Integer precio;
@@ -40,13 +29,12 @@ public class Actividad {
     public Actividad() {
     }
 
-    public Actividad(String nombreServicio, CentroDeportivo centroDeportivo, DayOfWeek dia, LocalTime horaInicio,
-                     LocalTime horaFin, Integer precio, Integer cupos, Boolean paseLibre) {
-        this.nombreServicio = nombreServicio;
+    public Actividad(CentroDeportivo centroDeportivo, String nombreActividad,
+                     DayOfWeek dia, LocalTime horaInicio, LocalTime horaFin, Integer precio, Integer cupos, Boolean paseLibre) {
+        this.actividadId = new ServicioId(dia, horaInicio, horaFin);
+        this.actividadId.setNombreServicio(nombreActividad);
+        this.actividadId.setCentroDeportivo(centroDeportivo.getNombreCentro());
         this.centroDeportivo = centroDeportivo;
-        this.dia = dia;
-        this.horaInicio = horaInicio;
-        this.horaFin = horaFin;
         this.precio = precio;
         this.cupos = cupos;
         this.paseLibre = paseLibre;
@@ -84,11 +72,5 @@ public class Actividad {
         this.centroDeportivo = centroDeportivo;
     }
 
-    public String getNombreServicio() {
-        return nombreServicio;
-    }
 
-    public void setNombreServicio(String nombreServicio) {
-        this.nombreServicio = nombreServicio;
-    }
 }

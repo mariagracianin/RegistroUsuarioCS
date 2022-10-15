@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SuperChanchaDTO {
+public class SuperCanchaDTO {
     private String nombreServicio;
     private Integer precio;
     private Integer cupos;
@@ -15,10 +15,10 @@ public class SuperChanchaDTO {
     private String telefono;
     private List<String> horarios;
 
-    public SuperChanchaDTO(){
+    public SuperCanchaDTO(){
     }
 
-    public SuperChanchaDTO(String nombreServicio, Integer precio, Integer cupos, String nombreCeentro, String address, String barrio, String telefono, List<String> horarios) {
+    public SuperCanchaDTO(String nombreServicio, Integer precio, Integer cupos, String nombreCeentro, String address, String barrio, String telefono, List<String> horarios) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.cupos = cupos;
