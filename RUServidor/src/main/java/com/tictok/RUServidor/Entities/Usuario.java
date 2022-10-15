@@ -2,7 +2,9 @@ package com.tictok.RUServidor.Entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -36,6 +38,17 @@ public class Usuario {
     @OneToOne(optional = false, orphanRemoval = true)
     @JoinColumn(name = "cuenta_mail", nullable = false)
     private Cuenta cuenta;
+
+    @OneToMany(mappedBy = "usuario", orphanRemoval = true)
+    private List<ReservaActividad> reservaActividades = new ArrayList<>();
+
+    public List<ReservaActividad> getReservaActividades() {
+        return reservaActividades;
+    }
+
+    public void setReservaActividades(List<ReservaActividad> reservaActividades) {
+        this.reservaActividades = reservaActividades;
+    }
 
 
     public String getStringCuenta() {

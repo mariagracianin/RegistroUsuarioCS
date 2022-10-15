@@ -32,15 +32,15 @@ public class CentroService {
         this.cuentaRepository = cuentaRepository;
         this.canchaRepository = canchaRepository;
 
-        CentroDeportivo centroDeportivo = new CentroDeportivo("Coso", "Juan", "005262", "Juan2");
-        centroRepository.save(centroDeportivo);
-        System.out.println("Creamos centro");
-
-        DayOfWeek dia = LocalDate.MAX.getDayOfWeek();
-        LocalTime horaInicio = LocalTime.now();
-        Cancha cancha = new Cancha(centroDeportivo,"la canchita", dia, horaInicio, horaInicio, 100, 100);
-        canchaRepository.save(cancha);
-        System.out.println("Guardamos cancha");
+//        CentroDeportivo centroDeportivo = new CentroDeportivo("Coso", "Juan", "005262", "Juan2");
+//        centroRepository.save(centroDeportivo);
+//        System.out.println("Creamos centro");
+//
+//        DayOfWeek dia = LocalDate.MAX.getDayOfWeek();
+//        LocalTime horaInicio = LocalTime.now();
+//        Cancha cancha = new Cancha(centroDeportivo,"la canchita", dia, horaInicio, horaInicio, 100, 100);
+//        canchaRepository.save(cancha);
+//        System.out.println("Guardamos cancha");
     }
 
     public CentroDeportivo saveNewCentro(NuevoCentroDTO nuevoCentroDTO) {
