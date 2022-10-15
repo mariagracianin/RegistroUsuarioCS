@@ -10,6 +10,6 @@ public class EmpresaMapper {
         if(nuevaEmpresaDTO == null){
             return null;
         }
-        return new Empresa(nuevaEmpresaDTO.getNombreEmpresa(),nuevaEmpresaDTO.getAdress(),nuevaEmpresaDTO.getTelefono(), nuevaEmpresaDTO.getEncargado());
+        return new Empresa(nuevaEmpresaDTO.getNombreEmpresa(),nuevaEmpresaDTO.getAdress(),nuevaEmpresaDTO.getTelefono(), nuevaEmpresaDTO.getEncargado(), nuevaEmpresaDTO.getRut(), nuevaEmpresaDTO.getRazonSocial());
     }
 }

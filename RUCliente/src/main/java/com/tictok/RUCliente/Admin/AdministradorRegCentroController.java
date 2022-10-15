@@ -55,8 +55,7 @@ public class AdministradorRegCentroController implements Initializable {
     }
 
     public void guardarDatos(ActionEvent actionEvent) {
-        //opcionesBarrios.getValue();
-        centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText(), rut.getText(),razonSocial.getText());
+        centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText(), rut.getText(),razonSocial.getText(),opcionesBarrios.getValue().toString());
     }
 
     @Override
