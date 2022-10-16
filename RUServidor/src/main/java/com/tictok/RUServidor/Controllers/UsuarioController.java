@@ -4,9 +4,7 @@ import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Usuario;
-import com.tictok.RUServidor.Exceptions.ReservaPosteriorAlInicioException;
-import com.tictok.RUServidor.Exceptions.TipoDeReservaNoExisteException;
-import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
+import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +50,9 @@ public class UsuarioController  {
     }
 
     @PostMapping("/reserva")
-    public ReservaDTO postNewReserva(@RequestBody ReservaDTO reservaDTO) throws TipoDeReservaNoExisteException, UsuarioNoExisteException, ReservaPosteriorAlInicioException {
+    public ReservaDTO postNewReserva(@RequestBody ReservaDTO reservaDTO)
+            throws TipoDeReservaNoExisteException, UsuarioNoExisteException, ReservaPosteriorAlInicioException,
+            CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException {
         if (reservaDTO.getTipo().equals("Cancha")){
             return canchaService.reservarCancha(reservaDTO);
         } else if (reservaDTO.getTipo().equals("Actividad")) {
