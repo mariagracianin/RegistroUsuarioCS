@@ -8,30 +8,27 @@ import java.util.List;
 public class SuperActividadDTO {
     private String nombreServicio;
     private Integer precio;
-    private Integer cupos;
     private Boolean paseLibre;
     private String nombreCentro;
     private String address;
     private String barrio;
     private String telefono;
     private String imageSrc;
-
-    private List<HorarioDTO> horarios;
+    private List<HorarioConCuposDTO> horarios;
 
     public SuperActividadDTO() {
     }
 
-    public SuperActividadDTO(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono, List<HorarioDTO> horarios, String imageSrc) {
+    public SuperActividadDTO(String nombreServicio, Integer precio, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono, String imageSrc, List<HorarioConCuposDTO> horarios) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
-        this.cupos = cupos;
         this.paseLibre = paseLibre;
         this.nombreCentro = nombreCentro;
         this.address = address;
         this.barrio = barrio;
         this.telefono = telefono;
-        this.horarios = horarios;
         this.imageSrc = imageSrc;
+        this.horarios = horarios;
     }
 
     public String getImageSrc() {
@@ -56,14 +53,6 @@ public class SuperActividadDTO {
 
     public void setPrecio(Integer precio) {
         this.precio = precio;
-    }
-
-    public Integer getCupos() {
-        return cupos;
-    }
-
-    public void setCupos(Integer cupos) {
-        this.cupos = cupos;
     }
 
     public Boolean getPaseLibre() {
@@ -106,12 +95,11 @@ public class SuperActividadDTO {
         this.telefono = telefono;
     }
 
-    public List<HorarioDTO> getHorarios() {
+    public List<HorarioConCuposDTO> getHorarios() {
         return horarios;
     }
 
-    public void setHorarios(List<HorarioDTO> horarios) {
+    public void setHorarios(List<HorarioConCuposDTO> horarios) {
         this.horarios = horarios;
     }
-
 }

@@ -11,8 +11,6 @@ import java.io.IOException;
 
 @Component
 public class AdministradorRegEmpresaController {
-    public TextField rut;
-    public TextField razonSocial;
     @Autowired
     EmpresaRest empresaRest;
 
@@ -22,6 +20,9 @@ public class AdministradorRegEmpresaController {
     public TextField tel;
     public TextField mailCuenta1;
     public TextField contraseñaCuenta1;
+    public TextField rut;
+    public TextField razonSocial;
+
     @Autowired
     AdministradorController administradorController;
     @FXML

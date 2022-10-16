@@ -9,6 +9,6 @@ public class CentroMapper {
         if(nuevoCentroDTO == null){
             return null;
         }
-        return new CentroDeportivo(nuevoCentroDTO.getNombreCentro(),nuevoCentroDTO.getAdress(),nuevoCentroDTO.getTelefono(),nuevoCentroDTO.getEncargado());
+        return new CentroDeportivo(nuevoCentroDTO.getNombreCentro(),nuevoCentroDTO.getAdress(), nuevoCentroDTO.getBarrio(), nuevoCentroDTO.getTelefono(),nuevoCentroDTO.getEncargado(),nuevoCentroDTO.getRut(),nuevoCentroDTO.getRazonSocial());
     }
 }

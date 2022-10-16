@@ -1,14 +1,17 @@
-package com.tictok.RUServidor.Entities;
+package com.tictok.RUServidor.Entities.NotTables;
 
+import com.tictok.RUServidor.Entities.CentroDeportivo;
+
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Objects;
 
-
+@Embeddable
 public class ServicioId implements Serializable {
     private String nombreServicio;
-    private CentroDeportivo centroDeportivo;
+    private String centroDeportivo;
     private DayOfWeek dia;
     private LocalTime horaInicio;
     private LocalTime horaFin;
@@ -16,7 +19,13 @@ public class ServicioId implements Serializable {
     public ServicioId() {
     }
 
-    public ServicioId(String nombreServicio, CentroDeportivo centroDeportivo, DayOfWeek dia, LocalTime horaInicio, LocalTime horaFin) {
+    public ServicioId(DayOfWeek dia, LocalTime horaInicio, LocalTime horaFin) {
+        this.dia = dia;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+    }
+
+    public ServicioId(String nombreServicio, String centroDeportivo, DayOfWeek dia, LocalTime horaInicio, LocalTime horaFin) {
         this.nombreServicio = nombreServicio;
         this.centroDeportivo = centroDeportivo;
         this.dia = dia;
@@ -45,11 +54,11 @@ public class ServicioId implements Serializable {
         this.nombreServicio = nombreServicio;
     }
 
-    public CentroDeportivo getCentroDeportivo() {
+    public String getCentroDeportivo() {
         return centroDeportivo;
     }
 
-    public void setCentroDeportivo(CentroDeportivo centroDeportivo) {
+    public void setCentroDeportivo(String centroDeportivo) {
         this.centroDeportivo = centroDeportivo;
     }
 

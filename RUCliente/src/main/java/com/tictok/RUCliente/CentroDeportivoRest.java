@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CentroDeportivoRest {
 
-    public HttpResponse<String> guardarCentroDeportivo(String mail, String password, String nombreCentro, String adress, String telefono, String encargado, String rut, String razonsocial) {
+    public HttpResponse<String> guardarCentroDeportivo(String mail, String password, String nombreCentro, String adress, String telefono, String encargado, String rut, String razonsocial, String barrio) {
         String nuevoCentroJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            NuevoCentroDTO nuevoCentroDTO = new NuevoCentroDTO(mail, password, nombreCentro, adress, telefono, encargado, rut, razonsocial);
+            NuevoCentroDTO nuevoCentroDTO = new NuevoCentroDTO(mail, password, nombreCentro, adress, telefono, encargado, rut, razonsocial, barrio);
             nuevoCentroJSON = jsonObjectMapper.writeValueAsString(nuevoCentroDTO);
         } catch (Exception e) {
             throw new RuntimeException(e);
