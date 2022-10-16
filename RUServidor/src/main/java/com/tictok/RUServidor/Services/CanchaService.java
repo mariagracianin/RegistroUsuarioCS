@@ -9,6 +9,7 @@ import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.ReservaPosteriorAlInicioException;
 import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
+import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.CanchaRepository;
 import com.tictok.RUServidor.Repositories.ReservaCanchaRepository;
 import com.tictok.RUServidor.Repositories.UsuarioRepository;
@@ -37,8 +38,13 @@ public class CanchaService {
 
     public ReservaDTO reservarCancha(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException {
         ReservaCancha reservaCancha;
+
+        //TODO Hay que fijarse que la reserva de la cancha no este hecha todavia
         if (reservaDTO.getCodigoReservaPadre() == null){
             reservaCancha = reservarCanchaPadre(reservaDTO);
+            ReservaDTO reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReservaDTO(reservaCancha);
+            reservaDTOADevolver.setCodigoReservaPadre(reservaDTOADevolver.getCodigoReserva());
+            return reservaDTOADevolver;
         }
         else {
             reservaCancha = reservarCanchaHijo(reservaDTO);

@@ -38,6 +38,14 @@ public class Cancha {
         this.cupos = cupos;
     }
 
+    public ServicioId getCanchaId() {
+        return canchaId;
+    }
+
+    public void setCanchaId(ServicioId canchaId) {
+        this.canchaId = canchaId;
+    }
+
     public Integer getCupos() {
         return cupos;
     }
