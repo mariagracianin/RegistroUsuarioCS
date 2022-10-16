@@ -1,29 +1,21 @@
 package com.tictok.Commons;
 
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class HorarioConCuposDTO {
+public class HorarioDTO {
     private int dia;
     private int horaInicio;
     private int horaFin;
-    private int cuposLibres;
 
-    public HorarioConCuposDTO() {
-    }
-
-    public HorarioConCuposDTO(int dia, int horaInicio, int horaFin) {
+    public HorarioDTO(int dia, int horaInicio, int horaFin) {
         this.dia = dia;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
     }
 
-    public HorarioConCuposDTO(int dia, int horaInicio, int horaFin, int cuposLibres) {
-        this.dia = dia;
-        this.horaInicio = horaInicio;
-        this.horaFin = horaFin;
-        this.cuposLibres = cuposLibres;
+    public HorarioDTO() {
     }
 
     public int getDia() {
@@ -48,13 +40,5 @@ public class HorarioConCuposDTO {
 
     public void setHoraFin(int horaFin) {
         this.horaFin = horaFin;
-    }
-
-    public int getCuposLibres() {
-        return cuposLibres;
-    }
-
-    public void setCuposLibres(int cuposLibres) {
-        this.cuposLibres = cuposLibres;
     }
 }

@@ -19,7 +19,7 @@ public class SuperActividadDTO {
     public SuperActividadDTO() {
     }
 
-    public SuperActividadDTO(String nombreServicio, Integer precio, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono, String imageSrc, List<HorarioConCuposDTO> horarios) {
+    public SuperActividadDTO(String nombreServicio, Integer precio, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono,  List<HorarioConCuposDTO> horarios, String imageSrc) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.paseLibre = paseLibre;
