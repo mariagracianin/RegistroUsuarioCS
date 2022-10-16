@@ -1,8 +1,8 @@
 .mainPane{
-    -fx-background-color: #000000;
+    -fx-background-color: #121212;
 }
 .topPane{
-    -fx-background-color: #03DAC6;
+    -fx-background-color: #121212;
 }
 .leftPane{
     -fx-background-color: #282828;
@@ -10,14 +10,19 @@
 .rightPane{
     -fx-background-color: #282828;
 }
+.label{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
+}
 .button{
     -fx-background-color: #49cead;
 }
 .button:hover{
     -fx-background-color: #6dedcd;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
 }
 .button:pressed{
     -fx-background-color: #84f5d9;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
 }
 .text-field{
     -fx-border-color: #84f5d9;
@@ -25,4 +30,5 @@
     -fx-background-color: #121212;
     -fx-text-fill: #ffffff;
     -fx-border-radius: 5;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
 }

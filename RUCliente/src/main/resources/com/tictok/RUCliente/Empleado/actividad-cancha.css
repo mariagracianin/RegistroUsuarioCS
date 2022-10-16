@@ -1,17 +1,20 @@
 .mainPane{
     -fx-background-color: #121212;
+    -fx-background-radius: 20;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.8),10.0,0.0,0.0,10.0);
+    -fx-border-radius: 20;
 }
 .button{
     -fx-background-color: #121212;
     -fx-text-fill: #ffffff;
     -fx-alignment: center-left;
-    -fx-border-radius: 3;
+    -fx-border-radius: 20;
 }
 .button:hover{
     -fx-background-color: #03DAC6;
-    -fx-border-radius: 3;
+    -fx-border-radius: 20;
 }
 .button:pressed{
     -fx-background-color: #84f5d9;
-    -fx-border-radius: 3;
+    -fx-border-radius: 20;
 }

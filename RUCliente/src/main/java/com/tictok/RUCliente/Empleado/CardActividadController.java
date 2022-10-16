@@ -22,14 +22,12 @@ public class CardActividadController {
     private ImageView imagen;
 
     @FXML
-    private VBox mainPane;
-
-    @FXML
     private Label nombre;
+    private SuperActividadDTO actividad;
 
     void setDatos(SuperActividadDTO actividad){
         //imageSrc seria la src dentro de mi computadora, tendria que ser en la base
-        System.out.println(actividad.getImageSrc());
+        this.actividad=actividad;
         Image image = new Image(getClass().getResourceAsStream(actividad.getImageSrc()));
         imagen.setImage(image);
         nombre.setText(actividad.getNombreServicio());

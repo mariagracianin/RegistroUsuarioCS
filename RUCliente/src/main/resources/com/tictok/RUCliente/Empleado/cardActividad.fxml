@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -9,31 +10,43 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.85" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardActividadController">
+<SplitPane dividerPositions="0.85" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardActividadController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="294.0" styleClass="mainPane">
          <children>
             <VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="335.0" styleClass="mainPane" stylesheets="@actividad-cancha.css">
                <children>
-                  <ImageView fx:id="imagen" fitHeight="112.0" fitWidth="252.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imagen" fitHeight="112.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@imgactividadprueba.jpg" />
                      </image>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
                   </ImageView>
-                  <Label fx:id="nombre" prefHeight="17.0" prefWidth="316.0" text="Nombre" textFill="WHITE">
+                  <Label fx:id="nombre" prefHeight="1.0" prefWidth="316.0" text="Nombre" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Candara Bold" size="22.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
                   </Label>
                   <Label fx:id="costo" prefHeight="17.0" prefWidth="305.0" text="Costo:" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Candara Light" size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
                   </Label>
                   <Label fx:id="direccionYBarrio" prefHeight="17.0" prefWidth="305.0" text="Dirección: con barrio" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Calibri Light" size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
                   </Label>
                </children>
             </VBox>
@@ -41,9 +54,9 @@
       </AnchorPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="50.0">
          <children>
-            <Button fx:id="btnReservar" alignment="CENTER" contentDisplay="CENTER" layoutX="-71.0" layoutY="64.0" mnemonicParsing="false" onAction="#guardarReserva" prefHeight="71.0" prefWidth="200.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Reservar" textAlignment="CENTER">
+            <Button fx:id="btnReservar" alignment="CENTER" contentDisplay="CENTER" layoutX="-79.0" layoutY="74.0" mnemonicParsing="false" onAction="#guardarReserva" prefHeight="27.0" prefWidth="200.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Reservar" textAlignment="CENTER">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Century Gothic" size="24.0" />
                </font></Button>
          </children>
       </AnchorPane>

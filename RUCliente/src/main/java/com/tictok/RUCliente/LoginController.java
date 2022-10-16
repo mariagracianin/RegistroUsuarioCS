@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
 import java.io.IOException;
 
 @Component
@@ -38,19 +39,13 @@ public class LoginController {
             MiniCuentaDTO miniCuentaDTO = objectMapper.readValue(response.getBody(), MiniCuentaDTO.class);
 
             if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("empresa")){
-                Node source = (Node)  actionEvent.getSource();
-                Stage stageActual  = (Stage) source.getScene().getWindow();
-                stageActual.close();
-                cargarVistaEmpresa();
+                cargarVistaEmpresa(actionEvent);
             }
             if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("user")){
-                cargarVistaUsuario();
+                cargarVistaUsuario(actionEvent);
             }
             if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("admin")){
-                Node source = (Node)  actionEvent.getSource();
-                Stage stageActual  = (Stage) source.getScene().getWindow();
-                stageActual.close();
-                cargarVistaAdmin();
+                cargarVistaAdmin(actionEvent);
             }
         }else {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -65,12 +60,12 @@ public class LoginController {
         }
     }
 
-    private void cargarVistaUsuario() throws IOException {
+    private void cargarVistaUsuario(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empleado.fxml"));
-        Stage stage = new Stage();
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
@@ -78,12 +73,12 @@ public class LoginController {
 
         stage.show(); //no es ventana emergente
     }
-    public void cargarVistaAdmin() throws IOException {
+    public void cargarVistaAdmin(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/com/tictok/RUCliente/Admin/administrador.fxml"));
-        Stage stage = new Stage();
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
@@ -92,12 +87,12 @@ public class LoginController {
         stage.show(); //no es ventana emergente
     }
 
-    public void cargarVistaEmpresa() throws IOException {
+    public void cargarVistaEmpresa(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("empresa.fxml"));
-        Stage stage = new Stage();
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");

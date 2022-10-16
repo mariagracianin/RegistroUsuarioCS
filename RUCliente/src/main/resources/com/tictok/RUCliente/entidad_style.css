@@ -29,10 +29,28 @@
     -fx-border-width: 3;
     -fx-background-color: #ffffff;
     -fx-text-fill: #121212;
-    -fx-border-radius: 11;
+    -fx-border-radius: 20;
     -fx-background-radius: 19;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.8),5.0,0.0,0.0,5.0);
+}
+.label{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.8),10.0,0.0,0.0,10.0);
 }
 .round-layout{
     -fx-border-radius: 40;
     -fx-border-color: #121212;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+.btnCerrarSesion:hover{
+    -fx-background-color: #BB86FC;
+    -fx-border-radius: 3;
+}
+.btnCerrarSesion:pressed{
+    -fx-background-color: #D1AEFD;
+    -fx-border-radius: 3;
 }

@@ -9,11 +9,8 @@
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -21,15 +18,16 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.EmpActividadesController">
+<?import javafx.scene.image.Image?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1074.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.EmpActividadesController">
    <left>
       <VBox prefHeight="637.0" prefWidth="174.0" styleClass="leftPane" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="50.0" prefWidth="190.0">
                <children>
-                  <Label layoutX="52.0" prefHeight="50.0" prefWidth="70.0" text="Hola!" textAlignment="CENTER" textFill="#03dac6">
+                  <Label layoutX="52.0" prefHeight="50.0" prefWidth="105.0" text="Hola!" textAlignment="CENTER" textFill="#03dac6">
                      <font>
-                        <Font name="Gill Sans MT" size="30.0" />
+                        <Font name="Century Gothic" size="30.0" />
                      </font>
                   </Label>
                   <Separator layoutX="-2.0" layoutY="-1.0" opacity="0.0" prefHeight="4.0" prefWidth="176.0">
@@ -43,88 +41,110 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/com/tictok/RUCliente/Empleado/reserva.png" />
-                     </image>
+                     <Image url="/com/tictok/RUCliente/Empleado/reserva.png" />
+                   </image>
                      <HBox.margin>
-                        <Insets left="8.0" right="8.0" top="8.0" />
+                        <Insets left="8.0" right="5.0" top="8.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="btnMisReservas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verReservas" prefHeight="40.0" prefWidth="223.0" text="Mis reservas" textAlignment="CENTER" />
+                  <Button fx:id="btnMisReservas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verReservas" prefHeight="40.0" prefWidth="223.0" text="Mis reservas" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font></Button>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/com/tictok/RUCliente/Empleado/actividad.png" />
-                     </image>
+                     <Image url="/com/tictok/RUCliente/Empleado/actividad.png" />
+                  </image>
                      <HBox.margin>
-                        <Insets left="8.0" right="8.0" top="8.0" />
+                        <Insets left="8.0" right="5.0" top="8.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="btnActividades" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="207.0" text="Actividades" textAlignment="CENTER" />
+                  <Button fx:id="btnActividades" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="207.0" text="Actividades" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font></Button>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/com/tictok/RUCliente/Empleado/cancha.png" />
-                     </image>
+                     <Image url="/com/tictok/RUCliente/Empleado/cancha.png" />
+                  </image>
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="btnCanchas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verCanchas" prefHeight="40.0" prefWidth="256.0" text="Canchas" textAlignment="CENTER" />
+                  <Button fx:id="btnCanchas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verCanchas" prefHeight="40.0" prefWidth="256.0" text="Canchas" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font></Button>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/com/tictok/RUCliente/Empleado/datos.png" />
-                     </image>
+                     <Image url="/com/tictok/RUCliente/Empleado/datos.png" />
+                  </image>
                      <HBox.margin>
-                        <Insets left="8.0" right="8.0" top="8.0" />
+                        <Insets left="8.0" right="5.0" top="8.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="btnDatos" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verDatos" prefHeight="40.0" prefWidth="234.0" text="Mis datos" textAlignment="CENTER" />
+                  <Button fx:id="btnDatos" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verDatos" prefHeight="40.0" prefWidth="234.0" text="Mis datos" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font></Button>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="/com/tictok/RUCliente/Empleado/reservaspasadas.png" />
-                     </image>
+                  <Button fx:id="btnReservasPasadas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verReservasPasadas" prefHeight="40.0" prefWidth="173.0" text="Reservas pasadas" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="19.0" />
+                     </font>
                      <HBox.margin>
-                        <Insets left="8.0" right="8.0" top="8.0" />
+                        <Insets />
                      </HBox.margin>
-                  </ImageView>
-                  <Button fx:id="btnReservasPasadas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verReservasPasadas" prefHeight="40.0" prefWidth="217.0" text="Reservas pasadas" textAlignment="CENTER" />
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding></Button>
                </children>
             </HBox>
-            <Button fx:id="btnCerrarSesion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="40.0" prefWidth="192.0" text="Cerrar sesión" textAlignment="CENTER">
+            <Button fx:id="btnCerrarSesion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="40.0" prefWidth="179.0" styleClass="btnCerrarSesion" stylesheets="@../entidad_style.css" text="Cerrar sesión" textAlignment="CENTER">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <font>
+                  <Font name="Candara Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
             </Button>
          </children>
       </VBox>
    </left>
    <top>
-      <HBox prefHeight="50.0" prefWidth="1000.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
+      <HBox prefHeight="90.0" prefWidth="1074.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="63.0" prefWidth="44.0" />
-            <ImageView fitHeight="59.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="90.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/com/tictok/RUCliente/Empleado/GETFIT.png" />
-               </image>
+               <Image url="/com/tictok/RUCliente/Empleado/GETFIT.png" />
+            </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </ImageView>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="46.0" />
             <Label prefHeight="59.0" prefWidth="309.0" text="Actividades" textAlignment="CENTER" textFill="#3700b3">
                <font>
-                  <Font name="ChunkFivePrint" size="36.0" />
+                  <Font name="Century Gothic" size="40.0" />
                </font>
                <effect>
                   <Lighting light="$null">
@@ -138,23 +158,23 @@
                   </Lighting>
                </effect>
                <padding>
-                  <Insets left="20.0" top="10.0" />
+                  <Insets left="20.0" top="20.0" />
                </padding>
             </Label>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="92.0" />
-            <HBox prefHeight="59.0" prefWidth="406.0" styleClass="round-layout" stylesheets="@../entidad_style.css">
+            <HBox prefHeight="88.0" prefWidth="482.0" styleClass="round-layout" stylesheets="@../entidad_style.css">
                <children>
-                  <TextField prefHeight="31.0" prefWidth="360.0" promptText="Buscar">
+                  <TextField prefHeight="31.0" prefWidth="437.0" promptText="Buscar">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="30.0" />
                      </HBox.margin>
                   </TextField>
                   <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/com/tictok/RUCliente/Empleado/lupa.png" />
-                     </image>
+                     <Image url="/com/tictok/RUCliente/Empleado/lupa.png" />
+                  </image>
                      <HBox.margin>
-                        <Insets left="4.0" top="25.0" />
+                        <Insets left="4.0" top="35.0" />
                      </HBox.margin>
                   </ImageView>
                </children>
@@ -163,18 +183,14 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <GridPane fx:id="contenedorAct">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-        </content>
+      <ScrollPane fx:id="scroll" prefHeight="691.0" prefWidth="949.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <content>
+            <GridPane fx:id="contenedorAct" prefHeight="0.0" prefWidth="3.0">
+            </GridPane>
+         </content>
       </ScrollPane>
    </center>
 </BorderPane>
