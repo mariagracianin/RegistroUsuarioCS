@@ -3,48 +3,61 @@ package com.tictok.Commons;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ReservarDTO {
-    private String mailUsuario;
+public class ReservaDTO {
+    private Integer cedulaUsuario;
     private String nombreCentro;
     private String nombreActividad;
+
+    private String tipo;
     private HorarioDTO horario;
-
     private Long codigoReserva;
-    private Long codigoReservaPadre; //Usado en las canchas para pedir el codigo de la reserva del que es padre
+    private Long codigoReservaPadre = null; //Usado en las canchas para pedir el codigo de la reserva del que es padre
 
-    public ReservarDTO() {
+    public ReservaDTO() {
     }
 
-    public ReservarDTO(String mailUsuario, String nombreCentro, String nombreActividad, HorarioDTO horario) {
-        this.mailUsuario = mailUsuario;
+    public ReservaDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario) {
+        this.cedulaUsuario = cedulaUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
+        this.tipo = tipo;
         this.horario = horario;
     }
 
-    public ReservarDTO(String mailUsuario, String nombreCentro, String nombreActividad, HorarioDTO horario, Long codigoReserva) {
-        this.mailUsuario = mailUsuario;
+    public ReservaDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva) {
+        this.cedulaUsuario = cedulaUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
+        this.tipo = tipo;
         this.horario = horario;
         this.codigoReserva = codigoReserva;
     }
 
-    public ReservarDTO(String mailUsuario, String nombreCentro, String nombreActividad, HorarioDTO horario, Long codigoReserva, Long codigoReservaPadre) {
-        this.mailUsuario = mailUsuario;
+    public ReservaDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, Long codigoReservaPadre) {
+        this.cedulaUsuario = cedulaUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
+        this.tipo = tipo;
         this.horario = horario;
         this.codigoReserva = codigoReserva;
         this.codigoReservaPadre = codigoReservaPadre;
     }
 
-    public String getMailUsuario() {
-        return mailUsuario;
+
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setMailUsuario(String mailUsuario) {
-        this.mailUsuario = mailUsuario;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Integer getCedulaUsuario() {
+        return cedulaUsuario;
+    }
+
+    public void setCedulaUsuario(Integer cedulaUsuario) {
+        this.cedulaUsuario = cedulaUsuario;
     }
 
     public String getNombreCentro() {
