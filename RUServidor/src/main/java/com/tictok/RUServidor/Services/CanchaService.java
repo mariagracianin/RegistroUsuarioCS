@@ -10,6 +10,7 @@ import com.tictok.RUServidor.Exceptions.ReservaPosteriorAlInicioException;
 import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Repositories.CanchaRepository;
+import com.tictok.RUServidor.Repositories.ReservaCanchaRepository;
 import com.tictok.RUServidor.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,11 +26,13 @@ public class CanchaService {
     private final UsuarioRepository usuarioRepository;
 
     private final CanchaRepository canchaRepository;
+    private final ReservaCanchaRepository reservaCanchaRepository;
 
     @Autowired
-    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository) {
+    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository) {
         this.usuarioRepository = usuarioRepository;
         this.canchaRepository = canchaRepository;
+        this.reservaCanchaRepository = reservaCanchaRepository;
     }
 
     public ReservaDTO reservarCancha(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException {
@@ -40,6 +43,7 @@ public class CanchaService {
         else {
             reservaCancha = reservarCanchaHijo(reservaDTO);
         }
+
         return null;
     }
 
@@ -55,7 +59,7 @@ public class CanchaService {
             throw new ReservaPosteriorAlInicioException();
         }
         ReservaCancha reservaCancha = new ReservaCancha(usuario, usuario, cancha, Date.valueOf(fecha));
-        return null;
+        return reservaCanchaRepository.save(reservaCancha);
     }
 
     private ReservaCancha reservarCanchaHijo(ReservaDTO reservaDTO) {
