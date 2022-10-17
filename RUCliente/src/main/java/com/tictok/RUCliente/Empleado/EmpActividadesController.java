@@ -1,6 +1,6 @@
 package com.tictok.RUCliente.Empleado;
 
-import com.tictok.Commons.HorarioDTO;
+import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,16 +31,16 @@ public class EmpActividadesController implements Initializable {
 
     private List<SuperActividadDTO> getDatos(){
         List<SuperActividadDTO> actividades= new ArrayList<>();
-        HorarioDTO h1 = new HorarioDTO(3,13,14);
-        HorarioDTO h2 = new HorarioDTO(4,13,14);
-        HorarioDTO h3 = new HorarioDTO(3,13,14);
-        ArrayList<HorarioDTO> h = new ArrayList<HorarioDTO>();
+        HorarioConCuposDTO h1 = new HorarioConCuposDTO(3,13,14,15);
+        HorarioConCuposDTO h2 = new HorarioConCuposDTO(4,13,14,-1);
+        HorarioConCuposDTO h3 = new HorarioConCuposDTO(3,13,14,10);
+        ArrayList<HorarioConCuposDTO> h = new ArrayList<HorarioConCuposDTO>();
         h.add(h1);
         h.add(h2);
         h.add(h3);
-        SuperActividadDTO a1= new SuperActividadDTO("Yoga", 500, 15, false, "Club Bigua","direc","Pocitos","12345678",h, "/com/tictok/RUCliente/GETFITlogin.png");
-        SuperActividadDTO a2= new SuperActividadDTO("GYM", 400, -1, true, "ACJ","direc","Centro","12345678",h,"/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg");
-        SuperActividadDTO a3= new SuperActividadDTO("Natacion", 500, 20, false, "ACJ","direc","Punta Carretas","12345678",h,"/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg");
+        SuperActividadDTO a1= new SuperActividadDTO("Yoga", 500, false, "Club Bigua","direc","Pocitos","12345678", "/com/tictok/RUCliente/GETFITlogin.png",h);
+        SuperActividadDTO a2= new SuperActividadDTO("GYM", 400, true, "ACJ","direc","Centro","12345678","/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg",h);
+        SuperActividadDTO a3= new SuperActividadDTO("Natacion", 20, false, "ACJ","direc","Punta Carretas","12345678","/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg",h);
         actividades.add(a1);
         actividades.add(a2);
         actividades.add(a3);

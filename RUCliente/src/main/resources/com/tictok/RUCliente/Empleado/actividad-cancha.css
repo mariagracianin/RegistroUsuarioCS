@@ -1,7 +1,7 @@
 .mainPane{
     -fx-background-color: #121212;
     -fx-background-radius: 20;
-    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.8),10.0,0.0,0.0,10.0);
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.3),10.0,0.0,0.0,10.0);
     -fx-border-radius: 20;
 }
 .button{
