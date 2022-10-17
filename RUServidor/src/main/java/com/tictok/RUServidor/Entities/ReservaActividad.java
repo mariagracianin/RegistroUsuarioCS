@@ -28,6 +28,15 @@ public class ReservaActividad {
     })
     private Actividad actividad;
 
+    public ReservaActividad() {
+    }
+
+    public ReservaActividad(Usuario usuario, Date fecha, Actividad actividad) {
+        this.usuario = usuario;
+        this.fecha = fecha;
+        this.actividad = actividad;
+    }
+
     public Date getFecha() {
         return fecha;
     }

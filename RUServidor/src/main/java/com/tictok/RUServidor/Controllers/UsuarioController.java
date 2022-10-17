@@ -52,7 +52,7 @@ public class UsuarioController  {
     @PostMapping("/reserva")
     public ReservaDTO postNewReserva(@RequestBody ReservaDTO reservaDTO)
             throws TipoDeReservaNoExisteException, UsuarioNoExisteException, ReservaPosteriorAlInicioException,
-            CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException {
+            CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuposAgotadosException {
         if (reservaDTO.getTipo().equals("Cancha")){
             return canchaService.reservarCancha(reservaDTO);
         } else if (reservaDTO.getTipo().equals("Actividad")) {
