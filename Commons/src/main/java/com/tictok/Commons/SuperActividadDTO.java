@@ -7,9 +7,9 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SuperActividadDTO {
     private String nombreServicio;
+    private String nombreCentro;
     private Integer precio;
     private Boolean paseLibre;
-    private String nombreCentro;
     private String address;
     private String barrio;
     private String telefono;
@@ -19,16 +19,20 @@ public class SuperActividadDTO {
     public SuperActividadDTO() {
     }
 
-    public SuperActividadDTO(String nombreServicio, Integer precio, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono, String imageSrc,  List<HorarioDTO> horarios) {
+    public SuperActividadDTO(String nombreServicio, String nombreCentro, Integer precio, Boolean paseLibre, String address, String barrio, String telefono, String imageSrc, List<HorarioDTO> horarios) {
         this.nombreServicio = nombreServicio;
+        this.nombreCentro = nombreCentro;
         this.precio = precio;
         this.paseLibre = paseLibre;
-        this.nombreCentro = nombreCentro;
         this.address = address;
         this.barrio = barrio;
         this.telefono = telefono;
         this.imageSrc = imageSrc;
         this.horarios = horarios;
+    }
+
+    public void addHorario(HorarioDTO horarioDTO){
+        horarios.add(horarioDTO);
     }
 
     public String getImageSrc() {
