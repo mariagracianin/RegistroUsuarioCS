@@ -14,12 +14,12 @@ public class SuperActividadDTO {
     private String barrio;
     private String telefono;
     private String imageSrc;
-    private List<ServicioIdDTO> horarios;
+    private List<HorarioDTO> horarios;
 
     public SuperActividadDTO() {
     }
 
-    public SuperActividadDTO(String nombreServicio, Integer precio, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono, String imageSrc,  List<ServicioIdDTO> horarios) {
+    public SuperActividadDTO(String nombreServicio, Integer precio, Boolean paseLibre, String nombreCentro, String address, String barrio, String telefono, String imageSrc,  List<HorarioDTO> horarios) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.paseLibre = paseLibre;
@@ -95,11 +95,11 @@ public class SuperActividadDTO {
         this.telefono = telefono;
     }
 
-    public List<ServicioIdDTO> getHorarios() {
+    public List<HorarioDTO> getHorarios() {
         return horarios;
     }
 
-    public void setHorarios(List<ServicioIdDTO> horarios) {
+    public void setHorarios(List<HorarioDTO> horarios) {
         this.horarios = horarios;
     }
 }

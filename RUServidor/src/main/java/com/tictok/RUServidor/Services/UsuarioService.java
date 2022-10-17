@@ -23,14 +23,18 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final CuentaRepository cuentaRepository;
     private final EmpresaRepository empresaRepository;
+    private final EmpresaService empresaService;
+    private final CuentaService cuentaService;
 
 
     @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
-                          EmpresaRepository empresaRepository) {
+                          EmpresaRepository empresaRepository, EmpresaService empresaService, CuentaService cuentaService) {
         this.usuarioRepository = usuarioRepository;
         this.cuentaRepository = cuentaRepository;
         this.empresaRepository = empresaRepository;
+        this.empresaService = empresaService;
+        this.cuentaService = cuentaService;
     }
 
 
@@ -82,14 +86,13 @@ public class UsuarioService {
     }
 
 
-    public Usuario saveNewUsurio(MegaUsuarioDTO megaUsuarioDTO) {
+    public Usuario saveNewUsurio(MegaUsuarioDTO megaUsuarioDTO, String mail) throws Exception {
         Cuenta cuenta = CuentaMapper.toCuentaFromMegaUsuarioDTO(megaUsuarioDTO);
         Usuario usuario = UsuarioMapper.toUsuarioFromMegaUsuarioDTO(megaUsuarioDTO);
         usuario.setCuenta(cuenta);
         cuenta.setUsuario(usuario);
         cuentaRepository.save(cuenta);
-        Empresa empresa = empresaRepository.findAll().get(0);
-        usuario.setEmpresa(empresa);
+        usuario.setEmpresa(cuentaService.findOnebyId(mail).getEmpresa());
         return usuarioRepository.save(usuario);
     }
 

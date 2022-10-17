@@ -39,9 +39,9 @@ public class UsuarioController  {
         return usuarioService.findOnebyId(id);
     }
 
-    @PostMapping
-    public void postNewUsuario(@RequestBody MegaUsuarioDTO megaUsuarioDTO) {
-        Usuario usuario = usuarioService.saveNewUsurio(megaUsuarioDTO);
+    @PostMapping("{mail}")
+    public void postNewUsuario(@PathVariable String mail, @RequestBody MegaUsuarioDTO megaUsuarioDTO) throws Exception {
+        Usuario usuario = usuarioService.saveNewUsurio(megaUsuarioDTO, mail);
     }
 
     @GetMapping("{id}/reserva")
