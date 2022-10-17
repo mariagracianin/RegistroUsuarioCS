@@ -12,7 +12,7 @@ public class ReservaMapper {
         String nombreCentro = reservaCancha.getCancha().getCanchaId().getCentroDeportivo();
         String nombreActividad = reservaCancha.getCancha().getCanchaId().getNombreServicio();
         String tipo = "Cancha";
-        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorario(reservaCancha.getCancha().getCanchaId());
+        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaCancha.getCancha().getCanchaId());
         Long codigoReserva = reservaCancha.getId();
         return new ReservaDTO(cedula, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
     }
@@ -22,7 +22,7 @@ public class ReservaMapper {
         String nombreCentro = reservaActividad.getActividad().getActividadId().getCentroDeportivo();
         String nombreActividad = reservaActividad.getActividad().getActividadId().getNombreServicio();
         String tipo = "Actividad";
-        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorario(reservaActividad.getActividad().getActividadId());
+        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaActividad.getActividad().getActividadId());
         Long codigoReserva = reservaActividad.getId();
         return new ReservaDTO(cedula, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
     }

@@ -3,9 +3,7 @@ package com.tictok.RUServidor.Mappers;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
-import net.bytebuddy.asm.Advice;
 
-import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -45,7 +43,7 @@ public class HorarioMapper {
         return fecha;
     }
 
-    public static HorarioDTO fromServicioIdtoHorario(ServicioId servicioId) {
+    public static HorarioDTO fromServicioIdtoHorarioDTO(ServicioId servicioId) {
         int dia = servicioId.getDia().getValue();
         int horaInicio = servicioId.getHoraInicio().getHour()*100 + servicioId.getHoraInicio().getMinute();
         int horaFin = servicioId.getHoraFin().getHour()*100 + servicioId.getHoraFin().getMinute();
