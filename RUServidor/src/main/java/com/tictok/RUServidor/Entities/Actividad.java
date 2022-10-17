@@ -40,6 +40,14 @@ public class Actividad {
         this.paseLibre = paseLibre;
     }
 
+    public ServicioId getActividadId() {
+        return actividadId;
+    }
+
+    public void setActividadId(ServicioId actividadId) {
+        this.actividadId = actividadId;
+    }
+
     public Boolean getPaseLibre() {
         return paseLibre;
     }
