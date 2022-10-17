@@ -5,8 +5,10 @@ import com.tictok.Commons.NuevaEmpresaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Empresa;
 import com.tictok.RUServidor.Entities.Usuario;
+import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.CuentaYaExisteException;
 import com.tictok.RUServidor.Exceptions.EmpresaNoExisteException;
+import com.tictok.RUServidor.Services.CuentaService;
 import com.tictok.RUServidor.Services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +21,17 @@ import java.util.List;
 public class EmpresaController {
 
     private final EmpresaService empresaService;
+    private final CuentaService cuentaService;
 
     @Autowired
-    public EmpresaController(EmpresaService empresaService) {
+    public EmpresaController(EmpresaService empresaService, CuentaService cuentaService) {
         this.empresaService = empresaService;
+        this.cuentaService = cuentaService;
     }
 
     @GetMapping("/{nombreEmpresa}/usuarios")
-    public List<UsuarioDTO> getUsuariosFromEmpresa(@PathVariable String nombreEmpresa) throws EmpresaNoExisteException {
-        return empresaService.findUsuariosFromEmpresa(nombreEmpresa);
+    public List<UsuarioDTO> getUsuariosFromEmpresa(@PathVariable String mailEmpresa) throws EmpresaNoExisteException, CuentaNoExisteException {
+        return empresaService.findUsuariosFromEmpresa(cuentaService.findOnebyId(mailEmpresa).getEmpresa().getNombreEmpresa());
     }
 
     @PostMapping

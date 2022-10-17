@@ -12,13 +12,13 @@ public class SuperCanchaDTO {
     private String address;
     private String barrio;
     private String telefono;
-    private List<HorarioConCuposDTO> horarios;
+    private List<ServicioIdDTO> horarios;
     private String imageSrc;
 
     public SuperCanchaDTO(){
     }
 
-    public SuperCanchaDTO(String nombreServicio, Integer precio, String nombreCeentro, String address, String barrio, String telefono, List<HorarioConCuposDTO> horarios, String imageSrc) {
+    public SuperCanchaDTO(String nombreServicio, Integer precio, String nombreCeentro, String address, String barrio, String telefono, List<ServicioIdDTO> horarios, String imageSrc) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.nombreCentro = nombreCeentro;
@@ -76,11 +76,11 @@ public class SuperCanchaDTO {
         this.telefono = telefono;
     }
 
-    public List<HorarioConCuposDTO> getHorarios() {
+    public List<ServicioIdDTO> getHorarios() {
         return horarios;
     }
 
-    public void setHorarios(List<HorarioConCuposDTO> horarios) {
+    public void setHorarios(List<ServicioIdDTO> horarios) {
         this.horarios = horarios;
     }
 

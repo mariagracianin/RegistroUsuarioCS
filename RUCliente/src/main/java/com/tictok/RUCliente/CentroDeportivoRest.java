@@ -30,4 +30,15 @@ public class CentroDeportivoRest {
             throw new RuntimeException(e);
         }
     }
+
+    public HttpResponse<String> obtenerActividades(){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/actividades")
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

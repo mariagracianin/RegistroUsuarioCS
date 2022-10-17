@@ -4,10 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.tictok.Commons.MegaUsuarioDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UsuarioRest {
+
+    @Autowired
+    private MiniCuenta miniCuenta;
 
     public HttpResponse<String> guardarUsuario(String mail, String password, int cedula, String vencCarne, String nombres, String apellidos,
                                                String telefono, double saldoBase,  double sobregiro, String address) {
@@ -24,18 +28,6 @@ public class UsuarioRest {
             HttpResponse<String> response = Unirest.post("http://localhost:8080/usuario")
                     .header("Content-Type", "application/json")
                     .body(megaUsuarioJSON)
-                    .asString();
-            return response;
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-
-    public HttpResponse<String> obtenerUsuariosFromEmpresaX(String nombreEmpresa){
-        //nombreEmpresa es con la que entre a la app
-        try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/"+ "empresa" +"/usuarios")
-                    .header("Content-Type", "application/json")
                     .asString();
             return response;
         }catch (Exception e){

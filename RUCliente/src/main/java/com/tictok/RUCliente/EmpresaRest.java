@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.tictok.Commons.NuevaEmpresaDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -26,6 +27,17 @@ public class EmpresaRest {
                     .asString();
             return response;
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerUsuariosFromEmpresaX(String mail){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/"+ mail +"/usuarios")
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
             throw new RuntimeException(e);
         }
     }

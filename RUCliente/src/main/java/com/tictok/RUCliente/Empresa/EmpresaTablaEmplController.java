@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.UsuarioDTO;
+import com.tictok.RUCliente.EmpresaRest;
+import com.tictok.RUCliente.MiniCuenta;
 import com.tictok.RUCliente.UsuarioRest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +31,9 @@ import java.util.ResourceBundle;
 public class EmpresaTablaEmplController implements Initializable {
 
     @Autowired
-    private UsuarioRest usuarioRest;
+    MiniCuenta miniCuenta;
+    @Autowired
+    private EmpresaRest empresaRest;
     @Autowired
     EmpresaController empresaController;
 
@@ -56,7 +60,7 @@ public class EmpresaTablaEmplController implements Initializable {
         this.colSaldo.setCellValueFactory(new PropertyValueFactory("saldo"));
 
         try {
-            HttpResponse<String> response = usuarioRest.obtenerUsuariosFromEmpresaX(null);
+            HttpResponse<String> response = empresaRest.obtenerUsuariosFromEmpresaX(miniCuenta.getMailMiniCuenta());
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             List<UsuarioDTO> listUsuariosDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, UsuarioDTO.class));

@@ -1,6 +1,6 @@
 package com.tictok.RUCliente.Empleado;
 
-import com.tictok.Commons.HorarioConCuposDTO;
+//import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +29,7 @@ public class EmpActividadesController implements Initializable {
 
     private List<SuperActividadDTO> getDatos(){
         //aca mery me devolveria la lista de superactividades q tengo q mostrar al usuario
-        List<SuperActividadDTO> actividades= new ArrayList<>();
+        /*List<SuperActividadDTO> actividades= new ArrayList<>();
         HorarioConCuposDTO h1 = new HorarioConCuposDTO(3,13,14,15);
         HorarioConCuposDTO h2 = new HorarioConCuposDTO(4,13,14,-1);
         HorarioConCuposDTO h3 = new HorarioConCuposDTO(3,13,14,10);
@@ -47,7 +47,8 @@ public class EmpActividadesController implements Initializable {
         actividades.add(a3);
         actividades.add(a1);
 
-        return actividades;
+        return actividades;*/
+        return null;
 
     }
 

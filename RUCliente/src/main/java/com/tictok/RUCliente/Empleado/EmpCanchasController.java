@@ -1,6 +1,6 @@
 package com.tictok.RUCliente.Empleado;
 
-import com.tictok.Commons.HorarioConCuposDTO;
+//import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.SuperCanchaDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +28,7 @@ public class EmpCanchasController implements Initializable {
 
     private List<SuperCanchaDTO> getDatos(){
         //aca mery me devolveria la lista de supercanchas q tengo q mostrar al usuario
-        List<SuperCanchaDTO> canchas= new ArrayList<>();
+        /*List<SuperCanchaDTO> canchas= new ArrayList<>();
         HorarioConCuposDTO h1 = new HorarioConCuposDTO(3,13,14,15);
         HorarioConCuposDTO h2 = new HorarioConCuposDTO(4,13,14,-1);
         HorarioConCuposDTO h3 = new HorarioConCuposDTO(3,13,14,10);
@@ -46,7 +46,8 @@ public class EmpCanchasController implements Initializable {
         canchas.add(a3);
         canchas.add(a1);
 
-        return canchas;
+        return canchas;*/
+        return null;
 
     }
 
