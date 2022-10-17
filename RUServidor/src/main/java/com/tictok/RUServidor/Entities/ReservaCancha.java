@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Entities;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table
@@ -27,6 +28,27 @@ public class ReservaCancha {
             @JoinColumn(name = "CANCHA_HORAFIN", referencedColumnName = "HORAFIN", nullable = false)
     })
     private Cancha cancha;
+
+    @Column(name = "fecha", nullable = false)
+    private Date fecha;
+
+    public ReservaCancha() {
+    }
+
+    public ReservaCancha(Usuario usuarioPrincipal, Usuario usuario, Cancha cancha, Date fecha) {
+        this.usuarioPrincipal = usuarioPrincipal;
+        this.usuario = usuario;
+        this.cancha = cancha;
+        this.fecha = fecha;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
     public Usuario getUsuarioPrincipal() {
         return usuarioPrincipal;

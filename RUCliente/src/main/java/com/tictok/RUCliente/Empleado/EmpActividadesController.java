@@ -38,9 +38,11 @@ public class EmpActividadesController implements Initializable {
         h.add(h1);
         h.add(h2);
         h.add(h3);
-        SuperActividadDTO a1= new SuperActividadDTO("Yoga", 500, false, "Club Bigua","direc","Pocitos","12345678", "/com/tictok/RUCliente/GETFITlogin.png",h);
-        SuperActividadDTO a2= new SuperActividadDTO("GYM", 400, true, "ACJ","direc","Centro","12345678","/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg",h);
-        SuperActividadDTO a3= new SuperActividadDTO("Natacion", 20, false, "ACJ","direc","Punta Carretas","12345678","/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg",h);
+
+        SuperActividadDTO a1= new SuperActividadDTO("Yoga", 500, false, "Club Bigua","direc","Pocitos","12345678",h, "/com/tictok/RUCliente/GETFITlogin.png");
+        SuperActividadDTO a2= new SuperActividadDTO("GYM", 400, true, "ACJ","direc","Centro","12345678",h,"/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg");
+        SuperActividadDTO a3= new SuperActividadDTO("Natacion", 500, false, "ACJ","direc","Punta Carretas","12345678",h,"/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg");
+
         actividades.add(a1);
         actividades.add(a2);
         actividades.add(a3);

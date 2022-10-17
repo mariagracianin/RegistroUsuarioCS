@@ -6,7 +6,7 @@ Content-Type: application/json
   "cuentaMail": "maria@mail.com",
   "password": "coso",
   "apellido": "Diaz",
-  "cedula": 123456888,
+  "cedula": 52788472,
   "nombre": "Juan",
   "saldo": 1.00,
   "saldo_base": 1.00,
@@ -25,4 +25,38 @@ GET http://localhost:8080/usuario/all
 ###
 GET http://localhost:8080/usuario/intenta
 
+###
+POST http://localhost:8080/usuario/reserva
+Content-Type: application/json
 
+{
+  "cedulaUsuario": "52788472",
+  "nombreCentro": "CanchasVarias",
+  "nombreActividad": "LaCanchita",
+  "tipo": "Cancha",
+  "horario":
+      {"dia": 3,
+       "horaInicio": 1430,
+       "horaFin": 1530
+       },
+  "codigoReserva": null,
+  "codigoReservaPadre": null
+}
+
+###
+POST http://localhost:8080/usuario/reserva
+Content-Type: application/json
+
+{
+  "cedulaUsuario": "52788472",
+  "nombreCentro": "CanchasVarias",
+  "nombreActividad": "LaCanchita",
+  "tipo": "Cancha",
+  "horario":
+    {"dia": 3,
+    "horaInicio": 1430,
+    "horaFin": 1530
+  },
+  "codigoReserva": null,
+  "codigoReservaPadre": 6
+}
