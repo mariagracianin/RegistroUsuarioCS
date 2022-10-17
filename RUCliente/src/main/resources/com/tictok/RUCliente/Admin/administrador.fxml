@@ -18,32 +18,32 @@
             </Label>
             <Button fx:id="btnRegistrarEmpresa" mnemonicParsing="false" onAction="#registrarEmpresa" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar empresa">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnRegistrarCentro" mnemonicParsing="false" onAction="#registrarCentro" prefHeight="35.0" prefWidth="202.0" text="Registrar centro deportivo">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="35.0" prefWidth="202.0" text="Ver empresas">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnVerCentros" mnemonicParsing="false" onAction="#mostrarTablaCentros" prefHeight="50.0" prefWidth="202.0" text="Ver centros deportivos">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Ver liquidación">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" text="Cerrar sesión">
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" styleClass="btnCerrarSesion" text="Cerrar sesión">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
          </children>

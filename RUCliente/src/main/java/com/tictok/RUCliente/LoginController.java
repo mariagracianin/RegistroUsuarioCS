@@ -7,6 +7,7 @@ import com.tictok.Commons.CuentaDTO;
 import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,16 +50,35 @@ public class LoginController {
                 cargarVistaAdmin(actionEvent);
             }
         }else {
+            //abro ventana emergente error y vuelve a abrir el login
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-            Parent root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
-            Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Login");
-            Scene escena = new Scene(root);
+
+            Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("vent_emergente_error.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Error");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+
+            FXMLLoader fxmlLoader2 = new FXMLLoader();
+            fxmlLoader2.setControllerFactory(Main.getContext()::getBean);
+            Parent root2 = fxmlLoader2.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
+            Stage stage2 =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+            stage2.setTitle("Login");
+            Scene escena = new Scene(root2);
             escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
             stage.setScene(escena);
             stage.show();
         }
+    }
+    @FXML
+    private void salirVentanasEmergentes(ActionEvent actionEvent){
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 
     private void cargarVistaUsuario(ActionEvent actionEvent) throws IOException {

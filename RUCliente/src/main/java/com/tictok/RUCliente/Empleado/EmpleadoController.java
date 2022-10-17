@@ -40,10 +40,32 @@ public class EmpleadoController implements Initializable {
         stage.show(); //no es ventana emergente
     }
 
-    public void verCanchas(ActionEvent actionEvent) {
+    public void verCanchas(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpleadoController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empCanchas.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Canchas");
+
+        stage.show(); //no es ventana emergente
     }
 
-    public void verDatos(ActionEvent actionEvent) {
+    public void verDatos(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpleadoController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empMisDatos.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Mis Datos");
+
+        stage.show(); //no es ventana emergente
     }
 
     public void verReservasPasadas(ActionEvent actionEvent) {

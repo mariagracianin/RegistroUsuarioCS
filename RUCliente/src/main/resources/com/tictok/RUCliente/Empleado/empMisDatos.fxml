@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1074.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.EmpMisDatosController">
+   <left>
+      <VBox prefHeight="637.0" prefWidth="174.0" styleClass="leftPane" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="50.0" prefWidth="190.0">
+               <children>
+                  <Label layoutX="52.0" prefHeight="50.0" prefWidth="105.0" text="Hola!" textAlignment="CENTER" textFill="#03dac6">
+                     <font>
+                        <Font name="Century Gothic" size="30.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-2.0" layoutY="-1.0" opacity="0.0" prefHeight="4.0" prefWidth="176.0">
+                     <effect>
+                        <ColorAdjust brightness="-0.54" contrast="-0.61" hue="-0.21" saturation="-1.0" />
+                     </effect>
+                  </Separator>
+               </children>
+            </Pane>
+            <HBox prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                     <!--<Image url="/com/tictok/RUCliente/Empleado/reserva.png" />-->
+                   </image>
+                     <HBox.margin>
+                        <Insets left="8.0" right="5.0" top="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="btnMisReservas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verReservas" prefHeight="22.0" prefWidth="134.0" text="Mis reservas" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font></Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                     <!--<Image url="/com/tictok/RUCliente/Empleado/actividad.png" />-->
+                  </image>
+                     <HBox.margin>
+                        <Insets left="8.0" right="5.0" top="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="btnActividades" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verActividades" prefHeight="40.0" prefWidth="207.0" text="Actividades" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font></Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                     <!--<Image url="/com/tictok/RUCliente/Empleado/cancha.png" />-->
+                  </image>
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="btnCanchas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verCanchas" prefHeight="40.0" prefWidth="256.0" text="Canchas" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font></Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                     <!--<Image url="/com/tictok/RUCliente/Empleado/datos.png" />-->
+                  </image>
+                     <HBox.margin>
+                        <Insets left="8.0" right="5.0" top="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="btnDatos" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="234.0" style="-fx-background-color: #49cead;" text="Mis datos" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font></Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnReservasPasadas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verReservasPasadas" prefHeight="40.0" prefWidth="173.0" text="Reservas pasadas" textAlignment="CENTER">
+                     <font>
+                        <Font name="Candara Bold" size="19.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding></Button>
+               </children>
+            </HBox>
+            <Button fx:id="btnCerrarSesion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="40.0" prefWidth="179.0" styleClass="btnCerrarSesion" stylesheets="@../entidad_style.css" text="Cerrar sesión" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font name="Candara Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox prefHeight="90.0" prefWidth="1074.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="63.0" prefWidth="44.0" />
+            <ImageView fitHeight="90.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+               <!--<Image url="/com/tictok/RUCliente/Empleado/GETFIT.png" />-->
+            </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="46.0" />
+            <Label prefHeight="59.0" prefWidth="309.0" text="Mis datos" textAlignment="CENTER" textFill="#3700b3">
+               <font>
+                  <Font name="Century Gothic" size="40.0" />
+               </font>
+               <effect>
+                  <Lighting light="$null">
+                     <bumpInput>
+                        <Shadow height="36.645" radius="11.59375" width="11.73">
+                           <color>
+                              <Color green="1.0" blue="0.8999999761581421" />
+                           </color>
+                        </Shadow>
+                     </bumpInput>
+                  </Lighting>
+               </effect>
+               <padding>
+                  <Insets left="20.0" top="20.0" />
+               </padding>
+            </Label>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="92.0" />
+            <HBox prefHeight="88.0" prefWidth="482.0" styleClass="round-layout" stylesheets="@../entidad_style.css">
+               <children>
+                  <TextField prefHeight="31.0" prefWidth="437.0" promptText="Buscar">
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                     <!--<Image url="/com/tictok/RUCliente/Empleado/lupa.png" />-->
+                  </image>
+                     <HBox.margin>
+                        <Insets left="4.0" top="35.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="444.0" minWidth="10.0" prefWidth="321.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="631.0" minWidth="10.0" prefWidth="579.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Rectangle fx:id="rectangle9115" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="239.0" GridPane.rowIndex="9">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Rectangle fx:id="rectangle9114" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="176.0" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Rectangle fx:id="rectangle9113" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="176.0" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Rectangle fx:id="rectangle9112" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="176.0" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Rectangle fx:id="rectangle91112" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="176.0" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Rectangle fx:id="rectangle91111" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="176.0" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Rectangle fx:id="rectangle9111" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="176.0" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Rectangle fx:id="rectangle91" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="#121212" strokeType="INSIDE" width="176.0" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Label prefHeight="22.0" prefWidth="84.0" text="Apellido:" textFill="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="22.0" prefWidth="84.0" text="Cédula:" textFill="WHITE" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="22.0" prefWidth="199.0" text="Correo electrónico:" textFill="WHITE" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="22.0" prefWidth="199.0" text="Dirección:" textFill="WHITE" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="22.0" prefWidth="199.0" text="Teléfono:" textFill="WHITE" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="22.0" prefWidth="199.0" text="Saldo actual:" textFill="WHITE" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="22.0" prefWidth="199.0" text="Sobregiro:" textFill="WHITE" GridPane.rowIndex="8">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="22.0" prefWidth="273.0" text="Fecha de vencimiento carné:" textFill="WHITE" GridPane.rowIndex="9">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Rectangle fx:id="rectangle" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblNombre" layoutX="67.0" layoutY="17.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Rectangle fx:id="rectangle1" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblApellido" layoutX="67.0" layoutY="17.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Rectangle fx:id="rectangle2" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblCedula" layoutX="67.0" layoutY="17.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Rectangle fx:id="rectangle3" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblMail" layoutX="67.0" layoutY="17.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <Rectangle fx:id="rectangle4" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblDireccion" layoutX="67.0" layoutY="17.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <children>
+                  <Rectangle fx:id="rectangle5" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblTel" layoutX="67.0" layoutY="17.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <children>
+                  <Rectangle fx:id="rectangle6" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblSaldoActual" layoutX="67.0" layoutY="17.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <children>
+                  <Rectangle fx:id="rectangle7" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblSobregiro" layoutX="67.0" layoutY="17.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <children>
+                  <Rectangle fx:id="rectangle8" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" layoutX="41.0" layoutY="9.0" stroke="#4a4a4a" strokeType="INSIDE" strokeWidth="2.0" width="498.0" />
+                  <Label fx:id="lblFechaVenCarne" layoutX="67.0" layoutY="18.0" prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Rectangle fx:id="rectangle911" arcHeight="25.0" arcWidth="30.0" fill="#121212" height="38.0" smooth="false" stroke="#5b5b5b" strokeType="INSIDE" strokeWidth="0.0" width="176.0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="45.0" />
+               </GridPane.margin>
+            </Rectangle>
+            <Label prefHeight="22.0" prefWidth="84.0" text="Nombre:" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

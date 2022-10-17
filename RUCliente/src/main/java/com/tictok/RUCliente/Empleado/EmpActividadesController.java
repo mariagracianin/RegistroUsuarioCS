@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +22,13 @@ import java.util.ResourceBundle;
 public class EmpActividadesController implements Initializable {
     @Autowired
     EmpleadoController empleadoController;
-    @FXML
-    private ScrollPane scroll;
+
     @FXML
     private GridPane contenedorAct;
     private List<SuperActividadDTO> actividadesActuales= new ArrayList<>();
 
     private List<SuperActividadDTO> getDatos(){
+        //aca mery me devolveria la lista de superactividades q tengo q mostrar al usuario
         List<SuperActividadDTO> actividades= new ArrayList<>();
         HorarioConCuposDTO h1 = new HorarioConCuposDTO(3,13,14,15);
         HorarioConCuposDTO h2 = new HorarioConCuposDTO(4,13,14,-1);
@@ -60,11 +59,11 @@ public class EmpActividadesController implements Initializable {
         try {
         for (int i=0; i<actividadesActuales.size(); i++){
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("cardActividad.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("cardActividadOCancha.fxml"));
             SplitPane actBox = fxmlLoader.load();
 
-            CardActividadController cardController = fxmlLoader.getController();
-            cardController.setDatos(actividadesActuales.get(i));
+            CardController cardController = fxmlLoader.getController();
+            cardController.setDatosActividad(actividadesActuales.get(i));
             if (column == 3) {
                 column = 0;
                 row++;
@@ -84,11 +83,11 @@ public class EmpActividadesController implements Initializable {
         empleadoController.verReservas(actionEvent);
     }
 
-    public void verCanchas(ActionEvent actionEvent) {
+    public void verCanchas(ActionEvent actionEvent) throws IOException {
         empleadoController.verCanchas(actionEvent);
     }
 
-    public void verDatos(ActionEvent actionEvent) {
+    public void verDatos(ActionEvent actionEvent) throws IOException {
         empleadoController.verDatos(actionEvent);
     }
 

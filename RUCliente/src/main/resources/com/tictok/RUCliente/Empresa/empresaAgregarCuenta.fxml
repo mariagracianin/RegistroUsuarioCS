@@ -19,27 +19,27 @@
             </Label>
             <Button fx:id="btnRegistrarNC" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar nuevo empleado">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnVerTablaEmpleados" mnemonicParsing="false" onAction="#mostrarTablaEmpleados" prefHeight="35.0" prefWidth="202.0" text="Ver empleados registrados">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnAgregarCuenta" mnemonicParsing="false" prefHeight="50.0" prefWidth="202.0" text="Agregar cuenta asociada">
+            <Button fx:id="btnAgregarCuenta" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" text="Agregar cuenta asociada">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Ver liquidación">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" text="Cerrar sesión">
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" styleClass="btnCerrarSesion" text="Cerrar sesión">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
          </children>
@@ -65,7 +65,7 @@
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="110.0" layoutY="97.0" text="Agregar cuenta asociada" textFill="#3700b3">
+            <Label layoutX="110.0" layoutY="97.0" text="Agregar cuenta asociada" textFill="#bb86fc">
                <font>
                   <Font size="20.0" />
                </font>
