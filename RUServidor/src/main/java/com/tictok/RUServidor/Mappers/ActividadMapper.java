@@ -2,7 +2,6 @@ package com.tictok.RUServidor.Mappers;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUServidor.Entities.Actividad;
-import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Entities.NotTables.ServicioIdSinHorario;
 
 import java.util.ArrayList;
@@ -39,5 +38,6 @@ public class ActividadMapper {
         }
         return hashDeActividades.values().stream().toList();
     }
+
 
 }
