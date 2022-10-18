@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Entities;
 
+import com.tictok.RUServidor.Entities.NotTables.Imagen;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 
 import javax.persistence.*;
@@ -25,6 +26,10 @@ public class Actividad {
 
     @Column(name = "pase_libre", nullable = false)
     private Boolean paseLibre = false;
+
+    @ManyToOne
+    @JoinColumn(name = "imagen_id")
+    private Imagen imagen;
 
     public Actividad() {
     }
@@ -80,5 +85,11 @@ public class Actividad {
         this.centroDeportivo = centroDeportivo;
     }
 
+    public Imagen getImagen() {
+        return imagen;
+    }
 
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
 }
