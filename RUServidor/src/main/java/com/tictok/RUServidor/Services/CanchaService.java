@@ -1,12 +1,15 @@
 package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.ReservaDTO;
+import com.tictok.Commons.SuperActividadDTO;
+import com.tictok.RUServidor.Entities.Actividad;
 import com.tictok.RUServidor.Entities.Cancha;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Entities.ReservaCancha;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.*;
+import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.CanchaRepository;
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service

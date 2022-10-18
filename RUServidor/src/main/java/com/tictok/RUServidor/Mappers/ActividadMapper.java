@@ -34,7 +34,6 @@ public class ActividadMapper {
                 superActividadDTOtemporal.addHorario(horarioDTO);
                 hashDeActividades.put(servicioIdSinHorario, superActividadDTOtemporal);
             }
-
         }
         return hashDeActividades.values().stream().toList();
     }
