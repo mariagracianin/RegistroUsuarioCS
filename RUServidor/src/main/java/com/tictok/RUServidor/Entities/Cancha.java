@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Entities;
 
+import com.tictok.RUServidor.Entities.NotTables.Imagen;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 
 import javax.persistence.*;
@@ -23,6 +24,18 @@ public class Cancha {
 
     @Column(name = "cupos")
     private Integer cupos;
+
+    @ManyToOne
+    @JoinColumn(name = "imagen_id")
+    private Imagen imagen;
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
 
 
     public Cancha() {
