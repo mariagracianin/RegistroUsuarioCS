@@ -35,9 +35,9 @@ public class UsuarioRest {
         }
     }
 
-    public HttpResponse<String> buscarDatosUsuarioFromMail(){
+    public HttpResponse<String> buscarDatosFromUsuarioLogeado(){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/cuenta/mail?mail="+ miniCuenta.getMailMiniCuenta())
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/cuenta/getDatos/"+ miniCuenta.getMailMiniCuenta())
                     .header("Content-Type", "application/json")
                     .asString();
             return response;
