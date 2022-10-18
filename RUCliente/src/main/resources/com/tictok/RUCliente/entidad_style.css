@@ -34,11 +34,13 @@
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.8),5.0,0.0,0.0,5.0);
 }
 .label{
-    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.8),10.0,0.0,0.0,10.0);
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
 }
 .round-layout{
     -fx-border-radius: 40;
     -fx-border-color: #121212;
+    -fx-background-radius: 40;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
 }
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
@@ -46,8 +48,12 @@
 .scroll-pane {
     -fx-background-color: transparent;
 }
-.btnCerrarSesion:hover{
+.btnCerrarSesion{
     -fx-background-color: #BB86FC;
+    -fx-border-radius: 3;
+}
+.btnCerrarSesion:hover{
+    -fx-background-color: #CDA6FC;
     -fx-border-radius: 3;
 }
 .btnCerrarSesion:pressed{

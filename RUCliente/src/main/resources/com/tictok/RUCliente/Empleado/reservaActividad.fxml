@@ -6,15 +6,16 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="leftPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" styleClass="leftPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardActividadController">
    <center>
-      <VBox prefHeight="300.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="nombreAct" text="Label" textFill="#bb86fc">
                <VBox.margin>
@@ -24,7 +25,7 @@
                   <Font name="Candara Bold Italic" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="descripcionAct" prefHeight="48.0" prefWidth="450.0" text="Label" textFill="WHITE">
+            <Label fx:id="precioAct" prefHeight="37.0" prefWidth="450.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="Candara Bold" size="24.0" />
                </font>
@@ -32,7 +33,15 @@
                   <Insets left="95.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="precioAct" prefHeight="30.0" prefWidth="162.0" text="Label" textFill="WHITE">
+            <Label fx:id="lblNombreCentro" prefHeight="37.0" prefWidth="450.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Candara Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="95.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="direccionAct" prefHeight="37.0" prefWidth="552.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="Candara Bold" size="24.0" />
                </font>
@@ -47,11 +56,34 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="699.0">
                            <children>
                               <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#4d4d4d" height="248.0" layoutX="17.0" layoutY="10.0" smooth="false" stroke="#4d4d4d" strokeType="INSIDE" width="666.0" />
-                              <Label fx:id="precioAct1" layoutX="93.0" layoutY="14.0" prefHeight="30.0" prefWidth="162.0" text="Horarios" textFill="WHITE">
+                              <Label fx:id="precioAct1" layoutX="55.0" layoutY="14.0" prefHeight="30.0" prefWidth="162.0" text="Horarios" textFill="WHITE">
                                  <font>
                                     <Font name="Candara Bold" size="24.0" />
                                  </font>
                               </Label>
+                              <GridPane fx:id="contenedorHorarios" layoutX="45.0" layoutY="74.0" prefHeight="0.0" prefWidth="143.0">
+                              </GridPane>
+                              <Label fx:id="precioAct11" layoutX="55.0" layoutY="44.0" prefHeight="30.0" prefWidth="140.0" text="Día">
+                                 <font>
+                                    <Font name="Candara Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="precioAct111" layoutX="224.0" layoutY="44.0" prefHeight="30.0" prefWidth="100.0" text="Inicio">
+                                 <font>
+                                    <Font name="Candara Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="precioAct1111" layoutX="350.0" layoutY="44.0" prefHeight="30.0" prefWidth="100.0" text="Fin">
+                                 <font>
+                                    <Font name="Candara Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="precioAct11111" layoutX="459.0" layoutY="44.0" prefHeight="30.0" prefWidth="100.0" text="Cupos libres">
+                                 <font>
+                                    <Font name="Candara Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="515.0" layoutX="151.0" layoutY="73.0" startX="-117.0" />
                            </children>
                         </AnchorPane>
                     </content>
