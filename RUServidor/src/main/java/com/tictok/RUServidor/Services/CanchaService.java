@@ -1,12 +1,17 @@
 package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.ReservaDTO;
+import com.tictok.Commons.SuperActividadDTO;
+import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.RUServidor.Entities.Actividad;
 import com.tictok.RUServidor.Entities.Cancha;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Entities.ReservaCancha;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.*;
+import com.tictok.RUServidor.Mappers.ActividadMapper;
+import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.CanchaRepository;
@@ -18,6 +23,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -92,5 +98,14 @@ public class CanchaService {
 
         ReservaCancha reservaCancha = new ReservaCancha(usuarioPadre, usuario, cancha, dateFecha);
         return reservaCanchaRepository.save(reservaCancha);
+    }
+
+    public List<SuperCanchaDTO> findAll() {
+        List<Cancha> canchaList = canchaRepository.findAll();
+        if (canchaList.isEmpty()){
+            return null;
+        }
+        List<SuperCanchaDTO> listaSuperCanchaDTO = CanchaMapper.fromCanchaListToSuperCanchaDTOList(canchaList);
+        return listaSuperCanchaDTO;
     }
 }

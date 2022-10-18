@@ -7,8 +7,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SuperCanchaDTO {
     private String nombreServicio;
-    private Integer precio;
     private String nombreCentro;
+    private Integer precio;
     private String address;
     private String barrio;
     private String telefono;
@@ -18,17 +18,19 @@ public class SuperCanchaDTO {
     public SuperCanchaDTO(){
     }
 
-    public SuperCanchaDTO(String nombreServicio, Integer precio, String nombreCeentro, String address, String barrio, String telefono, List<HorarioDTO> horarios, String imageSrc) {
+    public SuperCanchaDTO(String nombreServicio, String nombreCentro, Integer precio, String address, String barrio, String telefono, List<HorarioDTO> horarios) {
         this.nombreServicio = nombreServicio;
+        this.nombreCentro = nombreCentro;
         this.precio = precio;
-        this.nombreCentro = nombreCeentro;
         this.address = address;
         this.barrio = barrio;
         this.telefono = telefono;
         this.horarios = horarios;
-        this.imageSrc = imageSrc;
     }
 
+    public void addHorario(HorarioDTO horarioDTO){
+        horarios.add(horarioDTO);
+    }
     public String getNombreServicio() {
         return nombreServicio;
     }
