@@ -48,9 +48,15 @@ public class CentroService {
     public void crearPrimerCentro(){
         NuevoCentroDTO primerCentroDTO = new NuevoCentroDTO("centro@mail","contra","centro", "direccion2", "telefono2", "encargado2","rut2","razonSocial2","barrio");
         CentroDeportivo primerCentro = saveNewCentro(primerCentroDTO);
+        Cancha newCancha1 = new Cancha(primerCentro,"cancha Tenis",DayOfWeek.MONDAY,LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10);
+        Cancha newCancha2 = new Cancha(primerCentro,"cancha Fuchibol 1",DayOfWeek.MONDAY,LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10);
+        Cancha newCancha3 = new Cancha(primerCentro,"cancha Fuchibol 2",DayOfWeek.MONDAY,LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10);
         Actividad newActividad1 = new Actividad(primerCentro,"Tenis",DayOfWeek.MONDAY, LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10,false);
         Actividad newActividad2 = new Actividad(primerCentro,"Tenis",DayOfWeek.SUNDAY, LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10,false);
         Actividad newActividad3 = new Actividad(primerCentro,"Natacion",DayOfWeek.MONDAY, LocalTime.of(9,00,00),LocalTime.of(10,00,00),1000,10,false);
+        canchaRepository.save(newCancha1);
+        canchaRepository.save(newCancha2);
+        canchaRepository.save(newCancha3);
         actividadRepository.save(newActividad1);
         actividadRepository.save(newActividad2);
         actividadRepository.save(newActividad3);
