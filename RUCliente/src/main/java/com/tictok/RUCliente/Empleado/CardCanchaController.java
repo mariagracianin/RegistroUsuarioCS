@@ -9,8 +9,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.springframework.stereotype.Component;
 
+import java.awt.event.MouseEvent;
+
 @Component
-public class CardController {
+public class CardCanchaController {
 
     @FXML
     private Label costo;
@@ -23,17 +25,17 @@ public class CardController {
 
     @FXML
     private Label nombre;
+    private SuperCanchaDTO cancha;
+    private MyListenerCan listenerCan;
 
-    void setDatosActividad(SuperActividadDTO actividad){
-        //imageSrc seria la src dentro de mi computadora, tendria que ser en la base
-        Image image = new Image(getClass().getResourceAsStream(actividad.getImageSrc()));
-        imagen.setImage(image);
-        nombre.setText(actividad.getNombreServicio());
-        costo.setText("Costo: " + actividad.getPrecio());
-        direccionYBarrio.setText(actividad.getAddress() +", "+ actividad.getBarrio());
-
+    @FXML
+    private void click(MouseEvent mouseEvent){
+        listenerCan.onClickListenerCan(cancha);
     }
-    void setDatosCancha(SuperCanchaDTO cancha){
+
+    void setDatosCancha(SuperCanchaDTO cancha, MyListenerCan listenerCan){
+        this.listenerCan = listenerCan;
+        this.cancha = cancha;
         Image image = new Image(getClass().getResourceAsStream(cancha.getImageSrc()));
         imagen.setImage(image);
         nombre.setText(cancha.getNombreServicio());
@@ -42,5 +44,13 @@ public class CardController {
     }
 
     public void guardarReserva(ActionEvent actionEvent) {
+        listenerCan = new MyListenerCan() {
+            @Override
+            public void onClickListenerCan(SuperCanchaDTO can) {
+                //setear todas las label e info con la de can
+                System.out.println("clickeaste "+ can.getNombreServicio());
+            }
+        };
+        //cargar vista reserva en ventana emergente, mismo controller y hacer coso horarios y boton reservar
     }
 }

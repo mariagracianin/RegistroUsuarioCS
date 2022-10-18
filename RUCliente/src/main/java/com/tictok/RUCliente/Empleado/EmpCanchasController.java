@@ -25,6 +25,7 @@ public class EmpCanchasController implements Initializable {
     @FXML
     private GridPane contenedorCanchas;
     private List<SuperCanchaDTO> canchasActuales= new ArrayList<>();
+    private MyListenerCan listenerCan;
 
     private List<SuperCanchaDTO> getDatos(){
         //aca mery me devolveria la lista de supercanchas q tengo q mostrar al usuario
@@ -58,11 +59,11 @@ public class EmpCanchasController implements Initializable {
         try {
             for (int i=0; i<canchasActuales.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("cardActividadOCancha.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("cardActividad.fxml"));
                 SplitPane actBox = fxmlLoader.load();
 
-                CardController cardController = fxmlLoader.getController();
-                cardController.setDatosCancha(canchasActuales.get(i));
+                CardCanchaController cardController = fxmlLoader.getController();
+                cardController.setDatosCancha(canchasActuales.get(i), listenerCan);
                 if (column == 3) {
                     column = 0;
                     row++;

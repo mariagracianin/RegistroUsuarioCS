@@ -26,6 +26,7 @@ public class EmpActividadesController implements Initializable {
     @FXML
     private GridPane contenedorAct;
     private List<SuperActividadDTO> actividadesActuales= new ArrayList<>();
+    private MyListenerAct listenerAct;
 
     private List<SuperActividadDTO> getDatos(){
         //aca mery me devolveria la lista de superactividades q tengo q mostrar al usuario
@@ -59,11 +60,11 @@ public class EmpActividadesController implements Initializable {
         try {
         for (int i=0; i<actividadesActuales.size(); i++){
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("cardActividadOCancha.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("cardActividad.fxml"));
             SplitPane actBox = fxmlLoader.load();
 
-            CardController cardController = fxmlLoader.getController();
-            cardController.setDatosActividad(actividadesActuales.get(i));
+            CardActividadController cardController = fxmlLoader.getController();
+            cardController.setDatosActividad(actividadesActuales.get(i),listenerAct);
             if (column == 3) {
                 column = 0;
                 row++;
