@@ -28,6 +28,8 @@ public class EmpActividadesController implements Initializable {
     private List<SuperActividadDTO> actividadesActuales= new ArrayList<>();
 
     private List<SuperActividadDTO> getDatos(){
+
+
         //aca mery me devolveria la lista de superactividades q tengo q mostrar al usuario
         /*List<SuperActividadDTO> actividades= new ArrayList<>();
         HorarioConCuposDTO h1 = new HorarioConCuposDTO(3,13,14,15);

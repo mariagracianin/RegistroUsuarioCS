@@ -35,8 +35,8 @@ public class EmpresaService {
 
 
     private void crearPrimeraEmpresa(){
-        Empresa empresa = new Empresa("empresa", "direccion", "telefono", "encargado","rut","razonSocial");
-        empresaRepository.save(empresa);
+        NuevaEmpresaDTO primeraEmpresaDTO = new NuevaEmpresaDTO("empresa@mail","contra","empresa", "direccion", "telefono", "encargado","rut","razonSocial");
+        saveNewEmpresa(primeraEmpresaDTO);
     }
 
     public Empresa findById(String nombreEmpresa) throws Exception {
