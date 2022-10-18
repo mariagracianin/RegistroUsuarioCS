@@ -1,12 +1,10 @@
 package com.tictok.RUServidor.Services;
 
-import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUServidor.Entities.Actividad;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
-import com.tictok.RUServidor.Entities.NotTables.ServicioIdSinHorario;
 import com.tictok.RUServidor.Entities.ReservaActividad;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.CuposAgotadosException;
@@ -19,11 +17,8 @@ import com.tictok.RUServidor.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 @Service
@@ -72,4 +67,5 @@ public class ActividadService {
         List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
         return listaSuperActividadesDTO;
     }
+
 }

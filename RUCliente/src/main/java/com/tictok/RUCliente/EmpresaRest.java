@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmpresaRest {
 
+    @Autowired
+    private MiniCuenta miniCuenta;
+
     public HttpResponse<String> guardarEmpresa(String mail, String password, String nombreEmpresa, String adress, String telefono, String encargado, String rut, String razonsocial) {
         String nuevaEmpresaJSON = "";
         try {
@@ -31,9 +34,9 @@ public class EmpresaRest {
         }
     }
 
-    public HttpResponse<String> obtenerUsuariosFromEmpresaX(String mail){
+    public HttpResponse<String> obtenerUsuariosFromEmpresaLogeada(){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/"+ mail +"/usuarios")
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/"+ miniCuenta.getMailMiniCuenta() +"/usuarios")
                     .header("Content-Type", "application/json")
                     .asString();
             return response;

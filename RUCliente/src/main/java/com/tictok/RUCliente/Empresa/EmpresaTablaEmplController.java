@@ -60,7 +60,7 @@ public class EmpresaTablaEmplController implements Initializable {
         this.colSaldo.setCellValueFactory(new PropertyValueFactory("saldo"));
 
         try {
-            HttpResponse<String> response = empresaRest.obtenerUsuariosFromEmpresaX(miniCuenta.getMailMiniCuenta());
+            HttpResponse<String> response = empresaRest.obtenerUsuariosFromEmpresaLogeada();
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             List<UsuarioDTO> listUsuariosDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, UsuarioDTO.class));

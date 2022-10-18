@@ -28,6 +28,7 @@ public class LoginController {
 
     @Autowired
     LoginRest loginRest;
+    @Autowired
     MiniCuenta miniCuenta;
 
     public Button btnIngresar;
@@ -39,6 +40,8 @@ public class LoginController {
         if (response.getCode() == 200) {
             ObjectMapper objectMapper = new ObjectMapper();
             MiniCuentaDTO miniCuentaDTO = objectMapper.readValue(response.getBody(), MiniCuentaDTO.class);
+            miniCuenta.setMailMiniCuenta(miniCuentaDTO.getMailMiniCuentaDTO());
+            miniCuentaDTO.setTipoMiniCuentaDTO(miniCuentaDTO.getTipoMiniCuentaDTO());
 
             if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("empresa")){
                 cargarVistaEmpresa(actionEvent);
