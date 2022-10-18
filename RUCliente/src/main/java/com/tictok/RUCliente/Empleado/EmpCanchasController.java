@@ -1,7 +1,12 @@
 package com.tictok.RUCliente.Empleado;
 
 //import com.tictok.Commons.HorarioConCuposDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.RUCliente.CentroDeportivoRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,11 +27,41 @@ import java.util.ResourceBundle;
 public class EmpCanchasController implements Initializable {
     @Autowired
     EmpleadoController empleadoController;
+
+    @Autowired
+    CentroDeportivoRest centroDeportivoRest;
+
     @FXML
     private GridPane contenedorCanchas;
     private List<SuperCanchaDTO> canchasActuales= new ArrayList<>();
 
     private List<SuperCanchaDTO> getDatos(){
+        try {
+            HttpResponse<String> response = centroDeportivoRest.obtenerCanchas();
+            String responseBody = response.getBody();
+            System.out.println("----------------------------------------------------------------");
+            System.out.println(responseBody);
+            ObjectMapper mapper = new ObjectMapper();
+            List<SuperCanchaDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
+            for(int i = 0; i<listSuperActividadesDTO.size(); i++){
+                SuperCanchaDTO actividadDTOI = listSuperActividadesDTO.get(i);
+                System.out.println("CANCHA----------------");
+                System.out.println("NOMBRE CENTRO: " + actividadDTOI.getNombreCentro());
+                System.out.println("NOMBRE SERVICIO: " + actividadDTOI.getNombreServicio());
+                System.out.println("ADRESS: " + actividadDTOI.getAddress());
+                System.out.println("BARRIO: " + actividadDTOI.getBarrio());
+                System.out.println("SUS HORARIOS---------------");
+                System.out.println(actividadDTOI.getHorarios().size()+"horario/s--------------------------------------------------------------------------------------------------");
+                for(int j=0; j<actividadDTOI.getHorarios().size(); j++){
+                    System.out.println("DIA: " + actividadDTOI.getHorarios().get(j).getDia());
+                    System.out.println("INICIO: " + actividadDTOI.getHorarios().get(j).getHoraInicio());
+                    System.out.println("FIN: " + actividadDTOI.getHorarios().get(j).getHoraFin());
+                }
+            }
+            return listSuperActividadesDTO;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
         //aca mery me devolveria la lista de supercanchas q tengo q mostrar al usuario
         /*List<SuperCanchaDTO> canchas= new ArrayList<>();
         HorarioConCuposDTO h1 = new HorarioConCuposDTO(3,13,14,15);
@@ -47,7 +82,7 @@ public class EmpCanchasController implements Initializable {
         canchas.add(a1);
 
         return canchas;*/
-        return null;
+        //return null;
 
     }
 

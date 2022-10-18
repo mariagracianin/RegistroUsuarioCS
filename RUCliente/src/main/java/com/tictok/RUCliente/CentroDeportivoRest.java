@@ -42,9 +42,9 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> obtenerActividadConCupos(String nombreCentro, String nombreActividad, String dia, String horaInicio, String horaFin){
+    public HttpResponse<String> obtenerCanchas(){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/actividad/"+nombreCentro+"/"+nombreActividad+"/"+dia+"/"+horaInicio+"/"+horaFin)
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/canchas")
                     .header("Content-Type", "application/json")
                     .asString();
             return response;
@@ -53,9 +53,9 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> obtenerCanchas(){
+    public HttpResponse<String> obtenerActividadConCupos(String nombreCentro, String nombreActividad){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/canchas")
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/actividad/"+nombreCentro+"/"+nombreActividad)
                     .header("Content-Type", "application/json")
                     .asString();
             return response;
