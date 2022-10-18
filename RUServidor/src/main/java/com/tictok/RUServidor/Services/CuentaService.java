@@ -28,7 +28,7 @@ public class CuentaService {
         this.cuentaRepository = cuentaRepository;
         System.out.println("Constuctor Admin");
         crearPrimerAdministrador();
-        crearPrimeraEmpresa();
+        //crearPrimeraEmpresa();
     }
 
     private void crearPrimerAdministrador(){
@@ -38,11 +38,11 @@ public class CuentaService {
     }
 
     //Esto no parece estar bien
-    private void crearPrimeraEmpresa(){
+    /*private void crearPrimeraEmpresa(){
         Cuenta primeraEmpresa = new Cuenta("empresa@mail", "contra","empresa");
         cuentaRepository.save(primeraEmpresa);
         System.out.println("Empresa 1 creada");
-    }
+    }*/
 
     public List<CuentaDTO> findAll() {
         List cuentaList = cuentaRepository.findAll();
