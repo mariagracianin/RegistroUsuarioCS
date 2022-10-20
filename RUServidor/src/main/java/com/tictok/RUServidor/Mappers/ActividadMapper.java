@@ -26,10 +26,16 @@ public class ActividadMapper {
                 superActividadDTOtemporal.addHorario(horarioDTO);
             }
             else{
+                String imagenString;
+                try {
+                    imagenString = actividadNueva.getImagen().getImagenString();
+                } catch (NullPointerException e){
+                    imagenString = null;
+                }
                 superActividadDTOtemporal = new SuperActividadDTO(servicioIdSinHorario.getNombreServicio(), servicioIdSinHorario.getCentroDeportivo(),
                         actividadNueva.getPrecio(), actividadNueva.getPaseLibre(), actividadNueva.getCentroDeportivo().getAddress(),
                         actividadNueva.getCentroDeportivo().getBarrio(), actividadNueva.getCentroDeportivo().getTelefono(),
-                        "imageSource", new ArrayList<HorarioDTO>());
+                        imagenString, new ArrayList<HorarioDTO>());
                 HorarioDTO horarioDTO = HorarioMapper.fromServicioIdtoHorarioDTO(actividadNueva.getActividadId());
                 superActividadDTOtemporal.addHorario(horarioDTO);
                 hashDeActividades.put(servicioIdSinHorario, superActividadDTOtemporal);

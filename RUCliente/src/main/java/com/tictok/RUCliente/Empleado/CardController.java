@@ -26,7 +26,7 @@ public class CardController {
 
     void setDatosActividad(SuperActividadDTO actividad){
         //imageSrc seria la src dentro de mi computadora, tendria que ser en la base
-        Image image = new Image(getClass().getResourceAsStream(actividad.getImageSrc()));
+        Image image = new Image(getClass().getResourceAsStream(actividad.getImageString()));
         imagen.setImage(image);
         nombre.setText(actividad.getNombreServicio());
         costo.setText("Costo: " + actividad.getPrecio());
