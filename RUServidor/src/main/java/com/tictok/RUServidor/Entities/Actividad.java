@@ -1,6 +1,5 @@
 package com.tictok.RUServidor.Entities;
 
-import com.tictok.RUServidor.Entities.NotTables.Imagen;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 
 import javax.persistence.*;

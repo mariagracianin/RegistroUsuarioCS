@@ -43,8 +43,8 @@ public class CuentaController {
         return cuentaService.autenticar(cuentaDTOaAutenticar);
     }
 
-    @GetMapping("/mail")
-    public MegaUsuarioDTO getMegaUsuarioDTOfromMail(@RequestParam(name = "mail") String mail) throws CuentaNoExisteException {
+    @GetMapping("/getDatos/{mail}")
+    public MegaUsuarioDTO getMegaUsuarioDTOfromMail(@PathVariable String mail) throws CuentaNoExisteException {
         return cuentaService.getMegaUsuarioDTOfromMail(mail);
     }
 

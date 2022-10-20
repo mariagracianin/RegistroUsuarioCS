@@ -1,12 +1,15 @@
 package com.tictok.RUServidor.Services;
 
+import com.tictok.Commons.CanchaConHorariosYCuposDTO;
 import com.tictok.Commons.ReservaDTO;
-import com.tictok.RUServidor.Entities.Cancha;
+import com.tictok.Commons.SuperActividadDTO;
+import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
-import com.tictok.RUServidor.Entities.ReservaCancha;
-import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.*;
+import com.tictok.RUServidor.Mappers.ActividadMapper;
+import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.CanchaRepository;
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -92,5 +96,37 @@ public class CanchaService {
 
         ReservaCancha reservaCancha = new ReservaCancha(usuarioPadre, usuario, cancha, dateFecha);
         return reservaCanchaRepository.save(reservaCancha);
+    }
+
+    public List<SuperCanchaDTO> findAll() {
+        List<Cancha> canchaList = canchaRepository.findAll();
+        if (canchaList.isEmpty()){
+            return null;
+        }
+        List<SuperCanchaDTO> listaSuperCanchaDTO = CanchaMapper.fromCanchaListToSuperCanchaDTOList(canchaList);
+        return listaSuperCanchaDTO;
+    }
+
+    public CanchaConHorariosYCuposDTO getCanchaConHorariosYCuposDTO(String centroDeportivo, String canchaNombre) throws EntidadNoExisteException {
+        List<Cancha> listaDeCanchas = canchaRepository.findByCentroAndNombre(centroDeportivo, canchaNombre);
+        if (listaDeCanchas.isEmpty()){
+            throw new EntidadNoExisteException("La cancha de ese centro y ese nombre no existe");
+        }
+        Cancha canchaPadre = listaDeCanchas.get(0);
+
+        Integer precio = canchaPadre.getPrecio();
+        CentroDeportivo centro = canchaPadre.getCentroDeportivo();
+        String address = centro.getAddress();
+        String barrio = centro.getBarrio();
+        String telefono = centro.getTelefono();
+
+        for (int i = 0; i< listaDeCanchas.size(); i++){
+            //TODO Conseguir los horarios de las canchas con sus cupos
+        }
+
+
+        return null;
+
+
     }
 }

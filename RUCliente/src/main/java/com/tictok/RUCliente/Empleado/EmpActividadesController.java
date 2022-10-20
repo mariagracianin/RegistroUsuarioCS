@@ -61,15 +61,16 @@ public class EmpActividadesController implements Initializable {
                 System.out.println("BARRIO: " + actividadDTOI.getBarrio());
                 System.out.println(actividadDTOI.getPaseLibre());
                 System.out.println("SUS HORARIOS---------------");
-                System.out.println(actividadDTOI.getHorarios().size()+"horario--------------------------------------------------------------------------------------------------");
+                System.out.println(actividadDTOI.getHorarios().size()+"horario/s--------------------------------------------------------------------------------------------------");
                 for(int j=0; j<actividadDTOI.getHorarios().size(); j++){
                     System.out.println("DIA: " + actividadDTOI.getHorarios().get(j).getDia());
                     System.out.println("INICIO: " + actividadDTOI.getHorarios().get(j).getHoraInicio());
                     System.out.println("FIN: " + actividadDTOI.getHorarios().get(j).getHoraFin());
                 }
             }
-            listSuperActividadesDTO.get(0).setImageSrc("/com/tictok/RUCliente/GETFITlogin.png");
-            listSuperActividadesDTO.get(1).setImageSrc("/com/tictok/RUCliente/GETFITlogin.png");
+            listSuperActividadesDTO.get(0).setImageString("/com/tictok/RUCliente/GETFITlogin.png");
+            listSuperActividadesDTO.get(1).setImageString("/com/tictok/RUCliente/GETFITlogin.png");
+
 
             return listSuperActividadesDTO;
         }catch (Exception e){

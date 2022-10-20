@@ -18,6 +18,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.tictok:Commons:0.0.1-SNAPSHOT'
+	implementation 'commons-io:commons-io:2.5'
 }
 
 tasks.named('test') {

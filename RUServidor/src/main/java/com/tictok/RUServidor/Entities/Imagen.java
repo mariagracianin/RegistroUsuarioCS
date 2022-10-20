@@ -1,7 +1,4 @@
-package com.tictok.RUServidor.Entities.NotTables;
-
-import com.tictok.RUServidor.Entities.Actividad;
-import com.tictok.RUServidor.Entities.Cancha;
+package com.tictok.RUServidor.Entities;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -22,8 +19,15 @@ public class Imagen {
     private Set<Cancha> canchas = new LinkedHashSet<>();
 
     @Lob
-    @Column(name = "imagen_str", nullable = false)
-    private String imagenStr;
+    @Column(name = "imagen_bytes", nullable = false)
+    private String imagenString;
+
+    public Imagen() {
+    }
+
+    public Imagen(String imagenString) {
+        this.imagenString = imagenString;
+    }
 
     public Set<Cancha> getCanchas() {
         return canchas;
@@ -41,12 +45,12 @@ public class Imagen {
         this.actividads = actividads;
     }
 
-    public String getImagenStr() {
-        return imagenStr;
+    public String getImagenString() {
+        return imagenString;
     }
 
-    public void setImagenStr(String imagenStr) {
-        this.imagenStr = imagenStr;
+    public void setImagenString(String imagenStr) {
+        this.imagenString = imagenStr;
     }
 
     public Long getId() {

@@ -1,11 +1,17 @@
 package com.tictok.RUCliente.Empleado;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.Commons.UsuarioDTO;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -16,6 +22,9 @@ public class EmpMisDatosController implements Initializable {
 
     @Autowired
     EmpleadoController empleadoController;
+
+    @Autowired
+    UsuarioRest usuarioRest;
 
     public Label lblNombre;
     public Label lblApellido;
@@ -30,7 +39,29 @@ public class EmpMisDatosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //lblNombre.setText(usuario.getNombre());
+        HttpResponse<String> response = usuarioRest.buscarDatosFromUsuarioLogeado();
+        if(response.getCode()==200){
+            ObjectMapper objectMapper = new ObjectMapper();
+            MegaUsuarioDTO megaUsuarioDTO = null;
+            try {
+                megaUsuarioDTO = objectMapper.readValue(response.getBody(), MegaUsuarioDTO.class);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+            System.out.println(megaUsuarioDTO.getNombre());
+            lblNombre.setText(megaUsuarioDTO.getNombre());
+            lblApellido.setText(megaUsuarioDTO.getApellido());
+            lblCedula.setText(""+ megaUsuarioDTO.getCedula());
+            lblMail.setText(megaUsuarioDTO.getCuentaMail());
+            lblDireccion.setText(megaUsuarioDTO.getAddress());
+            lblTel.setText(megaUsuarioDTO.getTelefono());
+            lblSaldoActual.setText("" + megaUsuarioDTO.getSaldo());
+            lblSobregiro.setText("" +megaUsuarioDTO.getSobregiro());
+            lblFechaVenCarne.setText(megaUsuarioDTO.getVencimientoCarne());
+        }else {
+            throw new RuntimeException();
+        }
+ lblNombre.setText(usuario.getNombre());
         //actualizar las labels con la info del usuario, a partir de la minicuenta que tengo hacer request
     }
     public void setUsuario(MiniCuentaDTO minicuenta){

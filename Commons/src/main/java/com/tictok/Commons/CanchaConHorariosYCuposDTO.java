@@ -1,36 +1,34 @@
 package com.tictok.Commons;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.util.List;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class SuperCanchaDTO {
+public class CanchaConHorariosYCuposDTO {
+
     private String nombreServicio;
     private String nombreCentro;
     private Integer precio;
     private String address;
     private String barrio;
     private String telefono;
-    private List<HorarioDTO> horarios;
-    private String imageSrc;
+    private List<HorarioConCuposDTO> horariosConCupos;
 
-    public SuperCanchaDTO(){
+    public CanchaConHorariosYCuposDTO() {
     }
 
-    public SuperCanchaDTO(String nombreServicio, String nombreCentro, Integer precio, String address, String barrio, String telefono, List<HorarioDTO> horarios) {
+    public CanchaConHorariosYCuposDTO(String nombreServicio, String nombreCentro, Integer precio, String address, String barrio, String telefono, List<HorarioConCuposDTO> horariosConCupos) {
         this.nombreServicio = nombreServicio;
         this.nombreCentro = nombreCentro;
         this.precio = precio;
         this.address = address;
         this.barrio = barrio;
         this.telefono = telefono;
-        this.horarios = horarios;
+        this.horariosConCupos = horariosConCupos;
     }
 
-    public void addHorario(HorarioDTO horarioDTO){
-        horarios.add(horarioDTO);
+    public void addHorarioConCupos(HorarioConCuposDTO horarioConCuposDTO){
+        horariosConCupos.add(horarioConCuposDTO);
     }
+
     public String getNombreServicio() {
         return nombreServicio;
     }
@@ -39,20 +37,20 @@ public class SuperCanchaDTO {
         this.nombreServicio = nombreServicio;
     }
 
+    public String getNombreCentro() {
+        return nombreCentro;
+    }
+
+    public void setNombreCentro(String nombreCentro) {
+        this.nombreCentro = nombreCentro;
+    }
+
     public Integer getPrecio() {
         return precio;
     }
 
     public void setPrecio(Integer precio) {
         this.precio = precio;
-    }
-
-    public String getNombreCentro() {
-        return nombreCentro;
-    }
-
-    public void setNombreCentro(String nombreCeentro) {
-        this.nombreCentro = nombreCeentro;
     }
 
     public String getAddress() {
@@ -66,6 +64,7 @@ public class SuperCanchaDTO {
     public String getBarrio() {
         return barrio;
     }
+
     public void setBarrio(String barrio) {
         this.barrio = barrio;
     }
@@ -78,19 +77,11 @@ public class SuperCanchaDTO {
         this.telefono = telefono;
     }
 
-    public List<HorarioDTO> getHorarios() {
-        return horarios;
+    public List<HorarioConCuposDTO> getHorariosConCupos() {
+        return horariosConCupos;
     }
 
-    public void setHorarios(List<HorarioDTO> horarios) {
-        this.horarios = horarios;
-    }
-
-    public String getImageSrc() {
-        return imageSrc;
-    }
-
-    public void setImageSrc(String imageSrc) {
-        this.imageSrc = imageSrc;
+    public void setHorariosConCupos(List<HorarioConCuposDTO> horariosConCupos) {
+        this.horariosConCupos = horariosConCupos;
     }
 }
