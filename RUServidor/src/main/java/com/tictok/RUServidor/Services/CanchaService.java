@@ -1,10 +1,8 @@
 package com.tictok.RUServidor.Services;
 
-import com.tictok.Commons.CanchaConHorariosYCuposDTO;
-import com.tictok.Commons.ReservaDTO;
-import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
+import com.tictok.RUServidor.Entities.NotTables.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Exceptions.*;
@@ -19,10 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalTime;
+import java.util.*;
 
 @Service
 public class CanchaService {
@@ -109,7 +108,7 @@ public class CanchaService {
 
     public CanchaConHorariosYCuposDTO getCanchaConHorariosYCuposDTO(String centroDeportivo, String canchaNombre) throws EntidadNoExisteException {
         List<Cancha> listaDeCanchas = canchaRepository.findByCentroAndNombre(centroDeportivo, canchaNombre);
-        if (listaDeCanchas.isEmpty()){
+        if (listaDeCanchas.isEmpty()) {
             throw new EntidadNoExisteException("La cancha de ese centro y ese nombre no existe");
         }
         Cancha canchaPadre = listaDeCanchas.get(0);
@@ -120,13 +119,36 @@ public class CanchaService {
         String barrio = centro.getBarrio();
         String telefono = centro.getTelefono();
 
-        for (int i = 0; i< listaDeCanchas.size(); i++){
-            //TODO Conseguir los horarios de las canchas con sus cupos
+        CanchaConHorariosYCuposDTO canchaConHorariosYCuposDTO = new CanchaConHorariosYCuposDTO(canchaNombre, centroDeportivo,
+                precio, address, barrio, telefono, new ArrayList<HorarioConCuposDTO>());
+
+        Date fechaHoy = Date.valueOf(LocalDate.now());
+        Date fechaFin = Date.valueOf(LocalDate.now().plusDays(6));
+        Cancha cancha;
+        int dia;
+        int horaInicio;
+        int horaFin;
+        CuentaReservas cuentaReservas;
+        int reservada;
+
+
+        List<CuentaReservas> canchasReservadas = reservaCanchaRepository.conseguirHorariosReservadosEntreFechas(canchaNombre, centroDeportivo, fechaHoy, fechaFin);
+
+
+        for (int i = 0; i < listaDeCanchas.size(); i++) {
+            cancha = listaDeCanchas.get(i);
+            dia = HorarioMapper.getDia(cancha.getCanchaId().getDia());
+            horaInicio = HorarioMapper.fromLocalTimeToIntHora(cancha.getCanchaId().getHoraInicio());
+            horaFin = HorarioMapper.fromLocalTimeToIntHora(cancha.getCanchaId().getHoraFin());
+            reservada = 1;
+            for (int j = 0; j < canchasReservadas.size(); j++) {
+                cuentaReservas = canchasReservadas.get(j);
+                if (cancha.getCanchaId().equals(cuentaReservas.getServicioId())) {
+                    reservada = 0;
+                }
+            }
+            canchaConHorariosYCuposDTO.addHorarioConCupos(new HorarioConCuposDTO(dia, horaInicio, horaFin, reservada));
         }
-
-
-        return null;
-
-
+        return canchaConHorariosYCuposDTO;
     }
 }

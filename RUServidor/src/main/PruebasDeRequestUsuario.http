@@ -31,13 +31,13 @@ Content-Type: application/json
 
 {
   "cedulaUsuario": "52788472",
-  "nombreCentro": "CanchasVarias",
-  "nombreActividad": "LaCanchita",
+  "nombreCentro": "centro",
+  "nombreActividad": "cancha",
   "tipo": "Cancha",
   "horario":
-      {"dia": 3,
-       "horaInicio": 1430,
-       "horaFin": 1530
+      {"dia": 5,
+       "horaInicio": 1000,
+       "horaFin": 1100
        },
   "codigoReserva": null,
   "codigoReservaPadre": null
@@ -53,7 +53,7 @@ Content-Type: application/json
   "nombreActividad": "LaCanchita",
   "tipo": "Cancha",
   "horario":
-    {"dia": 3,
+    {"dia": 1,
     "horaInicio": 1430,
     "horaFin": 1530
   },
