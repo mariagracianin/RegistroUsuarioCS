@@ -5,15 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
-import javafx.collections.FXCollections;
+import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,16 +26,23 @@ import java.util.ResourceBundle;
 
 @Component
 public class EmpActividadesController implements Initializable {
+    @FXML
+    public BorderPane pane;
     @Autowired
     EmpleadoController empleadoController;
+    @Autowired
+    ReservarActividadController reservarActividadController;
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
 
     @FXML
     private GridPane contenedorAct;
-    private List<SuperActividadDTO> actividadesActuales= new ArrayList<>();
-    private MyListenerAct listenerAct;
+    private List<SuperActividadDTO> actividadesActuales;
+
+    private SuperActividadDTO estaActividad;
+
+
 
     private List<SuperActividadDTO> getDatos(){
         try {
@@ -61,6 +68,8 @@ public class EmpActividadesController implements Initializable {
                     System.out.println("FIN: " + actividadDTOI.getHorarios().get(j).getHoraFin());
                 }
             }
+            listSuperActividadesDTO.get(0).setImageSrc("/com/tictok/RUCliente/GETFITlogin.png");
+            listSuperActividadesDTO.get(1).setImageSrc("/com/tictok/RUCliente/GETFITlogin.png");
 
             return listSuperActividadesDTO;
         }catch (Exception e){
@@ -93,25 +102,31 @@ public class EmpActividadesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        actividadesActuales= new ArrayList<>();
+        contenedorAct.getChildren().clear();
         actividadesActuales.addAll(getDatos());
         int column=0;
         int row=0;
+
         try {
-        for (int i=0; i<actividadesActuales.size(); i++){
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("cardActividad.fxml"));
-            SplitPane actBox = fxmlLoader.load();
+            for (int i=0; i<actividadesActuales.size(); i++){
+                estaActividad =actividadesActuales.get(i);
 
-            CardActividadController cardController = fxmlLoader.getController();
-            cardController.setDatosActividad(actividadesActuales.get(i),listenerAct);
-            if (column == 3) {
-                column = 0;
-                row++;
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+                SplitPane actBox = fxmlLoader.load(EmpActividadesController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardActividad.fxml"));
+
+                CardActividadController cardController = fxmlLoader.getController();
+                cardController.setDatosActividad(actividadesActuales.get(i));
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                contenedorAct.add(actBox,column++,row);
+                GridPane.setMargin(actBox, new Insets(10));
+
             }
-            contenedorAct.add(actBox,column++,row);
-            GridPane.setMargin(actBox, new Insets(10));
-
-        }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -138,4 +153,5 @@ public class EmpActividadesController implements Initializable {
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
         empleadoController.cerrarSesion(actionEvent);
     }
+
 }

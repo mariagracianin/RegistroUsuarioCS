@@ -2,6 +2,7 @@ package com.tictok.RUCliente.Empleado;
 
 //import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +25,7 @@ public class EmpCanchasController implements Initializable {
     EmpleadoController empleadoController;
     @FXML
     private GridPane contenedorCanchas;
-    private List<SuperCanchaDTO> canchasActuales= new ArrayList<>();
-    private MyListenerCan listenerCan;
+    private List<SuperCanchaDTO> canchasActuales;
 
     private List<SuperCanchaDTO> getDatos(){
         //aca mery me devolveria la lista de supercanchas q tengo q mostrar al usuario
@@ -54,17 +54,20 @@ public class EmpCanchasController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        canchasActuales= new ArrayList<>();
+        contenedorCanchas.getChildren().clear();
         canchasActuales.addAll(getDatos());
         int column=0;
         int row=0;
         try {
             for (int i=0; i<canchasActuales.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("cardActividad.fxml"));
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxmll"));
                 SplitPane actBox = fxmlLoader.load();
 
                 CardCanchaController cardController = fxmlLoader.getController();
-                cardController.setDatosCancha(canchasActuales.get(i), listenerCan);
+                cardController.setDatosCancha(canchasActuales.get(i));
                 if (column == 3) {
                     column = 0;
                     row++;
