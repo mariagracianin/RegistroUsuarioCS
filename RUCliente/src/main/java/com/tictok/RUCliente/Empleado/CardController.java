@@ -34,7 +34,7 @@ public class CardController {
 
     }
     void setDatosCancha(SuperCanchaDTO cancha){
-        Image image = new Image(getClass().getResourceAsStream(cancha.getImageSrc()));
+        Image image = new Image(getClass().getResourceAsStream(cancha.getImageString()));
         imagen.setImage(image);
         nombre.setText(cancha.getNombreServicio());
         costo.setText("Costo: "+ cancha.getPrecio());
