@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.85" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardController">
+<SplitPane dividerPositions="0.85" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardCanchaController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="294.0" styleClass="mainPane">
          <children>
@@ -54,7 +54,7 @@
       </AnchorPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="50.0">
          <children>
-            <Button fx:id="btnReservar" alignment="CENTER" contentDisplay="CENTER" layoutX="-79.0" layoutY="74.0" mnemonicParsing="false" onAction="#guardarReserva" prefHeight="27.0" prefWidth="200.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Reservar" textAlignment="CENTER">
+            <Button fx:id="btnReservar" alignment="CENTER" contentDisplay="CENTER" layoutX="-79.0" layoutY="74.0" mnemonicParsing="false" onAction="#abrirVentanaReservaConDatos" prefHeight="27.0" prefWidth="200.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Reservar" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font></Button>

@@ -106,4 +106,6 @@ public class SuperActividadDTO {
     public void setHorarios(List<HorarioDTO> horarios) {
         this.horarios = horarios;
     }
+
+
 }

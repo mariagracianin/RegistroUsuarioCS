@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +34,7 @@ public class EmpCanchasController implements Initializable {
 
     @FXML
     private GridPane contenedorCanchas;
-    private List<SuperCanchaDTO> canchasActuales= new ArrayList<>();
+    private List<SuperCanchaDTO> canchasActuales;
 
     private List<SuperCanchaDTO> getDatos(){
         try {
@@ -88,16 +89,19 @@ public class EmpCanchasController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        canchasActuales= new ArrayList<>();
+        contenedorCanchas.getChildren().clear();
         canchasActuales.addAll(getDatos());
         int column=0;
         int row=0;
         try {
             for (int i=0; i<canchasActuales.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("cardActividadOCancha.fxml"));
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxmll"));
                 SplitPane actBox = fxmlLoader.load();
 
-                CardController cardController = fxmlLoader.getController();
+                CardCanchaController cardController = fxmlLoader.getController();
                 cardController.setDatosCancha(canchasActuales.get(i));
                 if (column == 3) {
                     column = 0;

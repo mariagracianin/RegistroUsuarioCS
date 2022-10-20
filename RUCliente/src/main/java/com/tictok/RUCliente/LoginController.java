@@ -53,7 +53,7 @@ public class LoginController {
                 cargarVistaAdmin(actionEvent);
             }
         }else {
-            //abro ventana emergente error y vuelve a abrir el login
+            //abro ventana emergente error
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
@@ -65,16 +65,6 @@ public class LoginController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
-
-            FXMLLoader fxmlLoader2 = new FXMLLoader();
-            fxmlLoader2.setControllerFactory(Main.getContext()::getBean);
-            Parent root2 = fxmlLoader2.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
-            Stage stage2 =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-            stage2.setTitle("Login");
-            Scene escena = new Scene(root2);
-            escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
-            stage.setScene(escena);
-            stage.show();
         }
     }
     @FXML
