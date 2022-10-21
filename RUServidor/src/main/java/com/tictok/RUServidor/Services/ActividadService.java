@@ -44,13 +44,13 @@ public class ActividadService {
         this.imagenRepository = imagenRepository;
         this.centroService = centroService;
 
-        //agregarImagenPrueba();
+        agregarImagenPrueba();
         this.cuentaService = cuentaService;
     }
 
     private void agregarImagenPrueba() throws IOException {
         Imagen imagen = new Imagen();
-        FileInputStream fis = new FileInputStream("C:/Users/mavid/OneDrive/Escritorio/proyecto/RegistroUsuarioCS/RUCliente/src/main/resources/com/tictok/RUCliente/encoded-20221021003546.txt");
+        FileInputStream fis = new FileInputStream("C:/Users/agustin/Downloads/imagenTICString.txt");
         String laImagen = IOUtils.toString(fis, "UTF-8");
         imagen.setImagenString(laImagen);
         imagenRepository.save(imagen);
