@@ -1,15 +1,18 @@
 package com.tictok.RUCliente.Empleado;
 
-import com.tictok.Commons.HorarioDTO;
-import com.tictok.Commons.SuperCanchaDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.*;
+import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -22,14 +25,8 @@ import java.util.ResourceBundle;
 public class ReservarCanchaController implements Initializable {
 
     public GridPane contenedorHorarios;
-    private List<HorarioDTO> horariosCancha;
-    //labels de horario
-    public Label lblDiaDeLaSemana;
-    public Label lblHoraInicio;
-    public Label lblHoraFin;
-    public Label lblCuposLibres;
-    public Button btnAgregarHorario;
-    //
+    private List<HorarioConCuposDTO> horariosConCuposCancha;
+
     public Label nombreCan;
     public Label precioCan;
     public Label lblNombreCentro;
@@ -37,25 +34,34 @@ public class ReservarCanchaController implements Initializable {
 
     private SuperCanchaDTO estaCancha;
 
+    @Autowired
+    CentroDeportivoRest centroDeportivoRest;
+
     public void setEstaCancha(SuperCanchaDTO estaCancha) {
         this.estaCancha = estaCancha;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        horariosCancha= new ArrayList<>();
+        setLabelsCancha();
+        horariosConCuposCancha = new ArrayList<>();
+        try {
+            horariosConCuposCancha = obtenerHorarioConCupos();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         contenedorHorarios.getChildren().clear();
-        horariosCancha.addAll(this.estaCancha.getHorarios());
+        horariosConCuposCancha.addAll(horariosConCuposCancha);
         int row=0;
         try {
-            for (int i=0; i<horariosCancha.size(); i++){
+            for (int i = 0; i< horariosConCuposCancha.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardHorarioCancha.fxmll"));
                 SplitPane actBox = fxmlLoader.load();
 
                 CardHorarioCanchaController cardController = fxmlLoader.getController();
-                cardController.setDatosHorario(horariosCancha.get(i));
+                cardController.setDatosHorario(horariosConCuposCancha.get(i));
 
                 contenedorHorarios.add(actBox,1,row++);
                 GridPane.setMargin(actBox, new Insets(10));
@@ -66,5 +72,19 @@ public class ReservarCanchaController implements Initializable {
             e.printStackTrace();
         }
     }
+    private List<HorarioConCuposDTO> obtenerHorarioConCupos() throws JsonProcessingException {
+        HttpResponse<String> response = centroDeportivoRest.obtenerCanchaConCupos(estaCancha.getNombreCentro(),estaCancha.getNombreServicio());
+        ObjectMapper objectMapper = new ObjectMapper();
+        CanchaConHorariosYCuposDTO canchaConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), CanchaConHorariosYCuposDTO.class);
+        return canchaConHorariosYCuposDTO.getHorariosConCupos();
+    }
+
+    public void setLabelsCancha(){
+        nombreCan.setText(estaCancha.getNombreServicio());
+        direccionCan.setText(estaCancha.getAddress() +", " + estaCancha.getBarrio());
+        precioCan.setText("Costo: $" + estaCancha.getPrecio());
+        lblNombreCentro.setText("Centro Deportivo: "+ estaCancha.getNombreCentro());
+    }
+
 
 }

@@ -1,21 +1,17 @@
 package com.tictok.RUServidor.Services;
 
+import com.tictok.Commons.Reserva2DTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.RUServidor.Entities.Actividad;
-import com.tictok.RUServidor.Entities.Imagen;
+import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
-import com.tictok.RUServidor.Entities.ReservaActividad;
-import com.tictok.RUServidor.Entities.Usuario;
+import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.CuposAgotadosException;
 import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
-import com.tictok.RUServidor.Repositories.ActividadRepository;
-import com.tictok.RUServidor.Repositories.ImagenRepository;
-import com.tictok.RUServidor.Repositories.ReservaActividadRepository;
-import com.tictok.RUServidor.Repositories.UsuarioRepository;
+import com.tictok.RUServidor.Repositories.*;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,29 +28,33 @@ public class ActividadService {
     private final UsuarioRepository usuarioRepository;
     private final ActividadRepository actividadRepository;
     private final ReservaActividadRepository reservaActividadRepository;
+    private final CentroService centroService;
+    private final CuentaService cuentaService;
 
     private final ImagenRepository imagenRepository;
 
     @Autowired
-    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository) throws IOException {
+    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository, CentroService centroService, CuentaService cuentaService) throws IOException {
         this.usuarioRepository = usuarioRepository;
         this.actividadRepository = actividadRepository;
         this.reservaActividadRepository = reservaActividadRepository;
         this.imagenRepository = imagenRepository;
+        this.centroService = centroService;
 
-        agregarImagenPrueba();
+        //agregarImagenPrueba();
+        this.cuentaService = cuentaService;
     }
 
     private void agregarImagenPrueba() throws IOException {
         Imagen imagen = new Imagen();
-        FileInputStream fis = new FileInputStream("C:/Users/agustin/Downloads/encoded-20221019170808.txt");
+        FileInputStream fis = new FileInputStream("C:/Users/mavid/OneDrive/Escritorio/proyecto/RegistroUsuarioCS/RUCliente/src/main/resources/com/tictok/RUCliente/encoded-20221021003546.txt");
         String laImagen = IOUtils.toString(fis, "UTF-8");
         imagen.setImagenString(laImagen);
         imagenRepository.save(imagen);
     }
 
-    public ReservaDTO reservarActividad(ReservaDTO reservaDTO) throws CuposAgotadosException {
-        Usuario usuario = usuarioRepository.findById(reservaDTO.getCedulaUsuario()).get();
+    public ReservaDTO reservarActividad(Reserva2DTO reservaDTO) throws CuposAgotadosException, CuentaNoExisteException {
+        Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(reservaDTO.getHorario());
         ServicioId actividadId = new ServicioId(reservaDTO.getNombreActividad(), reservaDTO.getNombreCentro(),
                 horarioId.getDia(), horarioId.getHoraInicio(), horarioId.getHoraFin());
@@ -85,5 +85,7 @@ public class ActividadService {
         List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
         return listaSuperActividadesDTO;
     }
+
+
 
 }

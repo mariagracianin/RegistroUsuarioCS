@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Controllers;
 
 
+import com.tictok.Commons.ActividadConHorariosYCuposDTO;
 import com.tictok.Commons.CanchaConHorariosYCuposDTO;
 import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.Commons.SuperCanchaDTO;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("servicio")
+@RequestMapping("/servicio")
 public class ServiciosController {
 
     private final CanchaService canchaService;
@@ -28,9 +29,13 @@ public class ServiciosController {
         this.actividadService = actividadService;
     }
 
-    @GetMapping("cancha/{centroDeportivo}/{canchaNombre}")
-    public CanchaConHorariosYCuposDTO getCanchaConHorariosYCupos(@PathVariable String centroDeportivo,
-                                                                 @PathVariable String canchaNombre) throws EntidadNoExisteException {
+    @GetMapping("/actividad/{nombreCentro}/{nombreActividad}")
+    public ActividadConHorariosYCuposDTO getActividad(@PathVariable String nombreCentro, @PathVariable String nombreActividad) throws Exception {
+        return null;
+    }
+
+    @GetMapping("/cancha/{centroDeportivo}/{canchaNombre}")
+    public CanchaConHorariosYCuposDTO getCanchaConHorariosYCupos(@PathVariable String centroDeportivo, @PathVariable String canchaNombre) throws EntidadNoExisteException {
         return canchaService.getCanchaConHorariosYCuposDTO(centroDeportivo, canchaNombre);
     }
 

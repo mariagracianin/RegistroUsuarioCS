@@ -1,5 +1,6 @@
 package com.tictok.RUCliente.Empleado;
 
+import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.HorarioDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +14,7 @@ import java.util.ResourceBundle;
 
 @Component
 public class CardHorarioCanchaController implements Initializable {
-    private HorarioDTO horarioSeleccionado;
+    private HorarioConCuposDTO horarioSeleccionado;
     @FXML
     public Label lblDiaDeLaSemana;
     @FXML
@@ -29,8 +30,9 @@ public class CardHorarioCanchaController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-    void setDatosHorario(HorarioDTO horario){
-        this.horarioSeleccionado=horario;
+    void setDatosHorario(HorarioConCuposDTO horario){
+        horarioSeleccionado=horario;
+
         if (horario.getDia()==1){
             lblDiaDeLaSemana.setText("Lunes");
         }else if(horario.getDia()==2){

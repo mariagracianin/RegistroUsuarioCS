@@ -40,9 +40,6 @@ public class EmpActividadesController implements Initializable {
     private GridPane contenedorAct;
     private List<SuperActividadDTO> actividadesActuales;
 
-    private SuperActividadDTO estaActividad;
-
-
 
     private List<SuperActividadDTO> getDatos(){
         try {
@@ -52,52 +49,11 @@ public class EmpActividadesController implements Initializable {
             System.out.println(responseBody);
             ObjectMapper mapper = new ObjectMapper();
             List<SuperActividadDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
-            for(int i = 0; i<listSuperActividadesDTO.size(); i++){
-                SuperActividadDTO actividadDTOI = listSuperActividadesDTO.get(i);
-                System.out.println("ACTIVIDAD----------------");
-                System.out.println("NOMBRE CENTRO: " + actividadDTOI.getNombreCentro());
-                System.out.println("NOMBRE SERVICIO: " + actividadDTOI.getNombreServicio());
-                System.out.println("ADRESS: " + actividadDTOI.getAddress());
-                System.out.println("BARRIO: " + actividadDTOI.getBarrio());
-                System.out.println(actividadDTOI.getPaseLibre());
-                System.out.println("SUS HORARIOS---------------");
-                System.out.println(actividadDTOI.getHorarios().size()+"horario/s--------------------------------------------------------------------------------------------------");
-                for(int j=0; j<actividadDTOI.getHorarios().size(); j++){
-                    System.out.println("DIA: " + actividadDTOI.getHorarios().get(j).getDia());
-                    System.out.println("INICIO: " + actividadDTOI.getHorarios().get(j).getHoraInicio());
-                    System.out.println("FIN: " + actividadDTOI.getHorarios().get(j).getHoraFin());
-                }
-            }
-            listSuperActividadesDTO.get(0).setImageString("/com/tictok/RUCliente/GETFITlogin.png");
-            listSuperActividadesDTO.get(1).setImageString("/com/tictok/RUCliente/GETFITlogin.png");
-
 
             return listSuperActividadesDTO;
         }catch (Exception e){
             throw new RuntimeException(e);
         }
-
-        //aca mery me devolveria la lista de superactividades q tengo q mostrar al usuario
-        /*List<SuperActividadDTO> actividades= new ArrayList<>();
-        HorarioConCuposDTO h1 = new HorarioConCuposDTO(3,13,14,15);
-        HorarioConCuposDTO h2 = new HorarioConCuposDTO(4,13,14,-1);
-        HorarioConCuposDTO h3 = new HorarioConCuposDTO(3,13,14,10);
-        ArrayList<HorarioConCuposDTO> h = new ArrayList<HorarioConCuposDTO>();
-        h.add(h1);
-        h.add(h2);
-        h.add(h3);
-
-        SuperActividadDTO a1= new SuperActividadDTO("Yoga", 500, false, "Club Bigua","direc","Pocitos","12345678",h, "/com/tictok/RUCliente/GETFITlogin.png");
-        SuperActividadDTO a2= new SuperActividadDTO("GYM", 400, true, "ACJ","direc","Centro","12345678",h,"/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg");
-        SuperActividadDTO a3= new SuperActividadDTO("Natacion", 500, false, "ACJ","direc","Punta Carretas","12345678",h,"/com/tictok/RUCliente/Empleado/imgactividadprueba.jpg");
-
-        actividades.add(a1);
-        actividades.add(a2);
-        actividades.add(a3);
-        actividades.add(a1);
-
-        return actividades;*/
-        //return null;
 
     }
 
@@ -111,7 +67,6 @@ public class EmpActividadesController implements Initializable {
 
         try {
             for (int i=0; i<actividadesActuales.size(); i++){
-                estaActividad =actividadesActuales.get(i);
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
@@ -135,7 +90,7 @@ public class EmpActividadesController implements Initializable {
     }
 
 
-    public void verReservas(ActionEvent actionEvent) {
+    public void verReservas(ActionEvent actionEvent) throws IOException {
         empleadoController.verReservas(actionEvent);
     }
 

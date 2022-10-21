@@ -1,8 +1,6 @@
 package com.tictok.RUServidor.Controllers;
 
-import com.tictok.Commons.NuevoCentroDTO;
-import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.CentroDeportivo;
 import com.tictok.RUServidor.Services.ActividadService;
 import com.tictok.RUServidor.Services.CanchaService;
@@ -41,4 +39,5 @@ public class CentroController {
     public List<SuperCanchaDTO> getAllCanchas(){
         return canchaService.findAll();
     }
+
 }

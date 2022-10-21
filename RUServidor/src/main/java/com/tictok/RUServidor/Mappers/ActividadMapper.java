@@ -1,4 +1,5 @@
 package com.tictok.RUServidor.Mappers;
+import com.tictok.Commons.ActividadConHorariosYCuposDTO;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUServidor.Entities.Actividad;
@@ -43,6 +44,5 @@ public class ActividadMapper {
         }
         return hashDeActividades.values().stream().toList();
     }
-
 
 }
