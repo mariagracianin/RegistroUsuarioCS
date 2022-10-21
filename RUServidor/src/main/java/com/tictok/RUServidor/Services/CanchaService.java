@@ -108,7 +108,7 @@ public class CanchaService {
     }
 
     public List<SuperCanchaDTO> buscarCanchas(String campoBusqueda){
-        List<Cancha> canchaList = canchaRepository.findByNombreOBarrioIsLike(campoBusqueda, campoBusqueda, campoBusqueda, campoBusqueda);
+        List<Cancha> canchaList = canchaRepository.findByNombreOBarrioIsLike(campoBusqueda.toUpperCase());
         if (canchaList.isEmpty()){
             return null;
         }
