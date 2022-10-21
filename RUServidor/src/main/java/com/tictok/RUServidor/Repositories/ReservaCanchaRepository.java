@@ -26,12 +26,4 @@ public interface ReservaCanchaRepository extends JpaRepository<ReservaCancha, Lo
     List<CuentaReservas> conseguirHorariosReservadosEntreFechas(String nombreServicio, String centroDeportivo, Date fechaStart, Date fechaEnd);
 
 
-    @Query("""
-            select new com.tictok.RUServidor.Entities.NotTables.CuentaReservas(r.cancha.canchaId, count(r.id)) from ReservaCancha r
-            where r.cancha.canchaId.nombreServicio = ?1 and r.cancha.canchaId.centroDeportivo = ?2 and r.fecha between ?3 and ?4
-            group by r.cancha.canchaId
-    """)
-    List<CuentaReservas> aggregateReservasCanchaEntreFechas(String nombreServicio, String centroDeportivo, Date fechaStart, Date fechaEnd);
-
-
 }

@@ -26,19 +26,20 @@ import java.util.*;
 @Service
 public class CanchaService {
 
-
+    private final CuentaService cuentaService;
     private final UsuarioRepository usuarioRepository;
     private final CanchaRepository canchaRepository;
     private final ReservaCanchaRepository reservaCanchaRepository;
 
     @Autowired
-    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository) {
+    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService) {
         this.usuarioRepository = usuarioRepository;
         this.canchaRepository = canchaRepository;
         this.reservaCanchaRepository = reservaCanchaRepository;
+        this.cuentaService = cuentaService;
     }
 
-    public ReservaDTO reservarCancha(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException {
+    public ReservaDTO reservarCancha(Reserva2DTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
         ReservaCancha reservaCancha;
         ReservaDTO reservaDTOADevolver = null;
         if (reservaDTO.getCodigoReservaPadre() == null){
@@ -54,9 +55,9 @@ public class CanchaService {
         return reservaDTOADevolver;
     }
 
-    private ReservaCancha reservarCanchaPadre(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException {
-
-        Usuario usuario = usuarioRepository.findById(reservaDTO.getCedulaUsuario()).get();
+    private ReservaCancha reservarCanchaPadre(Reserva2DTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, CuentaNoExisteException {
+        Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
+        //Usuario usuario = usuarioRepository.findById(reservaDTO.getCedulaUsuario()).get();
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(reservaDTO.getHorario());
         ServicioId canchaId = new ServicioId(reservaDTO.getNombreActividad(), reservaDTO.getNombreCentro(),
                 horarioId.getDia(), horarioId.getHoraInicio(), horarioId.getHoraFin());
@@ -77,8 +78,8 @@ public class CanchaService {
         return reservaCanchaRepository.save(reservaCancha);
     }
 
-    private ReservaCancha reservarCanchaHijo(ReservaDTO reservaDTO) throws ReservaPadreNoExisteException, ReservaPosteriorAlFinException {
-        Usuario usuario = usuarioRepository.findById(reservaDTO.getCedulaUsuario()).get();
+    private ReservaCancha reservarCanchaHijo(Reserva2DTO reservaDTO) throws ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
+        Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         Optional<ReservaCancha> reservaPadreO = reservaCanchaRepository.findById(reservaDTO.getCodigoReservaPadre());
         if (reservaPadreO.isEmpty()){
             throw new ReservaPadreNoExisteException();
@@ -129,7 +130,7 @@ public class CanchaService {
         int horaInicio;
         int horaFin;
         CuentaReservas cuentaReservas;
-        int reservada;
+        int cuposLibres;
 
 
         List<CuentaReservas> canchasReservadas = reservaCanchaRepository.conseguirHorariosReservadosEntreFechas(canchaNombre, centroDeportivo, fechaHoy, fechaFin);
@@ -140,14 +141,14 @@ public class CanchaService {
             dia = HorarioMapper.getDia(cancha.getCanchaId().getDia());
             horaInicio = HorarioMapper.fromLocalTimeToIntHora(cancha.getCanchaId().getHoraInicio());
             horaFin = HorarioMapper.fromLocalTimeToIntHora(cancha.getCanchaId().getHoraFin());
-            reservada = 1;
+            cuposLibres = 1;
             for (int j = 0; j < canchasReservadas.size(); j++) {
                 cuentaReservas = canchasReservadas.get(j);
                 if (cancha.getCanchaId().equals(cuentaReservas.getServicioId())) {
-                    reservada = 0;
+                    cuposLibres = 0;
                 }
             }
-            canchaConHorariosYCuposDTO.addHorarioConCupos(new HorarioConCuposDTO(dia, horaInicio, horaFin, reservada));
+            canchaConHorariosYCuposDTO.addHorarioConCupos(new HorarioConCuposDTO(dia, horaInicio, horaFin, cuposLibres));
         }
         return canchaConHorariosYCuposDTO;
     }

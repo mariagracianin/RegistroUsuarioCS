@@ -3,6 +3,7 @@ package com.tictok.RUCliente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,8 +47,8 @@ public class UsuarioRest {
         }
     }
 
-   /*public HttpResponse<String> hacerReserva(String nombreCentro, String nombreActividad, HorarioDTO horario){
-       String reservarJSON = "";
+   public HttpResponse<String> hacerReserva(String nombreCentro, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoReserva, Long codigoReservaPadre){
+       /*String reservarJSON = "";
        try {
            ObjectMapper jsonObjectMapper = new ObjectMapper();
            ReservaDTO reservarDTO = new ReservaDTO(mailUsuario,nombreCentro,nombreActividad,horario);
@@ -63,7 +64,8 @@ public class UsuarioRest {
            return response;
        }catch (Exception e){
            throw new RuntimeException(e);
-       }
-   }*/
+       }*/
+       return null;
+   }
 
 }

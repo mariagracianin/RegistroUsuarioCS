@@ -1,19 +1,17 @@
 package com.tictok.RUServidor.Services;
 
-import com.tictok.Commons.ActividadConHorariosYCuposDTO;
+import com.tictok.Commons.Reserva2DTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
+import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.CuposAgotadosException;
 import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
-import com.tictok.RUServidor.Repositories.ActividadRepository;
-import com.tictok.RUServidor.Repositories.ImagenRepository;
-import com.tictok.RUServidor.Repositories.ReservaActividadRepository;
-import com.tictok.RUServidor.Repositories.UsuarioRepository;
+import com.tictok.RUServidor.Repositories.*;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +20,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -33,11 +29,12 @@ public class ActividadService {
     private final ActividadRepository actividadRepository;
     private final ReservaActividadRepository reservaActividadRepository;
     private final CentroService centroService;
+    private final CuentaService cuentaService;
 
     private final ImagenRepository imagenRepository;
 
     @Autowired
-    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository, CentroService centroService) throws IOException {
+    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository, CentroService centroService, CuentaService cuentaService) throws IOException {
         this.usuarioRepository = usuarioRepository;
         this.actividadRepository = actividadRepository;
         this.reservaActividadRepository = reservaActividadRepository;
@@ -45,6 +42,7 @@ public class ActividadService {
         this.centroService = centroService;
 
         //agregarImagenPrueba();
+        this.cuentaService = cuentaService;
     }
 
     private void agregarImagenPrueba() throws IOException {
@@ -55,8 +53,8 @@ public class ActividadService {
         imagenRepository.save(imagen);
     }
 
-    public ReservaDTO reservarActividad(ReservaDTO reservaDTO) throws CuposAgotadosException {
-        Usuario usuario = usuarioRepository.findById(reservaDTO.getCedulaUsuario()).get();
+    public ReservaDTO reservarActividad(Reserva2DTO reservaDTO) throws CuposAgotadosException, CuentaNoExisteException {
+        Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(reservaDTO.getHorario());
         ServicioId actividadId = new ServicioId(reservaDTO.getNombreActividad(), reservaDTO.getNombreCentro(),
                 horarioId.getDia(), horarioId.getHoraInicio(), horarioId.getHoraFin());
