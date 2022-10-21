@@ -40,13 +40,4 @@ public class CentroController {
         return canchaService.findAll();
     }
 
-    @GetMapping("/actividad/{nombreCentro}/{nombreActividad}")
-    public ActividadConHorariosYCuposDTO getActividad(@PathVariable String nombreCentro, @PathVariable String nombreActividad) throws Exception {
-        return null;
-    }
-
-    @GetMapping("/cancha/{nombreCentro}/{nombreCancha}")
-    public CanchaConHorariosYCuposDTO getCancha(@PathVariable String nombreCentro, @PathVariable String nombreCancha) throws Exception {
-        return canchaService.getCanchaConHorariosYCuposDTO(nombreCentro, nombreCancha);
-    }
 }

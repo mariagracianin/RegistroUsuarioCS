@@ -46,7 +46,7 @@ public class UsuarioRest {
         }
     }
 
-   /*public HttpResponse<String> hacerReserva(String mailUsuario, String nombreCentro, String nombreActividad, HorarioDTO horario){
+   /*public HttpResponse<String> hacerReserva(String nombreCentro, String nombreActividad, HorarioDTO horario){
        String reservarJSON = "";
        try {
            ObjectMapper jsonObjectMapper = new ObjectMapper();
