@@ -33,7 +33,7 @@ public class CentroDeportivoRest {
 
     public HttpResponse<String> obtenerActividades(){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/actividades")
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades")
                     .header("Content-Type", "application/json")
                     .asString();
             return response;
@@ -44,7 +44,29 @@ public class CentroDeportivoRest {
 
     public HttpResponse<String> obtenerCanchas(){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/canchas")
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas")
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerActividadesByFiltro(String filtro){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividad/"+filtro)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerCanchasByFiltro(String filtro){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/cancha/"+filtro)
                     .header("Content-Type", "application/json")
                     .asString();
             return response;
