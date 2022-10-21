@@ -36,27 +36,26 @@ public class CentroDeportivoRest {
         }
     }
 
-//    public HttpResponse<String> guardarActividad(String nombreServicio, String precio, String cupos, Boolean paseLibre, String imagen, List<HorarioDTO> horarios){
-//        String nuevaActividadJSON = "";
-//        try {
-//            ObjectMapper jsonObjectMapper = new ObjectMapper();
-//            NuevaActividadDTO nuevaActividadDTO = new NuevaActividadDTO(nombreServicio,precio,cupos,paseLibre,imagen,horarios);
-//            nuevaActividadJSON = jsonObjectMapper.writeValueAsString(nuevaActividadDTO);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        try {
-//            HttpResponse<String> response = Unirest.post("http://localhost:8080/centro/postActividad/" + miniCuenta.getMailMiniCuenta())
-//                    .header("Content-Type", "application/json")
-//                    .body(nuevaActividadJSON)
-//                    .asString();
-//            return response;
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//    }
+    public HttpResponse<String> guardarActividad(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String imagen, List<HorarioDTO> horarios){
+        String nuevaActividadJSON = "";
+        try {
+            ObjectMapper jsonObjectMapper = new ObjectMapper();
+            NuevaActividadDTO nuevaActividadDTO = new NuevaActividadDTO(nombreServicio,precio,cupos,paseLibre,imagen,horarios);
+            nuevaActividadJSON = jsonObjectMapper.writeValueAsString(nuevaActividadDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            HttpResponse<String> response = Unirest.post("http://localhost:8080/centro/postActividad/" + miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .body(nuevaActividadJSON)
+                    .asString();
+            return response;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public HttpResponse<String> obtenerActividades(){
         try {

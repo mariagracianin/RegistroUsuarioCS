@@ -8,6 +8,7 @@ import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.CuposAgotadosException;
 import com.tictok.RUServidor.Mappers.ActividadMapper;
+import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
@@ -108,6 +109,12 @@ public class ActividadService {
         }
     }
 
-
-
+    public List<SuperActividadDTO> buscarActividades(String campoBusqueda){
+        List<Actividad> actividadList = actividadRepository.findByNombreOBarrioIsLike(campoBusqueda, campoBusqueda, campoBusqueda, campoBusqueda);
+        if (actividadList.isEmpty()){
+            return null;
+        }
+        List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
+        return listaSuperActividadDTO;
+    }
 }

@@ -47,8 +47,8 @@ public class ServiciosController {
     }
 
     @GetMapping("actividades/{campoBusqueda}")
-    public List<SuperCanchaDTO> getActividadesBuscadas(@PathVariable String campoBusqueda){
-        return canchaService.buscarCanchas(campoBusqueda);
+    public List<SuperActividadDTO> getActividadesBuscadas(@PathVariable String campoBusqueda){
+        return actividadService.buscarActividades(campoBusqueda);
     }
 
     @GetMapping("canchas/{campoBusqueda}")
