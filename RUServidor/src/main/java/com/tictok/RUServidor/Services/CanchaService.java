@@ -106,6 +106,15 @@ public class CanchaService {
         return listaSuperCanchaDTO;
     }
 
+    public List<SuperCanchaDTO> buscarCanchas(String campoBusqueda){
+        List<Cancha> canchaList = canchaRepository.findByNombreOBarrioIsLike(campoBusqueda, campoBusqueda, campoBusqueda, campoBusqueda);
+        if (canchaList.isEmpty()){
+            return null;
+        }
+        List<SuperCanchaDTO> listaSuperCanchaDTO = CanchaMapper.fromCanchaListToSuperCanchaDTOList(canchaList);
+        return listaSuperCanchaDTO;
+    }
+
     public CanchaConHorariosYCuposDTO getCanchaConHorariosYCuposDTO(String centroDeportivo, String canchaNombre) throws EntidadNoExisteException {
         List<Cancha> listaDeCanchas = canchaRepository.findByCentroAndNombre(centroDeportivo, canchaNombre);
         if (listaDeCanchas.isEmpty()) {
