@@ -1,8 +1,6 @@
 package com.tictok.RUServidor.Services;
 
-import com.tictok.Commons.Reserva2DTO;
-import com.tictok.Commons.ReservaDTO;
-import com.tictok.Commons.SuperActividadDTO;
+import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Entities.NotTables.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
@@ -17,10 +15,13 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Date;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -87,6 +88,24 @@ public class ActividadService {
         }
         List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
         return listaSuperActividadesDTO;
+    }
+
+    public void guardarActividad(NuevaActividadDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
+        CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
+
+        for(int i=0; i<nuevaActividadDTO.getHorarios().size(); i++){
+            HorarioDTO horarioDTOi = nuevaActividadDTO.getHorarios().get(i);
+
+            Integer horaInicio = horarioDTOi.getHoraInicio();
+            Integer horaFin = horarioDTOi.getHoraFin();
+
+            LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100));
+            LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100));
+
+            Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),DayOfWeek.of(horarioDTOi.getDia()),horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+            actividadRepository.save(actividadI);
+            centro1.setActividad(actividadI);
+        }
     }
 
 

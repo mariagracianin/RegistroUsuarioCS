@@ -149,4 +149,8 @@ public class CentroDeportivo {
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
     }
+
+    public void setActividad(Actividad actividad){
+        this.getActividades().add(actividad);
+    }
 }

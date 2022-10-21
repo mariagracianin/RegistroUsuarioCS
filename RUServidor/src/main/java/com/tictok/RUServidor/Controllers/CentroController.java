@@ -2,6 +2,7 @@ package com.tictok.RUServidor.Controllers;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.CentroDeportivo;
+import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Services.ActividadService;
 import com.tictok.RUServidor.Services.CanchaService;
 import com.tictok.RUServidor.Services.CentroService;
@@ -30,14 +31,12 @@ public class CentroController {
         CentroDeportivo centro = centroService.saveNewCentro(nuevoCentroDTO);
     }
 
-    @GetMapping("/actividades")
-    public List<SuperActividadDTO> getAllActividades(){
-        return actividadService.findAll();
+    @PostMapping("/postActividad/{mailCentro}")
+    public void postNewActividad(@RequestBody NuevaActividadDTO nuevaActividadDTO, @PathVariable String mailCentro) throws CuentaNoExisteException {
+        actividadService.guardarActividad(nuevaActividadDTO, mailCentro);
+
     }
 
-    @GetMapping("/canchas")
-    public List<SuperCanchaDTO> getAllCanchas(){
-        return canchaService.findAll();
-    }
+
 
 }
