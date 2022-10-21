@@ -48,19 +48,30 @@ public class CentroService {
 
     public void crearPrimerCentro(){
         NuevoCentroDTO primerCentroDTO = new NuevoCentroDTO("centro@mail","contra","centro", "direccion2", "telefono2", "encargado2","rut2","razonSocial2","barrio");
+        NuevoCentroDTO segundoCentroDTO = new NuevoCentroDTO("centro2@mail","contra","centro2", "direccion3", "telefono3", "encargado3","rut3","razonSocial3","barrio2");
         CentroDeportivo primerCentro = saveNewCentro(primerCentroDTO);
+        CentroDeportivo segundoCentro = saveNewCentro(segundoCentroDTO);
+
         Cancha newCancha1 = new Cancha(primerCentro,"cancha_Tenis",DayOfWeek.MONDAY,LocalTime.of(10,00),LocalTime.of(11,00),1000,100);
         Cancha newCancha2 = new Cancha(primerCentro,"cancha_Fuchibol",DayOfWeek.MONDAY,LocalTime.of(10,00),LocalTime.of(11,00),1000,10);
         Cancha newCancha3 = new Cancha(primerCentro,"cancha_Fuchibol",DayOfWeek.MONDAY,LocalTime.of(9,00),LocalTime.of(10,00),1000,10);
         Actividad newActividad1 = new Actividad(primerCentro,"Tenis",DayOfWeek.MONDAY, LocalTime.of(10,00),LocalTime.of(11,00),1000,10,false);
         Actividad newActividad2 = new Actividad(primerCentro,"Tenis",DayOfWeek.SUNDAY, LocalTime.of(10,00),LocalTime.of(11,00),1000,10,false);
         Actividad newActividad3 = new Actividad(primerCentro,"Natacion",DayOfWeek.MONDAY, LocalTime.of(9,00),LocalTime.of(10,00),1000,10,false);
+
+        Actividad newActividad5 = new Actividad(segundoCentro,"Tenis2",DayOfWeek.MONDAY, LocalTime.of(10,00),LocalTime.of(11,00),1000,10,false);
+        Actividad newActividad6 = new Actividad(segundoCentro,"Tenis2",DayOfWeek.SUNDAY, LocalTime.of(10,00),LocalTime.of(11,00),1000,10,false);
+        Actividad newActividad7 = new Actividad(segundoCentro,"Natacion2",DayOfWeek.MONDAY, LocalTime.of(9,00),LocalTime.of(10,00),1000,10,false);
+
         canchaRepository.save(newCancha1);
         canchaRepository.save(newCancha2);
         canchaRepository.save(newCancha3);
         actividadRepository.save(newActividad1);
         actividadRepository.save(newActividad2);
         actividadRepository.save(newActividad3);
+        actividadRepository.save(newActividad5);
+        actividadRepository.save(newActividad6);
+        actividadRepository.save(newActividad7);
     }
 
     public CentroDeportivo saveNewCentro(NuevoCentroDTO nuevoCentroDTO) {

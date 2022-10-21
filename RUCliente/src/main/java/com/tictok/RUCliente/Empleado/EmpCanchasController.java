@@ -1,9 +1,11 @@
 package com.tictok.RUCliente.Empleado;
 
 //import com.tictok.Commons.HorarioConCuposDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.ActividadConHorariosYCuposDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
@@ -162,7 +164,12 @@ public class EmpCanchasController implements Initializable {
         btnBuscar.setGraphic(new ImageView(imagenLupa));
 
     }
-    public void llamarBuscador(ActionEvent actionEvent) {
-
+    public List<SuperActividadDTO> llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
+        System.out.println("lo llamaaaaaaaaaaaaaaaaaaaa");
+        System.out.println(txtBuscador.getText());
+        HttpResponse<String> response =  centroDeportivoRest.obtenerCanchasByFiltro(txtBuscador.getText());
+        ObjectMapper mapper = new ObjectMapper();
+        List<SuperActividadDTO> listSuperActividadesDTO = mapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
+        return listSuperActividadesDTO;
     }
 }
