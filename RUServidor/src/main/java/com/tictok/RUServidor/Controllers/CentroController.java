@@ -1,8 +1,6 @@
 package com.tictok.RUServidor.Controllers;
 
-import com.tictok.Commons.NuevoCentroDTO;
-import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.CentroDeportivo;
 import com.tictok.RUServidor.Services.ActividadService;
 import com.tictok.RUServidor.Services.CanchaService;
@@ -40,5 +38,15 @@ public class CentroController {
     @GetMapping("/canchas")
     public List<SuperCanchaDTO> getAllCanchas(){
         return canchaService.findAll();
+    }
+
+    @GetMapping("/actividad/{nombreCentro}/{nombreActividad}")
+    public ActividadConHorariosYCuposDTO getActividad(@PathVariable String nombreCentro, @PathVariable String nombreActividad) throws Exception {
+        return null;
+    }
+
+    @GetMapping("/cancha/{nombreCentro}/{nombreCancha}")
+    public CanchaConHorariosYCuposDTO getCancha(@PathVariable String nombreCentro, @PathVariable String nombreCancha) throws Exception {
+        return canchaService.getCanchaConHorariosYCuposDTO(nombreCentro, nombreCancha);
     }
 }

@@ -63,4 +63,17 @@ public class CentroDeportivoRest {
             throw new RuntimeException(e);
         }
     }
+
+    public HttpResponse<String> obtenerCanchaConCupos(String nombreCentro, String nombreCancha){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/cancha/"+nombreCentro+"/"+nombreCancha)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
