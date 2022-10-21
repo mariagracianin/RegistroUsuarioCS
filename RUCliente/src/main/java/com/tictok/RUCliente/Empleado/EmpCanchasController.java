@@ -165,7 +165,9 @@ public class EmpCanchasController implements Initializable {
 
     }
     public List<SuperActividadDTO> llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
-        HttpResponse<String> response =  centroDeportivoRest.obtenerCanchasByFiltro("");
+        System.out.println("lo llamaaaaaaaaaaaaaaaaaaaa");
+        System.out.println(txtBuscador.getText());
+        HttpResponse<String> response =  centroDeportivoRest.obtenerCanchasByFiltro(txtBuscador.getText());
         ObjectMapper mapper = new ObjectMapper();
         List<SuperActividadDTO> listSuperActividadesDTO = mapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
         return listSuperActividadesDTO;
