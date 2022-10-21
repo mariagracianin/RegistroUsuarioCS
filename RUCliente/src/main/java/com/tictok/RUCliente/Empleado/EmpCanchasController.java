@@ -164,12 +164,38 @@ public class EmpCanchasController implements Initializable {
         btnBuscar.setGraphic(new ImageView(imagenLupa));
 
     }
-    public List<SuperActividadDTO> llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
+    public void  llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
+        contenedorCanchas.getChildren().clear();
         System.out.println("lo llamaaaaaaaaaaaaaaaaaaaa");
         System.out.println(txtBuscador.getText());
         HttpResponse<String> response =  centroDeportivoRest.obtenerCanchasByFiltro(txtBuscador.getText());
+        System.out.println(response.getBody());
         ObjectMapper mapper = new ObjectMapper();
-        List<SuperActividadDTO> listSuperActividadesDTO = mapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
-        return listSuperActividadesDTO;
+        List<SuperCanchaDTO> listSuperDTO = mapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
+
+        int column=0;
+        int row=0;
+        try {
+            for (int i=0; i<listSuperDTO.size(); i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
+                SplitPane actBox = fxmlLoader.load();
+
+                CardCanchaController cardController = fxmlLoader.getController();
+                cardController.setDatosCancha(listSuperDTO.get(i));
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                contenedorCanchas.add(actBox,column++,row);
+                GridPane.setMargin(actBox, new Insets(10));
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
