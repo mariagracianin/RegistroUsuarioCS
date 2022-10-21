@@ -1,10 +1,12 @@
 package com.tictok.RUCliente.Empleado;
 
 //import com.tictok.Commons.HorarioConCuposDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.SuperActividadDTO;
+import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -32,6 +35,7 @@ public class EmpActividadesController implements Initializable {
     @FXML
     public BorderPane pane;
     public Button btnBuscar;
+    public TextField txtBuscador;
     @Autowired
     EmpleadoController empleadoController;
     @Autowired
@@ -141,6 +145,36 @@ public class EmpActividadesController implements Initializable {
         empleadoController.cerrarSesion(actionEvent);
     }
 
-    public void llamarBuscador(ActionEvent actionEvent) {
+    public void llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
+        contenedorAct.getChildren().clear();
+        System.out.println(txtBuscador.getText());
+        HttpResponse<String> response =  centroDeportivoRest.obtenerActividadesByFiltro(txtBuscador.getText());
+        System.out.println(response.getBody());
+        ObjectMapper mapper = new ObjectMapper();
+        List<SuperActividadDTO> listSuperDTO = mapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
+
+        int column=0;
+        int row=0;
+        try {
+            for (int i=0; i<listSuperDTO.size(); i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardActividad.fxml"));
+                SplitPane actBox = fxmlLoader.load();
+
+                CardActividadController cardController = fxmlLoader.getController();
+                cardController.setDatosActividad(listSuperDTO.get(i));
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                contenedorAct.add(actBox,column++,row);
+                GridPane.setMargin(actBox, new Insets(10));
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
