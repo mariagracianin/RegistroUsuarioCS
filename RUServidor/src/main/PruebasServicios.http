@@ -1,2 +1,22 @@
 ###
-GET http://localhost:8080/servicio/cancha/centro/cancha
+GET http://localhost:8080/servicio/canchas
+
+
+###
+POST http://localhost:8080/centro/postActividad/centro@mail
+Content-Type: application/json
+
+{
+    "nombreServicio": "pruebita",
+    "precio": 1000,
+    "cupos": 10,
+    "paseLibre": true,
+    "imagen": "fotito",
+    "horarios": [
+      {
+        "dia": 1,
+        "horaInicio": 1000,
+        "horaFin": 1100
+      }
+    ]
+}
