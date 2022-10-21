@@ -3,7 +3,9 @@ package com.tictok.RUCliente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
+import com.tictok.Commons.Reserva2DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,17 +48,17 @@ public class UsuarioRest {
         }
     }
 
-   /*public HttpResponse<String> hacerReserva(String nombreCentro, String nombreActividad, HorarioDTO horario){
+   public HttpResponse<String> hacerReserva(String nombreCentro, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoReservaPadre){
        String reservarJSON = "";
        try {
            ObjectMapper jsonObjectMapper = new ObjectMapper();
-           ReservaDTO reservarDTO = new ReservaDTO(mailUsuario,nombreCentro,nombreActividad,horario);
+           Reserva2DTO reservarDTO = new Reserva2DTO(miniCuenta.getMailMiniCuenta(),nombreCentro,nombreActividad,tipo,horarioDTO,null,codigoReservaPadre,"");
            reservarJSON = jsonObjectMapper.writeValueAsString(reservarDTO);
        }catch (Exception e){
            throw new RuntimeException(e);
        }
        try {
-           HttpResponse<String> response = Unirest.post("http://localhost:8080/NO SE AUN")
+           HttpResponse<String> response = Unirest.post("http://localhost:8080/usuario/reserva")
                    .header("Content-Type", "application/json")
                    .body(reservarJSON)
                    .asString();
@@ -64,6 +66,6 @@ public class UsuarioRest {
        }catch (Exception e){
            throw new RuntimeException(e);
        }
-   }*/
+   }
 
 }

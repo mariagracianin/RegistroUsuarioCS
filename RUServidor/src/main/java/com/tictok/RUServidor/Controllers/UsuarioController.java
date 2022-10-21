@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Controllers;
 
 import com.tictok.Commons.MegaUsuarioDTO;
+import com.tictok.Commons.Reserva2DTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Usuario;
@@ -50,9 +51,9 @@ public class UsuarioController  {
     }
 
     @PostMapping("/reserva")
-    public ReservaDTO postNewReserva(@RequestBody ReservaDTO reservaDTO)
+    public ReservaDTO postNewReserva(@RequestBody Reserva2DTO reservaDTO)
             throws TipoDeReservaNoExisteException, UsuarioNoExisteException, ReservaPosteriorAlInicioException,
-            CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuposAgotadosException {
+            CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuposAgotadosException, CuentaNoExisteException {
         if (reservaDTO.getTipo().equals("Cancha")){
             return canchaService.reservarCancha(reservaDTO);
         } else if (reservaDTO.getTipo().equals("Actividad")) {
