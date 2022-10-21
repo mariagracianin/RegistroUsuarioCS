@@ -1,5 +1,6 @@
 package com.tictok.RUCliente.Centro;
 
+import com.tictok.RUCliente.CentroDeportivoRest;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -22,6 +23,10 @@ public class CentroAgregarActController implements Initializable {
 
     @Autowired
     CentroController centroController;
+
+    @Autowired
+    CentroDeportivoRest centroDeportivoRest;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,8 +61,9 @@ public class CentroAgregarActController implements Initializable {
         centroController.verCanchas(actionEvent);
     }
 
-    public void guardarDatos(ActionEvent actionEvent) {
+    public void guardarDatos(ActionEvent actionEvent){
         if (txtCupos.isDisable()){
+            //centroDeportivoRest.guardarActividad(txtNombre.getText(),float)
             //mandar datos con pase libre = true
             //sin horarios
 
