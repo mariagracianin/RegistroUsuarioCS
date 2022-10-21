@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1074.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.EmpActividadesController">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1074.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.EmpMisReservasController">
    <left>
       <VBox prefHeight="637.0" prefWidth="174.0" styleClass="leftPane" BorderPane.alignment="CENTER">
          <children>
@@ -46,7 +46,7 @@
                         <Insets left="8.0" right="5.0" top="8.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="btnMisReservas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verReservas" prefHeight="40.0" prefWidth="223.0" text="Mis reservas" textAlignment="CENTER">
+                  <Button fx:id="btnMisReservas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="223.0" style="-fx-background-color: #49cead;" text="Mis reservas" textAlignment="CENTER">
                      <font>
                         <Font name="Candara Bold" size="20.0" />
                      </font></Button>
@@ -62,7 +62,7 @@
                         <Insets left="8.0" right="5.0" top="8.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="btnActividades" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="207.0" style="-fx-background-color: #49cead;" text="Actividades" textAlignment="CENTER">
+                  <Button fx:id="btnActividades" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verActividades" prefHeight="40.0" prefWidth="207.0" text="Actividades" textAlignment="CENTER">
                      <font>
                         <Font name="Candara Bold" size="20.0" />
                      </font></Button>
@@ -141,7 +141,7 @@
                </HBox.margin>
             </ImageView>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="46.0" />
-            <Label prefHeight="59.0" prefWidth="309.0" text="Actividades" textAlignment="CENTER" textFill="#bb86fc">
+            <Label prefHeight="59.0" prefWidth="309.0" text="Mis Reservas" textAlignment="CENTER" textFill="#bb86fc">
                <font>
                   <Font name="Century Gothic" size="40.0" />
                </font>
@@ -187,7 +187,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
          <content>
-            <GridPane fx:id="contenedorAct" prefHeight="0.0" prefWidth="3.0">
+            <GridPane fx:id="contenedorReservas" prefHeight="0.0" prefWidth="3.0">
             </GridPane>
          </content>
       </ScrollPane>

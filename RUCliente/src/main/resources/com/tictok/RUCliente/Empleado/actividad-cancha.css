@@ -9,12 +9,32 @@
     -fx-text-fill: #ffffff;
     -fx-alignment: center-left;
     -fx-border-radius: 20;
+    -fx-background-radius: 20;
 }
 .button:hover{
     -fx-background-color: #03DAC6;
     -fx-border-radius: 20;
+    -fx-background-radius: 20;
 }
 .button:pressed{
     -fx-background-color: #84f5d9;
     -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+.botonCancelar{
+    -fx-background-color: #CF6679;
+    -fx-text-fill: #ffffff;
+    -fx-alignment: center-left;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+.botonCancelar:hover{
+    -fx-background-color: #DF99A5;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+.botonCancelar:pressed{
+    -fx-background-color: #E9BBC3;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
 }

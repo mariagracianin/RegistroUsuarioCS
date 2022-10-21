@@ -42,12 +42,12 @@ public class ActividadService {
         this.reservaActividadRepository = reservaActividadRepository;
         this.imagenRepository = imagenRepository;
 
-        agregarImagenPrueba();
+        //agregarImagenPrueba();
     }
 
     private void agregarImagenPrueba() throws IOException {
         Imagen imagen = new Imagen();
-        FileInputStream fis = new FileInputStream("C:/Users/agustin/Downloads/encoded-20221019170808.txt");
+        FileInputStream fis = new FileInputStream("C:/Users/mavid/OneDrive/Escritorio/proyecto/RegistroUsuarioCS/RUCliente/src/main/resources/com/tictok/RUCliente/encoded-20221021003546.txt");
         String laImagen = IOUtils.toString(fis, "UTF-8");
         imagen.setImagenString(laImagen);
         imagenRepository.save(imagen);

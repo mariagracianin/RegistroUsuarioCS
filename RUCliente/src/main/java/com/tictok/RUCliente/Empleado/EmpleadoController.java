@@ -23,7 +23,18 @@ public class EmpleadoController implements Initializable {
 
     }
 
-    public void verReservas(ActionEvent actionEvent) {
+    public void verReservas(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpleadoController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empMisReservas.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Mis Reservas");
+
+        stage.show(); //no es ventana emergente
     }
 
     public void verActividades(ActionEvent actionEvent) throws IOException {

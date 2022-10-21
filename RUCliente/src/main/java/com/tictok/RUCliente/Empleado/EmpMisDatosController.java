@@ -35,7 +35,6 @@ public class EmpMisDatosController implements Initializable {
     public Label lblSaldoActual;
     public Label lblSobregiro;
     public Label lblFechaVenCarne;
-    private UsuarioDTO usuario;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,15 +60,10 @@ public class EmpMisDatosController implements Initializable {
         }else {
             throw new RuntimeException();
         }
- lblNombre.setText(usuario.getNombre());
-        //actualizar las labels con la info del usuario, a partir de la minicuenta que tengo hacer request
-    }
-    public void setUsuario(MiniCuentaDTO minicuenta){
-        //hacer request, y this.usuario = usuario de la request
     }
 
 
-    public void verReservas(ActionEvent actionEvent) {
+    public void verReservas(ActionEvent actionEvent) throws IOException {
         empleadoController.verReservas(actionEvent);
     }
 
