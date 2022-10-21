@@ -141,7 +141,7 @@
                </HBox.margin>
             </ImageView>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="46.0" />
-            <Label prefHeight="59.0" prefWidth="309.0" text="Canchas" textAlignment="CENTER" textFill="#bb86fc">
+            <Label prefHeight="71.0" prefWidth="230.0" text="Canchas" textAlignment="CENTER" textFill="#bb86fc">
                <font>
                   <Font name="Century Gothic" size="40.0" />
                </font>
@@ -157,13 +157,32 @@
                   </Lighting>
                </effect>
                <padding>
-                  <Insets left="20.0" top="20.0" />
+                  <Insets left="10.0" top="20.0" />
                </padding>
             </Label>
-            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="92.0" />
-            <HBox prefHeight="88.0" prefWidth="482.0" styleClass="round-layout" stylesheets="@../entidad_style.css">
+            <Separator opacity="0.2" orientation="VERTICAL" prefHeight="90.0" prefWidth="0.0" />
+            <Button fx:id="btnFiltros" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#desplegarVentanaFiltros" prefHeight="90.0" prefWidth="75.0" text="Filtros" textAlignment="CENTER">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
+            <Separator opacity="0.2" orientation="VERTICAL" prefHeight="90.0" prefWidth="0.0" />
+            <Button fx:id="btnUnirseAReserva" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ventanaIntroducirCodigoPadre" prefHeight="90.0" prefWidth="151.0" text="Unirse a reserva" textAlignment="CENTER">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Separator opacity="0.2" orientation="VERTICAL" prefHeight="90.0" prefWidth="0.0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Separator>
+            <HBox prefHeight="90.0" prefWidth="309.0" styleClass="round-layout" stylesheets="@../entidad_style.css">
                <children>
-                  <TextField prefHeight="31.0" prefWidth="437.0" promptText="Buscar">
+                  <TextField prefHeight="31.0" prefWidth="279.0" promptText="Buscar">
                      <HBox.margin>
                         <Insets top="30.0" />
                      </HBox.margin>

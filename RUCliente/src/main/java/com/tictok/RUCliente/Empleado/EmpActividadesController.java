@@ -75,6 +75,7 @@ public class EmpActividadesController implements Initializable {
 
                 CardActividadController cardController = fxmlLoader.getController();
                 cardController.setDatosActividad(actividadesActuales.get(i));
+                System.out.println(actividadesActuales.get(i));
                 if (column == 3) {
                     column = 0;
                     row++;

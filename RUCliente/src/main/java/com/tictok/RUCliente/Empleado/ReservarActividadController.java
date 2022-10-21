@@ -42,7 +42,6 @@ public class ReservarActividadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {//hacer request mery nombre centro, actividad, horariodto        int row=0;
-        setLabelsActividad();
         horariosConCupos = new ArrayList<>();
         horariosConCupos = obtenerHorarioConCupos();
         contenedorHorarios.getChildren().clear();
@@ -56,7 +55,7 @@ public class ReservarActividadController implements Initializable {
                 HBox horarioBox = fxmlLoader.load(ReservarActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardHorarioActividad.fxml"));
 
                 CardHorarioActividadController cardHorarioController = fxmlLoader.getController();
-                cardHorarioController.setDatosHorario(horariosConCupos.get(i));
+               // cardHorarioController.setDatosHorario(horariosConCupos.get(i));
 
                 contenedorHorarios.add(horarioBox, 1, row++);
                 //GridPane.setMargin(horarioBox, new Insets(10));
@@ -73,14 +72,12 @@ public class ReservarActividadController implements Initializable {
        return null;
     }
 
-    public void setLabelsActividad(){
+    public void setDatos(SuperActividadDTO estaActividad){
+        this.estaActividad = estaActividad;
         nombreAct.setText(estaActividad.getNombreServicio());
         direccionAct.setText(estaActividad.getAddress() +", " + estaActividad.getBarrio());
         precioAct.setText("Costo: $" + estaActividad.getPrecio());
         lblNombreCentro.setText("Centro Deportivo: "+ estaActividad.getNombreCentro());
     }
 
-    public void setEstaActividad(SuperActividadDTO estaActividad) {
-        this.estaActividad = estaActividad;
-    }
 }

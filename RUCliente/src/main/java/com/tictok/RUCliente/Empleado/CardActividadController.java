@@ -72,16 +72,20 @@ public class CardActividadController implements Initializable {
     }
 
 
-    public void abrirVentanaReservaConDatos(ActionEvent actionEvent) throws IOException {
+    public void abrirVentanaReservaConDatos(MouseEvent actionEvent) throws IOException {
+
+    }
+
+    public void abrirVentanaReservaConDatos(javafx.scene.input.MouseEvent mouseEvent) throws IOException {
         System.out.println(actividadSeleccionada.getNombreServicio());
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
         Parent root = fxmlLoader.load(CardActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/reservaActividad.fxml"));
 
         ReservarActividadController controller = fxmlLoader.getController();
-        controller.setEstaActividad(actividadSeleccionada);
+        controller.setDatos(actividadSeleccionada);
+
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Stage stage = new Stage();
         Scene escena = new Scene(root);
@@ -89,5 +93,4 @@ public class CardActividadController implements Initializable {
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.show();
     }
-
 }

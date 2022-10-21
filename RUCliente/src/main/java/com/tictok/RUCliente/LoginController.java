@@ -52,6 +52,9 @@ public class LoginController {
             if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("admin")){
                 cargarVistaAdmin(actionEvent);
             }
+            if(miniCuentaDTO.getTipoMiniCuentaDTO().equals("centro")){
+                cargarVistaCentro(actionEvent);
+            }
         }else {
             //abro ventana emergente error
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -111,6 +114,19 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Empresa");
+
+        stage.show(); //no es ventana emergente
+    }
+    public void cargarVistaCentro(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centro.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Centro");
 
         stage.show(); //no es ventana emergente
     }

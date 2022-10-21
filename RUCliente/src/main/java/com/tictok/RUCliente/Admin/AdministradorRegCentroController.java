@@ -38,7 +38,7 @@ public class AdministradorRegCentroController implements Initializable {
     public TextField razonSocial;
     public ChoiceBox opcionesBarrios;
 
-    private ObservableList<String> opcionesBarriosList = FXCollections.observableArrayList("Pocitos","Centro","Ciudad Vieja","Tres Cruces");
+    private ObservableList<String> opcionesBarriosList = FXCollections.observableArrayList("Pocitos","Centro","Ciudad Vieja","Tres Cruces","Malvín","Parque Rodó");
 
     @Autowired
     AdministradorController administradorController;

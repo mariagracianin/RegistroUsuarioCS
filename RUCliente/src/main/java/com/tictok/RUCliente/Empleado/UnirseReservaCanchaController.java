@@ -47,14 +47,16 @@ public class UnirseReservaCanchaController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            SplitPane reserva = fxmlLoader.load(UnirseReservaCanchaController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardReserva.fxml"));
+            SplitPane reserva = fxmlLoader.load(UnirseReservaCanchaController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardConfirmarUnirseReservaCancha.fxml"));
 
             UnirseReservaCanchaController cardController = fxmlLoader.getController();
            // cardController.setDatos(reservaQueMePasenDeLaBD);
 
             Stage stage = new Stage();
-            stage.setScene(new Scene(reserva));
+            Scene escena = new Scene(reserva);
+            stage.setScene(escena);
             stage.setTitle("Reserva");
+            escena.getStylesheets().add("/com/tictok/RUCliente/Empleado/actividad-cancha.css");
 
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();

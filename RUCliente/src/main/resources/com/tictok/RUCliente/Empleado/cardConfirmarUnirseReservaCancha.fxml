@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="pane" dividerPositions="0.9" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardReservaRealizadaController">
+<SplitPane fx:id="pane" dividerPositions="0.9" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.UnirseReservaCanchaController">
    <items>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="294.0" styleClass="mainPane">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="294.0">
          <children>
-            <VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="445.0" styleClass="mainPane" stylesheets="@actividad-cancha.css">
+            <VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="445.0">
                <children>
                   <Label fx:id="nombreReserva" prefHeight="1.0" prefWidth="316.0" text="Nombre" textFill="WHITE">
                      <font>
@@ -149,7 +149,7 @@
       </AnchorPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="50.0">
          <children>
-            <Button fx:id="btnCancelar" alignment="CENTER" contentDisplay="CENTER" layoutX="-80.0" layoutY="70.0" mnemonicParsing="false" onAction="#cancelarReserva" prefHeight="60.0" prefWidth="200.0" rotate="-90.0" styleClass="botonCancelar" stylesheets="@actividad-cancha.css" text="Cancelar" textAlignment="CENTER">
+            <Button fx:id="btnConfirmar" alignment="CENTER" contentDisplay="CENTER" layoutX="-80.0" layoutY="70.0" mnemonicParsing="false" onAction="#confirmarUnirse" prefHeight="60.0" prefWidth="200.0" rotate="-90.0" text="Confirmar" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="24.0" />
                </font>
