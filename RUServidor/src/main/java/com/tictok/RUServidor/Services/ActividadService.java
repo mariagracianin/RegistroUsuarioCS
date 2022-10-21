@@ -2,6 +2,7 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
+import com.tictok.RUServidor.Entities.NotTables.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
@@ -65,11 +66,13 @@ public class ActividadService {
         Date dateFecha = Date.valueOf(fecha);
 
         if (actividad.getCupos()!= -1){
-//            long cantidadDeReservas = reservaActividadRepository.countReservasActividadConFechaYHora(actividadId.getNombreServicio(),
-//                    actividadId.getCentroDeportivo(), actividadId.getHoraInicio(), dateFecha);
-//            if (cantidadDeReservas >= actividad.getCupos()){
-//                throw new CuposAgotadosException();
-//            }
+            List<CuentaReservas> cuentaReservasList = reservaActividadRepository.countReservasByServicioIdAndFecha(actividadId, dateFecha);
+            if (!cuentaReservasList.isEmpty()){
+                int cuposReservados = (int) cuentaReservasList.get(0).getCupos();
+                if (actividad.getCupos() <= cuposReservados){
+                    throw new CuposAgotadosException();
+                }
+            }
         }
 
         ReservaActividad reservaActividad = new ReservaActividad(usuario, dateFecha, actividad);

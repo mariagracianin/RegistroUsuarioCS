@@ -12,7 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ import java.util.ResourceBundle;
 public class EmpActividadesController implements Initializable {
     @FXML
     public BorderPane pane;
+    public Button btnBuscar;
     @Autowired
     EmpleadoController empleadoController;
     @Autowired
@@ -59,6 +63,7 @@ public class EmpActividadesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setImagenesBotones();
         actividadesActuales= new ArrayList<>();
         contenedorAct.getChildren().clear();
         actividadesActuales.addAll(getDatos());
@@ -75,6 +80,8 @@ public class EmpActividadesController implements Initializable {
 
                 CardActividadController cardController = fxmlLoader.getController();
                 cardController.setDatosActividad(actividadesActuales.get(i));
+                System.out.println(actividadesActuales.get(i).getNombreServicio()+ "HOLA");
+
                 if (column == 3) {
                     column = 0;
                     row++;
@@ -87,6 +94,30 @@ public class EmpActividadesController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setImagenesBotones() {
+            URL linkLupa = getClass().getResource("/com/tictok/RUCliente/Empleado/lupa.png");
+      /*  URL linkReservas = getClass().getResource("/com/tictok/RUCliente/Empleado/reserva.png");
+        URL linkActividades = getClass().getResource("/com/tictok/RUCliente/Empleado/actividad.png");
+        URL linkCancha = getClass().getResource("/com/tictok/RUCliente/Empleado/cancha.png");
+        URL linkMisDatos = getClass().getResource("/com/tictok/RUCliente/Empleado/datos.png");
+*/
+            Image imagenLupa = new Image(linkLupa.toString(),25,25,false,true);
+       /* Image imgReserva = new Image(linkReservas.toString(),30,30,false,true);
+        Image imgAct = new Image(linkActividades.toString(),30,30,false,true);
+        Image imgCan = new Image(linkCancha.toString(),30,30,false,true);
+        Image imgDatos = new Image(linkMisDatos.toString(),30,30,false,true);
+
+        btnMisReservas.setGraphic(new ImageView(imgReserva));
+        btnCanchas.setGraphic(new ImageView(imgCan));
+        btnActividades.setGraphic(new ImageView(imgAct));
+        btnDatos.setGraphic(new ImageView(imgDatos));
+
+        */
+            btnBuscar.setGraphic(new ImageView(imagenLupa));
+
+
     }
 
 
@@ -110,4 +141,6 @@ public class EmpActividadesController implements Initializable {
         empleadoController.cerrarSesion(actionEvent);
     }
 
+    public void llamarBuscador(ActionEvent actionEvent) {
+    }
 }

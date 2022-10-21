@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="150.0" prefWidth="340.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.UnirseReservaCanchaController">
+   <effect>
+      <Glow />
+   </effect>
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="43.0" prefWidth="131.0" text="Código para unirse:" textFill="WHITE">
+         <font>
+            <Font name="Candara Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnOK" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="155.0" layoutY="104.0" mnemonicParsing="false" onAction="#buscarReservaPadre" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: #03DAC6;" stylesheets="@actividad-cancha.css" text="OK">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></Button>
+      <TextField fx:id="txtCodigo" layoutX="100.0" layoutY="62.0" prefHeight="25.0" prefWidth="147.0" promptText="123456" />
+      <Label layoutX="80.0" layoutY="60.0" text="#" textFill="WHITE">
+         <font>
+            <Font name="Candara Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

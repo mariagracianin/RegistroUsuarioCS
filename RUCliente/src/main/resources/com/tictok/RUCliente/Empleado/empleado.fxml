@@ -17,7 +17,7 @@
    <top>
       <HBox prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="117.0" fitWidth="174.0" preserveRatio="true">
+            <ImageView fitHeight="117.0" fitWidth="174.0" preserveRatio="false">
                <image>
                   <Image url="/com/tictok/RUCliente/Empleado/GETFIT.png" />
                </image>

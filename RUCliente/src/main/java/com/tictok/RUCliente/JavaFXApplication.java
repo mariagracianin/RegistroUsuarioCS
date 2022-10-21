@@ -14,7 +14,7 @@ public class JavaFXApplication extends Application {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 		root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("login.fxml"));
-		primaryStage.setTitle("Login");
+		primaryStage.setTitle("GETFIT");
 		Scene escena = new Scene(root);
 		escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
 		primaryStage.setScene(escena);

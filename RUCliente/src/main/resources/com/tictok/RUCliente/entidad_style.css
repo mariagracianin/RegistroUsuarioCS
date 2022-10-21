@@ -60,3 +60,7 @@
     -fx-background-color: #D1AEFD;
     -fx-border-radius: 3;
 }
+
+.filtrosPane{
+    -fx-background-color: #616161;
+}

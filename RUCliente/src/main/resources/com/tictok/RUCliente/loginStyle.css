@@ -14,10 +14,10 @@
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
 }
 .button{
-    -fx-background-color: #49cead;
+    -fx-background-color: #57EB94;
 }
 .button:hover{
-    -fx-background-color: #6dedcd;
+    -fx-background-color: #ACF4CA;
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
 }
 .button:pressed{
@@ -25,7 +25,7 @@
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.5),10.0,0.0,0.0,10.0);
 }
 .text-field{
-    -fx-border-color: #84f5d9;
+    -fx-border-color: #57EB94;
     -fx-border-width: 2;
     -fx-background-color: #121212;
     -fx-text-fill: #ffffff;

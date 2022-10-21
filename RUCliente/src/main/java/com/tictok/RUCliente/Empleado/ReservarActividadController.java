@@ -43,7 +43,6 @@ public class ReservarActividadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {//hacer request mery nombre centro, actividad, horariodto        int row=0;
-        setLabelsActividad();
         horariosConCupos = new ArrayList<>();
         try {
             horariosConCupos = obtenerHorarioConCupos();
@@ -80,14 +79,12 @@ public class ReservarActividadController implements Initializable {
         return actividadConHorariosYCuposDTO.getHorariosConCupos();
     }
 
-    public void setLabelsActividad(){
+    public void setDatos(SuperActividadDTO estaActividad){
+        this.estaActividad = estaActividad;
         nombreAct.setText(estaActividad.getNombreServicio());
         direccionAct.setText(estaActividad.getAddress() +", " + estaActividad.getBarrio());
         precioAct.setText("Costo: $" + estaActividad.getPrecio());
         lblNombreCentro.setText("Centro Deportivo: "+ estaActividad.getNombreCentro());
     }
 
-    public void setEstaActividad(SuperActividadDTO estaActividad) {
-        this.estaActividad = estaActividad;
-    }
 }

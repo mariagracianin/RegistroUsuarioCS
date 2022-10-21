@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -18,6 +17,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.Image?>
 <BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1074.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.EmpMisReservasController">
    <left>
       <VBox prefHeight="637.0" prefWidth="174.0" styleClass="leftPane" BorderPane.alignment="CENTER">
@@ -40,7 +40,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                     <!--<Image url="/com/tictok/RUCliente/Empleado/reserva.png" />-->
+                     <Image url="/com/tictok/RUCliente/Empleado/reserva.png" />
                    </image>
                      <HBox.margin>
                         <Insets left="8.0" right="5.0" top="8.0" />
@@ -56,7 +56,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                     <!--<Image url="/com/tictok/RUCliente/Empleado/actividad.png" />-->
+                     <Image url="/com/tictok/RUCliente/Empleado/actividad.png" />
                   </image>
                      <HBox.margin>
                         <Insets left="8.0" right="5.0" top="8.0" />
@@ -72,13 +72,13 @@
                <children>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                     <!--<Image url="/com/tictok/RUCliente/Empleado/cancha.png" />-->
+                     <Image url="/com/tictok/RUCliente/Empleado/cancha.png" />
                   </image>
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="btnCanchas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verCanchas" prefHeight="40.0" prefWidth="256.0" text="Canchas" textAlignment="CENTER">
+                  <Button fx:id="btnCanchas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verCanchas" prefHeight="40.0" prefWidth="150.0" text="Canchas" textAlignment="CENTER">
                      <font>
                         <Font name="Candara Bold" size="20.0" />
                      </font></Button>
@@ -88,7 +88,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                     <!--<Image url="/com/tictok/RUCliente/Empleado/datos.png" />-->
+                     <Image url="/com/tictok/RUCliente/Empleado/datos.png" />
                   </image>
                      <HBox.margin>
                         <Insets left="8.0" right="5.0" top="8.0" />
@@ -134,7 +134,7 @@
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="63.0" prefWidth="44.0" />
             <ImageView fitHeight="90.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
                <image>
-               <!--<Image url="/com/tictok/RUCliente/Empleado/GETFIT.png" />-->
+               <Image url="/com/tictok/RUCliente/Empleado/GETFIT.png" />
             </image>
                <HBox.margin>
                   <Insets />
@@ -163,14 +163,9 @@
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="92.0" />
             <HBox prefHeight="88.0" prefWidth="482.0" styleClass="round-layout" stylesheets="@../entidad_style.css">
                <children>
-                  <TextField prefHeight="31.0" prefWidth="437.0" promptText="Buscar">
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
-                  </TextField>
                   <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                     <!--<Image url="/com/tictok/RUCliente/Empleado/lupa.png" />-->
+                     <Image url="/com/tictok/RUCliente/Empleado/lupa.png" />
                   </image>
                      <HBox.margin>
                         <Insets left="4.0" top="35.0" />
