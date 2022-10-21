@@ -17,7 +17,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,6 +35,14 @@ import java.util.ResourceBundle;
 
 @Component
 public class EmpCanchasController implements Initializable {
+    public Button btnBuscar;
+    public Button btnUnirseAReserva;
+    public Button btnCerrarSesion;
+    public Button btnReservasPasadas;
+    public Button btnDatos;
+    public Button btnCanchas;
+    public Button btnActividades;
+    public Button btnMisReservas;
     @Autowired
     EmpleadoController empleadoController;
 
@@ -61,6 +72,7 @@ public class EmpCanchasController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setImagenesBotones();
         canchasActuales= new ArrayList<>();
         contenedorCanchas.getChildren().clear();
         canchasActuales.addAll(getDatos());
@@ -110,20 +122,6 @@ public class EmpCanchasController implements Initializable {
         empleadoController.cerrarSesion(actionEvent);
     }
 
-    public void desplegarVentanaFiltros(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(EmpCanchasController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empCanchasConFiltros.fxml"));
-        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene escena = new Scene(root);
-        stage.setScene(escena);
-        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        stage.setTitle("Canchas");
-
-        stage.show(); //no es ventana emergente
-    }
-
     public void ventanaIntroducirCodigoPadre(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -138,6 +136,31 @@ public class EmpCanchasController implements Initializable {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+
+    }
+    private void setImagenesBotones(){
+        URL linkLupa = getClass().getResource("/com/tictok/RUCliente/Empleado/lupa.png");
+      /*  URL linkReservas = getClass().getResource("/com/tictok/RUCliente/Empleado/reserva.png");
+        URL linkActividades = getClass().getResource("/com/tictok/RUCliente/Empleado/actividad.png");
+        URL linkCancha = getClass().getResource("/com/tictok/RUCliente/Empleado/cancha.png");
+        URL linkMisDatos = getClass().getResource("/com/tictok/RUCliente/Empleado/datos.png");
+*/
+        Image imagenLupa = new Image(linkLupa.toString(),25,25,false,true);
+       /* Image imgReserva = new Image(linkReservas.toString(),30,30,false,true);
+        Image imgAct = new Image(linkActividades.toString(),30,30,false,true);
+        Image imgCan = new Image(linkCancha.toString(),30,30,false,true);
+        Image imgDatos = new Image(linkMisDatos.toString(),30,30,false,true);
+
+        btnMisReservas.setGraphic(new ImageView(imgReserva));
+        btnCanchas.setGraphic(new ImageView(imgCan));
+        btnActividades.setGraphic(new ImageView(imgAct));
+        btnDatos.setGraphic(new ImageView(imgDatos));
+
+        */
+        btnBuscar.setGraphic(new ImageView(imagenLupa));
+
+    }
+    public void llamarBuscador(ActionEvent actionEvent) {
 
     }
 }

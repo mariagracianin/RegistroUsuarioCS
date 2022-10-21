@@ -27,10 +27,10 @@ public class CentroController implements Initializable {
         Stage stageActual  = (Stage) source.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-        Parent root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("centroAgregarAct.fxml"));
+        Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroAgregarAct.fxml"));
         stageActual.setTitle("Agregar actividad");
         Scene escena = new Scene(root);
-        escena.getStylesheets().add("/com/tictok/RUCliente/entidadStyle.css");
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
         stageActual.show();
     }
@@ -52,5 +52,21 @@ public class CentroController implements Initializable {
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
         stageActual.show();
+    }
+
+    public void agregarCancha(ActionEvent actionEvent) throws IOException {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroAgregarCancha.fxml"));
+        stageActual.setTitle("Agregar cancha");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stageActual.setScene(escena);
+        stageActual.show();
+    }
+
+    public void verCanchas(ActionEvent actionEvent) {
     }
 }

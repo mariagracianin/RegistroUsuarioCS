@@ -60,7 +60,7 @@ public class ReservarActividadController implements Initializable {
                 HBox horarioBox = fxmlLoader.load(ReservarActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardHorarioActividad.fxml"));
 
                 CardHorarioActividadController cardHorarioController = fxmlLoader.getController();
-               // cardHorarioController.setDatosHorario(horariosConCupos.get(i));
+                cardHorarioController.setDatosHorario(horariosConCupos.get(i));
 
                 contenedorHorarios.add(horarioBox, 1, row++);
                 //GridPane.setMargin(horarioBox, new Insets(10));
