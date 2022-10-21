@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/servicio")
+@RequestMapping("servicio")
 public class ServiciosController {
 
     private final CanchaService canchaService;
@@ -30,5 +30,4 @@ public class ServiciosController {
                                                                  @PathVariable String canchaNombre) throws EntidadNoExisteException {
         return canchaService.getCanchaConHorariosYCuposDTO(centroDeportivo, canchaNombre);
     }
-
 }

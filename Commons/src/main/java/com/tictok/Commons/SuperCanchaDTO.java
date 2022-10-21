@@ -13,7 +13,7 @@ public class SuperCanchaDTO {
     private String barrio;
     private String telefono;
     private List<HorarioDTO> horarios;
-    private String imageSrc;
+    private String imageString;
 
     public SuperCanchaDTO(){
     }
@@ -25,6 +25,17 @@ public class SuperCanchaDTO {
         this.address = address;
         this.barrio = barrio;
         this.telefono = telefono;
+        this.horarios = horarios;
+    }
+
+    public SuperCanchaDTO(String nombreServicio, String nombreCentro, Integer precio, String address, String barrio, String telefono, String imageString, List<HorarioDTO> horarios) {
+        this.nombreServicio = nombreServicio;
+        this.nombreCentro = nombreCentro;
+        this.precio = precio;
+        this.address = address;
+        this.barrio = barrio;
+        this.telefono = telefono;
+        this.imageString = imageString;
         this.horarios = horarios;
     }
 
@@ -86,11 +97,11 @@ public class SuperCanchaDTO {
         this.horarios = horarios;
     }
 
-    public String getImageSrc() {
-        return imageSrc;
+    public String getImageString() {
+        return imageString;
     }
 
-    public void setImageSrc(String imageSrc) {
-        this.imageSrc = imageSrc;
+    public void setImageString(String imageString) {
+        this.imageString = imageString;
     }
 }

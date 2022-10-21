@@ -29,9 +29,15 @@ public class CanchaMapper {
                 superCanchaDTOtemporal.addHorario(horarioDTO);
             }
             else{
+                String imagenString;
+                try {
+                    imagenString = canchaNueva.getImagen().getImagenString();
+                } catch (NullPointerException e) {
+                    imagenString = null;
+                }
                 superCanchaDTOtemporal = new SuperCanchaDTO(servicioIdSinHorario.getNombreServicio(), servicioIdSinHorario.getCentroDeportivo(),
                         canchaNueva.getPrecio(), canchaNueva.getCentroDeportivo().getAddress(), canchaNueva.getCentroDeportivo().getBarrio(),
-                        canchaNueva.getCentroDeportivo().getTelefono(), new ArrayList<HorarioDTO>());
+                        canchaNueva.getCentroDeportivo().getTelefono(), imagenString, new ArrayList<HorarioDTO>());
             }
             HorarioDTO horarioDTO = HorarioMapper.fromServicioIdtoHorarioDTO(canchaNueva.getCanchaId());
             superCanchaDTOtemporal.addHorario(horarioDTO);

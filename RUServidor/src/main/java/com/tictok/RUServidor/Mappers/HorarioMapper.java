@@ -35,6 +35,20 @@ public class HorarioMapper {
         return dia;
     }
 
+    public static int getDia(DayOfWeek dia){
+        int diaNumero = 0;
+        switch (dia){
+            case MONDAY -> diaNumero = 1;
+            case TUESDAY -> diaNumero = 2;
+            case WEDNESDAY -> diaNumero = 3;
+            case THURSDAY -> diaNumero = 4;
+            case FRIDAY -> diaNumero = 5;
+            case SATURDAY -> diaNumero = 6;
+            case SUNDAY -> diaNumero = 7;
+        }
+        return diaNumero;
+    }
+
     public static LocalDate getFecha(DayOfWeek dia){
         LocalDate fecha = LocalDate.now();
         if (!fecha.getDayOfWeek().equals(dia)){
@@ -48,5 +62,11 @@ public class HorarioMapper {
         int horaInicio = servicioId.getHoraInicio().getHour()*100 + servicioId.getHoraInicio().getMinute();
         int horaFin = servicioId.getHoraFin().getHour()*100 + servicioId.getHoraFin().getMinute();
         return new HorarioDTO(dia, horaInicio, horaFin);
+    }
+
+    public static int fromLocalTimeToIntHora(LocalTime hora){
+        int hour = hora.getHour();
+        int minutes = hora.getMinute();
+        return hour*100 + minutes;
     }
 }
