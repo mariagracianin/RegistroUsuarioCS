@@ -55,7 +55,6 @@ public class CentroDeportivoRest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public HttpResponse<String> obtenerActividades(){
