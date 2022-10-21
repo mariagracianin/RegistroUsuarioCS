@@ -4,7 +4,6 @@ import com.tictok.RUServidor.Entities.Cancha;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,8 +15,7 @@ public interface CanchaRepository extends JpaRepository<Cancha, ServicioId> {
 
     @Query("""
             select c from Cancha c
-            where upper(c.canchaId.nombreServicio) like %:campoBusqueda% or upper(c.canchaId.centroDeportivo) like %:campoBusqueda% or
-             upper(c.centroDeportivo.barrio) like %:campoBusqueda% or upper(c.centroDeportivo.address) like %:campoBusqueda%""")
-    List<Cancha> findByNombreOBarrioIsLike(@Param("campoBusqueda") String campoBusqueda);
+            where upper(c.canchaId.nombreServicio) like upper(?1) or upper(c.canchaId.centroDeportivo) like upper(?2) or upper(c.centroDeportivo.barrio) like upper(?3) or upper(c.centroDeportivo.address) like upper(?4)""")
+    List<Cancha> findByNombreOBarrioIsLike(String nombreServicio, String centroDeportivo, String barrio, String address);
 
 }
