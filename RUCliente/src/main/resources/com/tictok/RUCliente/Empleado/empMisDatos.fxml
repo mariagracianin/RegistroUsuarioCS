@@ -167,21 +167,6 @@
             </Label>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="92.0" />
             <HBox prefHeight="88.0" prefWidth="482.0" styleClass="round-layout" stylesheets="@../entidad_style.css">
-               <children>
-                  <TextField prefHeight="31.0" prefWidth="437.0" promptText="Buscar">
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                     <Image url="/com/tictok/RUCliente/Empleado/lupa.png" />
-                  </image>
-                     <HBox.margin>
-                        <Insets left="4.0" top="35.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
             </HBox>
          </children>
       </HBox>
