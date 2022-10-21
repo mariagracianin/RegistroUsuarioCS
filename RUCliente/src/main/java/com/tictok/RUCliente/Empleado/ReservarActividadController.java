@@ -1,8 +1,9 @@
 package com.tictok.RUCliente.Empleado;
 
-import com.tictok.Commons.HorarioConCuposDTO;
-import com.tictok.Commons.HorarioDTO;
-import com.tictok.Commons.SuperActividadDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.*;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
 import javafx.fxml.FXML;
@@ -43,7 +44,11 @@ public class ReservarActividadController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {//hacer request mery nombre centro, actividad, horariodto        int row=0;
         horariosConCupos = new ArrayList<>();
-        horariosConCupos = obtenerHorarioConCupos();
+        try {
+            horariosConCupos = obtenerHorarioConCupos();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         contenedorHorarios.getChildren().clear();
         int row=0;
         System.out.println("Cargando horarios");
@@ -67,9 +72,11 @@ public class ReservarActividadController implements Initializable {
         }
     }
 
-    private List<HorarioConCuposDTO> obtenerHorarioConCupos(){
-       //SuperActividadDTO actConCupos =  centroDeportivoRest.obtenerActividadConCupos(estaActividad.getNombreCentro(),estaActividad.getNombreServicio());
-       return null;
+    private List<HorarioConCuposDTO> obtenerHorarioConCupos() throws JsonProcessingException {
+        HttpResponse<String> response = centroDeportivoRest.obtenerActividadConCupos(estaActividad.getNombreCentro(),estaActividad.getNombreServicio());
+        ObjectMapper objectMapper = new ObjectMapper();
+        ActividadConHorariosYCuposDTO actividadConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), ActividadConHorariosYCuposDTO.class);
+        return actividadConHorariosYCuposDTO.getHorariosConCupos();
     }
 
     public void setDatos(SuperActividadDTO estaActividad){

@@ -1,8 +1,9 @@
 package com.tictok.RUCliente.Empleado;
 
-import com.tictok.Commons.HorarioConCuposDTO;
-import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.Commons.SuperCanchaDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.*;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +45,11 @@ public class ReservarCanchaController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setLabelsCancha();
         horariosConCuposCancha = new ArrayList<>();
-        horariosConCuposCancha = obtenerHorarioConCupos();
+        try {
+            horariosConCuposCancha = obtenerHorarioConCupos();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         contenedorHorarios.getChildren().clear();
         horariosConCuposCancha.addAll(horariosConCuposCancha);
         int row=0;
@@ -67,10 +72,13 @@ public class ReservarCanchaController implements Initializable {
             e.printStackTrace();
         }
     }
-    private List<HorarioConCuposDTO> obtenerHorarioConCupos(){
-        // SuperCanchaDTO canchaConCupos =  centroDeportivoRest.obtenerActividadConCupos(estaCancha.getNombreCentro(),estaCancha.getNombreServicio());
-        return null ;
+    private List<HorarioConCuposDTO> obtenerHorarioConCupos() throws JsonProcessingException {
+        HttpResponse<String> response = centroDeportivoRest.obtenerCanchaConCupos(estaCancha.getNombreCentro(),estaCancha.getNombreServicio());
+        ObjectMapper objectMapper = new ObjectMapper();
+        CanchaConHorariosYCuposDTO canchaConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), CanchaConHorariosYCuposDTO.class);
+        return canchaConHorariosYCuposDTO.getHorariosConCupos();
     }
+
     public void setLabelsCancha(){
         nombreCan.setText(estaCancha.getNombreServicio());
         direccionCan.setText(estaCancha.getAddress() +", " + estaCancha.getBarrio());

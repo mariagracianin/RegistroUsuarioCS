@@ -17,6 +17,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Service
 public class CentroService {
@@ -48,9 +49,9 @@ public class CentroService {
     public void crearPrimerCentro(){
         NuevoCentroDTO primerCentroDTO = new NuevoCentroDTO("centro@mail","contra","centro", "direccion2", "telefono2", "encargado2","rut2","razonSocial2","barrio");
         CentroDeportivo primerCentro = saveNewCentro(primerCentroDTO);
-        Cancha newCancha1 = new Cancha(primerCentro,"cancha Tenis",DayOfWeek.MONDAY,LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10);
-        Cancha newCancha2 = new Cancha(primerCentro,"cancha Fuchibol 1",DayOfWeek.MONDAY,LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10);
-        Cancha newCancha3 = new Cancha(primerCentro,"cancha Fuchibol 2",DayOfWeek.MONDAY,LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10);
+        Cancha newCancha1 = new Cancha(primerCentro,"cancha_Tenis",DayOfWeek.MONDAY,LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,100);
+        Cancha newCancha2 = new Cancha(primerCentro,"cancha_Fuchibol",DayOfWeek.MONDAY,LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10);
+        Cancha newCancha3 = new Cancha(primerCentro,"cancha_Fuchibol",DayOfWeek.MONDAY,LocalTime.of(9,00,00),LocalTime.of(10,00,00),1000,10);
         Actividad newActividad1 = new Actividad(primerCentro,"Tenis",DayOfWeek.MONDAY, LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10,false);
         Actividad newActividad2 = new Actividad(primerCentro,"Tenis",DayOfWeek.SUNDAY, LocalTime.of(10,00,00),LocalTime.of(11,00,00),1000,10,false);
         Actividad newActividad3 = new Actividad(primerCentro,"Natacion",DayOfWeek.MONDAY, LocalTime.of(9,00,00),LocalTime.of(10,00,00),1000,10,false);
@@ -72,5 +73,13 @@ public class CentroService {
         cuenta.setCentroDeportivo(centro);
         cuentaRepository.save(cuenta);
         return centro1;
+    }
+
+    public CentroDeportivo findById(String nombreCentro) throws Exception {
+        Optional<CentroDeportivo> centro1 = centroRepository.findById(nombreCentro);
+        if (centro1.isEmpty()){
+            throw new Exception(); //Todo mandar cosos
+        }
+        return centro1.get();
     }
 }

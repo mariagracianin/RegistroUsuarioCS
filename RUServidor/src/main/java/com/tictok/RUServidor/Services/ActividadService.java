@@ -1,13 +1,11 @@
 package com.tictok.RUServidor.Services;
 
+import com.tictok.Commons.ActividadConHorariosYCuposDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.RUServidor.Entities.Actividad;
-import com.tictok.RUServidor.Entities.Imagen;
+import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
-import com.tictok.RUServidor.Entities.ReservaActividad;
-import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.CuposAgotadosException;
 import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
@@ -24,6 +22,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -32,15 +32,17 @@ public class ActividadService {
     private final UsuarioRepository usuarioRepository;
     private final ActividadRepository actividadRepository;
     private final ReservaActividadRepository reservaActividadRepository;
+    private final CentroService centroService;
 
     private final ImagenRepository imagenRepository;
 
     @Autowired
-    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository) throws IOException {
+    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository, CentroService centroService) throws IOException {
         this.usuarioRepository = usuarioRepository;
         this.actividadRepository = actividadRepository;
         this.reservaActividadRepository = reservaActividadRepository;
         this.imagenRepository = imagenRepository;
+        this.centroService = centroService;
 
         //agregarImagenPrueba();
     }
@@ -85,5 +87,7 @@ public class ActividadService {
         List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
         return listaSuperActividadesDTO;
     }
+
+
 
 }
