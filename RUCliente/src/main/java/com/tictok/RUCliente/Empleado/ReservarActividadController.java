@@ -41,8 +41,17 @@ public class ReservarActividadController implements Initializable {
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
 
+    public ReservarActividadController() {
+        System.out.println("Constructor------------------------------------------------");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {//hacer request mery nombre centro, actividad, horariodto        int row=0;
+        nombreAct.setText(estaActividad.getNombreServicio());
+        direccionAct.setText(estaActividad.getAddress() +", " + estaActividad.getBarrio());
+        precioAct.setText("Costo: $" + estaActividad.getPrecio());
+        lblNombreCentro.setText("Centro Deportivo: "+ estaActividad.getNombreCentro());
+
         horariosConCupos = new ArrayList<>();
         try {
             horariosConCupos = obtenerHorarioConCupos();
@@ -74,17 +83,23 @@ public class ReservarActividadController implements Initializable {
 
     private List<HorarioConCuposDTO> obtenerHorarioConCupos() throws JsonProcessingException {
         HttpResponse<String> response = centroDeportivoRest.obtenerActividadConCupos(estaActividad.getNombreCentro(),estaActividad.getNombreServicio());
+        System.out.println("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+        System.out.println(response.getBody());
         ObjectMapper objectMapper = new ObjectMapper();
         ActividadConHorariosYCuposDTO actividadConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), ActividadConHorariosYCuposDTO.class);
+        System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos());
+        for(int i = 0; i<actividadConHorariosYCuposDTO.getHorariosConCupos().size(); i++){
+            System.out.println("-----------------------");
+            System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getDia());
+            System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getHoraInicio());
+            System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getHoraFin());
+        }
         return actividadConHorariosYCuposDTO.getHorariosConCupos();
     }
 
     public void setDatos(SuperActividadDTO estaActividad){
         this.estaActividad = estaActividad;
-        nombreAct.setText(estaActividad.getNombreServicio());
-        direccionAct.setText(estaActividad.getAddress() +", " + estaActividad.getBarrio());
-        precioAct.setText("Costo: $" + estaActividad.getPrecio());
-        lblNombreCentro.setText("Centro Deportivo: "+ estaActividad.getNombreCentro());
+
     }
 
 }

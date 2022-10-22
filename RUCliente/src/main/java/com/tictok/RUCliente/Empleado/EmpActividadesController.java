@@ -78,7 +78,7 @@ public class EmpActividadesController implements Initializable {
             for (int i=0; i<actividadesActuales.size(); i++){
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+               // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
                 SplitPane actBox = fxmlLoader.load(EmpActividadesController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardActividad.fxml"));
 

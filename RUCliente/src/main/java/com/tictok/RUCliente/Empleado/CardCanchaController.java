@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-@Component
+//@Component
 public class CardCanchaController {
 
     @FXML

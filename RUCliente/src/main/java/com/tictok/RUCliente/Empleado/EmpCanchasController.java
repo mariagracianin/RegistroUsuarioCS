@@ -85,7 +85,7 @@ public class EmpCanchasController implements Initializable {
         try {
             for (int i=0; i<canchasActuales.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
                 SplitPane actBox = fxmlLoader.load();
 

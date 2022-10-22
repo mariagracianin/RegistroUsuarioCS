@@ -32,8 +32,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
-
-@Component
+//
+//@Component
 public class CardActividadController implements Initializable {
     @FXML
     public SplitPane pane;
@@ -49,6 +49,7 @@ public class CardActividadController implements Initializable {
     @FXML
     private Label nombre;
     private SuperActividadDTO actividadSeleccionada;
+
 
     public void setDatosActividad(SuperActividadDTO actividad){
         actividadSeleccionada=actividad;
@@ -79,15 +80,18 @@ public class CardActividadController implements Initializable {
 
 
     public void abrirVentanaReservaConDatos(ActionEvent actionEvent) throws IOException {
-        System.out.println(actividadSeleccionada.getNombreServicio());
+
 
         FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        ReservarActividadController controller = (ReservarActividadController) Main.getContext().getBean("reservarActividadController");
+        controller.setDatos(actividadSeleccionada);
         Parent root = fxmlLoader.load(CardActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/reservaActividad.fxml"));
 
-        ReservarActividadController controller = fxmlLoader.getController();
-        controller.setDatos(actividadSeleccionada);
+        //ReservarActividadController controller = fxmlLoader.getController();
+        System.out.println(actividadSeleccionada.getNombreServicio() + "Es este");
+        //controller.setDatos(actividadSeleccionada);
 
-        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Stage stage = new Stage();
         Scene escena = new Scene(root);

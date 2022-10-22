@@ -44,7 +44,7 @@ public class ActividadService {
         this.imagenRepository = imagenRepository;
         this.centroService = centroService;
 
-        agregarImagenPrueba();
+       // agregarImagenPrueba();
         this.cuentaService = cuentaService;
     }
 
