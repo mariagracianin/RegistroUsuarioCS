@@ -110,7 +110,7 @@ public class ActividadService {
     }
 
     public List<SuperActividadDTO> buscarActividades(String campoBusqueda){
-        List<Actividad> actividadList = actividadRepository.findByNombreOBarrioIsLike(campoBusqueda, campoBusqueda, campoBusqueda, campoBusqueda);
+        List<Actividad> actividadList = actividadRepository.findByNombreOBarrioIsLike(campoBusqueda.toUpperCase());
         if (actividadList.isEmpty()){
             return null;
         }
