@@ -50,7 +50,7 @@ public class ActividadService {
 
     private void agregarImagenPrueba() throws IOException {
         Imagen imagen = new Imagen();
-        FileInputStream fis = new FileInputStream("C:/Users/agustin/Downloads/imagenTICString.txt");
+        FileInputStream fis = new FileInputStream("C:/Users/agustin/Downloads/imagenTIC2.txt");
         String laImagen = IOUtils.toString(fis, "UTF-8");
         imagen.setImagenString(laImagen);
         imagenRepository.save(imagen);
@@ -110,7 +110,7 @@ public class ActividadService {
     }
 
     public List<SuperActividadDTO> buscarActividades(String campoBusqueda){
-        List<Actividad> actividadList = actividadRepository.findByNombreOBarrioIsLike(campoBusqueda, campoBusqueda, campoBusqueda, campoBusqueda);
+        List<Actividad> actividadList = actividadRepository.findByNombreOBarrioIsLike(campoBusqueda.toUpperCase());
         if (actividadList.isEmpty()){
             return null;
         }
