@@ -7,8 +7,8 @@ import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.CuposAgotadosException;
+import com.tictok.RUServidor.Exceptions.EntidadNoExisteException;
 import com.tictok.RUServidor.Mappers.ActividadMapper;
-import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
@@ -16,13 +16,13 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -116,5 +116,51 @@ public class ActividadService {
         }
         List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
         return listaSuperActividadDTO;
+    }
+
+    public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(String centroDeportivo, String actividadNombre) throws EntidadNoExisteException {
+        List<Actividad> listaDeActividades = actividadRepository.findByCentroAndNombre(centroDeportivo, actividadNombre);
+        if (listaDeActividades.isEmpty()) {
+            throw new EntidadNoExisteException("La actividad de ese centro y ese nombre no existe");
+        }
+        Actividad actividadPadre = listaDeActividades.get(0);
+
+        Integer precio = actividadPadre.getPrecio();
+        CentroDeportivo centro = actividadPadre.getCentroDeportivo();
+        String address = centro.getAddress();
+        String barrio = centro.getBarrio();
+        String telefono = centro.getTelefono();
+
+        ActividadConHorariosYCuposDTO actividadConHorariosYCuposDTO =
+                new ActividadConHorariosYCuposDTO(actividadNombre, centroDeportivo,
+                precio, address, barrio, telefono, new ArrayList<HorarioConCuposDTO>());
+
+        Date fechaHoy = Date.valueOf(LocalDate.now());
+        Date fechaFin = Date.valueOf(LocalDate.now().plusDays(6));
+        Actividad actividad;
+        int dia;
+        int horaInicio;
+        int horaFin;
+        CuentaReservas cuentaReservas;
+        int cuposLibres;
+
+        List<CuentaReservas> actividadesReservadas = reservaActividadRepository.conseguirHorariosReservadosEntreFechas(actividadNombre, centroDeportivo, fechaHoy, fechaFin);
+
+
+        for (int i = 0; i < listaDeActividades.size(); i++) {
+            actividad = listaDeActividades.get(i);
+            dia = HorarioMapper.getDia(actividad.getActividadId().getDia());
+            horaInicio = HorarioMapper.fromLocalTimeToIntHora(actividad.getActividadId().getHoraInicio());
+            horaFin = HorarioMapper.fromLocalTimeToIntHora(actividad.getActividadId().getHoraFin());
+            cuposLibres = actividadPadre.getCupos();
+            for (int j = 0; j < actividadesReservadas.size(); j++) {
+                cuentaReservas = actividadesReservadas.get(j);
+                if (actividad.getActividadId().equals(cuentaReservas.getServicioId())) {
+                    cuposLibres = cuposLibres - (int) cuentaReservas.getCupos();
+                }
+            }
+            actividadConHorariosYCuposDTO.addHorarioConCupos(new HorarioConCuposDTO(dia, horaInicio, horaFin, cuposLibres));
+        }
+        return actividadConHorariosYCuposDTO;
     }
 }
