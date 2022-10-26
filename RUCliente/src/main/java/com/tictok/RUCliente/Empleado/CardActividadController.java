@@ -51,9 +51,8 @@ public class CardActividadController implements Initializable {
     private SuperActividadDTO actividadSeleccionada;
 
 
-    public void setDatosActividad(SuperActividadDTO actividad){
-        actividadSeleccionada=actividad;
-        System.out.println(actividadSeleccionada.getNombreServicio());
+    public void setDatosActividad(SuperActividadDTO actividad) {
+        actividadSeleccionada = actividad;
         //imageSrc seria la src dentro de mi computadora, tendria que ser en la base
 
         byte[] decodedBytes;
