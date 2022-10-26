@@ -141,7 +141,6 @@ public class CanchaService {
         CuentaReservas cuentaReservas;
         int cuposLibres;
 
-
         List<CuentaReservas> canchasReservadas = reservaCanchaRepository.conseguirHorariosReservadosEntreFechas(canchaNombre, centroDeportivo, fechaHoy, fechaFin);
 
 

@@ -20,4 +20,7 @@ public interface CanchaRepository extends JpaRepository<Cancha, ServicioId> {
                 or upper(c.centroDeportivo.barrio) like %:campoBusqueda% or upper(c.centroDeportivo.address) like %:campoBusqueda%""")
     List<Cancha> findByNombreOBarrioIsLike(@Param("campoBusqueda") String campoBusqueda);
 
+
+
+    //Intentemos que funque
 }
