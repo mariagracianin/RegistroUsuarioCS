@@ -19,6 +19,14 @@ public interface ReservaActividadRepository extends JpaRepository<ReservaActivid
     select new com.tictok.RUServidor.Entities.NotTables.CuentaReservas(r.actividad.actividadId, count(r.actividad.actividadId)) from ReservaActividad r
     where r.actividad.actividadId = ?1 and r.fecha = ?2
     group by r.actividad.actividadId
-    """)
+""")
     List<CuentaReservas> countReservasByServicioIdAndFecha(ServicioId servicioId, Date fecha);
+
+    @Query("""
+    select new com.tictok.RUServidor.Entities.NotTables.CuentaReservas(r.actividad.actividadId, count(r.actividad.actividadId)) from ReservaActividad r
+    where r.actividad.actividadId.nombreServicio = ?1 and r.actividad.actividadId.centroDeportivo = ?2
+        and r.fecha between ?3 and ?4
+    group by r.actividad.actividadId
+    """)
+    List<CuentaReservas> conseguirHorariosReservadosEntreFechas(String nombreServicio, String centroDeportivo, Date fechaStart, Date fechaEnd);
 }

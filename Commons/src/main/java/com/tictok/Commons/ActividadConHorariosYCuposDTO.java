@@ -27,6 +27,9 @@ public class ActividadConHorariosYCuposDTO {
         this.horariosConCupos = horariosConCupos;
     }
 
+    public void addHorarioConCupos(HorarioConCuposDTO horarioConCuposDTO) {
+        horariosConCupos.add(horarioConCuposDTO);
+    }
     public String getNombreServicio() {
         return nombreServicio;
     }
@@ -82,4 +85,6 @@ public class ActividadConHorariosYCuposDTO {
     public void setHorariosConCupos(List<HorarioConCuposDTO> horariosConCupos) {
         this.horariosConCupos = horariosConCupos;
     }
+
+
 }
