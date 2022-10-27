@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
-public class ReservarCanchaController implements Initializable {
+public class VerHorariosCanchaController implements Initializable {
 
     public GridPane contenedorHorarios;
     private List<HorarioConCuposDTO> horariosConCuposCancha;
@@ -56,15 +57,15 @@ public class ReservarCanchaController implements Initializable {
         try {
             for (int i = 0; i< horariosConCuposCancha.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardHorarioCancha.fxmll"));
-                SplitPane actBox = fxmlLoader.load();
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardHorarioCancha.fxml"));
+                HBox horarioBox = fxmlLoader.load();
 
                 CardHorarioCanchaController cardController = fxmlLoader.getController();
                 cardController.setDatosHorario(horariosConCuposCancha.get(i));
 
-                contenedorHorarios.add(actBox,1,row++);
-                GridPane.setMargin(actBox, new Insets(10));
+                contenedorHorarios.add(horarioBox,1,row++);
+                GridPane.setMargin(horarioBox, new Insets(10));
 
             }
 

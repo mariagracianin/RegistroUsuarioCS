@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@Component
+//@Component
 public class CardHorarioCanchaController implements Initializable {
     private HorarioConCuposDTO horarioSeleccionado;
     @FXML
@@ -60,7 +60,7 @@ public class CardHorarioCanchaController implements Initializable {
         String horaFinStr = String.valueOf(horaF) + ":" + String.valueOf(horaFin-horaF*100);
 
         lblHoraFin.setText(horaFinStr);
-        //falta lblCuposLibres.setText(horario.getCupos()); o hacer la cuenta de los libres si esos son los totales
+        lblCuposLibres.setText(horario.getCuposLibres()+"");
 
     }
 

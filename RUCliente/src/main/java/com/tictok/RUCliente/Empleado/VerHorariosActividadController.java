@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 @Component
-public class ReservarActividadController implements Initializable {
+public class VerHorariosActividadController implements Initializable {
     @FXML
     public BorderPane root;
     private List<HorarioConCuposDTO> horariosConCupos;
@@ -41,8 +41,7 @@ public class ReservarActividadController implements Initializable {
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
 
-    public ReservarActividadController() {
-        System.out.println("Constructor------------------------------------------------");
+    public VerHorariosActividadController() {
     }
 
     @Override
@@ -64,9 +63,9 @@ public class ReservarActividadController implements Initializable {
         try {
             for (int i = 0; i < horariosConCupos.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-                HBox horarioBox = fxmlLoader.load(ReservarActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardHorarioActividad.fxml"));
+                HBox horarioBox = fxmlLoader.load(VerHorariosActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardHorarioActividad.fxml"));
 
                 CardHorarioActividadController cardHorarioController = fxmlLoader.getController();
                 cardHorarioController.setDatosHorario(horariosConCupos.get(i));

@@ -48,7 +48,9 @@ public class EmpCanchasController implements Initializable {
     public Button btnMisReservas;
     public TextField txtBuscador;
     @Autowired
-    EmpleadoController empleadoController;
+    EmpMisDatosController empMisDatosController;
+    @Autowired
+    EmpMisReservasController empMisReservasController;
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
@@ -107,23 +109,23 @@ public class EmpCanchasController implements Initializable {
     }
 
     public void verReservas(ActionEvent actionEvent) throws IOException {
-        empleadoController.verReservas(actionEvent);
+        empMisDatosController.verReservas(actionEvent);
     }
 
     public void verActividades(ActionEvent actionEvent) throws IOException {
-        empleadoController.verActividades(actionEvent);
+        empMisReservasController.verActividades(actionEvent);
     }
 
     public void verDatos(ActionEvent actionEvent) throws IOException {
-        empleadoController.verDatos(actionEvent);
+        empMisReservasController.verDatos(actionEvent);
     }
 
     public void verReservasPasadas(ActionEvent actionEvent) {
-        empleadoController.verReservasPasadas(actionEvent);
+        empMisReservasController.verReservasPasadas(actionEvent);
     }
 
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
-        empleadoController.cerrarSesion(actionEvent);
+        empMisReservasController.cerrarSesion(actionEvent);
     }
 
     public void ventanaIntroducirCodigoPadre(ActionEvent actionEvent) throws IOException {

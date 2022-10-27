@@ -6,10 +6,16 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.MiniCuentaDTO;
 import com.tictok.Commons.UsuarioDTO;
+import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.stereotype.Component;
@@ -21,10 +27,9 @@ import java.util.ResourceBundle;
 public class EmpMisDatosController implements Initializable {
 
     @Autowired
-    EmpleadoController empleadoController;
-
-    @Autowired
     UsuarioRest usuarioRest;
+    @Autowired
+    EmpMisReservasController empMisReservasController;
 
     public Label lblNombre;
     public Label lblApellido;
@@ -64,22 +69,32 @@ public class EmpMisDatosController implements Initializable {
 
 
     public void verReservas(ActionEvent actionEvent) throws IOException {
-        empleadoController.verReservas(actionEvent);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EmpMisDatosController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empMisReservas.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Mis Reservas");
+
+        stage.show(); //no es ventana emergente
     }
 
     public void verActividades(ActionEvent actionEvent) throws IOException {
-        empleadoController.verActividades(actionEvent);
+        empMisReservasController.verActividades(actionEvent);
     }
 
     public void verCanchas(ActionEvent actionEvent) throws IOException {
-        empleadoController.verCanchas(actionEvent);
+        empMisReservasController.verCanchas(actionEvent);
     }
 
     public void verReservasPasadas(ActionEvent actionEvent) {
-        empleadoController.verReservasPasadas(actionEvent);
+        empMisReservasController.verReservasPasadas(actionEvent);
     }
 
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
-        empleadoController.cerrarSesion(actionEvent);
+        empMisReservasController.cerrarSesion(actionEvent);
     }
 }
