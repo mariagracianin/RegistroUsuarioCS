@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -37,6 +38,7 @@ public class AdministradorRegCentroController implements Initializable {
     public TextField rut;
     public TextField razonSocial;
     public TextField barrio;
+    public Button btnGuardar;
 
     @Autowired
     AdministradorController administradorController;

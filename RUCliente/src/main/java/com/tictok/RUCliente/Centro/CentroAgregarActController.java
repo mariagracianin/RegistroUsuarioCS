@@ -5,8 +5,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +23,13 @@ public class CentroAgregarActController implements Initializable {
     public TextField txtCupos;
     public TextField txtNombre;
     public RadioButton paseLibre;
+    public Button btnGuardar;
+    public Button btnSubirImg;
+    public ChoiceBox diaOpciones;
+    public TextField txtHoraInicio;
+    public TextField txtHoraFin;
+    public Button btnAgregarHorario;
+    public GridPane contenedorHorarios;
 
     @Autowired
     CentroController centroController;
@@ -70,5 +80,12 @@ public class CentroAgregarActController implements Initializable {
         }else{
             //mandar datos con pase libre = false y lista de horarios
         }
+    }
+
+    public void agregarHorario(ActionEvent actionEvent) {
+    }
+
+    public void abrirBuscadorArchivo(ActionEvent actionEvent) {
+
     }
 }
