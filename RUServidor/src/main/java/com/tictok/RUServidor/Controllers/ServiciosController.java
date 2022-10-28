@@ -26,9 +26,10 @@ public class ServiciosController {
         this.actividadService = actividadService;
     }
 
+    //Todo Importante Cambiar esto
     @GetMapping("/actividades")
     public List<SuperActividadDTO> getAllActividades(){
-        return actividadService.findAll();
+        return actividadService.findAllPageable(0, 9);
     }
 
     @GetMapping("/canchas")

@@ -17,8 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 @Service
@@ -172,8 +174,9 @@ public class CanchaService {
 
             LocalTime horaInicio1 = LocalTime.of(horaInicio / 100, horaInicio - (horaInicio / 100) * 100);
             LocalTime horaFin1 = LocalTime.of(horaFin / 100, horaFin - (horaFin / 100) * 100);
+            DayOfWeek dia = HorarioMapper.setearDia(horarioDTOi.getDia());
 
-            Cancha canchaI = new Cancha(centro1, nuevaCanchaDTO.getNombreServicio(), DayOfWeek.of(horarioDTOi.getDia()), horaInicio1, horaFin1, nuevaCanchaDTO.getPrecio(), nuevaCanchaDTO.getCupos());
+            Cancha canchaI = new Cancha(centro1, nuevaCanchaDTO.getNombreServicio(), dia, horaInicio1, horaFin1, nuevaCanchaDTO.getPrecio(), nuevaCanchaDTO.getCupos());
             if (nuevaCanchaDTO.getImageString() != null) {
                 Imagen imagen = new Imagen(nuevaCanchaDTO.getImageString());
                 imagenRepository.save(imagen);

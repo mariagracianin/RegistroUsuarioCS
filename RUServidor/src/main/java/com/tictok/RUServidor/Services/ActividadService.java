@@ -105,8 +105,9 @@ public class ActividadService {
 
             LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100)*100);
             LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100)*100);
+            DayOfWeek dia  = HorarioMapper.setearDia(horarioDTOi.getDia());
 
-            Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),DayOfWeek.of(horarioDTOi.getDia()),horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+            Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),dia,horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
             if(nuevaActividadDTO.getImageString()!=null){
                 Imagen imagen = new Imagen(nuevaActividadDTO.getImageString());
                 imagenRepository.save(imagen);
