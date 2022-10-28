@@ -21,6 +21,7 @@ public class UsuarioController  {
     private final CuentaService cuentaService;
     private final CanchaService canchaService;
     private final ActividadService actividadService;
+
     @Autowired
     public UsuarioController(UsuarioService usuarioService, EmpresaService empresaService, CuentaService cuentaService, CanchaService canchaService, ActividadService actividadService) {
         this.usuarioService = usuarioService;
