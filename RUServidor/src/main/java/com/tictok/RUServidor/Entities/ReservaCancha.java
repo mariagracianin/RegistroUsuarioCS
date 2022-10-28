@@ -11,6 +11,10 @@ public class ReservaCancha {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "reserva_cancha_padre_id")
+    private ReservaCancha reservaCanchaPadre;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "usuario_principal_cedula", nullable = false)
     private Usuario usuarioPrincipal;
@@ -31,6 +35,14 @@ public class ReservaCancha {
 
     @Column(name = "fecha", nullable = false)
     private Date fecha;
+
+    public ReservaCancha getReservaCanchaPadre() {
+        return reservaCanchaPadre;
+    }
+
+    public void setReservaCanchaPadre(ReservaCancha reservaCanchaPadre) {
+        this.reservaCanchaPadre = reservaCanchaPadre;
+    }
 
     public ReservaCancha() {
     }

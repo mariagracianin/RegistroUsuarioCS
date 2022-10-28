@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Mappers;
 
 import com.tictok.Commons.HorarioDTO;
+import com.tictok.Commons.Reserva2DTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.RUServidor.Entities.ReservaActividad;
 import com.tictok.RUServidor.Entities.ReservaCancha;
@@ -26,4 +27,18 @@ public class ReservaMapper {
         Long codigoReserva = reservaActividad.getId();
         return new ReservaDTO(cedula, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
     }
+
+    // TODO Arreglar todo esto que me tiene triste
+    public static Reserva2DTO fromReservaCanchaToReserva2DTO(ReservaCancha reservaCancha){
+        String mail = reservaCancha.getUsuario().getCuenta().getMail();
+        String nombreCentro = reservaCancha.getCancha().getCanchaId().getCentroDeportivo();
+        String nombreActividad = reservaCancha.getCancha().getCanchaId().getNombreServicio();
+        String tipo = "Cancha";
+        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaCancha.getCancha().getCanchaId());
+        Long codigoReserva = reservaCancha.getId();
+        Long codigoReservaPadre = reservaCancha.getId();
+//        return new Reserva2DTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
+        return null;
+    }
+
 }

@@ -29,4 +29,12 @@ public interface ReservaActividadRepository extends JpaRepository<ReservaActivid
     group by r.actividad.actividadId
     """)
     List<CuentaReservas> conseguirHorariosReservadosEntreFechas(String nombreServicio, String centroDeportivo, Date fechaStart, Date fechaEnd);
+
+    @Query("select r from ReservaActividad r where r.usuario.cuenta.mail = ?1 and r.fecha >= ?2")
+    List<ReservaActividad> findActividadesReservadasDespuesDe(String mail, Date fecha);
+
+
+
+
+
 }

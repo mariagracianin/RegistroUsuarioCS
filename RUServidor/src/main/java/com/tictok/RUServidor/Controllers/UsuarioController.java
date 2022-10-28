@@ -46,8 +46,8 @@ public class UsuarioController  {
     }
 
     @GetMapping("{id}/reserva")
-    public ReservaDTO getReservasByUsuario(){
-        return null;
+    public List<Reserva2DTO> getReservasByUsuario(@PathVariable String id){
+        return usuarioService.getReservasByUsuario(id);
     }
 
     @PostMapping("/reserva")

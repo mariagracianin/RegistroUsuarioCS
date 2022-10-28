@@ -1,19 +1,20 @@
 package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.MegaUsuarioDTO;
+import com.tictok.Commons.Reserva2DTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.UsuarioMalDefinido;
 import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
-import com.tictok.RUServidor.Repositories.CuentaRepository;
-import com.tictok.RUServidor.Repositories.EmpresaRepository;
-import com.tictok.RUServidor.Repositories.UsuarioRepository;
+import com.tictok.RUServidor.Repositories.*;
 import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Mappers.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,16 +24,22 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final CuentaRepository cuentaRepository;
     private final EmpresaRepository empresaRepository;
+
+    private final ReservaActividadRepository reservaActividadRepository;
+
+    private final ReservaCanchaRepository reservaCanchaRepository;
     private final EmpresaService empresaService;
     private final CuentaService cuentaService;
 
 
     @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
-                          EmpresaRepository empresaRepository, EmpresaService empresaService, CuentaService cuentaService) {
+                          EmpresaRepository empresaRepository, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository, EmpresaService empresaService, CuentaService cuentaService) {
         this.usuarioRepository = usuarioRepository;
         this.cuentaRepository = cuentaRepository;
         this.empresaRepository = empresaRepository;
+        this.reservaActividadRepository = reservaActividadRepository;
+        this.reservaCanchaRepository = reservaCanchaRepository;
         this.empresaService = empresaService;
         this.cuentaService = cuentaService;
     }
@@ -93,6 +100,15 @@ public class UsuarioService {
         cuentaRepository.save(cuenta);
         usuario.setEmpresa(cuentaService.findOnebyId(mail).getEmpresa());
         return usuarioRepository.save(usuario);
+    }
+
+    public List<Reserva2DTO> getReservasByUsuario(String mail) {
+        Date fecha = Date.valueOf(LocalDate.now());
+        List<ReservaActividad> actividadesReservadas =
+                reservaActividadRepository.findActividadesReservadasDespuesDe(mail, fecha);
+        List<ReservaCancha> canchasReservadas = reservaCanchaRepository.findCanchasReservadasDespuesDe(mail, fecha);
+
+        return null;
     }
 
 //    public List<UsuarioDTO> findByEmpresa(Empresa empresa) {
