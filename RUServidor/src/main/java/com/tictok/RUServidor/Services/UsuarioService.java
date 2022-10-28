@@ -37,7 +37,6 @@ public class UsuarioService {
         this.cuentaService = cuentaService;
     }
 
-
     public List<UsuarioDTO> findAll() {
         List usuarioList = usuarioRepository.findAll();
         if (usuarioList.isEmpty()){

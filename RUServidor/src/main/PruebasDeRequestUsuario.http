@@ -30,7 +30,7 @@ POST http://localhost:8080/usuario/reserva
 Content-Type: application/json
 
 {
-  "cedulaUsuario": "52788472",
+  "mailUsuario": "maria@mail.com",
   "nombreCentro": "centro",
   "nombreActividad": "cancha",
   "tipo": "Cancha",
