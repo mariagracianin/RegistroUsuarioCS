@@ -79,6 +79,28 @@ public class CentroDeportivoRest {
         }
     }
 
+    public HttpResponse<String> obtenerActividadesFromCentroLogeado(){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/getActividades/"+miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerCanchasFromCentroLogeado(){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/getCanchas/"+miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
     public HttpResponse<String> obtenerActividades(){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades")
@@ -144,6 +166,4 @@ public class CentroDeportivoRest {
             throw new RuntimeException(e);
         }
     }
-
-
 }

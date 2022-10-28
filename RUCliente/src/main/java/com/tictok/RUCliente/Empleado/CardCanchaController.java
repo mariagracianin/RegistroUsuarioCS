@@ -1,7 +1,6 @@
 package com.tictok.RUCliente.Empleado;
 
 import com.tictok.Commons.HorarioDTO;
-import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;

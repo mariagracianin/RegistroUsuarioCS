@@ -1,9 +1,7 @@
 package com.tictok.RUServidor.Mappers;
 
 import com.tictok.Commons.HorarioDTO;
-import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
-import com.tictok.RUServidor.Entities.Actividad;
 import com.tictok.RUServidor.Entities.Cancha;
 import com.tictok.RUServidor.Entities.NotTables.ServicioIdSinHorario;
 
