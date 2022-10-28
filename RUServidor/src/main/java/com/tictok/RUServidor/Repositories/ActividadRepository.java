@@ -3,6 +3,8 @@ package com.tictok.RUServidor.Repositories;
 import com.tictok.RUServidor.Entities.Actividad;
 import com.tictok.RUServidor.Entities.Cancha;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
+import com.tictok.RUServidor.Projections.ActividadInfo;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,6 +23,10 @@ public interface ActividadRepository extends JpaRepository<Actividad, ServicioId
             where upper(a.actividadId.nombreServicio) like %:campoBusqueda% or upper(a.actividadId.centroDeportivo) like %:campoBusqueda% or
              upper(a.centroDeportivo.barrio) like %:campoBusqueda% or upper(a.centroDeportivo.address) like %:campoBusqueda%""")
     List<Actividad> findByNombreOBarrioIsLike(@Param("campoBusqueda") String campoBusqueda);
+
+    @Query("select distinct a from Actividad a")
+    List<ActividadInfo> findDistinctBy(Pageable pageable);
+
 
 
 }

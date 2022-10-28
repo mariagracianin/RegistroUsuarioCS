@@ -4,6 +4,7 @@ import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUServidor.Entities.Actividad;
 import com.tictok.RUServidor.Entities.NotTables.ServicioIdSinHorario;
+import com.tictok.RUServidor.Projections.ActividadInfo;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -43,6 +44,36 @@ public class ActividadMapper {
             }
         }
         return hashDeActividades.values().stream().toList();
+    }
+
+    public static List<SuperActividadDTO> fromActividadesInfoListToSuperActividadDTOList(List<ActividadInfo> actividadList){
+        List<SuperActividadDTO> superActividadDTOList = new ArrayList<SuperActividadDTO>(actividadList.size());
+        ActividadInfo actividadInfo;
+        String nombreServicio;
+        String nombreCentro;
+        Integer precio;
+        Boolean paseLibre;
+        String address;
+        String barrio;
+        String telefono;
+        String imageString;
+        for (int i = 0; i< actividadList.size(); i++){
+            actividadInfo = actividadList.get(i);
+            nombreServicio = actividadInfo.getActividadId().getNombreServicio();
+            nombreCentro = actividadInfo.getActividadId().getCentroDeportivo();
+            precio = actividadInfo.getPrecio();
+            paseLibre = actividadInfo.isPaseLibre();
+            address = actividadInfo.getCentroDeportivo().getAddress();
+            barrio = actividadInfo.getCentroDeportivo().getBarrio();
+            telefono = actividadInfo.getCentroDeportivo().getTelefono();
+            imageString = actividadInfo.getImagen().getImagenString();
+
+            SuperActividadDTO superActividad = new SuperActividadDTO(nombreServicio, nombreCentro, precio,
+                                    paseLibre, address, barrio, telefono, imageString);
+            superActividadDTOList.add(superActividad);
+        }
+
+        return superActividadDTOList;
     }
 
 }

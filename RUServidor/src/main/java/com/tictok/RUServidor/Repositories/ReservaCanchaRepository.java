@@ -1,6 +1,6 @@
 package com.tictok.RUServidor.Repositories;
 
-import com.tictok.RUServidor.Entities.NotTables.CuentaReservas;
+import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.ReservaCancha;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.sql.Date;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface ReservaCanchaRepository extends JpaRepository<ReservaCancha, Long> {

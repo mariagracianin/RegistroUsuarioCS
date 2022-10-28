@@ -1,7 +1,6 @@
 package com.tictok.RUServidor.Repositories;
 
-import com.tictok.RUServidor.Entities.Empresa;
-import com.tictok.RUServidor.Entities.NotTables.CuentaReservas;
+import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Entities.ReservaActividad;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
-import java.time.LocalTime;
 import java.util.List;
 
 @Repository

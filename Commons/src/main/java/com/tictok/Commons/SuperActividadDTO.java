@@ -31,6 +31,17 @@ public class SuperActividadDTO {
         this.horarios = horarios;
     }
 
+    public SuperActividadDTO(String nombreServicio, String nombreCentro, Integer precio, Boolean paseLibre, String address, String barrio, String telefono, String imageString) {
+        this.nombreServicio = nombreServicio;
+        this.nombreCentro = nombreCentro;
+        this.precio = precio;
+        this.paseLibre = paseLibre;
+        this.address = address;
+        this.barrio = barrio;
+        this.telefono = telefono;
+        this.imageString = imageString;
+    }
+
     public void addHorario(HorarioDTO horarioDTO){
         horarios.add(horarioDTO);
     }
