@@ -64,7 +64,6 @@ public class UsuarioController  {
         }
     }
 
-
     @DeleteMapping("/reserva/{idReserva}")
     public void DeleteReserva(@PathVariable Long idReserva){
     }
