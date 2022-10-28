@@ -30,3 +30,4 @@ public interface ReservaCanchaRepository extends JpaRepository<ReservaCancha, Lo
     where r.usuario.cuenta.mail = ?1 and r.fecha  >= ?2
     """)
     List<ReservaCancha> findCanchasReservadasDespuesDe(String mail, Date fecha);
+}
