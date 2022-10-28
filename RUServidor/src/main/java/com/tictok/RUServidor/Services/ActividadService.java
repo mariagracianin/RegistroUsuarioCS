@@ -33,7 +33,6 @@ public class ActividadService {
     private final ReservaActividadRepository reservaActividadRepository;
     private final CentroService centroService;
     private final CuentaService cuentaService;
-
     private final ImagenRepository imagenRepository;
 
     @Autowired
@@ -92,6 +91,8 @@ public class ActividadService {
     }
 
     public void guardarActividad(NuevaActividadDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
+        System.out.println("----------------------------------------------------------");
+        System.out.println(nuevaActividadDTO.getImageString());
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
 
         for(int i=0; i<nuevaActividadDTO.getHorarios().size(); i++){
@@ -112,7 +113,11 @@ public class ActividadService {
             System.out.println(horaFin1);
 
             Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),DayOfWeek.of(horarioDTOi.getDia()),horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
-
+            if(nuevaActividadDTO.getImageString()!=null){
+                Imagen imagen = new Imagen(nuevaActividadDTO.getImageString());
+                imagenRepository.save(imagen);
+                actividadI.setImagen(imagen);
+            }
             actividadRepository.save(actividadI);
             centro1.setActividad(actividadI);
         }
