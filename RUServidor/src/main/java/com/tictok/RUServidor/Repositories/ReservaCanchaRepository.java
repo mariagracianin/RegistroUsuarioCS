@@ -25,5 +25,9 @@ public interface ReservaCanchaRepository extends JpaRepository<ReservaCancha, Lo
     """)
     List<CuentaReservas> conseguirHorariosReservadosEntreFechas(String nombreServicio, String centroDeportivo, Date fechaStart, Date fechaEnd);
 
-
+    @Query("""
+    select r from ReservaCancha r
+    where r.usuario.cuenta.mail = ?1 and r.fecha  >= ?2
+    """)
+    List<ReservaCancha> findCanchasReservadasDespuesDe(String mail, Date fecha);
 }
