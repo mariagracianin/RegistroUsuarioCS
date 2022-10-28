@@ -90,27 +90,17 @@ public class ActividadService {
         return listaSuperActividadesDTO;
     }
 
-    public void guardarActividad(NuevaActividadDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
-        System.out.println("----------------------------------------------------------");
-        System.out.println(nuevaActividadDTO.getImageString());
+    public void guardarActividad(NuevoServicioDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
 
         for(int i=0; i<nuevaActividadDTO.getHorarios().size(); i++){
             HorarioDTO horarioDTOi = nuevaActividadDTO.getHorarios().get(i);
 
             Integer horaInicio = horarioDTOi.getHoraInicio();
-            System.out.println(horaInicio+"------------------------------------------------------------");
-            System.out.println(horaInicio/100);
-            System.out.println(horaInicio-(horaInicio/100)*100);
             Integer horaFin = horarioDTOi.getHoraFin();
-            System.out.println(horaFin+"---------------------------------------------------------------");
-            System.out.println(horaFin-(horaFin/100)*100);
-            System.out.println(horaFin/100);
 
             LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100)*100);
-            System.out.println(horaInicio1);
             LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100)*100);
-            System.out.println(horaFin1);
 
             Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),DayOfWeek.of(horarioDTOi.getDia()),horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
             if(nuevaActividadDTO.getImageString()!=null){

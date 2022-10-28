@@ -11,6 +11,7 @@ import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.CanchaRepository;
+import com.tictok.RUServidor.Repositories.ImagenRepository;
 import com.tictok.RUServidor.Repositories.ReservaCanchaRepository;
 import com.tictok.RUServidor.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,15 @@ public class CanchaService {
     private final UsuarioRepository usuarioRepository;
     private final CanchaRepository canchaRepository;
     private final ReservaCanchaRepository reservaCanchaRepository;
+    private  final ImagenRepository imagenRepository;
 
     @Autowired
-    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService) {
+    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService, ImagenRepository imagenRepository) {
         this.usuarioRepository = usuarioRepository;
         this.canchaRepository = canchaRepository;
         this.reservaCanchaRepository = reservaCanchaRepository;
         this.cuentaService = cuentaService;
+        this.imagenRepository = imagenRepository;
     }
 
     public ReservaDTO reservarCancha(Reserva2DTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
@@ -159,5 +162,28 @@ public class CanchaService {
             canchaConHorariosYCuposDTO.addHorarioConCupos(new HorarioConCuposDTO(dia, horaInicio, horaFin, cuposLibres));
         }
         return canchaConHorariosYCuposDTO;
+    }
+
+    public void guardarCancha(NuevoServicioDTO nuevaCanchaDTO, String mailCentro) throws CuentaNoExisteException {
+        CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
+
+        for (int i = 0; i < nuevaCanchaDTO.getHorarios().size(); i++) {
+            HorarioDTO horarioDTOi = nuevaCanchaDTO.getHorarios().get(i);
+
+            Integer horaInicio = horarioDTOi.getHoraInicio();
+            Integer horaFin = horarioDTOi.getHoraFin();
+
+            LocalTime horaInicio1 = LocalTime.of(horaInicio / 100, horaInicio - (horaInicio / 100) * 100);
+            LocalTime horaFin1 = LocalTime.of(horaFin / 100, horaFin - (horaFin / 100) * 100);
+
+            Cancha canchaI = new Cancha(centro1, nuevaCanchaDTO.getNombreServicio(), DayOfWeek.of(horarioDTOi.getDia()), horaInicio1, horaFin1, nuevaCanchaDTO.getPrecio(), nuevaCanchaDTO.getCupos());
+            if (nuevaCanchaDTO.getImageString() != null) {
+                Imagen imagen = new Imagen(nuevaCanchaDTO.getImageString());
+                imagenRepository.save(imagen);
+                canchaI.setImagen(imagen);
+            }
+            canchaRepository.save(canchaI);
+            centro1.setCancha(canchaI);
+        }
     }
 }

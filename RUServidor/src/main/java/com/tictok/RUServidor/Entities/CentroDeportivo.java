@@ -153,4 +153,6 @@ public class CentroDeportivo {
     public void setActividad(Actividad actividad){
         this.getActividades().add(actividad);
     }
+
+    public void setCancha(Cancha cancha){this.getCanchas().add(cancha);}
 }
