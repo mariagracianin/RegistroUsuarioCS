@@ -62,6 +62,8 @@ public class VerHorariosCanchaController implements Initializable {
                 HBox horarioBox = fxmlLoader.load();
 
                 CardHorarioCanchaController cardController = fxmlLoader.getController();
+                cardController.setNombreCancha(estaCancha.getNombreServicio());
+                cardController.setNombreCentro(estaCancha.getNombreCentro());
                 cardController.setDatosHorario(horariosConCuposCancha.get(i));
 
                 contenedorHorarios.add(horarioBox,1,row++);

@@ -21,6 +21,9 @@ public class CardHorarioCanchaController implements Initializable {
     private UsuarioRest usuarioRest;
 
     private HorarioConCuposDTO horarioSeleccionado;
+    private String nombreCancha;
+    private String nombreCentro;
+
     @FXML
     public Label lblDiaDeLaSemana;
     @FXML
@@ -66,14 +69,29 @@ public class CardHorarioCanchaController implements Initializable {
         String horaFinStr = String.valueOf(horaF) + ":" + String.valueOf(horaFin-horaF*100);
 
         lblHoraFin.setText(horaFinStr);
-        lblCuposLibres.setText(horario.getCuposLibres()+"");
+       // horario.setCuposLibres(0);
+        if (horario.getCuposLibres() == 1){
+            lblCuposLibres.setText("Libre");
+        }else{
+            lblCuposLibres.setText("Ocupada, únete con el código");
+            btnAgregarHorario.setDisable(true);
+        }
 
     }
 
     public void guardarReserva(ActionEvent actionEvent) {
         btnAgregarHorario.setText("*");
-        //mandar request, si ya habia un dueño de la reserva salta ventana emergente para introducir codigo
-        //(cedula) y si coincide se realiza la reserva, sino no
-        //si no habia dueño de la reserva se realiza la reserva ok
+        System.out.println(horarioSeleccionado.getHoraInicio());
+        System.out.println(nombreCancha);
+        System.out.println(nombreCentro);
+       //
+    }
+
+    public void setNombreCancha(String nombreCancha) {
+        this.nombreCancha = nombreCancha;
+    }
+
+    public void setNombreCentro(String nombreCentro) {
+        this.nombreCentro = nombreCentro;
     }
 }
