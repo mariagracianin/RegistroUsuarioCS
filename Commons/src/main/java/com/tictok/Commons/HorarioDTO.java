@@ -3,6 +3,8 @@ package com.tictok.Commons;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.Objects;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HorarioDTO {
     private int dia;
@@ -40,5 +42,18 @@ public class HorarioDTO {
 
     public void setHoraFin(int horaFin) {
         this.horaFin = horaFin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HorarioDTO that = (HorarioDTO) o;
+        return dia == that.dia && horaInicio == that.horaInicio && horaFin == that.horaFin;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dia, horaInicio, horaFin);
     }
 }
