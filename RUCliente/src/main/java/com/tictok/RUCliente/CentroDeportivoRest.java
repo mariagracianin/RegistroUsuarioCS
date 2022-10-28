@@ -6,12 +6,14 @@ import com.mashape.unirest.http.Unirest;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.NuevoCentroDTO;
 import com.tictok.Commons.NuevoServicioDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class CentroDeportivoRest {
+    @Autowired
     private MiniCuenta miniCuenta;
 
     public HttpResponse<String> guardarCentroDeportivo(String mail, String password, String nombreCentro, String adress, String telefono, String encargado, String rut, String razonsocial, String barrio) {
