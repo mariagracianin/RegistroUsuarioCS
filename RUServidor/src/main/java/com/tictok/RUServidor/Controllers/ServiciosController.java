@@ -38,8 +38,6 @@ public class ServiciosController {
 
     @GetMapping("/actividad/{centroDeportivo}/{actividadNombre}")
     public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(@PathVariable String centroDeportivo, @PathVariable String actividadNombre) throws EntidadNoExisteException{
-        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------11");
-        System.out.println(centroDeportivo+"  " + actividadNombre);
         return actividadService.getActividadConHorariosYCuposDTO(centroDeportivo, actividadNombre);
     }
 
