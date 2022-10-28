@@ -36,19 +36,16 @@ public class ServiciosController {
         return canchaService.findAll();
     }
 
-    @GetMapping("/actividad/{nombreCentro}/{nombreActividad}")
-    public ActividadConHorariosYCuposDTO getActividad(@PathVariable String nombreCentro, @PathVariable String nombreActividad) throws Exception {
-        return null;
+    @GetMapping("/actividad/{centroDeportivo}/{actividadNombre}")
+    public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(@PathVariable String centroDeportivo, @PathVariable String actividadNombre) throws EntidadNoExisteException{
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------11");
+        System.out.println(centroDeportivo+"  " + actividadNombre);
+        return actividadService.getActividadConHorariosYCuposDTO(centroDeportivo, actividadNombre);
     }
 
     @GetMapping("/cancha/{centroDeportivo}/{canchaNombre}")
     public CanchaConHorariosYCuposDTO getCanchaConHorariosYCuposDTO(@PathVariable String centroDeportivo, @PathVariable String canchaNombre) throws EntidadNoExisteException {
         return canchaService.getCanchaConHorariosYCuposDTO(centroDeportivo, canchaNombre);
-    }
-
-    @GetMapping("/actividad/{centroDeportivo}/{actividadNombre}")
-    public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(@PathVariable String centroDeportivo, @PathVariable String actividadNombre) throws EntidadNoExisteException{
-        return actividadService.getActividadConHorariosYCuposDTO(centroDeportivo, actividadNombre);
     }
 
     @GetMapping("actividades/{campoBusqueda}")

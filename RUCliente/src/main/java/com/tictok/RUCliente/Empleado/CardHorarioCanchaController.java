@@ -2,11 +2,13 @@ package com.tictok.RUCliente.Empleado;
 
 import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.HorarioDTO;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -14,6 +16,10 @@ import java.util.ResourceBundle;
 
 //@Component
 public class CardHorarioCanchaController implements Initializable {
+
+    @Autowired
+    private UsuarioRest usuarioRest;
+
     private HorarioConCuposDTO horarioSeleccionado;
     @FXML
     public Label lblDiaDeLaSemana;
