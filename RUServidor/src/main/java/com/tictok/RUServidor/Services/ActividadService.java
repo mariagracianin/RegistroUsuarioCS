@@ -98,12 +98,21 @@ public class ActividadService {
             HorarioDTO horarioDTOi = nuevaActividadDTO.getHorarios().get(i);
 
             Integer horaInicio = horarioDTOi.getHoraInicio();
+            System.out.println(horaInicio+"------------------------------------------------------------");
+            System.out.println(horaInicio/100);
+            System.out.println(horaInicio-(horaInicio/100)*100);
             Integer horaFin = horarioDTOi.getHoraFin();
+            System.out.println(horaFin+"---------------------------------------------------------------");
+            System.out.println(horaFin-(horaFin/100)*100);
+            System.out.println(horaFin/100);
 
-            LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100));
-            LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100));
+            LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100)*100);
+            System.out.println(horaInicio1);
+            LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100)*100);
+            System.out.println(horaFin1);
 
             Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),DayOfWeek.of(horarioDTOi.getDia()),horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+
             actividadRepository.save(actividadI);
             centro1.setActividad(actividadI);
         }
