@@ -1,12 +1,15 @@
 package com.tictok.RUCliente.Empleado;
 
+import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.HorarioDTO;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -14,6 +17,10 @@ import java.util.ResourceBundle;
 
 //@Component
 public class CardHorarioCanchaController implements Initializable {
+
+    @Autowired
+    private UsuarioRest usuarioRest;
+
     private HorarioConCuposDTO horarioSeleccionado;
     private String nombreCancha;
     private String nombreCentro;
@@ -74,11 +81,13 @@ public class CardHorarioCanchaController implements Initializable {
     }
 
     public void guardarReserva(ActionEvent actionEvent) {
-        btnAgregarHorario.setText("*");
-        System.out.println(horarioSeleccionado.getHoraInicio());
-        System.out.println(nombreCancha);
-        System.out.println(nombreCentro);
-       //
+        HorarioDTO horario = new HorarioDTO(horarioSeleccionado.getDia(),horarioSeleccionado.getHoraInicio(),horarioSeleccionado.getHoraFin());
+        HttpResponse<String> response = usuarioRest.hacerReserva(nombreCentro,nombreCancha,"Cancha",horario,null);
+        if(response.getCode()==200){
+            btnAgregarHorario.setText("*");
+        }else{
+            throw new RuntimeException();
+        }
     }
 
     public void setNombreCancha(String nombreCancha) {
