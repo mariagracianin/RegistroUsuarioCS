@@ -7,6 +7,7 @@ import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.UsuarioMalDefinido;
 import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
+import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
 import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Mappers.UsuarioMapper;
@@ -108,7 +109,7 @@ public class UsuarioService {
                 reservaActividadRepository.findActividadesReservadasDespuesDe(mail, fecha);
         List<ReservaCancha> canchasReservadas = reservaCanchaRepository.findCanchasReservadasDespuesDe(mail, fecha);
 
-        return null;
+        return ReservaMapper.fromListReservasToReserva2DTO(canchasReservadas, actividadesReservadas);
     }
 
 //    public List<UsuarioDTO> findByEmpresa(Empresa empresa) {
