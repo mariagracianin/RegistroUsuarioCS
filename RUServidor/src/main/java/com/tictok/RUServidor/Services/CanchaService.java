@@ -74,7 +74,7 @@ public class CanchaService {
             throw new ReservaPosteriorAlInicioException();
         }
 
-        ReservaCancha reservaCancha = new ReservaCancha(usuario, usuario, cancha, dateFecha);
+        ReservaCancha reservaCancha = new ReservaCancha(usuario, cancha, dateFecha);
         return reservaCanchaRepository.save(reservaCancha);
     }
 
@@ -85,7 +85,6 @@ public class CanchaService {
             throw new ReservaPadreNoExisteException();
         }
         ReservaCancha reservaPadre = reservaPadreO.get();
-        Usuario usuarioPadre = reservaPadre.getUsuario();
         Cancha cancha = reservaPadre.getCancha();
         Date dateFecha = reservaPadre.getFecha();
 
@@ -94,7 +93,8 @@ public class CanchaService {
             throw new ReservaPosteriorAlFinException();
         }
 
-        ReservaCancha reservaCancha = new ReservaCancha(usuarioPadre, usuario, cancha, dateFecha);
+        ReservaCancha reservaCancha = new ReservaCancha(usuario, cancha, dateFecha);
+        reservaCancha.setReservaCanchaPadre(reservaPadre);
         return reservaCanchaRepository.save(reservaCancha);
     }
 
