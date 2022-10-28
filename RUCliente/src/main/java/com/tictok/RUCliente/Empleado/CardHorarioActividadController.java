@@ -15,6 +15,9 @@ import java.util.ResourceBundle;
 //@Component
 public class CardHorarioActividadController implements Initializable {
     private HorarioConCuposDTO horarioSeleccionado;
+    private String nombreActividad;
+    private String nombreCentro;
+
     @FXML
     public Label lblDiaDeLaSemana;
     @FXML
@@ -69,4 +72,11 @@ public class CardHorarioActividadController implements Initializable {
         //mandar request
     }
 
+    public void setNombreActividad(String nombreServicio) {
+        this.nombreActividad = nombreServicio;
+    }
+
+    public void setNombreCentro(String nombreCentro) {
+        this.nombreCentro = nombreCentro;
+    }
 }

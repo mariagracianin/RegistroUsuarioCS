@@ -68,6 +68,8 @@ public class VerHorariosActividadController implements Initializable {
                 HBox horarioBox = fxmlLoader.load(VerHorariosActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardHorarioActividad.fxml"));
 
                 CardHorarioActividadController cardHorarioController = fxmlLoader.getController();
+                cardHorarioController.setNombreActividad(estaActividad.getNombreServicio());
+                cardHorarioController.setNombreCentro(estaActividad.getNombreCentro());
                 cardHorarioController.setDatosHorario(horariosConCupos.get(i));
 
                 contenedorHorarios.add(horarioBox, 1, row++);
