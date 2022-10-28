@@ -4,15 +4,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.tictok.Commons.HorarioDTO;
-import com.tictok.Commons.NuevaActividadDTO;
-import com.tictok.Commons.NuevaEmpresaDTO;
 import com.tictok.Commons.NuevoCentroDTO;
+import com.tictok.Commons.NuevoServicioDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class CentroDeportivoRest {
+    @Autowired
     private MiniCuenta miniCuenta;
 
     public HttpResponse<String> guardarCentroDeportivo(String mail, String password, String nombreCentro, String adress, String telefono, String encargado, String rut, String razonsocial, String barrio) {
@@ -40,7 +41,7 @@ public class CentroDeportivoRest {
         String nuevaActividadJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            NuevaActividadDTO nuevaActividadDTO = new NuevaActividadDTO(nombreServicio,precio,cupos,paseLibre,imagen,horarios);
+            NuevoServicioDTO nuevaActividadDTO = new NuevoServicioDTO(nombreServicio,precio,cupos,paseLibre,imagen,horarios);
             nuevaActividadJSON = jsonObjectMapper.writeValueAsString(nuevaActividadDTO);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -50,6 +51,27 @@ public class CentroDeportivoRest {
             HttpResponse<String> response = Unirest.post("http://localhost:8080/centro/postActividad/" + miniCuenta.getMailMiniCuenta())
                     .header("Content-Type", "application/json")
                     .body(nuevaActividadJSON)
+                    .asString();
+            return response;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> guardarCancha(String nombreServicio, Integer precio, Integer cupos, String imagen, List<HorarioDTO> horarios){
+        String nuevaCanchaJSON = "";
+        try {
+            ObjectMapper jsonObjectMapper = new ObjectMapper();
+            NuevoServicioDTO nuevaCanchaDTO = new NuevoServicioDTO(nombreServicio,precio,cupos,false,imagen,horarios);
+            nuevaCanchaJSON = jsonObjectMapper.writeValueAsString(nuevaCanchaDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            HttpResponse<String> response = Unirest.post("http://localhost:8080/centro/postCancha/" + miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .body(nuevaCanchaJSON)
                     .asString();
             return response;
         } catch (Exception e) {

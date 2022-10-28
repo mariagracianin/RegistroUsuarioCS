@@ -2,7 +2,7 @@ package com.tictok.Commons;
 
 import java.util.List;
 
-public class NuevaActividadDTO {
+public class NuevoServicioDTO {
     private String nombreServicio;
     private Integer precio;
     private Integer cupos;
@@ -10,10 +10,10 @@ public class NuevaActividadDTO {
     private String imageString;
     private List<HorarioDTO> horarios;
 
-    public NuevaActividadDTO() {
+    public NuevoServicioDTO() {
     }
 
-    public NuevaActividadDTO(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String imageString, List<HorarioDTO> horarios) {
+    public NuevoServicioDTO(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String imageString, List<HorarioDTO> horarios) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.cupos = cupos;

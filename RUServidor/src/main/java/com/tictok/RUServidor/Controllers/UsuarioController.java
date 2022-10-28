@@ -21,6 +21,7 @@ public class UsuarioController  {
     private final CuentaService cuentaService;
     private final CanchaService canchaService;
     private final ActividadService actividadService;
+
     @Autowired
     public UsuarioController(UsuarioService usuarioService, EmpresaService empresaService, CuentaService cuentaService, CanchaService canchaService, ActividadService actividadService) {
         this.usuarioService = usuarioService;
@@ -63,7 +64,6 @@ public class UsuarioController  {
             throw new TipoDeReservaNoExisteException();
         }
     }
-
 
     @DeleteMapping("/reserva/{idReserva}")
     public void DeleteReserva(@PathVariable Long idReserva){

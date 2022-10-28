@@ -36,7 +36,6 @@ public class ActividadService {
     private final ReservaActividadRepository reservaActividadRepository;
     private final CentroService centroService;
     private final CuentaService cuentaService;
-
     private final ImagenRepository imagenRepository;
 
     @Autowired
@@ -95,7 +94,7 @@ public class ActividadService {
         return listaSuperActividadesDTO;
     }
 
-    public void guardarActividad(NuevaActividadDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
+    public void guardarActividad(NuevoServicioDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
 
         for(int i=0; i<nuevaActividadDTO.getHorarios().size(); i++){
@@ -104,10 +103,15 @@ public class ActividadService {
             Integer horaInicio = horarioDTOi.getHoraInicio();
             Integer horaFin = horarioDTOi.getHoraFin();
 
-            LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100));
-            LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100));
+            LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100)*100);
+            LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100)*100);
 
             Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),DayOfWeek.of(horarioDTOi.getDia()),horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+            if(nuevaActividadDTO.getImageString()!=null){
+                Imagen imagen = new Imagen(nuevaActividadDTO.getImageString());
+                imagenRepository.save(imagen);
+                actividadI.setImagen(imagen);
+            }
             actividadRepository.save(actividadI);
             centro1.setActividad(actividadI);
         }
