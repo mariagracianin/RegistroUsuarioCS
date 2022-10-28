@@ -21,6 +21,8 @@ dependencies {
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
 	implementation 'com.tictok:Commons:0.0.1-SNAPSHOT'
 	implementation group: 'org.apache.camel', name: 'camel-jackson', version: '3.18.1'
+	implementation 'commons-codec:commons-codec:1.15'
+	implementation 'commons-io:commons-io:2.5'
 }
 
 tasks.named('test') {

@@ -81,7 +81,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="35.0" layoutY="231.0" prefHeight="21.0" prefWidth="362.0" text="Imagen descriptiva: (requisitos:  230 x 110 px)" textFill="WHITE">
+            <Label layoutX="35.0" layoutY="231.0" prefHeight="21.0" prefWidth="431.0" text="Imagen descriptiva: (requisitos:  230 x 110 px, .png o .jpg)" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>
@@ -131,7 +131,7 @@
             </Button>
             <ScrollPane hbarPolicy="NEVER" layoutX="35.0" layoutY="413.0" prefHeight="213.0" prefWidth="429.0" vbarPolicy="ALWAYS">
                <content>
-                  <GridPane fx:id="contenedorHorarios">
+                  <GridPane fx:id="contenedorHorarios" prefHeight="3.0" prefWidth="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -139,6 +139,11 @@
                   </GridPane>
                </content>
             </ScrollPane>
+            <Label fx:id="lblSubirImgOk" layoutX="143.0" layoutY="265.0" prefHeight="21.0" prefWidth="342.0" text="..." textFill="WHITE">
+               <font>
+                  <Font name="Candara Light" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
