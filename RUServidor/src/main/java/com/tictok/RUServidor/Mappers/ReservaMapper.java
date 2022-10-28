@@ -1,7 +1,6 @@
 package com.tictok.RUServidor.Mappers;
 
 import com.tictok.Commons.HorarioDTO;
-import com.tictok.Commons.Reserva2DTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.RUServidor.Entities.ReservaActividad;
 import com.tictok.RUServidor.Entities.ReservaCancha;
@@ -11,7 +10,7 @@ import java.util.List;
 
 public class ReservaMapper {
 
-    public static ReservaDTO fromReservaCanchaToReservaDTO(ReservaCancha reservaCancha){
+    /*public static ReservaDTO fromReservaCanchaToReservaDTO(ReservaCancha reservaCancha){
         int cedula = reservaCancha.getUsuario().getCedula();
         String nombreCentro = reservaCancha.getCancha().getCanchaId().getCentroDeportivo();
         String nombreActividad = reservaCancha.getCancha().getCanchaId().getNombreServicio();
@@ -29,10 +28,10 @@ public class ReservaMapper {
         HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaActividad.getActividad().getActividadId());
         Long codigoReserva = reservaActividad.getId();
         return new ReservaDTO(cedula, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
-    }
+    }*/
 
     // TODO Arreglar todo esto que me tiene triste
-    public static Reserva2DTO fromReservaCanchaToReserva2DTO(ReservaCancha reservaCancha){
+    public static ReservaDTO fromReservaCanchaToReserva2DTO(ReservaCancha reservaCancha){
         String mail = reservaCancha.getUsuario().getCuenta().getMail();
         String nombreCentro = reservaCancha.getCancha().getCanchaId().getCentroDeportivo();
         String nombreActividad = reservaCancha.getCancha().getCanchaId().getNombreServicio();
@@ -46,10 +45,10 @@ public class ReservaMapper {
             codigoReservaPadre = null;
         }
         String fecha = reservaCancha.getFecha().toString();
-        return new Reserva2DTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva, codigoReservaPadre, fecha);
+        return new ReservaDTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva, codigoReservaPadre, fecha);
     }
 
-    public static Reserva2DTO fromReservaActividadToReserva2DTO(ReservaActividad reservaActividad){
+    public static ReservaDTO fromReservaActividadToReserva2DTO(ReservaActividad reservaActividad){
         String mail = reservaActividad.getUsuario().getCuenta().getMail();
         String nombreCentro = reservaActividad.getActividad().getActividadId().getCentroDeportivo();
         String nombreActividad = reservaActividad.getActividad().getActividadId().getNombreServicio();
@@ -57,11 +56,11 @@ public class ReservaMapper {
         HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaActividad.getActividad().getActividadId());
         Long codigoReserva = reservaActividad.getId();
         String fecha = reservaActividad.getFecha().toString();
-        return new Reserva2DTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva, fecha);
+        return new ReservaDTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva, fecha);
     }
-    public static List<Reserva2DTO> fromListReservasToReserva2DTO(List<ReservaCancha> reservaCanchaList,
-                                                                  List<ReservaActividad> reservaActividadList){
-        List<Reserva2DTO> reserva2DTOList = new ArrayList<Reserva2DTO>(reservaCanchaList.size() + reservaActividadList.size());
+    public static List<ReservaDTO> fromListReservasToReserva2DTO(List<ReservaCancha> reservaCanchaList,
+                                                                 List<ReservaActividad> reservaActividadList){
+        List<ReservaDTO> reserva2DTOList = new ArrayList<ReservaDTO>(reservaCanchaList.size() + reservaActividadList.size());
         for (int i = 0; i<reservaCanchaList.size(); i++){
             reserva2DTOList.add(fromReservaCanchaToReserva2DTO(reservaCanchaList.get(i)));
         }
@@ -71,8 +70,8 @@ public class ReservaMapper {
         return reserva2DTOList;
     }
 
-    public static List<Reserva2DTO> fromListReservaCanchaToReserva2DTO(List<ReservaCancha> reservaCanchaList) {
-        List<Reserva2DTO> reserva2DTOList = new ArrayList<Reserva2DTO>(reservaCanchaList.size());
+    public static List<ReservaDTO> fromListReservaCanchaToReserva2DTO(List<ReservaCancha> reservaCanchaList) {
+        List<ReservaDTO> reserva2DTOList = new ArrayList<ReservaDTO>(reservaCanchaList.size());
         for (int i = 0; i<reservaCanchaList.size(); i++){
             reserva2DTOList.add(fromReservaCanchaToReserva2DTO(reservaCanchaList.get(i)));
         }

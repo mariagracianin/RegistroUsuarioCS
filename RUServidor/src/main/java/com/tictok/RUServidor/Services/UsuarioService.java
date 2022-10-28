@@ -1,7 +1,7 @@
 package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.MegaUsuarioDTO;
-import com.tictok.Commons.Reserva2DTO;
+import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.UsuarioMalDefinido;
@@ -25,9 +25,7 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final CuentaRepository cuentaRepository;
     private final EmpresaRepository empresaRepository;
-
     private final ReservaActividadRepository reservaActividadRepository;
-
     private final ReservaCanchaRepository reservaCanchaRepository;
     private final EmpresaService empresaService;
     private final CuentaService cuentaService;
@@ -92,7 +90,6 @@ public class UsuarioService {
 
     }
 
-
     public Usuario saveNewUsurio(MegaUsuarioDTO megaUsuarioDTO, String mail) throws Exception {
         Cuenta cuenta = CuentaMapper.toCuentaFromMegaUsuarioDTO(megaUsuarioDTO);
         Usuario usuario = UsuarioMapper.toUsuarioFromMegaUsuarioDTO(megaUsuarioDTO);
@@ -103,7 +100,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public List<Reserva2DTO> getReservasByUsuario(String mail) {
+    public List<ReservaDTO> getReservasByUsuario(String mail) {
         Date fecha = Date.valueOf(LocalDate.now());
         List<ReservaActividad> actividadesReservadas =
                 reservaActividadRepository.findActividadesReservadasDespuesDe(mail, fecha);
@@ -112,12 +109,7 @@ public class UsuarioService {
         return ReservaMapper.fromListReservasToReserva2DTO(canchasReservadas, actividadesReservadas);
     }
 
-//    public List<UsuarioDTO> findByEmpresa(Empresa empresa) {
-//        List usuariosList = usuarioRepository.findByEmpresa(empresa);
-//        List usuarioDTOList = new ArrayList<UsuarioDTO>(usuariosList.size());
-//        for (int i = 0; i<usuariosList.size(); i++){
-//            usuarioDTOList.add(UsuarioMapper.toUsuarioDTO((Usuario) usuariosList.get(i)));
-//        }
-//        return usuarioDTOList;
-//    }
+    public List<ReservaDTO> getReservasActuales(String mailUsuario){
+        return null;
+    }
 }

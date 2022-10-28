@@ -62,7 +62,7 @@ public class EmpMisReservasController implements Initializable {
 
     private List<ReservaDTO> getDatos(){
         List<ReservaDTO> l = new ArrayList<>();
-        ReservaDTO r1 = new ReservaDTO(12345678,"Bigua","Tenis","tipo?",new HorarioDTO(1,1330,1430));
+        ReservaDTO r1 = new ReservaDTO("mailUsuario","Bigua","Tenis","tipo?",new HorarioDTO(1,1330,1430),null,null);
         r1.setCodigoReserva(1L);
         r1.setCodigoReservaPadre(2L);
         l.add(r1);

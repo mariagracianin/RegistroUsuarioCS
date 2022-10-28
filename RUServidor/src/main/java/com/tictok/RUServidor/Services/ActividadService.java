@@ -58,7 +58,7 @@ public class ActividadService {
         imagenRepository.save(imagen);
     }
 
-    public ReservaDTO reservarActividad(Reserva2DTO reservaDTO) throws CuposAgotadosException, CuentaNoExisteException {
+    public ReservaDTO reservarActividad(ReservaDTO reservaDTO) throws CuposAgotadosException, CuentaNoExisteException {
         Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(reservaDTO.getHorario());
         ServicioId actividadId = new ServicioId(reservaDTO.getNombreActividad(), reservaDTO.getNombreCentro(),
@@ -81,7 +81,7 @@ public class ActividadService {
         ReservaActividad reservaActividad = new ReservaActividad(usuario, dateFecha, actividad);
         reservaActividad = reservaActividadRepository.save(reservaActividad);
 
-        return ReservaMapper.fromReservaActividadToReservaDTO(reservaActividad);
+        return ReservaMapper.fromReservaActividadToReserva2DTO(reservaActividad);
     }
 
     public List<SuperActividadDTO> findAllPageable(int page, int size) {

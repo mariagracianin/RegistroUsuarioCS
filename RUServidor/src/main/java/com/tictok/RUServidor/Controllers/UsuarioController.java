@@ -1,7 +1,6 @@
 package com.tictok.RUServidor.Controllers;
 
 import com.tictok.Commons.MegaUsuarioDTO;
-import com.tictok.Commons.Reserva2DTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Usuario;
@@ -47,12 +46,12 @@ public class UsuarioController  {
     }
 
     @GetMapping("{id}/reserva")
-    public List<Reserva2DTO> getReservasByUsuario(@PathVariable String id){
+    public List<ReservaDTO> getReservasByUsuario(@PathVariable String id){
         return usuarioService.getReservasByUsuario(id);
     }
 
     @PostMapping("/reserva")
-    public ReservaDTO postNewReserva(@RequestBody Reserva2DTO reservaDTO)
+    public ReservaDTO postNewReserva(@RequestBody ReservaDTO reservaDTO)
             throws TipoDeReservaNoExisteException, UsuarioNoExisteException, ReservaPosteriorAlInicioException,
             CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuposAgotadosException, CuentaNoExisteException {
         if (reservaDTO.getTipo().equals("Cancha")){
@@ -63,6 +62,11 @@ public class UsuarioController  {
         else {
             throw new TipoDeReservaNoExisteException();
         }
+    }
+
+    @GetMapping("/getReservas/{mailUsuario}")
+    public List<ReservaDTO> getReservas(@PathVariable String mailUsuario){
+        return null;
     }
 
     @DeleteMapping("/reserva/{idReserva}")

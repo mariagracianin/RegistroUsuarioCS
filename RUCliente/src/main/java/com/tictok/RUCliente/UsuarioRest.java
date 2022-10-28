@@ -5,7 +5,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
-import com.tictok.Commons.Reserva2DTO;
+import com.tictok.Commons.ReservaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,7 +52,7 @@ public class UsuarioRest {
        String reservarJSON = "";
        try {
            ObjectMapper jsonObjectMapper = new ObjectMapper();
-           Reserva2DTO reservarDTO = new Reserva2DTO(miniCuenta.getMailMiniCuenta(),nombreCentro,nombreActividad,tipo,horarioDTO,null,codigoReservaPadre,null);
+           ReservaDTO reservarDTO = new ReservaDTO(miniCuenta.getMailMiniCuenta(),nombreCentro,nombreActividad,tipo,horarioDTO,null,codigoReservaPadre,null);
            reservarJSON = jsonObjectMapper.writeValueAsString(reservarDTO);
        }catch (Exception e){
            throw new RuntimeException(e);
