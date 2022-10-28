@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;
@@ -37,9 +36,11 @@ public class EmpActividadesController implements Initializable {
     public Button btnBuscar;
     public TextField txtBuscador;
     @Autowired
-    EmpleadoController empleadoController;
+    EmpMisDatosController empleadoMisDatosController;
     @Autowired
-    ReservarActividadController reservarActividadController;
+    EmpMisReservasController empMisReservasController;
+    @Autowired
+    VerHorariosActividadController verHorariosActividadController;
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
@@ -78,13 +79,12 @@ public class EmpActividadesController implements Initializable {
             for (int i=0; i<actividadesActuales.size(); i++){
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-                SplitPane actBox = fxmlLoader.load(EmpActividadesController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardActividad.fxml"));
+               // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardActividad.fxml"));
+                SplitPane actBox = fxmlLoader.load();
 
                 CardActividadController cardController = fxmlLoader.getController();
                 cardController.setDatosActividad(actividadesActuales.get(i));
-                System.out.println(actividadesActuales.get(i).getNombreServicio()+ "HOLA");
 
                 if (column == 3) {
                     column = 0;
@@ -126,23 +126,23 @@ public class EmpActividadesController implements Initializable {
 
 
     public void verReservas(ActionEvent actionEvent) throws IOException {
-        empleadoController.verReservas(actionEvent);
+        empleadoMisDatosController.verReservas(actionEvent);
     }
 
     public void verCanchas(ActionEvent actionEvent) throws IOException {
-        empleadoController.verCanchas(actionEvent);
+        empMisReservasController.verCanchas(actionEvent);
     }
 
     public void verDatos(ActionEvent actionEvent) throws IOException {
-        empleadoController.verDatos(actionEvent);
+        empMisReservasController.verDatos(actionEvent);
     }
 
     public void verReservasPasadas(ActionEvent actionEvent) {
-        empleadoController.verReservasPasadas(actionEvent);
+        empMisReservasController.verReservasPasadas(actionEvent);
     }
 
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
-        empleadoController.cerrarSesion(actionEvent);
+        empMisReservasController.cerrarSesion(actionEvent);
     }
 
     public void llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {

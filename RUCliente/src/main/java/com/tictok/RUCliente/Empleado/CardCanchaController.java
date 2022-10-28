@@ -26,9 +26,10 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-@Component
+//@Component
 public class CardCanchaController {
 
+    public Label centroDeportivo;
     @FXML
     private Label costo;
 
@@ -60,12 +61,15 @@ public class CardCanchaController {
         nombre.setText(cancha.getNombreServicio());
         costo.setText("Costo: " + cancha.getPrecio());
         direccionYBarrio.setText(cancha.getAddress() + ", " + cancha.getBarrio());
+        centroDeportivo.setText("Centro: "+ cancha.getNombreCentro());
     }
 
 
     public void abrirVentanaReservaConDatos(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        VerHorariosCanchaController controller = (VerHorariosCanchaController) Main.getContext().getBean("verHorariosCanchaController");
+        controller.setEstaCancha(estaCancha);
 
         Parent root = fxmlLoader.load(CardCanchaController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/reservaCancha.fxml"));
 
@@ -73,8 +77,8 @@ public class CardCanchaController {
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        ReservarCanchaController reservarCanchaController = fxmlLoader.getController();
-        reservarCanchaController.setEstaCancha(estaCancha);
+        // VerHorariosCanchaController reservarCanchaController = fxmlLoader.getController();
+        // reservarCanchaController.setEstaCancha(estaCancha);
         stage.show();
     }
 }

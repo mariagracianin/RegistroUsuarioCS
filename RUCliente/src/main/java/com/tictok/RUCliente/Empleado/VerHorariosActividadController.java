@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 @Component
-public class ReservarActividadController implements Initializable {
+public class VerHorariosActividadController implements Initializable {
     @FXML
     public BorderPane root;
     private List<HorarioConCuposDTO> horariosConCupos;
@@ -41,8 +41,16 @@ public class ReservarActividadController implements Initializable {
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
 
+    public VerHorariosActividadController() {
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {//hacer request mery nombre centro, actividad, horariodto        int row=0;
+        nombreAct.setText(estaActividad.getNombreServicio());
+        direccionAct.setText(estaActividad.getAddress() +", " + estaActividad.getBarrio());
+        precioAct.setText("Costo: $" + estaActividad.getPrecio());
+        lblNombreCentro.setText("Centro Deportivo: "+ estaActividad.getNombreCentro());
+
         horariosConCupos = new ArrayList<>();
         try {
             horariosConCupos = obtenerHorarioConCupos();
@@ -55,11 +63,13 @@ public class ReservarActividadController implements Initializable {
         try {
             for (int i = 0; i < horariosConCupos.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-                HBox horarioBox = fxmlLoader.load(ReservarActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardHorarioActividad.fxml"));
+                HBox horarioBox = fxmlLoader.load(VerHorariosActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/cardHorarioActividad.fxml"));
 
                 CardHorarioActividadController cardHorarioController = fxmlLoader.getController();
+                cardHorarioController.setNombreActividad(estaActividad.getNombreServicio());
+                cardHorarioController.setNombreCentro(estaActividad.getNombreCentro());
                 cardHorarioController.setDatosHorario(horariosConCupos.get(i));
 
                 contenedorHorarios.add(horarioBox, 1, row++);
@@ -74,17 +84,23 @@ public class ReservarActividadController implements Initializable {
 
     private List<HorarioConCuposDTO> obtenerHorarioConCupos() throws JsonProcessingException {
         HttpResponse<String> response = centroDeportivoRest.obtenerActividadConCupos(estaActividad.getNombreCentro(),estaActividad.getNombreServicio());
+        System.out.println("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+        System.out.println(response.getBody());
         ObjectMapper objectMapper = new ObjectMapper();
         ActividadConHorariosYCuposDTO actividadConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), ActividadConHorariosYCuposDTO.class);
+        System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos());
+        for(int i = 0; i<actividadConHorariosYCuposDTO.getHorariosConCupos().size(); i++){
+            System.out.println("-----------------------");
+            System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getDia());
+            System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getHoraInicio());
+            System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getHoraFin());
+        }
         return actividadConHorariosYCuposDTO.getHorariosConCupos();
     }
 
     public void setDatos(SuperActividadDTO estaActividad){
         this.estaActividad = estaActividad;
-        nombreAct.setText(estaActividad.getNombreServicio());
-        direccionAct.setText(estaActividad.getAddress() +", " + estaActividad.getBarrio());
-        precioAct.setText("Costo: $" + estaActividad.getPrecio());
-        lblNombreCentro.setText("Centro Deportivo: "+ estaActividad.getNombreCentro());
+
     }
 
 }

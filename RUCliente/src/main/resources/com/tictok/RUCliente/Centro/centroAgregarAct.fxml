@@ -55,7 +55,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="txtPrecio" layoutX="146.0" layoutY="118.0" prefHeight="31.0" prefWidth="151.0" promptText="800" />
-            <TextField fx:id="txtCupos" layoutX="210.0" layoutY="186.0" prefHeight="31.0" prefWidth="86.0" promptText="15" />
+            <TextField fx:id="txtCupos" layoutX="216.0" layoutY="194.0" prefHeight="31.0" prefWidth="86.0" promptText="15" />
             <TextField fx:id="txtNombre" layoutX="144.0" layoutY="77.0" prefHeight="31.0" prefWidth="280.0" promptText="Yoga" />
             <Label layoutX="68.0" layoutY="82.0" prefHeight="20.0" prefWidth="89.0" text="Nombre:" textFill="WHITE">
                <font>
@@ -67,7 +67,7 @@
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="68.0" layoutY="191.0" prefHeight="21.0" prefWidth="143.0" text="Cupos disponibles:" textFill="WHITE">
+            <Label layoutX="73.0" layoutY="199.0" prefHeight="21.0" prefWidth="143.0" text="Cupos disponibles:" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
                </font>

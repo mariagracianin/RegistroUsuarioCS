@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="700.0" styleClass="leftPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.InfoActSinReservaController">
+   <center>
+      <VBox prefHeight="259.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="nombreAct" text="Label" textFill="#bb86fc">
+               <VBox.margin>
+                  <Insets left="95.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Candara Bold Italic" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="precioAct" prefHeight="37.0" prefWidth="450.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Candara Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="95.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lblNombreCentro" prefHeight="37.0" prefWidth="450.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Candara Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="95.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="direccionAct" prefHeight="37.0" prefWidth="552.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Candara Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="95.0" />
+               </VBox.margin>
+            </Label>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="70.0" prefWidth="92.0" />
+            <Label text="Actividad" textFill="#03dac6">
+               <font>
+                  <Font name="Century Gothic" size="48.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

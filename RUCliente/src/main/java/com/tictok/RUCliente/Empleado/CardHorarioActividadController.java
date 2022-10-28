@@ -12,9 +12,12 @@ import org.springframework.stereotype.Component;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@Component
+//@Component
 public class CardHorarioActividadController implements Initializable {
     private HorarioConCuposDTO horarioSeleccionado;
+    private String nombreActividad;
+    private String nombreCentro;
+
     @FXML
     public Label lblDiaDeLaSemana;
     @FXML
@@ -60,13 +63,20 @@ public class CardHorarioActividadController implements Initializable {
         String horaFinStr = String.valueOf(horaF) + ":" + String.valueOf(horaFin-horaF*100);
 
         lblHoraFin.setText(horaFinStr);
-        //falta lblCuposLibres.setText(horario.getCupos()); o hacer la cuenta de los libres si esos son los totales
-
+        lblCuposLibres.setText(horario.getCuposLibres()+"");
     }
-
+    @FXML
     public void guardarReservaFinal(ActionEvent actionEvent) {
         btnAgregarHorario.setText("*");
+        System.out.println(horarioSeleccionado.getDia() + "   " +  horarioSeleccionado.getHoraInicio() + "   " +  horarioSeleccionado.getHoraFin() +"   " +  horarioSeleccionado.getCuposLibres());
         //mandar request
     }
 
+    public void setNombreActividad(String nombreServicio) {
+        this.nombreActividad = nombreServicio;
+    }
+
+    public void setNombreCentro(String nombreCentro) {
+        this.nombreCentro = nombreCentro;
+    }
 }

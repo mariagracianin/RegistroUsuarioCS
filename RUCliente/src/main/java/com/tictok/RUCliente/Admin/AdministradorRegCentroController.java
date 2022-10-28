@@ -36,9 +36,7 @@ public class AdministradorRegCentroController implements Initializable {
     public TextField contraseñaCuenta1;
     public TextField rut;
     public TextField razonSocial;
-    public ChoiceBox opcionesBarrios;
-
-    private ObservableList<String> opcionesBarriosList = FXCollections.observableArrayList("Pocitos","Centro","Ciudad Vieja","Tres Cruces","Malvín","Parque Rodó");
+    public TextField barrio;
 
     @Autowired
     AdministradorController administradorController;
@@ -67,7 +65,7 @@ public class AdministradorRegCentroController implements Initializable {
     }
 
     public void guardarDatos(ActionEvent actionEvent) throws IOException {
-        HttpResponse<String> responseCode = centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText(), rut.getText(),razonSocial.getText(),opcionesBarrios.getValue().toString());
+        HttpResponse<String> responseCode = centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText(), rut.getText(),razonSocial.getText(),barrio.getText());
         if(responseCode.getCode()==409){
             abrirVentanaEmergenteError();
         }else if(responseCode.getCode()==200){
@@ -112,6 +110,5 @@ public class AdministradorRegCentroController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        opcionesBarrios.setItems(opcionesBarriosList);
     }
 }
