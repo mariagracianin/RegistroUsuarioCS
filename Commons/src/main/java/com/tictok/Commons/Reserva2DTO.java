@@ -17,6 +17,16 @@ public class Reserva2DTO {
     public Reserva2DTO(){
     }
 
+    public Reserva2DTO(String mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, String fecha) {
+        this.mailUsuario = mailUsuario;
+        this.nombreCentro = nombreCentro;
+        this.nombreActividad = nombreActividad;
+        this.tipo = tipo;
+        this.horario = horario;
+        this.codigoReserva = codigoReserva;
+        this.fecha = fecha;
+    }
+
     public Reserva2DTO(String mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, Long codigoReservaPadre, String fecha) {
         this.mailUsuario = mailUsuario;
         this.nombreCentro = nombreCentro;

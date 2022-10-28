@@ -2,7 +2,8 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
-import com.tictok.RUServidor.Entities.NotTables.CuentaReservas;
+import com.tictok.RUServidor.Projections.ActividadInfo;
+import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
@@ -14,6 +15,8 @@ import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
@@ -81,12 +84,13 @@ public class ActividadService {
         return ReservaMapper.fromReservaActividadToReservaDTO(reservaActividad);
     }
 
-    public List<SuperActividadDTO> findAll() {
-        List<Actividad> actividadList = actividadRepository.findAll();
-        if (actividadList.isEmpty()){
+    public List<SuperActividadDTO> findAllPageable(int page, int size) {
+        Pageable paging = PageRequest.of(page, size);
+        List<ActividadInfo> actividadInfos = actividadRepository.findDistinctBy(paging);
+        if (actividadInfos.isEmpty()){
             return null;
         }
-        List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
+        List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesInfoListToSuperActividadDTOList(actividadInfos);
         return listaSuperActividadesDTO;
     }
 
@@ -101,8 +105,9 @@ public class ActividadService {
 
             LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100)*100);
             LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100)*100);
+            DayOfWeek dia  = HorarioMapper.setearDia(horarioDTOi.getDia());
 
-            Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),DayOfWeek.of(horarioDTOi.getDia()),horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+            Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),dia,horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
             if(nuevaActividadDTO.getImageString()!=null){
                 Imagen imagen = new Imagen(nuevaActividadDTO.getImageString());
                 imagenRepository.save(imagen);

@@ -2,11 +2,10 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
-import com.tictok.RUServidor.Entities.NotTables.CuentaReservas;
+import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Exceptions.*;
-import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
@@ -77,7 +76,7 @@ public class CanchaService {
             throw new ReservaPosteriorAlInicioException();
         }
 
-        ReservaCancha reservaCancha = new ReservaCancha(usuario, usuario, cancha, dateFecha);
+        ReservaCancha reservaCancha = new ReservaCancha(usuario, cancha, dateFecha);
         return reservaCanchaRepository.save(reservaCancha);
     }
 
@@ -88,7 +87,6 @@ public class CanchaService {
             throw new ReservaPadreNoExisteException();
         }
         ReservaCancha reservaPadre = reservaPadreO.get();
-        Usuario usuarioPadre = reservaPadre.getUsuario();
         Cancha cancha = reservaPadre.getCancha();
         Date dateFecha = reservaPadre.getFecha();
 
@@ -97,7 +95,8 @@ public class CanchaService {
             throw new ReservaPosteriorAlFinException();
         }
 
-        ReservaCancha reservaCancha = new ReservaCancha(usuarioPadre, usuario, cancha, dateFecha);
+        ReservaCancha reservaCancha = new ReservaCancha(usuario, cancha, dateFecha);
+        reservaCancha.setReservaCanchaPadre(reservaPadre);
         return reservaCanchaRepository.save(reservaCancha);
     }
 
@@ -175,8 +174,9 @@ public class CanchaService {
 
             LocalTime horaInicio1 = LocalTime.of(horaInicio / 100, horaInicio - (horaInicio / 100) * 100);
             LocalTime horaFin1 = LocalTime.of(horaFin / 100, horaFin - (horaFin / 100) * 100);
+            DayOfWeek dia = HorarioMapper.setearDia(horarioDTOi.getDia());
 
-            Cancha canchaI = new Cancha(centro1, nuevaCanchaDTO.getNombreServicio(), DayOfWeek.of(horarioDTOi.getDia()), horaInicio1, horaFin1, nuevaCanchaDTO.getPrecio(), nuevaCanchaDTO.getCupos());
+            Cancha canchaI = new Cancha(centro1, nuevaCanchaDTO.getNombreServicio(), dia, horaInicio1, horaFin1, nuevaCanchaDTO.getPrecio(), nuevaCanchaDTO.getCupos());
             if (nuevaCanchaDTO.getImageString() != null) {
                 Imagen imagen = new Imagen(nuevaCanchaDTO.getImageString());
                 imagenRepository.save(imagen);
