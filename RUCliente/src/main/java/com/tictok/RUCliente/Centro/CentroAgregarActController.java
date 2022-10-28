@@ -67,6 +67,16 @@ public class CentroAgregarActController implements Initializable {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(paseLibre.isSelected()){
                     txtCupos.setDisable(true);
+                    diaOpciones.setDisable(true);
+                    txtHoraInicio.setDisable(true);
+                    txtHoraFin.setDisable(true);
+                    btnAgregarHorario.setDisable(true);
+                }if (!paseLibre.isSelected()){
+                    txtCupos.setDisable(false);
+                    diaOpciones.setDisable(false);
+                    txtHoraInicio.setDisable(false);
+                    txtHoraFin.setDisable(false);
+                    btnAgregarHorario.setDisable(false);
                 }
             }
         });
@@ -132,6 +142,8 @@ public class CentroAgregarActController implements Initializable {
         if (!horariosReserva.contains(horarioNuevo)) {
             horariosReserva.add(horarioNuevo);
             actualizarHorariosReserva();
+            txtHoraFin.setText("");
+            txtHoraInicio.setText("");
         }
     }
     public void eliminarHorario(HorarioDTO horario) throws IOException {
