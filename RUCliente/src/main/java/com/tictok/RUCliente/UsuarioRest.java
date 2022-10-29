@@ -48,6 +48,17 @@ public class UsuarioRest {
         }
     }
 
+    public HttpResponse<String> buscarReservasFromUsuarioLogeado(){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservas/"+ miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
    public HttpResponse<String> hacerReserva(String nombreCentro, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoReservaPadre){
        String reservarJSON = "";
        try {

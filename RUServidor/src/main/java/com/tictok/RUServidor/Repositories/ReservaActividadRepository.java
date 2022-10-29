@@ -31,6 +31,13 @@ public interface ReservaActividadRepository extends JpaRepository<ReservaActivid
     @Query("select r from ReservaActividad r where r.usuario.cuenta.mail = ?1 and r.fecha >= ?2")
     List<ReservaActividad> findActividadesReservadasDespuesDe(String mail, Date fecha);
 
+    @Query("""
+    select r from ReservaActividad r
+    where r.usuario.cedula = ?1
+        and r.fecha between ?3 and ?4
+    """)
+    List<ReservaActividad> conseguirReservasEntreFechasYDeUsuario(int cedula, Date fechaStart, Date fechaEnd);
+
 
 
 

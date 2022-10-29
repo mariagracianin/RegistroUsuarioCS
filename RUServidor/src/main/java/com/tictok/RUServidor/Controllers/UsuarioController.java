@@ -65,8 +65,8 @@ public class UsuarioController  {
     }
 
     @GetMapping("/getReservas/{mailUsuario}")
-    public List<ReservaDTO> getReservas(@PathVariable String mailUsuario){
-        return null;
+    public List<ReservaDTO> getReservas(@PathVariable String mailUsuario) throws CuentaNoExisteException {
+        return usuarioService.getReservasActuales(mailUsuario);
     }
 
     @DeleteMapping("/reserva/{idReserva}")

@@ -4,6 +4,7 @@ import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.*;
+import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.UsuarioMalDefinido;
 import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
@@ -14,6 +15,7 @@ import com.tictok.RUServidor.Mappers.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -90,6 +92,7 @@ public class UsuarioService {
 
     }
 
+    //@Transactional
     public Usuario saveNewUsurio(MegaUsuarioDTO megaUsuarioDTO, String mail) throws Exception {
         Cuenta cuenta = CuentaMapper.toCuentaFromMegaUsuarioDTO(megaUsuarioDTO);
         Usuario usuario = UsuarioMapper.toUsuarioFromMegaUsuarioDTO(megaUsuarioDTO);
@@ -109,7 +112,11 @@ public class UsuarioService {
         return ReservaMapper.fromListReservasToReserva2DTO(canchasReservadas, actividadesReservadas);
     }
 
-    public List<ReservaDTO> getReservasActuales(String mailUsuario){
+    public List<ReservaDTO> getReservasActuales(String mailUsuario) throws CuentaNoExisteException {
+        Usuario usuario = cuentaService.findOnebyId(mailUsuario).getUsuario();
+        //List<ReservaActividad> reservas = reservaActividadRepository.findActividadesReservadasDespuesDe(mailUsuario,LocalDate.now(),LocalDate.now());
+        //List<ReservaCancha>
+        //mappear lo de arriba, unir las listas y devolverlo
         return null;
     }
 }
