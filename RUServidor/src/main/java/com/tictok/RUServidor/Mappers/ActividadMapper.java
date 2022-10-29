@@ -1,5 +1,4 @@
 package com.tictok.RUServidor.Mappers;
-import com.tictok.Commons.ActividadConHorariosYCuposDTO;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUServidor.Entities.Actividad;
@@ -59,14 +58,14 @@ public class ActividadMapper {
         String imageString;
         for (int i = 0; i< actividadList.size(); i++){
             actividadInfo = actividadList.get(i);
-            nombreServicio = actividadInfo.getActividadId().getNombreServicio();
-            nombreCentro = actividadInfo.getActividadId().getCentroDeportivo();
+            nombreServicio = actividadInfo.getNombreActividad();
+            nombreCentro = actividadInfo.getNombreCentro();
             precio = actividadInfo.getPrecio();
-            paseLibre = actividadInfo.isPaseLibre();
-            address = actividadInfo.getCentroDeportivo().getAddress();
-            barrio = actividadInfo.getCentroDeportivo().getBarrio();
-            telefono = actividadInfo.getCentroDeportivo().getTelefono();
-            imageString = actividadInfo.getImagen().getImagenString();
+            paseLibre = actividadInfo.getPaseLibre();
+            address = actividadInfo.getAddress();
+            barrio = actividadInfo.getBarrio();
+            telefono = actividadInfo.getTelefono();
+            imageString = actividadInfo.getImageString();
 
             SuperActividadDTO superActividad = new SuperActividadDTO(nombreServicio, nombreCentro, precio,
                                     paseLibre, address, barrio, telefono, imageString);
@@ -76,4 +75,23 @@ public class ActividadMapper {
         return superActividadDTOList;
     }
 
+    public static List<SuperActividadDTO> fromQueryResultListToSuperActividadDTOList(List<Object[]> actividadInfosObjects) {
+        List<SuperActividadDTO> superActividadDTOList = new ArrayList<SuperActividadDTO>(actividadInfosObjects.size());
+        SuperActividadDTO superActividadDTO;
+        for (int i = 0; i<actividadInfosObjects.size(); i++){
+            superActividadDTO = fromQueryResultToSuperActividadDTO(actividadInfosObjects.get(i));
+            superActividadDTOList.add(superActividadDTO);
+        }
+        return superActividadDTOList;
+    }
+
+    private static SuperActividadDTO fromQueryResultToSuperActividadDTO(Object[] actividadInfoObject){
+        if (actividadInfoObject.length == 9){
+            return new SuperActividadDTO((String)actividadInfoObject[1], (String)actividadInfoObject[0], (Integer) actividadInfoObject[4], (Boolean) actividadInfoObject[3],
+                    (String) actividadInfoObject[6], (String) actividadInfoObject[7], (String) actividadInfoObject[8], null);
+        } else{
+            return new SuperActividadDTO((String)actividadInfoObject[1], (String)actividadInfoObject[0], (Integer) actividadInfoObject[4], (Boolean) actividadInfoObject[3],
+                    (String) actividadInfoObject[6], (String) actividadInfoObject[7], (String) actividadInfoObject[8], (String) actividadInfoObject[9]);
+        }
+    }
 }

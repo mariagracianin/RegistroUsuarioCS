@@ -13,6 +13,7 @@ import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
+import net.bytebuddy.implementation.bind.annotation.Super;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -86,11 +87,12 @@ public class ActividadService {
 
     public List<SuperActividadDTO> findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-        List<ActividadInfo> actividadInfos = actividadRepository.findDistinctBy(paging);
-        if (actividadInfos.isEmpty()){
+        List<Object[]> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
+        if (actividadInfosObjects.isEmpty()){
             return null;
         }
-        List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesInfoListToSuperActividadDTOList(actividadInfos);
+        List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromQueryResultListToSuperActividadDTOList(actividadInfosObjects);
+//        List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesInfoListToSuperActividadDTOList(actividadInfos);
         return listaSuperActividadesDTO;
     }
 

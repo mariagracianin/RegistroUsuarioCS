@@ -3,6 +3,7 @@ package com.tictok.RUServidor.Repositories;
 import com.tictok.RUServidor.Entities.Actividad;
 import com.tictok.RUServidor.Entities.Cancha;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
+import com.tictok.RUServidor.Entities.NotTables.ServicioIdSinHorario;
 import com.tictok.RUServidor.Projections.ActividadInfo;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public interface ActividadRepository extends JpaRepository<Actividad, ServicioId> {
@@ -24,8 +26,15 @@ public interface ActividadRepository extends JpaRepository<Actividad, ServicioId
              upper(a.centroDeportivo.barrio) like %:campoBusqueda% or upper(a.centroDeportivo.address) like %:campoBusqueda%""")
     List<Actividad> findByNombreOBarrioIsLike(@Param("campoBusqueda") String campoBusqueda);
 
-    @Query("select distinct a from Actividad a")
-    List<ActividadInfo> findDistinctBy(Pageable pageable);
+    @Query(value = """
+        select distinct a.centro_deportivo_nombre_centro as nombreCentro, a.nombre_servicio as nombreActividad, a.cupos as cupos,
+                  			a.pase_libre as paseLibre, a.precio as precio, i.imagen_bytes as imageString, cd.address as address,
+                  			cd.barrio as barrio, cd.telefono as telefono
+                  			from actividad a left outer join imagen i on a.imagen_id = i.id
+                  			join centro_deportivo cd on a.centro_deportivo_nombre_centro = cd.nombre_centro""",
+        nativeQuery = true
+        )
+    List<Object[]> findDistinctBy(Pageable pageable);
 
 
 
