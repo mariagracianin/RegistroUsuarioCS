@@ -41,23 +41,23 @@ public class CanchaService {
         this.imagenRepository = imagenRepository;
     }
 
-    public ReservaDTO reservarCancha(Reserva2DTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
+    public ReservaDTO reservarCancha(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
         ReservaCancha reservaCancha;
         ReservaDTO reservaDTOADevolver = null;
         if (reservaDTO.getCodigoReservaPadre() == null){
             reservaCancha = reservarCanchaPadre(reservaDTO);
-            reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReservaDTO(reservaCancha);
+            reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReserva2DTO(reservaCancha);
             reservaDTOADevolver.setCodigoReservaPadre(reservaDTOADevolver.getCodigoReserva());
         }
         else {
             reservaCancha = reservarCanchaHijo(reservaDTO);
-            reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReservaDTO(reservaCancha);
+            reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReserva2DTO(reservaCancha);
             reservaDTOADevolver.setCodigoReservaPadre(reservaDTO.getCodigoReservaPadre());
         }
         return reservaDTOADevolver;
     }
 
-    private ReservaCancha reservarCanchaPadre(Reserva2DTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, CuentaNoExisteException {
+    private ReservaCancha reservarCanchaPadre(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, CuentaNoExisteException {
         Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         //Usuario usuario = usuarioRepository.findById(reservaDTO.getCedulaUsuario()).get();
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(reservaDTO.getHorario());
@@ -80,7 +80,7 @@ public class CanchaService {
         return reservaCanchaRepository.save(reservaCancha);
     }
 
-    private ReservaCancha reservarCanchaHijo(Reserva2DTO reservaDTO) throws ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
+    private ReservaCancha reservarCanchaHijo(ReservaDTO reservaDTO) throws ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
         Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         Optional<ReservaCancha> reservaPadreO = reservaCanchaRepository.findById(reservaDTO.getCodigoReservaPadre());
         if (reservaPadreO.isEmpty()){

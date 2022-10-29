@@ -9,6 +9,8 @@ import com.tictok.RUServidor.Services.CentroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/centro")
 public class CentroController {
@@ -39,6 +41,13 @@ public class CentroController {
         canchaService.guardarCancha(nuevaCanchaDTO,mailCentro);
     }
 
+    @GetMapping("/getActividades/{mailCentro}")
+    public List<SuperActividadDTO> getActividades(@PathVariable String mailCentro) throws  CuentaNoExisteException{
+        return centroService.getActividades(mailCentro);
+    }
 
-
+    @GetMapping("/getCanchas/{mailCentro}")
+    public List<SuperCanchaDTO> getCanchas(@PathVariable String mailCentro) throws  CuentaNoExisteException{
+        return centroService.getCanchas(mailCentro);
+    }
 }

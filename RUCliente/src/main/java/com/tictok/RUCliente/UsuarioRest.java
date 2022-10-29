@@ -5,7 +5,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
-import com.tictok.Commons.Reserva2DTO;
+import com.tictok.Commons.ReservaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,11 +48,22 @@ public class UsuarioRest {
         }
     }
 
+    public HttpResponse<String> buscarReservasFromUsuarioLogeado(){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservas/"+ miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
    public HttpResponse<String> hacerReserva(String nombreCentro, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoReservaPadre){
        String reservarJSON = "";
        try {
            ObjectMapper jsonObjectMapper = new ObjectMapper();
-           Reserva2DTO reservarDTO = new Reserva2DTO(miniCuenta.getMailMiniCuenta(),nombreCentro,nombreActividad,tipo,horarioDTO,null,codigoReservaPadre,null);
+           ReservaDTO reservarDTO = new ReservaDTO(miniCuenta.getMailMiniCuenta(),nombreCentro,nombreActividad,tipo,horarioDTO,null,codigoReservaPadre,null);
            reservarJSON = jsonObjectMapper.writeValueAsString(reservarDTO);
        }catch (Exception e){
            throw new RuntimeException(e);

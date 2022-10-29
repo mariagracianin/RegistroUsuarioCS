@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ActividadMapper {
     public static List<SuperActividadDTO> fromActividadesListToSuperActividadDTOList(List<Actividad> actividadList) {
-        Hashtable<ServicioIdSinHorario,SuperActividadDTO> hashDeActividades = new Hashtable<ServicioIdSinHorario, SuperActividadDTO>();
+        Hashtable<ServicioIdSinHorario, SuperActividadDTO> hashDeActividades = new Hashtable<ServicioIdSinHorario, SuperActividadDTO>();
         Actividad actividadNueva;
         ServicioIdSinHorario servicioIdSinHorario;
         SuperActividadDTO superActividadDTOtemporal;

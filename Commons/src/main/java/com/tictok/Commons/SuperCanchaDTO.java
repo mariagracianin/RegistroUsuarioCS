@@ -12,8 +12,8 @@ public class SuperCanchaDTO {
     private String address;
     private String barrio;
     private String telefono;
-    private List<HorarioDTO> horarios;
     private String imageString;
+    private List<HorarioDTO> horarios;
 
     public SuperCanchaDTO(){
     }
