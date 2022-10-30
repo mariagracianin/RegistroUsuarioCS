@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/usuario/id/123456888
+GET http://localhost:8080/usuario/id/12345678
 
 
 ###
@@ -60,3 +60,4 @@ Content-Type: application/json
   "codigoReserva": null,
   "codigoReservaPadre": 6
 }
+

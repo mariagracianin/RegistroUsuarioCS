@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.Tuple;
 import javax.persistence.TupleElement;
+import javax.transaction.Transactional;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -32,6 +33,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class ActividadService {
 
@@ -175,6 +177,7 @@ public class ActividadService {
     }
 
     public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(String centroDeportivo, String actividadNombre) throws EntidadNoExisteException {
+        System.out.println(centroDeportivo + "   " + actividadNombre);
         List<Actividad> listaDeActividades = actividadRepository.findByCentroAndNombre(centroDeportivo, actividadNombre);
         if (listaDeActividades.isEmpty()) {
             throw new EntidadNoExisteException("La actividad de ese centro y ese nombre no existe");
