@@ -141,7 +141,11 @@ public class ActividadService {
 
     public void guardarActividad(NuevoServicioDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
-
+        Imagen imagen = null;
+        if(nuevaActividadDTO.getImageString()!=null) {
+            imagen = new Imagen(nuevaActividadDTO.getImageString());
+            imagenRepository.save(imagen);
+        }
         for(int i=0; i<nuevaActividadDTO.getHorarios().size(); i++){
             HorarioDTO horarioDTOi = nuevaActividadDTO.getHorarios().get(i);
 
@@ -154,8 +158,6 @@ public class ActividadService {
 
             Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),dia,horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
             if(nuevaActividadDTO.getImageString()!=null){
-                Imagen imagen = new Imagen(nuevaActividadDTO.getImageString());
-                imagenRepository.save(imagen);
                 actividadI.setImagen(imagen);
             }
             actividadRepository.save(actividadI);
