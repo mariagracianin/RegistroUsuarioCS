@@ -165,7 +165,11 @@ public class CanchaService {
 
     public void guardarCancha(NuevoServicioDTO nuevaCanchaDTO, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
-
+        Imagen imagen = null;
+        if (nuevaCanchaDTO.getImageString() != null) {
+            imagen = new Imagen(nuevaCanchaDTO.getImageString());
+            imagenRepository.save(imagen);
+        }
         for (int i = 0; i < nuevaCanchaDTO.getHorarios().size(); i++) {
             HorarioDTO horarioDTOi = nuevaCanchaDTO.getHorarios().get(i);
 
@@ -178,8 +182,6 @@ public class CanchaService {
 
             Cancha canchaI = new Cancha(centro1, nuevaCanchaDTO.getNombreServicio(), dia, horaInicio1, horaFin1, nuevaCanchaDTO.getPrecio(), nuevaCanchaDTO.getCupos());
             if (nuevaCanchaDTO.getImageString() != null) {
-                Imagen imagen = new Imagen(nuevaCanchaDTO.getImageString());
-                imagenRepository.save(imagen);
                 canchaI.setImagen(imagen);
             }
             canchaRepository.save(canchaI);
