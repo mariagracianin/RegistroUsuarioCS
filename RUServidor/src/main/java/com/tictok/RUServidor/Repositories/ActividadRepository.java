@@ -11,6 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.Tuple;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,14 +29,14 @@ public interface ActividadRepository extends JpaRepository<Actividad, ServicioId
     List<Actividad> findByNombreOBarrioIsLike(@Param("campoBusqueda") String campoBusqueda);
 
     @Query(value = """
-        select distinct a.centro_deportivo_nombre_centro as nombreCentro, a.nombre_servicio as nombreActividad, a.cupos as cupos,
-                  			a.pase_libre as paseLibre, a.precio as precio, i.imagen_bytes as imageString, cd.address as address,
+        select distinct a.centro_deportivo_nombre_centro as nombreCentro, a.nombre_servicio as nombreActividad,
+                  			a.pase_libre as paseLibre, a.precio as precio, a.imagen_id as imageId, cd.address as address,
                   			cd.barrio as barrio, cd.telefono as telefono
-                  			from actividad a left outer join imagen i on a.imagen_id = i.id
+                  			from actividad a
                   			join centro_deportivo cd on a.centro_deportivo_nombre_centro = cd.nombre_centro""",
         nativeQuery = true
         )
-    List<Object[]> findDistinctBy(Pageable pageable);
+    List<Tuple> findDistinctBy(Pageable pageable);
 
 
 

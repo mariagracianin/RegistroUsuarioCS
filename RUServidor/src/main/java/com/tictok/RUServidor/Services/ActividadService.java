@@ -20,8 +20,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Tuple;
+import javax.persistence.TupleElement;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -87,13 +90,53 @@ public class ActividadService {
 
     public List<SuperActividadDTO> findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-        List<Object[]> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
+        List<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
         if (actividadInfosObjects.isEmpty()){
             return null;
         }
-        List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromQueryResultListToSuperActividadDTOList(actividadInfosObjects);
-//        List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesInfoListToSuperActividadDTOList(actividadInfos);
-        return listaSuperActividadesDTO;
+        List<SuperActividadDTO> superActividadDTOList = new ArrayList<SuperActividadDTO>(size);
+
+        Imagen imagen;
+
+        String nombreCentro;
+        String nombreActividad;
+        Boolean paseLibre;
+        Integer precio;
+        Long imageId;
+        BigInteger imageIdBig;
+        String address;
+        String barrio;
+        String telefono;
+        String imagenString;
+        for (Tuple actividadTuple: actividadInfosObjects){
+            List<TupleElement<?>> elements = actividadTuple.getElements();
+            nombreCentro = (String) actividadTuple.get("nombrecentro");
+            nombreActividad = (String) actividadTuple.get("nombreactividad");
+            paseLibre = (Boolean) actividadTuple.get("paselibre");
+            precio = (Integer) actividadTuple.get("precio");
+            imageIdBig = (BigInteger) actividadTuple.get("imageid");
+            address = (String) actividadTuple.get("address");
+            barrio = (String) actividadTuple.get("barrio");
+            telefono = (String) actividadTuple.get("telefono");
+
+            if (imageIdBig != null) {
+                imageId = imageIdBig.longValue();
+                imagen = imagenRepository.findById(imageId).get();
+                imagenString = imagen.getImagenString();
+            }
+            else{
+                imagenString = null;
+            }
+
+            SuperActividadDTO superActividadDTO = new SuperActividadDTO(nombreCentro, nombreActividad, precio,
+                    paseLibre, address, barrio, telefono, imagenString);
+            superActividadDTOList.add(superActividadDTO);
+        }
+        return superActividadDTOList;
+    }
+
+    private void setImagenSuperActividad(SuperActividadDTO superActividad){
+        actividadRepository.findByCentroAndNombre(superActividad.getNombreCentro(), superActividad.getNombreServicio());
     }
 
     public void guardarActividad(NuevoServicioDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
