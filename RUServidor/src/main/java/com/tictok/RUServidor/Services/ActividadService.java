@@ -90,6 +90,15 @@ public class ActividadService {
         return ReservaMapper.fromReservaActividadToReserva2DTO(reservaActividad);
     }
 
+    public List<SuperActividadDTO> findAll(){
+        List<Actividad> actividadList = actividadRepository.findAll();
+        if (actividadList.isEmpty()){
+            return null;
+        }
+        List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
+        return listaSuperActividadDTO;
+    }
+
     public List<SuperActividadDTO> findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         List<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);

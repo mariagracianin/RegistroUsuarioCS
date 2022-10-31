@@ -29,7 +29,12 @@ public class ServiciosController {
     //Todo Importante Cambiar esto
     @GetMapping("/actividades")
     public List<SuperActividadDTO> getAllActividades(){
-        return actividadService.findAllPageable(0, 9);
+        return actividadService.findAll();
+    }
+
+    @GetMapping("/actividades/{page}/{size}")
+    public List<SuperActividadDTO> getAllActividadesPageable(@PathVariable int page, @PathVariable int size){
+        return actividadService.findAllPageable(page, size);
     }
 
     @GetMapping("/canchas")
