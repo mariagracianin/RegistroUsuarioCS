@@ -112,6 +112,17 @@ public class CentroDeportivoRest {
         }
     }
 
+    public HttpResponse<String> obtenerActividadesPageable(int page, int size){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades/"+ page + "/" + size)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
     public HttpResponse<String> obtenerCanchas(){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas")
