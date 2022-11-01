@@ -17,6 +17,7 @@ import com.tictok.RUServidor.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -118,7 +119,7 @@ public class CanchaService {
         List<SuperCanchaDTO> listaSuperCanchaDTO = CanchaMapper.fromCanchaListToSuperCanchaDTOList(canchaList);
         return listaSuperCanchaDTO;
     }
-
+    @Transactional
     public CanchaConHorariosYCuposDTO getCanchaConHorariosYCuposDTO(String centroDeportivo, String canchaNombre) throws EntidadNoExisteException {
         List<Cancha> listaDeCanchas = canchaRepository.findByCentroAndNombre(centroDeportivo, canchaNombre);
         if (listaDeCanchas.isEmpty()) {

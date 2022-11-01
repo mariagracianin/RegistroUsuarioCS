@@ -16,12 +16,17 @@
                   <Font size="22.0" />
                </font>
             </Label>
+            <Button fx:id="btnCheckIn" mnemonicParsing="false" onAction="#irACheckIn" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Check-in">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
             <Button fx:id="btnAgregarActividad" mnemonicParsing="false" onAction="#agregarAct" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar actividad">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnAgregarCanchas" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar canchas">
+            <Button fx:id="btnAgregarCanchas" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar cancha">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>

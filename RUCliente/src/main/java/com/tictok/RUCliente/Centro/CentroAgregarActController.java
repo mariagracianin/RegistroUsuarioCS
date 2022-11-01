@@ -1,21 +1,29 @@
 package com.tictok.RUCliente.Centro;
 
+import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.HorarioDTO;
+import com.tictok.RUCliente.Admin.AdministradorRegCentroController;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Empleado.CardHorarioActividadController;
 import com.tictok.RUCliente.Empleado.VerHorariosActividadController;
+import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
+import com.tictok.RUCliente.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
@@ -56,6 +64,9 @@ public class CentroAgregarActController implements Initializable {
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
+
+    @Autowired
+    AdministradorRegCentroController administradorRegCentroController;
 
 
     @Override
@@ -103,17 +114,29 @@ public class CentroAgregarActController implements Initializable {
         centroController.verCanchas(actionEvent);
     }
 
-    public void guardarDatos(ActionEvent actionEvent){
+    public void guardarDatos(ActionEvent actionEvent) throws IOException {
+        HttpResponse<String> response;
         if (txtCupos.isDisable()){
-            centroDeportivoRest.guardarActividad(txtNombre.getText(),Integer.parseInt(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), true, this.img, null );
+            response = centroDeportivoRest.guardarActividad(txtNombre.getText(),Integer.parseInt(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), true, this.img, null );
             //mandar datos con pase libre = true
             //sin horarios
 
         }else{
-            centroDeportivoRest.guardarActividad(txtNombre.getText(),Integer.parseInt(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), false, this.img, this.horariosReserva );
+            response = centroDeportivoRest.guardarActividad(txtNombre.getText(),Integer.parseInt(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), false, this.img, this.horariosReserva );
             //mandar datos con pase libre = false y lista de horarios
         }
+        if (response.getCode() == 200){
+            administradorRegCentroController.abrirVentanaEmergenteExito();
+            txtHoraFin.setText("");
+            txtHoraInicio.setText("");
+            txtCupos.setText("");
+            txtNombre.setText("");
+            txtPrecio.setText("");
+        }else{
+            administradorRegCentroController.abrirVentanaEmergenteError();
+        }
     }
+
 
     public void agregarHorario(ActionEvent actionEvent) throws IOException {
         String hInicio = txtHoraInicio.getText().substring(0,2) + txtHoraInicio.getText().substring(3);
@@ -158,7 +181,7 @@ public class CentroAgregarActController implements Initializable {
             HBox horarioBox = fxmlLoader.load(CardHorarioController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/cardHorario.fxml"));
 
             CardHorarioController cardHorarioController = fxmlLoader.getController();
-            cardHorarioController.setLabels(this.horariosReserva.get(i));
+            cardHorarioController.setLabels(this.horariosReserva.get(i), "actividad");
 
             contenedorHorarios.add(horarioBox, 0, i + 1);
         }

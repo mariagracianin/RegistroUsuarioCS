@@ -13,36 +13,44 @@
       <String fx:value="round-layout" />
    </styleClass>
    <children>
-      <Label fx:id="lblDiaDeLaSemana" prefHeight="30.0" prefWidth="115.0" text="Día" textFill="WHITE">
+      <Label fx:id="lblDiaDeLaSemana" prefHeight="30.0" prefWidth="107.0" text="Día" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="18.0" />
+            <Font name="Candara Bold" size="16.0" />
          </font>
          <HBox.margin>
             <Insets left="15.0" top="5.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="lblHoraInicio" prefHeight="30.0" prefWidth="75.0" text="Inicio" textFill="WHITE">
+      <Label fx:id="lblHoraInicio" prefHeight="30.0" prefWidth="57.0" text="Inicio" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="18.0" />
+            <Font name="Candara Bold" size="16.0" />
          </font>
          <HBox.margin>
             <Insets top="5.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="lblHoraFin" prefHeight="30.0" prefWidth="75.0" text="Fin" textFill="WHITE">
+      <Label fx:id="lblHoraFin" prefHeight="30.0" prefWidth="91.0" text="Fin" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="18.0" />
+            <Font name="Candara Bold" size="16.0" />
          </font>
          <HBox.margin>
             <Insets top="5.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="lblCuposLibres" prefHeight="30.0" prefWidth="250.0" text="Cupos Libres" textFill="WHITE">
+      <Label fx:id="lblCuposLibres" prefHeight="30.0" prefWidth="69.0" text="Cupos Libres" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="17.0" />
+            <Font name="Candara Bold" size="16.0" />
          </font>
          <HBox.margin>
             <Insets top="5.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="lblEstado" prefHeight="30.0" prefWidth="181.0" text="Estado" textFill="WHITE">
+         <font>
+            <Font name="Candara Bold" size="14.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="2.0" top="5.0" />
          </HBox.margin>
       </Label>
       <Button fx:id="btnAgregarHorario" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#guardarReserva" prefHeight="33.0" prefWidth="90.0" styleClass="btnCerrarSesion" text="Reservar" textAlignment="CENTER">

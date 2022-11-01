@@ -27,7 +27,7 @@
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnAgregarCanchas" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar canchas">
+            <Button fx:id="btnAgregarCanchas" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar cancha">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
@@ -58,9 +58,21 @@
    <center>
       <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txtPrecio" layoutX="113.0" layoutY="112.0" prefHeight="31.0" prefWidth="151.0" promptText="800" />
+            <TextField fx:id="txtNombre" layoutX="111.0" layoutY="72.0" prefHeight="31.0" prefWidth="345.0" promptText="Yoga" />
+            <TextField fx:id="txtPrecio" layoutX="111.0" layoutY="112.0" prefHeight="31.0" prefWidth="86.0" promptText="800" />
+            <RadioButton fx:id="paseLibre" layoutX="38.0" layoutY="153.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="147.0" text="Pase Libre" textFill="WHITE">
+               <font>
+                  <Font name="Candara" size="14.0" />
+               </font>
+            </RadioButton>
             <TextField fx:id="txtCupos" layoutX="177.0" layoutY="187.0" prefHeight="31.0" prefWidth="86.0" promptText="15" />
-            <TextField fx:id="txtNombre" layoutX="111.0" layoutY="72.0" prefHeight="31.0" prefWidth="280.0" promptText="Yoga" />
+            <Button fx:id="btnSubirImg" defaultButton="true" layoutX="35.0" layoutY="260.0" mnemonicParsing="false" onAction="#abrirBuscadorArchivo" style="-fx-background-color: #03D9C5;" stylesheets="@../entidad_style.css" text="Subir imagen">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <ChoiceBox fx:id="diaOpciones" layoutX="35.0" layoutY="364.0" prefHeight="25.0" prefWidth="123.0" />
+            <TextField fx:id="txtHoraInicio" layoutX="175.0" layoutY="361.0" prefHeight="31.0" prefWidth="91.0" promptText="14:30" />
             <Label layoutX="35.0" layoutY="77.0" prefHeight="20.0" prefWidth="89.0" text="Nombre:" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
@@ -91,22 +103,6 @@
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <RadioButton fx:id="paseLibre" layoutX="38.0" layoutY="153.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="147.0" text="Pase Libre" textFill="WHITE">
-               <font>
-                  <Font name="Candara" size="14.0" />
-               </font>
-            </RadioButton>
-            <Button fx:id="btnGuardar" defaultButton="true" layoutX="396.0" layoutY="641.0" mnemonicParsing="false" onAction="#guardarDatos" stylesheets="@../entidad_style.css" text="Guardar">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnSubirImg" defaultButton="true" layoutX="35.0" layoutY="260.0" mnemonicParsing="false" onAction="#abrirBuscadorArchivo" style="-fx-background-color: #03D9C5;" stylesheets="@../entidad_style.css" text="Subir imagen">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <ChoiceBox fx:id="diaOpciones" layoutX="35.0" layoutY="364.0" prefHeight="25.0" prefWidth="123.0" />
             <Label layoutX="36.0" layoutY="331.0" prefHeight="17.0" prefWidth="68.0" text="Día" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="17.0" />
@@ -122,11 +118,15 @@
                   <Font name="Candara Light" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="txtHoraInicio" layoutX="175.0" layoutY="361.0" prefHeight="31.0" prefWidth="91.0" promptText="14:30" />
             <TextField fx:id="txtHoraFin" layoutX="281.0" layoutY="361.0" prefHeight="31.0" prefWidth="91.0" promptText="15:30" />
             <Button fx:id="btnAgregarHorario" defaultButton="true" layoutX="380.0" layoutY="359.0" mnemonicParsing="false" onAction="#agregarHorario" prefHeight="35.0" prefWidth="26.0" style="-fx-background-color: #03D9C5;" stylesheets="@../entidad_style.css" text="+">
                <font>
                   <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGuardar" defaultButton="true" layoutX="396.0" layoutY="641.0" mnemonicParsing="false" onAction="#guardarDatos" stylesheets="@../entidad_style.css" text="Guardar">
+               <font>
+                  <Font size="14.0" />
                </font>
             </Button>
             <ScrollPane hbarPolicy="NEVER" layoutX="35.0" layoutY="413.0" prefHeight="213.0" prefWidth="429.0" vbarPolicy="ALWAYS">

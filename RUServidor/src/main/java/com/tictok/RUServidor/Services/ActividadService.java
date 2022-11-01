@@ -16,6 +16,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Date;
@@ -121,7 +122,7 @@ public class ActividadService {
         List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
         return listaSuperActividadDTO;
     }
-
+    @Transactional
     public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(String centroDeportivo, String actividadNombre) throws EntidadNoExisteException {
         List<Actividad> listaDeActividades = actividadRepository.findByCentroAndNombre(centroDeportivo, actividadNombre);
         if (listaDeActividades.isEmpty()) {

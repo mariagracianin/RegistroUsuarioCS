@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 //@Component
 public class CardHorarioCanchaController implements Initializable {
 
+    public Label lblEstado;
     @Autowired
     private UsuarioRest usuarioRest;
 
@@ -62,19 +63,32 @@ public class CardHorarioCanchaController implements Initializable {
 
         int horaInicio = horario.getHoraInicio();
         int hora = horaInicio/100;
-        String horaInicioStr = String.valueOf(hora) + ":" + String.valueOf(horaInicio-hora*100);
 
+        String horaInicioStr;
+        if ((horaInicio-hora*100)<10) {
+            horaInicioStr = hora + ":0" + String.valueOf(horaInicio - hora * 100);
+        } else {
+            horaInicioStr = hora + ":" + String.valueOf(horaInicio - hora * 100);
+        }
         lblHoraInicio.setText(horaInicioStr);
         int horaFin = horario.getHoraFin();
         int horaF = horaFin/100;
-        String horaFinStr = String.valueOf(horaF) + ":" + String.valueOf(horaFin-horaF*100);
+
+        String horaFinStr;
+        if ((horaFin-horaF*100)<10) {
+            horaFinStr = horaF + ":0" + (horaFin - horaF * 100);
+        } else {
+            horaFinStr = horaF + ":" + (horaFin - horaF * 100);
+        }
 
         lblHoraFin.setText(horaFinStr);
-       // horario.setCuposLibres(0);
-        if (horario.getCuposLibres() == 1){
-            lblCuposLibres.setText("Libre");
+        horario.setCuposLibres(0);
+        if (horario.getCuposLibres() != 0){
+            lblCuposLibres.setText(""+horario.getCuposLibres());
+            lblEstado.setText("Libre");
         }else{
-            lblCuposLibres.setText("Ocupada, únete con el código");
+            lblCuposLibres.setText("-");
+            lblEstado.setText("Ocupada, únete con el código");
             btnAgregarHorario.setDisable(true);
         }
 

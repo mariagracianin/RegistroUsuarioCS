@@ -75,8 +75,8 @@ public class AdministradorRegCentroController implements Initializable {
             abrirVentanaEmergenteExito();
         }
     }
-    @FXML
-    private void abrirVentanaEmergenteExito() throws IOException {
+
+    public void abrirVentanaEmergenteExito() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
@@ -90,7 +90,7 @@ public class AdministradorRegCentroController implements Initializable {
 
     }
     @FXML
-    private void abrirVentanaEmergenteError() throws IOException {
+    public void abrirVentanaEmergenteError() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 

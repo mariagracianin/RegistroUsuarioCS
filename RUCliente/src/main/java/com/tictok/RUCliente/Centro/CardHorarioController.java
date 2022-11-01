@@ -16,6 +16,7 @@ public class CardHorarioController implements Initializable {
     public Label lblHoraInicio;
     public Label lblHoraFin;
     private HorarioDTO horarioDTO;
+    private String tipo;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -23,12 +24,20 @@ public class CardHorarioController implements Initializable {
     }
 
     public void eliminarHorario(ActionEvent actionEvent) throws IOException {
-        CentroAgregarActController controller = (CentroAgregarActController) Main.getContext().getBean("centroAgregarActController");
-        controller.eliminarHorario(this.horarioDTO);
+
+        if (tipo.equals("actividad")) {
+            CentroAgregarActController controller = (CentroAgregarActController) Main.getContext().getBean("centroAgregarActController");
+            controller.eliminarHorario(this.horarioDTO);
+        } else if (tipo.equals("cancha")){
+            CentroAgregarCanController controller = (CentroAgregarCanController) Main.getContext().getBean("centroAgregarCanController");
+            controller.eliminarHorario(this.horarioDTO);
+        }
+
 
     }
 
-    public void setLabels(HorarioDTO horario){
+    public void setLabels(HorarioDTO horario, String tipo){
+        this.tipo = tipo;
         this.horarioDTO = horario;
         if (horario.getDia()==1){
             lblDiaDeLaSemana.setText("Lunes");
@@ -47,12 +56,23 @@ public class CardHorarioController implements Initializable {
         }
         int horaInicio = horario.getHoraInicio();
         int hora = horaInicio/100;
-        String horaInicioStr = String.valueOf(hora) + ":" + String.valueOf(horaInicio-hora*100);
 
-        lblHoraInicio.setText(horaInicioStr);
+        String horaInicioStr;
+        if ((horaInicio-hora*100)<10) {
+            horaInicioStr = hora + ":0" + String.valueOf(horaInicio - hora * 100);
+        } else {
+            horaInicioStr = hora + ":" + String.valueOf(horaInicio - hora * 100);
+        }
+            lblHoraInicio.setText(horaInicioStr);
         int horaFin = horario.getHoraFin();
         int horaF = horaFin/100;
-        String horaFinStr = String.valueOf(horaF) + ":" + String.valueOf(horaFin-horaF*100);
+
+        String horaFinStr;
+        if ((horaFin-horaF*100)<10) {
+            horaFinStr = horaF + ":0" + (horaFin - horaF * 100);
+        } else {
+            horaFinStr = horaF + ":" + (horaFin - horaF * 100);
+        }
 
         lblHoraFin.setText(horaFinStr);
     }

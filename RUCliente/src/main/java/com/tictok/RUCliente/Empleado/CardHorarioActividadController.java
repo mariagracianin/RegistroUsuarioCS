@@ -51,16 +51,25 @@ public class CardHorarioActividadController implements Initializable {
         }else{
             lblDiaDeLaSemana.setText("Domingo");
         }
-        //pasar los horarios en int a horarios normales en string
-
         int horaInicio = horario.getHoraInicio();
         int hora = horaInicio/100;
-        String horaInicioStr = String.valueOf(hora) + ":" + String.valueOf(horaInicio-hora*100);
 
+        String horaInicioStr;
+        if ((horaInicio-hora*100)<10) {
+            horaInicioStr = hora + ":0" + String.valueOf(horaInicio - hora * 100);
+        } else {
+            horaInicioStr = hora + ":" + String.valueOf(horaInicio - hora * 100);
+        }
         lblHoraInicio.setText(horaInicioStr);
         int horaFin = horario.getHoraFin();
         int horaF = horaFin/100;
-        String horaFinStr = String.valueOf(horaF) + ":" + String.valueOf(horaFin-horaF*100);
+
+        String horaFinStr;
+        if ((horaFin-horaF*100)<10) {
+            horaFinStr = horaF + ":0" + (horaFin - horaF * 100);
+        } else {
+            horaFinStr = horaF + ":" + (horaFin - horaF * 100);
+        }
 
         lblHoraFin.setText(horaFinStr);
         lblCuposLibres.setText(horario.getCuposLibres()+"");
