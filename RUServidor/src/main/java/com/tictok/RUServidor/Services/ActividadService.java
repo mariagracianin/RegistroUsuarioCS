@@ -2,7 +2,8 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
-import com.tictok.RUServidor.Entities.NotTables.CuentaReservas;
+import com.tictok.RUServidor.Projections.ActividadInfo;
+import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
@@ -12,13 +13,18 @@ import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
+import net.bytebuddy.implementation.bind.annotation.Super;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import javax.persistence.Tuple;
+import javax.persistence.TupleElement;
 import javax.transaction.Transactional;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -26,6 +32,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class ActividadService {
 
@@ -56,7 +63,7 @@ public class ActividadService {
         imagenRepository.save(imagen);
     }
 
-    public ReservaDTO reservarActividad(Reserva2DTO reservaDTO) throws CuposAgotadosException, CuentaNoExisteException {
+    public ReservaDTO reservarActividad(ReservaDTO reservaDTO) throws CuposAgotadosException, CuentaNoExisteException {
         Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(reservaDTO.getHorario());
         ServicioId actividadId = new ServicioId(reservaDTO.getNombreActividad(), reservaDTO.getNombreCentro(),
@@ -79,21 +86,76 @@ public class ActividadService {
         ReservaActividad reservaActividad = new ReservaActividad(usuario, dateFecha, actividad);
         reservaActividad = reservaActividadRepository.save(reservaActividad);
 
-        return ReservaMapper.fromReservaActividadToReservaDTO(reservaActividad);
+        return ReservaMapper.fromReservaActividadToReserva2DTO(reservaActividad);
     }
 
-    public List<SuperActividadDTO> findAll() {
+    public List<SuperActividadDTO> findAll(){
         List<Actividad> actividadList = actividadRepository.findAll();
         if (actividadList.isEmpty()){
             return null;
         }
-        List<SuperActividadDTO> listaSuperActividadesDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
-        return listaSuperActividadesDTO;
+        List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
+        return listaSuperActividadDTO;
+    }
+
+    public List<SuperActividadDTO> findAllPageable(int page, int size) {
+        Pageable paging = PageRequest.of(page, size);
+        List<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
+        if (actividadInfosObjects.isEmpty()){
+            return null;
+        }
+        List<SuperActividadDTO> superActividadDTOList = new ArrayList<SuperActividadDTO>(size);
+
+        Imagen imagen;
+
+        String nombreCentro;
+        String nombreActividad;
+        Boolean paseLibre;
+        Integer precio;
+        Long imageId;
+        BigInteger imageIdBig;
+        String address;
+        String barrio;
+        String telefono;
+        String imagenString;
+        for (Tuple actividadTuple: actividadInfosObjects){
+            List<TupleElement<?>> elements = actividadTuple.getElements();
+            nombreCentro = (String) actividadTuple.get("nombrecentro");
+            nombreActividad = (String) actividadTuple.get("nombreactividad");
+            paseLibre = (Boolean) actividadTuple.get("paselibre");
+            precio = (Integer) actividadTuple.get("precio");
+            imageIdBig = (BigInteger) actividadTuple.get("imageid");
+            address = (String) actividadTuple.get("address");
+            barrio = (String) actividadTuple.get("barrio");
+            telefono = (String) actividadTuple.get("telefono");
+
+            if (imageIdBig != null) {
+                imageId = imageIdBig.longValue();
+                imagen = imagenRepository.findById(imageId).get();
+                imagenString = imagen.getImagenString();
+            }
+            else{
+                imagenString = null;
+            }
+
+            SuperActividadDTO superActividadDTO = new SuperActividadDTO(nombreCentro, nombreActividad, precio,
+                    paseLibre, address, barrio, telefono, imagenString);
+            superActividadDTOList.add(superActividadDTO);
+        }
+        return superActividadDTOList;
+    }
+
+    private void setImagenSuperActividad(SuperActividadDTO superActividad){
+        actividadRepository.findByCentroAndNombre(superActividad.getNombreCentro(), superActividad.getNombreServicio());
     }
 
     public void guardarActividad(NuevoServicioDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
-
+        Imagen imagen = null;
+        if(nuevaActividadDTO.getImageString()!=null) {
+            imagen = new Imagen(nuevaActividadDTO.getImageString());
+            imagenRepository.save(imagen);
+        }
         for(int i=0; i<nuevaActividadDTO.getHorarios().size(); i++){
             HorarioDTO horarioDTOi = nuevaActividadDTO.getHorarios().get(i);
 
@@ -102,11 +164,10 @@ public class ActividadService {
 
             LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100)*100);
             LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100)*100);
+            DayOfWeek dia  = HorarioMapper.setearDia(horarioDTOi.getDia());
 
-            Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),DayOfWeek.of(horarioDTOi.getDia()),horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+            Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),dia,horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
             if(nuevaActividadDTO.getImageString()!=null){
-                Imagen imagen = new Imagen(nuevaActividadDTO.getImageString());
-                imagenRepository.save(imagen);
                 actividadI.setImagen(imagen);
             }
             actividadRepository.save(actividadI);
@@ -124,6 +185,7 @@ public class ActividadService {
     }
     @Transactional
     public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(String centroDeportivo, String actividadNombre) throws EntidadNoExisteException {
+        System.out.println(centroDeportivo + "   " + actividadNombre);
         List<Actividad> listaDeActividades = actividadRepository.findByCentroAndNombre(centroDeportivo, actividadNombre);
         if (listaDeActividades.isEmpty()) {
             throw new EntidadNoExisteException("La actividad de ese centro y ese nombre no existe");

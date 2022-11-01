@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInUsuarioReservasController">
+   <left>
+      <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Centro" textAlignment="CENTER" textFill="#03dac6">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnCheckIn" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" stylesheets="@../entidad_style.css" text="Check-in">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAgregarActividad" mnemonicParsing="false" onAction="#agregarAct" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar actividad">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAgregarCanchas" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar cancha">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVerActividades" mnemonicParsing="false" onAction="#verActividades" prefHeight="35.0" prefWidth="202.0" text="Ver actividades activas">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVerCanchas" mnemonicParsing="false" onAction="#verCanchas" prefHeight="35.0" prefWidth="202.0" text="Ver canchas activas">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Ver liquidación">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" styleClass="btnCerrarSesion" stylesheets="@../entidad_style.css" text="Cerrar sesión">
+               <font>
+                  <Font name="Candara Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <GridPane fx:id="contenedorReservas" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>

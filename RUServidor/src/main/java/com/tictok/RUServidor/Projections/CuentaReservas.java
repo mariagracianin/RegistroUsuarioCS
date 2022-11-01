@@ -1,5 +1,7 @@
-package com.tictok.RUServidor.Entities.NotTables;
+package com.tictok.RUServidor.Projections;
 
+
+import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 
 import java.util.Objects;
 

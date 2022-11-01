@@ -4,60 +4,54 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReservaDTO {
-    private Integer cedulaUsuario;
-    private String nombreCentro;
+    private String mailUsuario;  // cedula
+    private String nombreCentro; //mail centro
     private String nombreActividad;
 
     private String tipo;
     private HorarioDTO horario;
-    private Long codigoReserva;
-    private Long codigoReservaPadre = null; //Usado en las canchas para pedir el codigo de la reserva del que es padre
+    private Long codigoReserva; // - codigoCheckIn
+    private Long codigoReservaPadre; //
+    private String fecha;
 
-    public ReservaDTO() {
+    public ReservaDTO(){
     }
 
-    public ReservaDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario) {
-        this.cedulaUsuario = cedulaUsuario;
-        this.nombreCentro = nombreCentro;
-        this.nombreActividad = nombreActividad;
-        this.tipo = tipo;
-        this.horario = horario;
-    }
-
-    public ReservaDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva) {
-        this.cedulaUsuario = cedulaUsuario;
+    public ReservaDTO(String mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, String fecha) {
+        this.mailUsuario = mailUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
         this.tipo = tipo;
         this.horario = horario;
         this.codigoReserva = codigoReserva;
+        this.fecha = fecha;
     }
 
-    public ReservaDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, Long codigoReservaPadre) {
-        this.cedulaUsuario = cedulaUsuario;
+    public ReservaDTO(String mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, Long codigoReservaPadre, String fecha) {
+        this.mailUsuario = mailUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
         this.tipo = tipo;
         this.horario = horario;
         this.codigoReserva = codigoReserva;
         this.codigoReservaPadre = codigoReservaPadre;
+        this.fecha = fecha;
     }
 
-
-    public String getTipo() {
-        return tipo;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public Integer getCedulaUsuario() {
-        return cedulaUsuario;
+    public String getMailUsuario() {
+        return mailUsuario;
     }
 
-    public void setCedulaUsuario(Integer cedulaUsuario) {
-        this.cedulaUsuario = cedulaUsuario;
+    public void setMailUsuario(String mailUsuario) {
+        this.mailUsuario = mailUsuario;
     }
 
     public String getNombreCentro() {
@@ -74,6 +68,14 @@ public class ReservaDTO {
 
     public void setNombreActividad(String nombreActividad) {
         this.nombreActividad = nombreActividad;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public HorarioDTO getHorario() {

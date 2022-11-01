@@ -212,4 +212,8 @@ public class CentroAgregarActController implements Initializable {
 
 
     }
+
+    public void irACheckIn(ActionEvent actionEvent) throws IOException {
+        centroController.irACheckIn(actionEvent);
+    }
 }

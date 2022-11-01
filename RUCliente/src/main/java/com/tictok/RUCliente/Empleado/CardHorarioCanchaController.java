@@ -3,6 +3,7 @@ package com.tictok.RUCliente.Empleado;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.HorarioDTO;
+import com.tictok.RUCliente.MiniCuenta;
 import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,8 +20,8 @@ import java.util.ResourceBundle;
 public class CardHorarioCanchaController implements Initializable {
 
     public Label lblEstado;
-    @Autowired
-    private UsuarioRest usuarioRest;
+   // @Autowired
+   // private UsuarioRest usuarioRest;
 
     private HorarioConCuposDTO horarioSeleccionado;
     private String nombreCancha;
@@ -36,6 +37,8 @@ public class CardHorarioCanchaController implements Initializable {
     public Label lblCuposLibres;
     @FXML
     public Button btnAgregarHorario;
+
+    private MiniCuenta miniCuenta;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,7 +85,7 @@ public class CardHorarioCanchaController implements Initializable {
         }
 
         lblHoraFin.setText(horaFinStr);
-        horario.setCuposLibres(0);
+        //horario.setCuposLibres(0);
         if (horario.getCuposLibres() != 0){
             lblCuposLibres.setText(""+horario.getCuposLibres());
             lblEstado.setText("Libre");
@@ -96,7 +99,7 @@ public class CardHorarioCanchaController implements Initializable {
 
     public void guardarReserva(ActionEvent actionEvent) {
         HorarioDTO horario = new HorarioDTO(horarioSeleccionado.getDia(),horarioSeleccionado.getHoraInicio(),horarioSeleccionado.getHoraFin());
-        HttpResponse<String> response = usuarioRest.hacerReserva(nombreCentro,nombreCancha,"Cancha",horario,null);
+        HttpResponse<String> response = UsuarioRest.hacerReserva(nombreCentro,nombreCancha,"Cancha",horario,null,this.miniCuenta);
         if(response.getCode()==200){
             btnAgregarHorario.setText("*");
         }else{
@@ -110,5 +113,9 @@ public class CardHorarioCanchaController implements Initializable {
 
     public void setNombreCentro(String nombreCentro) {
         this.nombreCentro = nombreCentro;
+    }
+
+    public void setMiniCuenta(MiniCuenta miniCuenta) {
+        this.miniCuenta = miniCuenta;
     }
 }

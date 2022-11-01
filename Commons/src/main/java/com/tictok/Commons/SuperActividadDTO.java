@@ -2,6 +2,8 @@ package com.tictok.Commons;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -29,6 +31,35 @@ public class SuperActividadDTO {
         this.telefono = telefono;
         this.imageString = imageString;
         this.horarios = horarios;
+    }
+
+    public SuperActividadDTO(String nombreServicio, String nombreCentro, Integer precio, Boolean paseLibre, String address, String barrio, String telefono, String imageString) {
+        this.nombreServicio = nombreServicio;
+        this.nombreCentro = nombreCentro;
+        this.precio = precio;
+        this.paseLibre = paseLibre;
+        this.address = address;
+        this.barrio = barrio;
+        this.telefono = telefono;
+        this.imageString = imageString;
+    }
+
+    public static SuperActividadDTO map(Class<SuperActividadDTO> type, Object[] tuple){
+        List<Class<?>> tupleTypes = new ArrayList<>();
+        for(Object field : tuple){
+            System.out.println(field);
+            if (field == null){
+                System.out.println("Nada");
+            }else {
+                tupleTypes.add(field.getClass());
+            }
+        }
+        try {
+            Constructor<SuperActividadDTO> ctor = type.getConstructor(tupleTypes.toArray(new Class<?>[tuple.length]));
+            return ctor.newInstance(tuple);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addHorario(HorarioDTO horarioDTO){

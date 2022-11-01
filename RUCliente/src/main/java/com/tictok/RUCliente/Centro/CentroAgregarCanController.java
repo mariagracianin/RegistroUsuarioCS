@@ -178,4 +178,8 @@ public class CentroAgregarCanController implements Initializable {
             contenedorHorarios.add(horarioBox, 0, i + 1);
         }
     }
+
+    public void irACheckIn(ActionEvent actionEvent) throws IOException {
+        centroController.irACheckIn(actionEvent);
+    }
 }

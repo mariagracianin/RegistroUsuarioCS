@@ -21,7 +21,7 @@ public class HorarioMapper {
         DayOfWeek diaId = setearDia(horarioDTO.getDia());
         return new Horario(diaId, horaInicioId, horaFinId);
     }
-    private static DayOfWeek setearDia(int numeroDia){
+    public static DayOfWeek setearDia(int numeroDia){
         DayOfWeek dia = DayOfWeek.MONDAY;
         switch (numeroDia) {
             case 1 -> dia = DayOfWeek.MONDAY;

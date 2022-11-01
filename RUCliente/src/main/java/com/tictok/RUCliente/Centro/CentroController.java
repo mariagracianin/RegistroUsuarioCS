@@ -69,4 +69,17 @@ public class CentroController implements Initializable {
 
     public void verCanchas(ActionEvent actionEvent) {
     }
+
+    public void irACheckIn(ActionEvent actionEvent) throws IOException {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroCheckIn.fxml"));
+        stageActual.setTitle("Ingresar Check-In");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stageActual.setScene(escena);
+        stageActual.show();
+    }
 }

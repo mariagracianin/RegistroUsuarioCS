@@ -11,6 +11,7 @@ import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.CentroDeportivoRest;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,6 +54,8 @@ public class EmpCanchasController implements Initializable {
     EmpMisDatosController empMisDatosController;
     @Autowired
     EmpMisReservasController empMisReservasController;
+    @Autowired
+    MiniCuenta miniCuenta;
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
@@ -95,6 +98,7 @@ public class EmpCanchasController implements Initializable {
 
                 CardCanchaController cardController = fxmlLoader.getController();
                 cardController.setDatosCancha(canchasActuales.get(i));
+                cardController.setMiniCuenta(miniCuenta);
                 if (column == 3) {
                     column = 0;
                     row++;

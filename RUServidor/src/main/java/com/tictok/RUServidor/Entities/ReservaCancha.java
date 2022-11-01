@@ -16,10 +16,6 @@ public class ReservaCancha {
     private ReservaCancha reservaCanchaPadre;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "usuario_principal_cedula", nullable = false)
-    private Usuario usuarioPrincipal;
-
-    @ManyToOne(optional = false)
     @JoinColumn(name = "usuario_cedula", nullable = false)
     private Usuario usuario;
 
@@ -36,6 +32,16 @@ public class ReservaCancha {
     @Column(name = "fecha", nullable = false)
     private Date fecha;
 
+    public ReservaCancha() {
+    }
+
+    public ReservaCancha(Usuario usuario, Cancha cancha, Date fecha) {
+        this.usuario = usuario;
+        this.cancha = cancha;
+        this.fecha = fecha;
+
+    }
+
     public ReservaCancha getReservaCanchaPadre() {
         return reservaCanchaPadre;
     }
@@ -44,30 +50,12 @@ public class ReservaCancha {
         this.reservaCanchaPadre = reservaCanchaPadre;
     }
 
-    public ReservaCancha() {
-    }
-
-    public ReservaCancha(Usuario usuarioPrincipal, Usuario usuario, Cancha cancha, Date fecha) {
-        this.usuarioPrincipal = usuarioPrincipal;
-        this.usuario = usuario;
-        this.cancha = cancha;
-        this.fecha = fecha;
-    }
-
     public Date getFecha() {
         return fecha;
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public Usuario getUsuarioPrincipal() {
-        return usuarioPrincipal;
-    }
-
-    public void setUsuarioPrincipal(Usuario usuarioPrincipal) {
-        this.usuarioPrincipal = usuarioPrincipal;
     }
 
     public Cancha getCancha() {

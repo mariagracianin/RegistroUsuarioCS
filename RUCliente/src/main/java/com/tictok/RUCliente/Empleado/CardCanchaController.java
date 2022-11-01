@@ -1,9 +1,9 @@
 package com.tictok.RUCliente.Empleado;
 
 import com.tictok.Commons.HorarioDTO;
-import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +42,11 @@ public class CardCanchaController {
     @FXML
     private Label nombre;
     private SuperCanchaDTO estaCancha;
+    private MiniCuenta miniCuenta;
 
+    public void setMiniCuenta(MiniCuenta miniCuenta) {
+        this.miniCuenta = miniCuenta;
+    }
 
     void setDatosCancha(SuperCanchaDTO cancha) {
         estaCancha = cancha;
@@ -62,6 +66,8 @@ public class CardCanchaController {
         costo.setText("Costo: " + cancha.getPrecio());
         direccionYBarrio.setText(cancha.getAddress() + ", " + cancha.getBarrio());
         centroDeportivo.setText("Centro: "+ cancha.getNombreCentro());
+
+
     }
 
 
@@ -70,7 +76,7 @@ public class CardCanchaController {
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
         VerHorariosCanchaController controller = (VerHorariosCanchaController) Main.getContext().getBean("verHorariosCanchaController");
         controller.setEstaCancha(estaCancha);
-
+        controller.setMiniCuenta(miniCuenta);
         Parent root = fxmlLoader.load(CardCanchaController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/reservaCancha.fxml"));
 
         Stage stage = new Stage();

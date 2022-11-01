@@ -6,6 +6,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.*;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -34,12 +35,17 @@ public class VerHorariosCanchaController implements Initializable {
     public Label direccionCan;
 
     private SuperCanchaDTO estaCancha;
+    private MiniCuenta miniCuenta;
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
 
     public void setEstaCancha(SuperCanchaDTO estaCancha) {
         this.estaCancha = estaCancha;
+    }
+
+    public void setMiniCuenta(MiniCuenta miniCuenta) {
+        this.miniCuenta = miniCuenta;
     }
 
     @Override
@@ -62,6 +68,7 @@ public class VerHorariosCanchaController implements Initializable {
                 HBox horarioBox = fxmlLoader.load();
 
                 CardHorarioCanchaController cardController = fxmlLoader.getController();
+                cardController.setMiniCuenta(miniCuenta);
                 cardController.setNombreCancha(estaCancha.getNombreServicio());
                 cardController.setNombreCentro(estaCancha.getNombreCentro());
                 cardController.setDatosHorario(horariosConCuposCancha.get(i));

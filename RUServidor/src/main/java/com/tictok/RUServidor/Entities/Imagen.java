@@ -1,5 +1,7 @@
 package com.tictok.RUServidor.Entities;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;

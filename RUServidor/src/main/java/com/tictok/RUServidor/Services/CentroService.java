@@ -1,11 +1,14 @@
 package com.tictok.RUServidor.Services;
 
-import com.tictok.Commons.NuevaEmpresaDTO;
 import com.tictok.Commons.NuevoCentroDTO;
+import com.tictok.Commons.SuperActividadDTO;
+import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUServidor.Entities.*;
+import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
+import com.tictok.RUServidor.Mappers.ActividadMapper;
+import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.CentroMapper;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
-import com.tictok.RUServidor.Mappers.EmpresaMapper;
 import com.tictok.RUServidor.Repositories.ActividadRepository;
 import com.tictok.RUServidor.Repositories.CanchaRepository;
 import com.tictok.RUServidor.Repositories.CentroRepository;
@@ -14,9 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,13 +28,15 @@ public class CentroService {
     private final CuentaRepository cuentaRepository;
     private final CanchaRepository canchaRepository;
     private final ActividadRepository actividadRepository;
+    private final CuentaService cuentaService;
 
     @Autowired
-    public CentroService(CentroRepository centroRepository, CuentaRepository cuentaRepository, CanchaRepository canchaRepository, ActividadRepository actividadRepository) {
+    public CentroService(CentroRepository centroRepository, CuentaRepository cuentaRepository, CanchaRepository canchaRepository, ActividadRepository actividadRepository, CuentaService cuentaService) {
         this.centroRepository = centroRepository;
         this.cuentaRepository = cuentaRepository;
         this.canchaRepository = canchaRepository;
         this.actividadRepository = actividadRepository;
+        this.cuentaService = cuentaService;
         crearPrimerCentro();
 
 //        CentroDeportivo centroDeportivo = new CentroDeportivo("Coso", "Juan", "005262", "Juan2");
@@ -101,4 +105,18 @@ public class CentroService {
         }
         return centro1.get();
     }
+
+    public List<SuperActividadDTO> getActividades(String mailCentro) throws CuentaNoExisteException {
+        CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
+        List<SuperActividadDTO> listaDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(centro1.getActividades());
+        return listaDTO;
+    }
+
+    public List<SuperCanchaDTO> getCanchas(String mailCentro) throws CuentaNoExisteException {
+        CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
+        List<SuperCanchaDTO> listaDTO = CanchaMapper.fromCanchaListToSuperCanchaDTOList(centro1.getCanchas());
+        return listaDTO;
+    }
+
+
 }
