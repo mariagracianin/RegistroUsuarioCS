@@ -114,9 +114,9 @@ public class UsuarioService {
 
     public List<ReservaDTO> getReservasActuales(String mailUsuario) throws CuentaNoExisteException {
         Usuario usuario = cuentaService.findOnebyId(mailUsuario).getUsuario();
-        //List<ReservaActividad> reservas = reservaActividadRepository.findActividadesReservadasDespuesDe(mailUsuario,LocalDate.now(),LocalDate.now());
-        //List<ReservaCancha>
-        //mappear lo de arriba, unir las listas y devolverlo
-        return null;
+        List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(usuario.getCedula(), Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+        List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(usuario.getCedula(),Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
+        return reservaDTOlist;
     }
 }
