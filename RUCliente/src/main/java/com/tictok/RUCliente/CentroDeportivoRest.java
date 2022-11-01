@@ -37,7 +37,7 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> guardarActividad(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String imagen, List<HorarioDTO> horarios){
+    public HttpResponse<String> guardarActividad(String nombreServicio, Double precio, Integer cupos, Boolean paseLibre, String imagen, List<HorarioDTO> horarios){
         String nuevaActividadJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
@@ -58,7 +58,7 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> guardarCancha(String nombreServicio, Integer precio, Integer cupos, String imagen, List<HorarioDTO> horarios){
+    public HttpResponse<String> guardarCancha(String nombreServicio, Double precio, Integer cupos, String imagen, List<HorarioDTO> horarios){
         String nuevaCanchaJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();

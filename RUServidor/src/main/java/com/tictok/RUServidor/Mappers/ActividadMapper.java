@@ -50,7 +50,7 @@ public class ActividadMapper {
         ActividadInfo actividadInfo;
         String nombreServicio;
         String nombreCentro;
-        Integer precio;
+        Double precio;
         Boolean paseLibre;
         String address;
         String barrio;

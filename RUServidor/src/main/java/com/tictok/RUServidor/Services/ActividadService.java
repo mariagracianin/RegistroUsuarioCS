@@ -112,7 +112,7 @@ public class ActividadService {
         String nombreCentro;
         String nombreActividad;
         Boolean paseLibre;
-        Integer precio;
+        Double precio;
         Long imageId;
         BigInteger imageIdBig;
         String address;
@@ -193,7 +193,7 @@ public class ActividadService {
         }
         Actividad actividadPadre = listaDeActividades.get(0);
 
-        Integer precio = actividadPadre.getPrecio();
+        Double precio = actividadPadre.getPrecio();
         CentroDeportivo centro = actividadPadre.getCentroDeportivo();
         String address = centro.getAddress();
         String barrio = centro.getBarrio();

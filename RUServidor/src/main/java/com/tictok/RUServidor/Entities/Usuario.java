@@ -42,9 +42,20 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", orphanRemoval = true)
     private List<ReservaActividad> reservaActividades = new ArrayList<>();
 
+    @Transient
+    private Double saldoActual;
+
     @OneToMany(mappedBy = "usuario", orphanRemoval = true)
     @OrderBy("fecha DESC")
     private List<CheckInActividad> checkInActividads = new ArrayList<>();
+
+    public Double getSaldoActual() {
+        return saldoActual;
+    }
+
+    public void setSaldoActual(Double saldoActual) {
+        this.saldoActual = saldoActual;
+    }
 
     public List<CheckInActividad> getCheckInActividads() {
         return checkInActividads;
