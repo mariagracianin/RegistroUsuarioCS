@@ -2,9 +2,14 @@ package com.tictok.RUServidor.Mappers;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUServidor.Entities.Actividad;
+import com.tictok.RUServidor.Entities.Imagen;
 import com.tictok.RUServidor.Entities.NotTables.ServicioIdSinHorario;
 import com.tictok.RUServidor.Projections.ActividadInfo;
+import com.tictok.RUServidor.Repositories.ImagenRepository;
 
+import javax.persistence.Tuple;
+import javax.persistence.TupleElement;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -75,11 +80,43 @@ public class ActividadMapper {
         return superActividadDTOList;
     }
 
-    public static List<SuperActividadDTO> fromQueryResultListToSuperActividadDTOList(List<Object[]> actividadInfosObjects) {
+    public static List<SuperActividadDTO> fromQueryResultListToSuperActividadDTOList(List<Tuple> actividadInfosObjects, ImagenRepository imagenRepository) {
         List<SuperActividadDTO> superActividadDTOList = new ArrayList<SuperActividadDTO>(actividadInfosObjects.size());
-        SuperActividadDTO superActividadDTO;
-        for (int i = 0; i<actividadInfosObjects.size(); i++){
-            superActividadDTO = SuperActividadDTO.map(SuperActividadDTO.class, actividadInfosObjects.get(i));
+
+        Imagen imagen;
+
+        String nombreCentro;
+        String nombreActividad;
+        Boolean paseLibre;
+        Double precio;
+        Long imageId;
+        BigInteger imageIdBig;
+        String address;
+        String barrio;
+        String telefono;
+        String imagenString;
+        for (Tuple actividadTuple: actividadInfosObjects){
+            List<TupleElement<?>> elements = actividadTuple.getElements();
+            nombreCentro = (String) actividadTuple.get("nombrecentro");
+            nombreActividad = (String) actividadTuple.get("nombreactividad");
+            paseLibre = (Boolean) actividadTuple.get("paselibre");
+            precio = (Double) actividadTuple.get("precio");
+            imageIdBig = (BigInteger) actividadTuple.get("imageid");
+            address = (String) actividadTuple.get("address");
+            barrio = (String) actividadTuple.get("barrio");
+            telefono = (String) actividadTuple.get("telefono");
+
+            if (imageIdBig != null) {
+                imageId = imageIdBig.longValue();
+                imagen = imagenRepository.findById(imageId).get();
+                imagenString = imagen.getImagenString();
+            }
+            else{
+                imagenString = null;
+            }
+
+            SuperActividadDTO superActividadDTO = new SuperActividadDTO(nombreCentro, nombreActividad, precio,
+                    paseLibre, address, barrio, telefono, imagenString);
             superActividadDTOList.add(superActividadDTO);
         }
         return superActividadDTOList;

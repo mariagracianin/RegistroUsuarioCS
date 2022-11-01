@@ -21,6 +21,7 @@ public class CardHorarioCanchaController implements Initializable {
     @Autowired
     private UsuarioRest usuarioRest;
 
+
     private HorarioConCuposDTO horarioSeleccionado;
     private String nombreCancha;
     private String nombreCentro;
