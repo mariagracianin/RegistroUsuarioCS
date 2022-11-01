@@ -4,7 +4,7 @@ import java.util.List;
 
 public class NuevoServicioDTO {
     private String nombreServicio;
-    private Integer precio;
+    private Double precio;
     private Integer cupos;
     private Boolean paseLibre;
     private String imageString;
@@ -13,7 +13,7 @@ public class NuevoServicioDTO {
     public NuevoServicioDTO() {
     }
 
-    public NuevoServicioDTO(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String imageString, List<HorarioDTO> horarios) {
+    public NuevoServicioDTO(String nombreServicio, Double precio, Integer cupos, Boolean paseLibre, String imageString, List<HorarioDTO> horarios) {
         this.nombreServicio = nombreServicio;
         this.precio = precio;
         this.cupos = cupos;
@@ -30,11 +30,11 @@ public class NuevoServicioDTO {
         this.nombreServicio = nombreServicio;
     }
 
-    public Integer getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Integer precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

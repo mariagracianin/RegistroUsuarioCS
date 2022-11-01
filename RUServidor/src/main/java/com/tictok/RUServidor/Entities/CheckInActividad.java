@@ -41,7 +41,7 @@ public class CheckInActividad {
         this.actividad = actividad;
     }
 
-    public Integer getPrecio() {
+    public Double getPrecio() {
         return actividad.getPrecio();
     }
 

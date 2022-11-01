@@ -37,7 +37,7 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> guardarActividad(String nombreServicio, Integer precio, Integer cupos, Boolean paseLibre, String imagen, List<HorarioDTO> horarios){
+    public HttpResponse<String> guardarActividad(String nombreServicio, Double precio, Integer cupos, Boolean paseLibre, String imagen, List<HorarioDTO> horarios){
         String nuevaActividadJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
@@ -58,7 +58,7 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> guardarCancha(String nombreServicio, Integer precio, Integer cupos, String imagen, List<HorarioDTO> horarios){
+    public HttpResponse<String> guardarCancha(String nombreServicio, Double precio, Integer cupos, String imagen, List<HorarioDTO> horarios){
         String nuevaCanchaJSON = "";
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
@@ -158,7 +158,7 @@ public class CentroDeportivoRest {
 
     public HttpResponse<String> obtenerActividadConCupos(String nombreCentro, String nombreActividad){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividad/"+nombreActividad+"/"+nombreCentro)
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividad/"+nombreCentro+"/"+nombreActividad)
                     .header("Content-Type", "application/json")
                     .asString();
             return response;

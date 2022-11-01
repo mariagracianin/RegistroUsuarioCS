@@ -105,12 +105,12 @@ public class CentroAgregarActController implements Initializable {
 
     public void guardarDatos(ActionEvent actionEvent){
         if (txtCupos.isDisable()){
-            centroDeportivoRest.guardarActividad(txtNombre.getText(),Integer.parseInt(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), true, this.img, null );
+            centroDeportivoRest.guardarActividad(txtNombre.getText(),Double.parseDouble(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), true, this.img, null );
             //mandar datos con pase libre = true
             //sin horarios
 
         }else{
-            centroDeportivoRest.guardarActividad(txtNombre.getText(),Integer.parseInt(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), false, this.img, this.horariosReserva );
+            centroDeportivoRest.guardarActividad(txtNombre.getText(),Double.parseDouble(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), false, this.img, this.horariosReserva );
             //mandar datos con pase libre = false y lista de horarios
         }
     }

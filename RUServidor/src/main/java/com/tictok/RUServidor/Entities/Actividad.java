@@ -18,7 +18,7 @@ public class Actividad {
     private CentroDeportivo centroDeportivo;
 
     @Column(name = "precio")
-    private Integer precio;
+    private Double precio;
 
     @Column(name = "cupos")
     private Integer cupos;
@@ -34,7 +34,7 @@ public class Actividad {
     }
 
     public Actividad(CentroDeportivo centroDeportivo, String nombreActividad,
-                     DayOfWeek dia, LocalTime horaInicio, LocalTime horaFin, Integer precio, Integer cupos, Boolean paseLibre) {
+                     DayOfWeek dia, LocalTime horaInicio, LocalTime horaFin, Double precio, Integer cupos, Boolean paseLibre) {
         this.actividadId = new ServicioId(dia, horaInicio, horaFin);
         this.actividadId.setNombreServicio(nombreActividad);
         this.actividadId.setCentroDeportivo(centroDeportivo.getNombreCentro());
@@ -68,11 +68,11 @@ public class Actividad {
         this.cupos = cupos;
     }
 
-    public Integer getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Integer precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

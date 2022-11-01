@@ -7,14 +7,14 @@ public class ActividadInfo {
     private String nombreCentro;
     private String nombreActividad;
     private Integer cupos;
-    private Integer precio;
+    private Double precio;
     private Boolean paseLibre;
     private String address;
     private String barrio;
     private String telefono;
     private String imageString;
 
-    public ActividadInfo(String centroDeportivo, String nombreActividad, Integer precio, Boolean paseLibre, String address, String barrio, String telefono, String imageString) {
+    public ActividadInfo(String centroDeportivo, String nombreActividad, Double precio, Boolean paseLibre, String address, String barrio, String telefono, String imageString) {
         this.nombreCentro = centroDeportivo;
         this.nombreActividad = nombreActividad;
         this.precio = precio;
@@ -41,11 +41,11 @@ public class ActividadInfo {
         this.nombreActividad = nombreActividad;
     }
 
-    public Integer getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Integer precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

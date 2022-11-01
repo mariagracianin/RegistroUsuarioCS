@@ -6,7 +6,7 @@ public class CanchaConHorariosYCuposDTO {
 
     private String nombreServicio;
     private String nombreCentro;
-    private Integer precio;
+    private Double precio;
     private String address;
     private String barrio;
     private String telefono;
@@ -15,7 +15,7 @@ public class CanchaConHorariosYCuposDTO {
     public CanchaConHorariosYCuposDTO() {
     }
 
-    public CanchaConHorariosYCuposDTO(String nombreServicio, String nombreCentro, Integer precio, String address, String barrio, String telefono, List<HorarioConCuposDTO> horariosConCupos) {
+    public CanchaConHorariosYCuposDTO(String nombreServicio, String nombreCentro, Double precio, String address, String barrio, String telefono, List<HorarioConCuposDTO> horariosConCupos) {
         this.nombreServicio = nombreServicio;
         this.nombreCentro = nombreCentro;
         this.precio = precio;
@@ -45,11 +45,11 @@ public class CanchaConHorariosYCuposDTO {
         this.nombreCentro = nombreCentro;
     }
 
-    public Integer getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Integer precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

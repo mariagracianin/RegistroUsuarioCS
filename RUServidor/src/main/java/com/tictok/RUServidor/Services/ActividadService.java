@@ -105,45 +105,8 @@ public class ActividadService {
         if (actividadInfosObjects.isEmpty()){
             return null;
         }
-        List<SuperActividadDTO> superActividadDTOList = new ArrayList<SuperActividadDTO>(size);
 
-        Imagen imagen;
-
-        String nombreCentro;
-        String nombreActividad;
-        Boolean paseLibre;
-        Integer precio;
-        Long imageId;
-        BigInteger imageIdBig;
-        String address;
-        String barrio;
-        String telefono;
-        String imagenString;
-        for (Tuple actividadTuple: actividadInfosObjects){
-            List<TupleElement<?>> elements = actividadTuple.getElements();
-            nombreCentro = (String) actividadTuple.get("nombrecentro");
-            nombreActividad = (String) actividadTuple.get("nombreactividad");
-            paseLibre = (Boolean) actividadTuple.get("paselibre");
-            precio = (Integer) actividadTuple.get("precio");
-            imageIdBig = (BigInteger) actividadTuple.get("imageid");
-            address = (String) actividadTuple.get("address");
-            barrio = (String) actividadTuple.get("barrio");
-            telefono = (String) actividadTuple.get("telefono");
-
-            if (imageIdBig != null) {
-                imageId = imageIdBig.longValue();
-                imagen = imagenRepository.findById(imageId).get();
-                imagenString = imagen.getImagenString();
-            }
-            else{
-                imagenString = null;
-            }
-
-            SuperActividadDTO superActividadDTO = new SuperActividadDTO(nombreCentro, nombreActividad, precio,
-                    paseLibre, address, barrio, telefono, imagenString);
-            superActividadDTOList.add(superActividadDTO);
-        }
-        return superActividadDTOList;
+        return ActividadMapper.fromQueryResultListToSuperActividadDTOList(actividadInfosObjects, imagenRepository);
     }
 
     private void setImagenSuperActividad(SuperActividadDTO superActividad){
@@ -193,7 +156,7 @@ public class ActividadService {
         }
         Actividad actividadPadre = listaDeActividades.get(0);
 
-        Integer precio = actividadPadre.getPrecio();
+        Double precio = actividadPadre.getPrecio();
         CentroDeportivo centro = actividadPadre.getCentroDeportivo();
         String address = centro.getAddress();
         String barrio = centro.getBarrio();
