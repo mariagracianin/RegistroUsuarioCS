@@ -42,8 +42,4 @@ public interface ReservaActividadRepository extends JpaRepository<ReservaActivid
     @Query("select r from ReservaActividad r where r.usuario.cedula = ?1 and r.fecha between ?2 and ?3")
     List<ReservaActividad> conseguirReservasEntreFechasYDeUsuario(int cedula, Date fechaStart, Date fechaEnd);
 
-
-
-
-
 }
