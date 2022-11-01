@@ -1,9 +1,14 @@
 package com.tictok.RUCliente.Empleado;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.ReservaDTO;
+import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUCliente.JavaFXApplication;
 import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,6 +32,9 @@ import java.util.ResourceBundle;
 @Component
 public class EmpMisReservasController implements Initializable {
 
+    @Autowired
+    UsuarioRest usuarioRest;
+
     public GridPane contenedorReservas;
     private  List<ReservaDTO> reservas;
 
@@ -34,7 +42,11 @@ public class EmpMisReservasController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         reservas= new ArrayList<>();
         contenedorReservas.getChildren().clear();
-        reservas.addAll(getDatos());
+        try {
+            reservas.addAll(getDatos());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         int row=0;
 
         try {
@@ -60,16 +72,12 @@ public class EmpMisReservasController implements Initializable {
 
     }
 
-    private List<ReservaDTO> getDatos(){
-        List<ReservaDTO> l = new ArrayList<>();
-        ReservaDTO r1 = new ReservaDTO("mailUsuario","Bigua","Tenis","tipo?",new HorarioDTO(1,1330,1430),null,null);
-        r1.setCodigoReserva(1L);
-        r1.setCodigoReservaPadre(2L);
-        l.add(r1);
-        //devolver lista con las reservas de este usuario q esten activas hasta la fecha
-        //o en un principio devolver todas
+    private List<ReservaDTO> getDatos() throws JsonProcessingException {
 
-        return l;
+        ObjectMapper mapper = new ObjectMapper();
+        List<ReservaDTO> list = mapper.readValue(usuarioRest.buscarReservasFromUsuarioLogeado().getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, ReservaDTO.class));
+
+        return list ;
     }
 
     public void verActividades(ActionEvent actionEvent) throws IOException {

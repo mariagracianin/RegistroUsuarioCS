@@ -86,7 +86,7 @@ public class CentroAgregarCanController implements Initializable {
 
     public void guardarDatos(ActionEvent actionEvent) throws IOException {
 
-        HttpResponse<String> response = centroDeportivoRest.guardarCancha(txtNombre.getText(),Integer.parseInt(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()),this.img, this.horariosReserva);
+        HttpResponse<String> response = centroDeportivoRest.guardarCancha(txtNombre.getText(), Double.parseDouble(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()),this.img, this.horariosReserva);
 
         if (response.getCode() == 200){
             administradorRegCentroController.abrirVentanaEmergenteExito();

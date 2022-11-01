@@ -2,6 +2,7 @@ package com.tictok.RUCliente.Empleado;
 
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +38,11 @@ public class CardActividadController implements Initializable {
     @FXML
     private Label nombre;
     private SuperActividadDTO actividadSeleccionada;
+    private MiniCuenta miniCuenta;
 
+    public void setMiniCuenta(MiniCuenta miniCuenta) {
+        this.miniCuenta = miniCuenta;
+    }
 
     public void setDatosActividad(SuperActividadDTO actividad) {
         actividadSeleccionada = actividad;
@@ -93,6 +98,7 @@ public class CardActividadController implements Initializable {
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
             VerHorariosActividadController controller = (VerHorariosActividadController) Main.getContext().getBean("verHorariosActividadController");
             controller.setDatos(actividadSeleccionada);
+            controller.setMiniCuenta(miniCuenta);
             Parent root = fxmlLoader.load(CardActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/reservaActividad.fxml"));
 
             //ReservarActividadController controller = fxmlLoader.getController();

@@ -1,7 +1,10 @@
 package com.tictok.RUCliente.Empleado;
 
+import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.HorarioDTO;
+import com.tictok.RUCliente.MiniCuenta;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +20,7 @@ public class CardHorarioActividadController implements Initializable {
     private HorarioConCuposDTO horarioSeleccionado;
     private String nombreActividad;
     private String nombreCentro;
+    private MiniCuenta miniCuenta;
 
     @FXML
     public Label lblDiaDeLaSemana;
@@ -28,6 +32,10 @@ public class CardHorarioActividadController implements Initializable {
     public Label lblCuposLibres;
     @FXML
     public Button btnAgregarHorario;
+
+    public void setMiniCuenta(MiniCuenta miniCuenta) {
+        this.miniCuenta = miniCuenta;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,9 +84,14 @@ public class CardHorarioActividadController implements Initializable {
     }
     @FXML
     public void guardarReservaFinal(ActionEvent actionEvent) {
-        btnAgregarHorario.setText("*");
-        System.out.println(horarioSeleccionado.getDia() + "   " +  horarioSeleccionado.getHoraInicio() + "   " +  horarioSeleccionado.getHoraFin() +"   " +  horarioSeleccionado.getCuposLibres());
-        //mandar request
+        HorarioDTO horario = new HorarioDTO(horarioSeleccionado.getDia(),horarioSeleccionado.getHoraInicio(),horarioSeleccionado.getHoraFin());
+        //System.out.println(horarioSeleccionado.getDia() + "   " +  horarioSeleccionado.getHoraInicio() + "   " +  horarioSeleccionado.getHoraFin() +"   " +  horarioSeleccionado.getCuposLibres());
+        HttpResponse<String> response = UsuarioRest.hacerReserva(nombreCentro,nombreActividad,"Actividad",horario,null,this.miniCuenta);
+        if(response.getCode()==200){
+            btnAgregarHorario.setText("*");
+        }else{
+            throw new RuntimeException();
+        }
     }
 
     public void setNombreActividad(String nombreServicio) {

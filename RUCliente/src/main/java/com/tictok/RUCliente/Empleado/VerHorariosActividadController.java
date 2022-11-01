@@ -6,6 +6,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.*;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,8 +39,15 @@ public class VerHorariosActividadController implements Initializable {
     public Label lblNombreCentro;
 
     private  SuperActividadDTO estaActividad;
+    private MiniCuenta miniCuenta;
+
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
+
+
+    public void setMiniCuenta(MiniCuenta miniCuenta) {
+        this.miniCuenta = miniCuenta;
+    }
 
     public VerHorariosActividadController() {
     }
@@ -71,6 +79,7 @@ public class VerHorariosActividadController implements Initializable {
                 cardHorarioController.setNombreActividad(estaActividad.getNombreServicio());
                 cardHorarioController.setNombreCentro(estaActividad.getNombreCentro());
                 cardHorarioController.setDatosHorario(horariosConCupos.get(i));
+                cardHorarioController.setMiniCuenta(miniCuenta);
 
                 contenedorHorarios.add(horarioBox, 1, row++);
                 //GridPane.setMargin(horarioBox, new Insets(10));

@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Repositories;
 
+import com.tictok.RUServidor.Entities.ReservaActividad;
 import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.ReservaCancha;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,4 +30,7 @@ public interface ReservaCanchaRepository extends JpaRepository<ReservaCancha, Lo
     where r.usuario.cuenta.mail = ?1 and r.fecha  >= ?2
     """)
     List<ReservaCancha> findCanchasReservadasDespuesDe(String mail, Date fecha);
+
+    @Query("select r from ReservaCancha r where r.usuario.cedula = ?1 and r.fecha between ?2 and ?3")
+    List<ReservaCancha> conseguirReservasEntreFechasYDeUsuario(int cedula, Date fechaStart, Date fechaEnd);
 }

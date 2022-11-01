@@ -8,6 +8,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,9 +46,13 @@ public class EmpActividadesController implements Initializable {
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
 
+    @Autowired
+    MiniCuenta miniCuenta;
+
     @FXML
     private GridPane contenedorAct;
     private List<SuperActividadDTO> actividadesActuales;
+
 
 
     private List<SuperActividadDTO> getDatos(){
@@ -85,6 +90,7 @@ public class EmpActividadesController implements Initializable {
 
                 CardActividadController cardController = fxmlLoader.getController();
                 cardController.setDatosActividad(actividadesActuales.get(i));
+                cardController.setMiniCuenta(miniCuenta);
 
                 if (column == 3) {
                     column = 0;

@@ -8,7 +8,7 @@ import java.util.List;
 public class SuperCanchaDTO {
     private String nombreServicio;
     private String nombreCentro;
-    private Integer precio;
+    private Double precio;
     private String address;
     private String barrio;
     private String telefono;
@@ -18,7 +18,7 @@ public class SuperCanchaDTO {
     public SuperCanchaDTO(){
     }
 
-    public SuperCanchaDTO(String nombreServicio, String nombreCentro, Integer precio, String address, String barrio, String telefono, List<HorarioDTO> horarios) {
+    public SuperCanchaDTO(String nombreServicio, String nombreCentro, Double precio, String address, String barrio, String telefono, List<HorarioDTO> horarios) {
         this.nombreServicio = nombreServicio;
         this.nombreCentro = nombreCentro;
         this.precio = precio;
@@ -28,7 +28,7 @@ public class SuperCanchaDTO {
         this.horarios = horarios;
     }
 
-    public SuperCanchaDTO(String nombreServicio, String nombreCentro, Integer precio, String address, String barrio, String telefono, String imageString, List<HorarioDTO> horarios) {
+    public SuperCanchaDTO(String nombreServicio, String nombreCentro, Double precio, String address, String barrio, String telefono, String imageString, List<HorarioDTO> horarios) {
         this.nombreServicio = nombreServicio;
         this.nombreCentro = nombreCentro;
         this.precio = precio;
@@ -50,11 +50,11 @@ public class SuperCanchaDTO {
         this.nombreServicio = nombreServicio;
     }
 
-    public Integer getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Integer precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

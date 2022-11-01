@@ -25,3 +25,7 @@ GET http://localhost:8080/centro/actividades
 
 ###
 GET http://localhost:8080/centro/canchas
+
+
+###
+GET http://localhost:8080/usuario/getReservas/maria@mail.com

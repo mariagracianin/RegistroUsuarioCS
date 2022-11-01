@@ -58,7 +58,6 @@ public class VerHorariosCanchaController implements Initializable {
             e.printStackTrace();
         }
         contenedorHorarios.getChildren().clear();
-        horariosConCuposCancha.addAll(horariosConCuposCancha);
         int row=0;
         try {
             for (int i = 0; i< horariosConCuposCancha.size(); i++){

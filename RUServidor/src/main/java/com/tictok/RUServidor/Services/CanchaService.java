@@ -126,7 +126,7 @@ public class CanchaService {
         }
         Cancha canchaPadre = listaDeCanchas.get(0);
 
-        Integer precio = canchaPadre.getPrecio();
+        Double precio = canchaPadre.getPrecio();
         CentroDeportivo centro = canchaPadre.getCentroDeportivo();
         String address = centro.getAddress();
         String barrio = centro.getBarrio();
