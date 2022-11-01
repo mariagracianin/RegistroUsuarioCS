@@ -85,19 +85,19 @@ public class ActividadMapper {
         return superActividadDTOList;
     }
 
-    private static SuperActividadDTO fromQueryResultToSuperActividadDTO(Object[] actividadInfoObject){
-        System.out.println("-------------------------");
-        System.out.println("Nuevo Centro");
-        System.out.println("-------------------------");
-        for (int i=0; i<actividadInfoObject.length; i++){
-            System.out.println(actividadInfoObject[i]);
-        }
-        if (actividadInfoObject.length == 9){
-            return new SuperActividadDTO((String)actividadInfoObject[1], (String)actividadInfoObject[0], (Integer) actividadInfoObject[4], (Boolean) actividadInfoObject[3],
-                    (String) actividadInfoObject[6], (String) actividadInfoObject[7], (String) actividadInfoObject[8], null);
-        } else{
-            return new SuperActividadDTO((String)actividadInfoObject[1], (String)actividadInfoObject[0], (Integer) actividadInfoObject[4], (Boolean) actividadInfoObject[3],
-                    (String) actividadInfoObject[6], (String) actividadInfoObject[7], (String) actividadInfoObject[8], (String) actividadInfoObject[9]);
-        }
-    }
+//    private static SuperActividadDTO fromQueryResultToSuperActividadDTO(Object[] actividadInfoObject){
+//        System.out.println("-------------------------");
+//        System.out.println("Nuevo Centro");
+//        System.out.println("-------------------------");
+//        for (int i=0; i<actividadInfoObject.length; i++){
+//            System.out.println(actividadInfoObject[i]);
+//        }
+//        if (actividadInfoObject.length == 9){
+//            return new SuperActividadDTO((String)actividadInfoObject[1], (String)actividadInfoObject[0], (Double) actividadInfoObject[4], (Boolean) actividadInfoObject[3],
+//                    (String) actividadInfoObject[6], (String) actividadInfoObject[7], (String) actividadInfoObject[8], null);
+//        } else{
+//            return new SuperActividadDTO((String)actividadInfoObject[1], (String)actividadInfoObject[0], (Double) actividadInfoObject[4], (Boolean) actividadInfoObject[3],
+//                    (String) actividadInfoObject[6], (String) actividadInfoObject[7], (String) actividadInfoObject[8], (String) actividadInfoObject[9]);
+//        }
+//    }
 }

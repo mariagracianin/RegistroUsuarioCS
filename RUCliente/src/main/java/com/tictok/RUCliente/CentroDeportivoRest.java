@@ -158,7 +158,7 @@ public class CentroDeportivoRest {
 
     public HttpResponse<String> obtenerActividadConCupos(String nombreCentro, String nombreActividad){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividad/"+nombreActividad+"/"+nombreCentro)
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividad/"+nombreCentro+"/"+nombreActividad)
                     .header("Content-Type", "application/json")
                     .asString();
             return response;

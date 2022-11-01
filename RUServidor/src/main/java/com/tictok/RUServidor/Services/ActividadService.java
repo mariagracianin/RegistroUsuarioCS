@@ -124,7 +124,7 @@ public class ActividadService {
             nombreCentro = (String) actividadTuple.get("nombrecentro");
             nombreActividad = (String) actividadTuple.get("nombreactividad");
             paseLibre = (Boolean) actividadTuple.get("paselibre");
-            precio = (Integer) actividadTuple.get("precio");
+            precio = (Double) actividadTuple.get("precio");
             imageIdBig = (BigInteger) actividadTuple.get("imageid");
             address = (String) actividadTuple.get("address");
             barrio = (String) actividadTuple.get("barrio");
