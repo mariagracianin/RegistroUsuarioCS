@@ -16,6 +16,7 @@ import com.tictok.RUServidor.Repositories.*;
 import net.bytebuddy.implementation.bind.annotation.Super;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -99,14 +100,17 @@ public class ActividadService {
         return listaSuperActividadDTO;
     }
 
-    public List<SuperActividadDTO> findAllPageable(int page, int size) {
+    public ListaDTOConCount<SuperActividadDTO> findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
-        List<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
+        Page<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
+        int pages = actividadInfosObjects.getTotalPages();
         if (actividadInfosObjects.isEmpty()){
             return null;
         }
-
-        return ActividadMapper.fromQueryResultListToSuperActividadDTOList(actividadInfosObjects, imagenRepository);
+        List<SuperActividadDTO> superActividadDTOList =
+                ActividadMapper.fromQueryResultListToSuperActividadDTOList(actividadInfosObjects.getContent(), imagenRepository);
+        ListaDTOConCount<SuperActividadDTO> listaDTOConCount = new ListaDTOConCount<SuperActividadDTO>(pages, superActividadDTOList);
+        return listaDTOConCount;
     }
 
     private void setImagenSuperActividad(SuperActividadDTO superActividad){

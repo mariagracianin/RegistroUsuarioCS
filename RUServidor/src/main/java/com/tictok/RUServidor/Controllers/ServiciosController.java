@@ -33,7 +33,7 @@ public class ServiciosController {
     }
 
     @GetMapping("/actividades/{page}/{size}")
-    public List<SuperActividadDTO> getAllActividadesPageable(@PathVariable int page, @PathVariable int size){
+    public ListaDTOConCount<SuperActividadDTO> getAllActividadesPageable(@PathVariable int page, @PathVariable int size){
         return actividadService.findAllPageable(page, size);
     }
 

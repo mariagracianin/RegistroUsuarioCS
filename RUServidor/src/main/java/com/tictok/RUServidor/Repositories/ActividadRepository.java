@@ -5,6 +5,7 @@ import com.tictok.RUServidor.Entities.Cancha;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Entities.NotTables.ServicioIdSinHorario;
 import com.tictok.RUServidor.Projections.ActividadInfo;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -36,7 +37,7 @@ public interface ActividadRepository extends JpaRepository<Actividad, ServicioId
                   			join centro_deportivo cd on a.centro_deportivo_nombre_centro = cd.nombre_centro""",
         nativeQuery = true
         )
-    List<Tuple> findDistinctBy(Pageable pageable);
+    Page<Tuple> findDistinctBy(Pageable pageable);
 
 
 
