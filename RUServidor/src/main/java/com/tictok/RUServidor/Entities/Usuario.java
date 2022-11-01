@@ -42,6 +42,18 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", orphanRemoval = true)
     private List<ReservaActividad> reservaActividades = new ArrayList<>();
 
+    @OneToMany(mappedBy = "usuario", orphanRemoval = true)
+    @OrderBy("fecha DESC")
+    private List<CheckInActividad> checkInActividads = new ArrayList<>();
+
+    public List<CheckInActividad> getCheckInActividads() {
+        return checkInActividads;
+    }
+
+    public void setCheckInActividads(List<CheckInActividad> checkInActividads) {
+        this.checkInActividads = checkInActividads;
+    }
+
     public List<ReservaActividad> getReservaActividades() {
         return reservaActividades;
     }
