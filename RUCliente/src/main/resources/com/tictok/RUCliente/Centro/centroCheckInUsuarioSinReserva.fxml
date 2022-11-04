@@ -3,23 +3,19 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInUsuarioSinReservaController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Centro" textAlignment="CENTER" textFill="#03dac6">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
             <Button fx:id="btnCheckIn" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" stylesheets="@../entidad_style.css" text="Check-in">
                <font>
                   <Font name="Candara Bold" size="18.0" />
@@ -58,70 +54,61 @@
          </children>
       </VBox>
    </left>
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+   <top>
+      <AnchorPane prefHeight="90.0" prefWidth="785.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <Separator opacity="0.0" prefHeight="112.0" prefWidth="498.0" />
-            <Label text="Ingrese la cédula del usuario:" textFill="#03dac6">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="-1.0" prefHeight="90.0" prefWidth="200.0" text="Centro" textAlignment="CENTER" textFill="#03dac6">
                <font>
-                  <Font name="Candara Light" size="20.0" />
+                  <Font size="22.0" />
                </font>
-               <VBox.margin>
-                  <Insets left="125.0" />
-               </VBox.margin>
             </Label>
-            <Label text="(sin puntos ni guiones)" textFill="WHITE">
+            <Label layoutX="238.0" layoutY="20.0" text="Servicios del centro" textFill="#bb86fc">
                <font>
-                  <Font name="Candara Light" size="18.0" />
+                  <Font name="Century Gothic" size="40.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="160.0" />
-               </VBox.margin>
             </Label>
-            <TextField fx:id="txtCedulaUsuario" prefHeight="31.0" prefWidth="197.0" promptText="12345678">
-               <VBox.margin>
-                  <Insets left="155.0" right="165.0" />
-               </VBox.margin>
-            </TextField>
-            <HBox prefHeight="37.0" prefWidth="498.0">
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <VBox prefHeight="510.0" prefWidth="778.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <RadioButton fx:id="btnConReserva" mnemonicParsing="false" prefHeight="24.0" prefWidth="120.0" text="con reserva" textFill="WHITE">
+                  <Label prefHeight="51.0" prefWidth="389.0" text="Actividades" textFill="#bb86fc">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Century Gothic" size="40.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="125.0" right="20.0" top="5.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
-                  </RadioButton>
-                  <RadioButton fx:id="btnSinReserva" mnemonicParsing="false" text="sin reserva" textFill="WHITE">
+                  </Label>
+                  <Label prefHeight="51.0" prefWidth="389.0" text="Canchas" textFill="#bb86fc">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Century Gothic" size="40.0" />
                      </font>
                      <HBox.margin>
-                        <Insets top="5.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
-                  </RadioButton>
+                  </Label>
                </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
             </HBox>
-            <Button fx:id="btnOk" defaultButton="true" mnemonicParsing="false" onAction="#irAUsuario" prefHeight="35.0" prefWidth="47.0" style="-fx-background-color: #03D9C5;" stylesheets="@../entidad_style.css" text="OK">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="220.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Label fx:id="lblDebeSeleccionar" prefHeight="22.0" prefWidth="312.0" textFill="WHITE">
-               <font>
-                  <Font name="Candara Light" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="100.0" top="10.0" />
-               </VBox.margin>
-            </Label>
+            <HBox prefHeight="413.0" prefWidth="778.0">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="389.0" vbarPolicy="ALWAYS">
+                     <content>
+                        <GridPane fx:id="contenedorActividades">
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="389.0" vbarPolicy="ALWAYS">
+                     <content>
+                        <GridPane fx:id="contenedorCanchas">
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>

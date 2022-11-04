@@ -14,13 +14,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +39,8 @@ public class EmpActividadesController implements Initializable {
     public BorderPane pane;
     public Button btnBuscar;
     public TextField txtBuscador;
+    public Pagination pagination;
+
     @Autowired
     EmpMisDatosController empleadoMisDatosController;
     @Autowired
@@ -49,47 +54,46 @@ public class EmpActividadesController implements Initializable {
     @Autowired
     MiniCuenta miniCuenta;
 
-    @FXML
-    private GridPane contenedorAct;
-    private List<SuperActividadDTO> actividadesActuales;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setImagenesBotones();
 
+        pagination.setPageFactory(new Callback<Integer, Node>() {
+            @Override
+            public Node call(Integer pageIndex) {
+                return createPage(pageIndex);
+            }
+        });
 
+    }
 
-    private List<SuperActividadDTO> getDatos(){
+    private GridPane createPage(Integer pageIndex) {
+        GridPane contenedorAct = new GridPane();
+        contenedorAct.getColumnConstraints().clear();
+        contenedorAct.getRowConstraints().clear();
+        List<SuperActividadDTO> listSuperActividadesDTO;
         try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerActividades();
+            HttpResponse<String> response = centroDeportivoRest.obtenerActividadesPageable(pageIndex, 9);
             String responseBody = response.getBody();
-            System.out.println("----------------------------------------------------------------");
-            System.out.println(responseBody);
             ObjectMapper mapper = new ObjectMapper();
-            List<SuperActividadDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
-
-            return listSuperActividadesDTO;
+            listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
         }catch (Exception e){
             throw new RuntimeException(e);
         }
 
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setImagenesBotones();
-        actividadesActuales= new ArrayList<>();
-        contenedorAct.getChildren().clear();
-        actividadesActuales.addAll(getDatos());
         int column=0;
         int row=0;
 
         try {
-            for (int i=0; i<actividadesActuales.size(); i++){
+            for (int i=0; i<listSuperActividadesDTO.size(); i++){
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
-               // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardActividad.fxml"));
                 SplitPane actBox = fxmlLoader.load();
 
                 CardActividadController cardController = fxmlLoader.getController();
-                cardController.setDatosActividad(actividadesActuales.get(i));
+                cardController.setDatosActividad(listSuperActividadesDTO.get(i));
                 cardController.setMiniCuenta(miniCuenta);
 
                 if (column == 3) {
@@ -104,29 +108,15 @@ public class EmpActividadesController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return contenedorAct;
+
     }
 
     private void setImagenesBotones() {
             URL linkLupa = getClass().getResource("/com/tictok/RUCliente/Empleado/lupa.png");
-      /*  URL linkReservas = getClass().getResource("/com/tictok/RUCliente/Empleado/reserva.png");
-        URL linkActividades = getClass().getResource("/com/tictok/RUCliente/Empleado/actividad.png");
-        URL linkCancha = getClass().getResource("/com/tictok/RUCliente/Empleado/cancha.png");
-        URL linkMisDatos = getClass().getResource("/com/tictok/RUCliente/Empleado/datos.png");
-*/
             Image imagenLupa = new Image(linkLupa.toString(),25,25,false,true);
-       /* Image imgReserva = new Image(linkReservas.toString(),30,30,false,true);
-        Image imgAct = new Image(linkActividades.toString(),30,30,false,true);
-        Image imgCan = new Image(linkCancha.toString(),30,30,false,true);
-        Image imgDatos = new Image(linkMisDatos.toString(),30,30,false,true);
-
-        btnMisReservas.setGraphic(new ImageView(imgReserva));
-        btnCanchas.setGraphic(new ImageView(imgCan));
-        btnActividades.setGraphic(new ImageView(imgAct));
-        btnDatos.setGraphic(new ImageView(imgDatos));
-
-        */
             btnBuscar.setGraphic(new ImageView(imagenLupa));
-
 
     }
 
@@ -152,7 +142,7 @@ public class EmpActividadesController implements Initializable {
     }
 
     public void llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
-        contenedorAct.getChildren().clear();
+       /* contenedorAct.getChildren().clear();
         System.out.println(txtBuscador.getText());
         HttpResponse<String> response =  centroDeportivoRest.obtenerActividadesByFiltro(txtBuscador.getText());
         System.out.println(response.getBody());
@@ -182,5 +172,9 @@ public class EmpActividadesController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        */
     }
+
+
 }

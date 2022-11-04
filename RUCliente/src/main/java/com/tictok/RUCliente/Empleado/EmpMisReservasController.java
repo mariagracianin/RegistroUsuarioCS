@@ -47,6 +47,8 @@ public class EmpMisReservasController implements Initializable {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
+        int column=0;
         int row=0;
 
         try {
@@ -61,7 +63,12 @@ public class EmpMisReservasController implements Initializable {
                 cardController.setDatos(reservas.get(i));
                // cardReservaRealizadaController.setDatos(reservas.get(i));
 
-                contenedorReservas.add(actBox,0,row++);
+                if (column == 2) {
+                    column = 0;
+                    row++;
+                }
+
+                contenedorReservas.add(actBox,column++,row);
                 GridPane.setMargin(actBox, new Insets(10));
 
             }

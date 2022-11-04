@@ -13,11 +13,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" styleClass="leftPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.VerHorariosActividadController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" styleClass="leftPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.VerHorariosCheckInSinReservaController">
    <center>
       <VBox prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="nombreAct" text="Label" textFill="#bb86fc">
+            <Label fx:id="nombreServicio" text="Label" textFill="#bb86fc">
                <VBox.margin>
                   <Insets left="95.0" top="10.0" />
                </VBox.margin>
@@ -25,7 +25,7 @@
                   <Font name="Candara Bold Italic" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="precioAct" prefHeight="37.0" prefWidth="450.0" text="Label" textFill="WHITE">
+            <Label fx:id="precioServicio" prefHeight="37.0" prefWidth="450.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="Candara Bold" size="24.0" />
                </font>
@@ -33,57 +33,46 @@
                   <Insets left="95.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="lblNombreCentro" prefHeight="37.0" prefWidth="450.0" text="Label" textFill="WHITE">
-               <font>
-                  <Font name="Candara Bold" size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="95.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="direccionAct" prefHeight="37.0" prefWidth="552.0" text="Label" textFill="WHITE">
-               <font>
-                  <Font name="Candara Bold" size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="95.0" />
-               </VBox.margin>
-            </Label>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="371.0" prefWidth="657.0">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="262.0" prefWidth="700.0" vbarPolicy="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" layoutX="5.0" layoutY="5.0" prefHeight="378.0" prefWidth="678.0" vbarPolicy="ALWAYS">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="699.0">
                            <children>
-                              <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#4d4d4d" height="248.0" layoutX="17.0" layoutY="10.0" smooth="false" stroke="#4d4d4d" strokeType="INSIDE" width="666.0" />
-                              <Label fx:id="precioAct1" layoutX="55.0" layoutY="14.0" prefHeight="30.0" prefWidth="162.0" text="Horarios" textFill="WHITE">
+                              <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#4d4d4d" height="381.0" layoutX="17.0" smooth="false" stroke="#4d4d4d" strokeType="INSIDE" width="658.0" />
+                              <Label fx:id="precioAct1" layoutX="45.0" layoutY="14.0" prefHeight="30.0" prefWidth="162.0" text="Horarios" textFill="WHITE">
                                  <font>
                                     <Font name="Candara Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <GridPane fx:id="contenedorHorarios" layoutX="45.0" layoutY="74.0" prefHeight="0.0" prefWidth="143.0">
+                              <GridPane fx:id="contenedorHorarios" layoutX="17.0" layoutY="85.0" prefHeight="11.0" prefWidth="143.0">
                               </GridPane>
-                              <Label fx:id="precioAct11" layoutX="80.0" layoutY="44.0" prefHeight="30.0" prefWidth="140.0" text="Día">
+                              <Label fx:id="precioAct11" layoutX="45.0" layoutY="44.0" prefHeight="30.0" prefWidth="100.0" text="Día">
                                  <font>
                                     <Font name="Candara Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="precioAct111" layoutX="205.0" layoutY="44.0" prefHeight="30.0" prefWidth="100.0" text="Inicio">
+                              <Label fx:id="precioAct111" layoutX="145.0" layoutY="44.0" prefHeight="30.0" prefWidth="49.0" text="Inicio">
                                  <font>
                                     <Font name="Candara Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="precioAct1111" layoutX="310.0" layoutY="44.0" prefHeight="30.0" prefWidth="100.0" text="Fin">
+                              <Label fx:id="precioAct1111" layoutX="210.0" layoutY="44.0" prefHeight="30.0" prefWidth="32.0" text="Fin">
                                  <font>
                                     <Font name="Candara Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="precioAct11111" layoutX="385.0" layoutY="44.0" prefHeight="30.0" prefWidth="100.0" text="Cupos libres">
+                              <Line endX="511.0" layoutX="150.0" layoutY="74.0" startX="-117.0" />
+                              <Label fx:id="precioAct11111" layoutX="253.0" layoutY="44.0" prefHeight="30.0" prefWidth="104.0" text="Cupos Libres">
                                  <font>
                                     <Font name="Candara Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Line endX="515.0" layoutX="151.0" layoutY="73.0" startX="-117.0" />
+                              <Label fx:id="precioAct111111" layoutX="360.0" layoutY="44.0" prefHeight="30.0" prefWidth="112.0" text="Estado">
+                                 <font>
+                                    <Font name="Candara Bold" size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                     </content>
@@ -94,10 +83,10 @@
       </VBox>
    </center>
    <top>
-      <HBox prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="32.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="70.0" prefWidth="92.0" />
-            <Label text="Actividad" textFill="#03dac6">
+            <Label fx:id="lblServicio" prefHeight="63.0" prefWidth="493.0" text="Servicio" textFill="#03dac6">
                <font>
                   <Font name="Century Gothic" size="48.0" />
                </font>

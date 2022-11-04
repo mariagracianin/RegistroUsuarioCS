@@ -79,7 +79,7 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> obtenerActividadesFromCentroLogeado(){
+    public static HttpResponse<String> obtenerActividadesFromCentroLogeado(MiniCuenta miniCuenta){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/getActividades/"+miniCuenta.getMailMiniCuenta())
                     .header("Content-Type", "application/json")
@@ -90,7 +90,7 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> obtenerCanchasFromCentroLogeado(){
+    public static HttpResponse<String> obtenerCanchasFromCentroLogeado(MiniCuenta miniCuenta){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/getCanchas/"+miniCuenta.getMailMiniCuenta())
                     .header("Content-Type", "application/json")
@@ -156,7 +156,7 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> obtenerActividadConCupos(String nombreCentro, String nombreActividad){
+    public static HttpResponse<String> obtenerActividadConCupos(String nombreCentro, String nombreActividad){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividad/"+nombreCentro+"/"+nombreActividad)
                     .header("Content-Type", "application/json")
@@ -167,7 +167,7 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> obtenerCanchaConCupos(String nombreCentro, String nombreCancha){
+    public static HttpResponse<String> obtenerCanchaConCupos(String nombreCentro, String nombreCancha){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/cancha/"+nombreCentro+"/"+nombreCancha)
                     .header("Content-Type", "application/json")

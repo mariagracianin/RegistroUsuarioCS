@@ -1,44 +1,46 @@
 package com.tictok.RUCliente.Centro;
 
-import com.tictok.Commons.HorarioDTO;
-import com.tictok.RUCliente.Empleado.InfoActSinReservaController;
-import com.tictok.RUCliente.Main;
+import com.tictok.Commons.HorarioConCuposDTO;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CardHorarioController implements Initializable {
+public class CardHorarioCheckInController implements Initializable {
+    private HorarioConCuposDTO horarioSeleccionado;
     public Label lblDiaDeLaSemana;
     public Label lblHoraInicio;
     public Label lblHoraFin;
-    private HorarioDTO horarioDTO;
-    private String tipo;
+    public Label lblCuposLibres;
+    public Button btnCheckIn;
+    private int cedulaUsuario;
+    private MiniCuenta miniCuenta; //del centro
+    private String nombreActividad;
+    private String nombreCancha;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
+    public void setMiniCuenta(MiniCuenta miniCuenta) {
+        this.miniCuenta = miniCuenta;
     }
 
-    public void eliminarHorario(ActionEvent actionEvent) throws IOException {
-
-        if (tipo.equals("actividad")) {
-            CentroAgregarActController controller = (CentroAgregarActController) Main.getContext().getBean("centroAgregarActController");
-            controller.eliminarHorario(this.horarioDTO);
-        } else if (tipo.equals("cancha")){
-            CentroAgregarCanController controller = (CentroAgregarCanController) Main.getContext().getBean("centroAgregarCanController");
-            controller.eliminarHorario(this.horarioDTO);
-        }
-
-
+    public void setNombreActividad(String nombreServicio) {
+        this.nombreActividad = nombreServicio;
     }
 
-    public void setLabels(HorarioDTO horario, String tipo){
-        this.tipo = tipo;
-        this.horarioDTO = horario;
+    public void setNombreCancha(String nombreCancha) {
+        this.nombreCancha = nombreCancha;
+    }
+
+    public void setCedulaUsuario(int cedulaUsuario) {
+        this.cedulaUsuario = cedulaUsuario;
+    }
+
+    void setDatosHorario(HorarioConCuposDTO horario){
+        horarioSeleccionado=horario;
+
         if (horario.getDia()==1){
             lblDiaDeLaSemana.setText("Lunes");
         }else if(horario.getDia()==2){
@@ -63,7 +65,7 @@ public class CardHorarioController implements Initializable {
         } else {
             horaInicioStr = hora + ":" + String.valueOf(horaInicio - hora * 100);
         }
-            lblHoraInicio.setText(horaInicioStr);
+        lblHoraInicio.setText(horaInicioStr);
         int horaFin = horario.getHoraFin();
         int horaF = horaFin/100;
 
@@ -75,5 +77,16 @@ public class CardHorarioController implements Initializable {
         }
 
         lblHoraFin.setText(horaFinStr);
+        lblCuposLibres.setText(horario.getCuposLibres()+"");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void hacerCheckInHorario(ActionEvent actionEvent) {
+        //post check in
+        btnCheckIn.setDisable(true);
     }
 }

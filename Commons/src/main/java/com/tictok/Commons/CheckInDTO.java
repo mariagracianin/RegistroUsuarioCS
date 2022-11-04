@@ -5,7 +5,7 @@ public class CheckInDTO {
     private String nombreCentro; //mail centro
     private String nombreActividad;
 
-    private String tipo;
+    private String tipo; //cancha o act?
     private HorarioDTO horario;
     private Long codigoCheckIn; // - codigoCheckIn
     private Long codigoReservaPadre; //
