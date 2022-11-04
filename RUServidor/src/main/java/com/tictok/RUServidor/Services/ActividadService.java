@@ -147,6 +147,7 @@ public class ActividadService {
          Actividad actividad = reservaActividad.getActividad();
          CheckInActividad checkInActividad = new CheckInActividad(usuario, dateFecha, actividad);
          reservaActividadRepository.delete(reservaActividad);
+         checkInActividadRepository.save(checkInActividad);
     }
 
     public List<SuperActividadDTO> findAll(){

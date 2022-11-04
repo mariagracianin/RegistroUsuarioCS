@@ -15,6 +15,7 @@ import com.tictok.RUServidor.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -101,6 +102,7 @@ public class CuentaService {
         }
     }
 
+    @Transactional
     public MegaUsuarioDTO getMegaUsuarioDTOfromMail(String mail) throws CuentaNoExisteException {
         Cuenta cuentaConEseMail = findOnebyId(mail);
 
