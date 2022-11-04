@@ -17,6 +17,7 @@ import com.tictok.RUServidor.Repositories.CuentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
@@ -107,6 +108,7 @@ public class CentroService {
         return centro1.get();
     }
 
+    @Transactional
     public List<SuperActividadDTO> getActividades(String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
         List<SuperActividadDTO> listaDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(centro1.getActividades());

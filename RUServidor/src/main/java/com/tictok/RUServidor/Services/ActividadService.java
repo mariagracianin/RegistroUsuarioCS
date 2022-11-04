@@ -34,6 +34,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -70,6 +71,7 @@ public class ActividadService {
         imagenRepository.save(imagen);
     }
 
+    @Transactional
     public ReservaDTO reservarActividad(ReservaDTO reservaDTO) throws CuposAgotadosException, CuentaNoExisteException {
         Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(reservaDTO.getHorario());
@@ -97,11 +99,15 @@ public class ActividadService {
     }
 
     public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException {
+        System.out.println("11111111111111111111111111111111111111111");
         Usuario usuario = usuarioService.findOnebyId2(checkInDTO.getCedulaUsuario());
+        System.out.println(usuario.getAddress());
+        System.out.println("22222222222222222222222222222222222222222");
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(checkInDTO.getHorario());
 
         ServicioId actividadId = new ServicioId(checkInDTO.getNombreActividad(), checkInDTO.getNombreCentro(), horarioId.getDia(), horarioId.getHoraInicio(), horarioId.getHoraFin());
         Actividad actividad = actividadRepository.getReferenceById(actividadId);
+        System.out.println("3333333333333333333333333333333333333333");
 
         LocalDate fecha = HorarioMapper.getFecha(horarioId.getDia());
         Date dateFecha = Date.valueOf(fecha);
@@ -129,6 +135,20 @@ public class ActividadService {
         //return  CheckInMapper.fromCheckInActividadToCheckInDTO(checkInActividad); ????????
     }
 
+    @Transactional
+    public void checkInActividadConReserva(Long codigoReserva) throws EntidadNoExisteException {
+         Optional<ReservaActividad> reservaActividadOptional = reservaActividadRepository.findById(codigoReserva);
+         if (reservaActividadOptional.isEmpty()) {
+             throw new EntidadNoExisteException("La reserva no existe");
+         }
+         ReservaActividad reservaActividad = reservaActividadOptional.get();
+         Usuario usuario = reservaActividad.getUsuario();
+         Date dateFecha = reservaActividad.getFecha();
+         Actividad actividad = reservaActividad.getActividad();
+         CheckInActividad checkInActividad = new CheckInActividad(usuario, dateFecha, actividad);
+         reservaActividadRepository.delete(reservaActividad);
+    }
+
     public List<SuperActividadDTO> findAll(){
         List<Actividad> actividadList = actividadRepository.findAll();
         if (actividadList.isEmpty()){
@@ -138,6 +158,7 @@ public class ActividadService {
         return listaSuperActividadDTO;
     }
 
+    @Transactional
     public ListaDTOConCount findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         Page<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);

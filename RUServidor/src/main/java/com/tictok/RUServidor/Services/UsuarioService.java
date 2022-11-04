@@ -115,6 +115,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    @Transactional
     public List<ReservaDTO> getReservasByUsuario(String mail) {
         Date fecha = Date.valueOf(LocalDate.now());
         List<ReservaActividad> actividadesReservadas =
@@ -124,6 +125,7 @@ public class UsuarioService {
         return ReservaMapper.fromListReservasToReserva2DTO(canchasReservadas, actividadesReservadas);
     }
 
+    @Transactional
     public List<ReservaDTO> getReservasActuales(String mailUsuario) throws CuentaNoExisteException {
         Usuario usuario = cuentaService.findOnebyId(mailUsuario).getUsuario();
         List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(usuario.getCedula(), Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
@@ -131,7 +133,7 @@ public class UsuarioService {
         List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
         return reservaDTOlist;
     }
-
+    @Transactional
     public List<ReservaDTO> getReservasUsuarioByCedulaAndCentro(int cedula, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
         String nombreCentro = centro.getNombreCentro();
