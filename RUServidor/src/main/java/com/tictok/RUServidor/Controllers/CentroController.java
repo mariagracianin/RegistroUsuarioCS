@@ -68,4 +68,15 @@ public class CentroController {
             throw new TipoDeCheckInNoExisteException();
         }
     }
+    @PostMapping("/checkIn/reserva")
+    public void postNewCheckInConReserva(@RequestBody CheckInDTO checkInDTO) throws EntidadNoExisteException, TipoDeCheckInNoExisteException {
+        if (checkInDTO.getTipo().equals("Cancha")){
+            //actividadService.checkInCancha(checkInDTO)-->sin hacer aun
+        } else if (checkInDTO.getTipo().equals("Actividad")) {
+            actividadService.checkInActividadConReserva(checkInDTO.getCodigoCheckIn());
+        }
+        else {
+            throw new TipoDeCheckInNoExisteException();
+        }
+    }
 }

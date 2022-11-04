@@ -10,10 +10,7 @@ import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.CentroMapper;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
-import com.tictok.RUServidor.Repositories.ActividadRepository;
-import com.tictok.RUServidor.Repositories.CanchaRepository;
-import com.tictok.RUServidor.Repositories.CentroRepository;
-import com.tictok.RUServidor.Repositories.CuentaRepository;
+import com.tictok.RUServidor.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,14 +28,18 @@ public class CentroService {
     private final CanchaRepository canchaRepository;
     private final ActividadRepository actividadRepository;
     private final CuentaService cuentaService;
+    private final ReservaActividadRepository reservaActividadRepository;
+    private final ReservaCanchaRepository reservaCanchaRepository;
 
     @Autowired
-    public CentroService(CentroRepository centroRepository, CuentaRepository cuentaRepository, CanchaRepository canchaRepository, ActividadRepository actividadRepository, CuentaService cuentaService) {
+    public CentroService(CentroRepository centroRepository, CuentaRepository cuentaRepository, CanchaRepository canchaRepository, ActividadRepository actividadRepository, CuentaService cuentaService, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository) {
         this.centroRepository = centroRepository;
         this.cuentaRepository = cuentaRepository;
         this.canchaRepository = canchaRepository;
         this.actividadRepository = actividadRepository;
         this.cuentaService = cuentaService;
+        this.reservaActividadRepository = reservaActividadRepository;
+        this.reservaCanchaRepository = reservaCanchaRepository;
         crearPrimerCentro();
 
 //        CentroDeportivo centroDeportivo = new CentroDeportivo("Coso", "Juan", "005262", "Juan2");

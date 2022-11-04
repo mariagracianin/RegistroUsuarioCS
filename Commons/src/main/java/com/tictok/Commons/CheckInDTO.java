@@ -14,6 +14,11 @@ public class CheckInDTO {
     public CheckInDTO(){
     }
 
+    public CheckInDTO(String tipo, Long codigoCheckIn) {
+        this.tipo = tipo;
+        this.codigoCheckIn = codigoCheckIn;
+    }
+
     public CheckInDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoCheckIn, String fecha) {
         this.cedulaUsuario = cedulaUsuario;
         this.nombreCentro = nombreCentro;
