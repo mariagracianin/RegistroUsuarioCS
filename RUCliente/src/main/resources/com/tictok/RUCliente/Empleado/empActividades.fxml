@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -178,6 +179,11 @@
       </HBox>
    </top>
    <center>
-      <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="10" prefHeight="200.0" prefWidth="200.0" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER" />
+      <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="10" prefHeight="200.0" prefWidth="200.0" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
+         <styleClass>
+            <String fx:value="pagination-control" />
+            <String fx:value="pagination" />
+         </styleClass>
+      </Pagination>
    </center>
 </BorderPane>

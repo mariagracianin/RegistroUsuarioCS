@@ -99,7 +99,7 @@ public class ActividadService {
         return listaSuperActividadDTO;
     }
 
-    public ListaDTOConCount<SuperActividadDTO> findAllPageable(int page, int size) {
+    public ListaDTOConCount findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         Page<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
         int pages = actividadInfosObjects.getTotalPages();
@@ -108,7 +108,7 @@ public class ActividadService {
         }
         List<SuperActividadDTO> superActividadDTOList =
                 ActividadMapper.fromQueryResultListToSuperActividadDTOList(actividadInfosObjects.getContent(), imagenRepository);
-        ListaDTOConCount<SuperActividadDTO> listaDTOConCount = new ListaDTOConCount<SuperActividadDTO>(pages, superActividadDTOList);
+        ListaDTOConCount listaDTOConCount = new ListaDTOConCount(pages, superActividadDTOList);
         return listaDTOConCount;
     }
 
