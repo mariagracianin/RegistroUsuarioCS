@@ -2,7 +2,9 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
+import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Projections.ActividadInfo;
+import com.tictok.RUServidor.Projections.CuentaCheckIns;
 import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
@@ -43,14 +45,18 @@ public class ActividadService {
     private final CentroService centroService;
     private final CuentaService cuentaService;
     private final ImagenRepository imagenRepository;
+    private final UsuarioService usuarioService;
+    private final CheckInActividadRepository checkInActividadRepository;
 
     @Autowired
-    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository, CentroService centroService, CuentaService cuentaService) throws IOException {
+    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository, CentroService centroService, CuentaService cuentaService, UsuarioService usuarioService, CheckInActividadRepository checkInActividadRepository) throws IOException {
         this.usuarioRepository = usuarioRepository;
         this.actividadRepository = actividadRepository;
         this.reservaActividadRepository = reservaActividadRepository;
         this.imagenRepository = imagenRepository;
         this.centroService = centroService;
+        this.usuarioService = usuarioService;
+        this.checkInActividadRepository = checkInActividadRepository;
 
        // agregarImagenPrueba();
         this.cuentaService = cuentaService;
@@ -88,6 +94,38 @@ public class ActividadService {
         reservaActividad = reservaActividadRepository.save(reservaActividad);
 
         return ReservaMapper.fromReservaActividadToReserva2DTO(reservaActividad);
+    }
+
+    public void checkInActividad(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException {
+        Usuario usuario = usuarioService.findOnebyId2(checkInDTO.getCedulaUsuario());
+        Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(checkInDTO.getHorario());
+
+        ServicioId actividadId = new ServicioId(checkInDTO.getNombreActividad(), checkInDTO.getNombreCentro(), horarioId.getDia(), horarioId.getHoraInicio(), horarioId.getHoraFin());
+        Actividad actividad = actividadRepository.getReferenceById(actividadId);
+
+        LocalDate fecha = HorarioMapper.getFecha(horarioId.getDia());
+        Date dateFecha = Date.valueOf(fecha);
+
+        if (actividad.getCupos()!= -1){
+            List<CuentaCheckIns> cuentaCheckInsList = checkInActividadRepository.countCheckInsByServicioIdAndFecha(actividadId,dateFecha);
+            List<CuentaReservas> cuentaReservasList = reservaActividadRepository.countReservasByServicioIdAndFecha(actividadId, dateFecha);
+            int cuposReservados = 0;
+            int cuposCheckineados = 0;
+            if (!cuentaReservasList.isEmpty()) {
+                cuposReservados = (int) cuentaReservasList.get(0).getCupos();
+            }
+            if (!cuentaCheckInsList.isEmpty()) {
+                cuposCheckineados = (int) cuentaCheckInsList.get(0).getCupos();
+            }
+            int cuposUsados = cuposReservados + cuposCheckineados;
+                //int cuposYaUsadosPeroNoReservados = (int) cu
+                if (actividad.getCupos() <= cuposUsados){
+                    throw new CuposAgotadosException();
+                }
+            }
+        CheckInActividad checkInActividad = new CheckInActividad(usuario, dateFecha, actividad);
+        checkInActividad = checkInActividadRepository.save(checkInActividad);
+        //return  CheckInMapper.fromCheckInActividadToCheckInDTO(checkInActividad); ????????
     }
 
     public List<SuperActividadDTO> findAll(){

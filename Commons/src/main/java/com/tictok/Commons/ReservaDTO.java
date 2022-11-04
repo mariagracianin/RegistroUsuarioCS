@@ -7,7 +7,7 @@ public class ReservaDTO {
     private String mailUsuario;  // cedula
     private String nombreCentro; //mail centro
     private String nombreActividad;
-
+    private Double precio;
     private String tipo;
     private HorarioDTO horario;
     private Long codigoReserva; // - codigoCheckIn
@@ -17,7 +17,8 @@ public class ReservaDTO {
     public ReservaDTO(){
     }
 
-    public ReservaDTO(String mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, String fecha) {
+    public ReservaDTO(String mailUsuario, String nombreCentro, String nombreActividad, String tipo,
+                      HorarioDTO horario, Long codigoReserva, String fecha, Double precio) {
         this.mailUsuario = mailUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
@@ -25,9 +26,11 @@ public class ReservaDTO {
         this.horario = horario;
         this.codigoReserva = codigoReserva;
         this.fecha = fecha;
+        this.precio = precio;
     }
 
-    public ReservaDTO(String mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, Long codigoReservaPadre, String fecha) {
+    public ReservaDTO(String mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario,
+                      Long codigoReserva, Long codigoReservaPadre, String fecha, Double precio) {
         this.mailUsuario = mailUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
@@ -36,6 +39,7 @@ public class ReservaDTO {
         this.codigoReserva = codigoReserva;
         this.codigoReservaPadre = codigoReservaPadre;
         this.fecha = fecha;
+        this.precio = precio;
     }
 
     public String getFecha() {

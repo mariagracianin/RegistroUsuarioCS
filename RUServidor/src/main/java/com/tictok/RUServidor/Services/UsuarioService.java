@@ -72,6 +72,16 @@ public class UsuarioService {
         }
     }
 
+    public Usuario findOnebyId2(Integer id) throws UsuarioNoExisteException {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if (usuario.isPresent()) {
+            return usuario.get();
+        }
+        else {
+            throw new UsuarioNoExisteException(id);
+        }
+    }
+
     public List<Usuario> findbyId(List<Integer> idList){
         return usuarioRepository.findAllById(idList);
     }
@@ -125,11 +135,30 @@ public class UsuarioService {
     public List<ReservaDTO> getReservasUsuarioByCedulaAndCentro(int cedula, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
         String nombreCentro = centro.getNombreCentro();
+        System.out.println(nombreCentro+"---------------------------------------------");
+
         List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(cedula, Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
         List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(cedula,Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+
+        for(int i=0; i<reservasActividades.size(); i++){
+            System.out.println("----------------Actividades");
+            System.out.println(reservasActividades.get(i).getActividad().getActividadId().getNombreServicio());
+        }
+        for(int i=0; i<reservaCanchas.size(); i++){
+            System.out.println("----------------Canchas");
+            System.out.println(reservaCanchas.get(i).getCancha().getCanchaId().getNombreServicio());
+        }
+
         List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
-        List<ReservaDTO> reservaDTOListFromCentro = null;
+
         for(int i=0; i<reservaDTOlist.size(); i++){
+            System.out.println("----------------Canchas/Actividades");
+            System.out.println(reservaDTOlist.get(i).getNombreActividad());
+        }
+
+        List<ReservaDTO> reservaDTOListFromCentro = new ArrayList<ReservaDTO>();
+        for(int i=0; i<reservaDTOlist.size(); i++){
+            System.out.println(reservaDTOlist.get(i).getNombreCentro()+"-----------nombre centro");
             if(reservaDTOlist.get(i).getNombreCentro().equals(nombreCentro)){
                 reservaDTOListFromCentro.add(reservaDTOlist.get(i));
             }

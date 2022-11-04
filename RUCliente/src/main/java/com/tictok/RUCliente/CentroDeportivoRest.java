@@ -1,11 +1,10 @@
 package com.tictok.RUCliente;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import com.tictok.Commons.HorarioDTO;
-import com.tictok.Commons.NuevoCentroDTO;
-import com.tictok.Commons.NuevoServicioDTO;
+import com.tictok.Commons.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +32,17 @@ public class CentroDeportivoRest {
                     .asString();
             return response;
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerCentroLogeado(){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/getActividades/"+miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
@@ -182,6 +192,31 @@ public class CentroDeportivoRest {
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservasByCedula/"+cedula+"/"+ miniCuenta.getMailMiniCuenta())
                     .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> hacerCheckIn(int cedula, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoCheckIn) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        HttpResponse<String> response2 = obtenerCentroLogeado();
+        CentroDeportivoDTO centroDeportivoDTO = objectMapper.readValue(response2.getBody(), CentroDeportivoDTO.class);
+
+        String checkInJSON = "";
+
+        try {
+            ObjectMapper jsonObjectMapper = new ObjectMapper();
+            CheckInDTO checkInDTO = new CheckInDTO(cedula, centroDeportivoDTO.getNombreCentro(),nombreActividad,tipo,horarioDTO,null,null);
+            checkInJSON = jsonObjectMapper.writeValueAsString(checkInDTO);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        try {
+            HttpResponse<String> response = Unirest.post("http://localhost:8080/centro/checkIn")
+                    .header("Content-Type", "application/json")
+                    .body(checkInJSON)
                     .asString();
             return response;
         }catch (Exception e){

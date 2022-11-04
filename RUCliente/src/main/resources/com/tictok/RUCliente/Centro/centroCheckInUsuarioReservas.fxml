@@ -56,9 +56,6 @@
       <ScrollPane hbarPolicy="NEVER" prefHeight="600.0" prefWidth="773.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
          <content>
             <GridPane fx:id="contenedorReservas">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
             </GridPane>
          </content>
       </ScrollPane>

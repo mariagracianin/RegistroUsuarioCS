@@ -39,13 +39,14 @@ public class ReservaMapper {
         HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaCancha.getCancha().getCanchaId());
         Long codigoReserva = reservaCancha.getId();
         Long codigoReservaPadre;
+        Double precio = reservaCancha.getCancha().getPrecio();
         try {
             codigoReservaPadre = reservaCancha.getReservaCanchaPadre().getId();
         } catch (NullPointerException n){
             codigoReservaPadre = null;
         }
         String fecha = reservaCancha.getFecha().toString();
-        return new ReservaDTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva, codigoReservaPadre, fecha);
+        return new ReservaDTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva, codigoReservaPadre, fecha, precio);
     }
 
     public static ReservaDTO fromReservaActividadToReserva2DTO(ReservaActividad reservaActividad){
@@ -56,7 +57,8 @@ public class ReservaMapper {
         HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaActividad.getActividad().getActividadId());
         Long codigoReserva = reservaActividad.getId();
         String fecha = reservaActividad.getFecha().toString();
-        return new ReservaDTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva, fecha);
+        Double precio = reservaActividad.getActividad().getPrecio();
+        return new ReservaDTO(mail, nombreCentro, nombreActividad, tipo, horario, codigoReserva, fecha, precio);
     }
     public static List<ReservaDTO> fromListReservasToReserva2DTO(List<ReservaCancha> reservaCanchaList,
                                                                  List<ReservaActividad> reservaActividadList){
