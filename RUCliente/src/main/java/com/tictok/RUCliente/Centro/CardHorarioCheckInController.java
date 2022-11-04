@@ -91,6 +91,7 @@ public class CardHorarioCheckInController implements Initializable {
     public void hacerCheckInHorario(ActionEvent actionEvent) throws JsonProcessingException {
         HorarioDTO horarioDTO = new HorarioDTO(horarioSeleccionado.getDia(),horarioSeleccionado.getHoraInicio(),horarioSeleccionado.getHoraFin());
         if(nombreCancha ==  null){
+            System.out.println("CEDULA MAVI :" + cedulaUsuario+ "----------------------------------------------------");
             CentroDeportivoRest.hacerCheckIn(cedulaUsuario,nombreActividad,"Actividad", horarioDTO,null, miniCuenta);
         }
         btnCheckIn.setDisable(true);

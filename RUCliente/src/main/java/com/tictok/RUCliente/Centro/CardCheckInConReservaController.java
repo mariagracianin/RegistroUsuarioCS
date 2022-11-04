@@ -67,4 +67,8 @@ public class CardCheckInConReservaController implements Initializable {
         //post check in
         btnCheckIn.setDisable(true);
     }
+
+    public void setCedula(int cedulaUsuario) {
+        this.cedulaUsuario=cedulaUsuario;
+    }
 }

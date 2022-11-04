@@ -83,6 +83,8 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
                     cardHorarioController.setNombreCancha(canSeleccionada.getNombreServicio());
                 }
                 cardHorarioController.setCedulaUsuario(this.cedulaUsuario);
+                System.out.println("CEDULA EN TXT5: " +this.cedulaUsuario+ "-----------------------------");
+
                 cardHorarioController.setDatosHorario(horariosConCupos.get(i));
                 cardHorarioController.setMiniCuenta(miniCuenta);
 

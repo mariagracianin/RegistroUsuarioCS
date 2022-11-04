@@ -82,6 +82,9 @@ public class CentroCheckInController implements Initializable {
 
             CentroCheckInUsuarioSinReservaController controller = fxmlLoader.getController();
             controller.setCedulaUsuario(Integer.parseInt(txtCedulaUsuario.getText()));
+            System.out.println("CEDULA EN TXT1: " + txtCedulaUsuario.getText() + "-----------------------------");
+            controller.inicializar();
+
 
             Stage stage = new Stage();
             Scene escena = new Scene(root);

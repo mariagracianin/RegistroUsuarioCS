@@ -60,6 +60,7 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
                 SplitPane actBox = fxmlLoader.load();
 
                 CardCheckInConReservaController  cardController = fxmlLoader.getController();
+                cardController.setCedula(this.cedulaUsuario);
                 cardController.setDatos(reservas.get(i),this.cedulaUsuario);
                 cardController.setMiniCuenta(miniCuenta);
 

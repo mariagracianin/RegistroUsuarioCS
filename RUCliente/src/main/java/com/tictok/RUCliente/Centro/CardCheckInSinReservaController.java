@@ -77,6 +77,8 @@ public class CardCheckInSinReservaController implements Initializable {
 
         VerHorariosCheckInSinReservaController controller = fxmlLoader.getController();
         controller.setCedulaUsuario(this.cedulaUsuario);
+        System.out.println("CEDULA EN TXT3: " +this.cedulaUsuario+ "-----------------------------");
+
         controller.setMiniCuenta(this.miniCuenta);
         if (actSeleccionada != null){
             controller.setActividad(this.actSeleccionada);
@@ -93,5 +95,9 @@ public class CardCheckInSinReservaController implements Initializable {
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.show();
 
+    }
+
+    public void setCedula(int cedulaUsuario) {
+        this.cedulaUsuario=cedulaUsuario;
     }
 }
