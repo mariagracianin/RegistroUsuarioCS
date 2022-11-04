@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.time.LocalDate;
+
 @SpringBootApplication
 public class Main {
 
@@ -13,6 +15,8 @@ public class Main {
 	public static void main(String[] args) {
 		Main.context = SpringApplication.run(Main.class);
 		Application.launch(JavaFXApplication.class, args);
+
+
 	}
 
 	public static ConfigurableApplicationContext getContext() {

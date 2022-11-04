@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Repositories;
 
+import com.tictok.RUServidor.Entities.CheckInActividad;
 import com.tictok.RUServidor.Entities.Empresa;
 import com.tictok.RUServidor.Entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

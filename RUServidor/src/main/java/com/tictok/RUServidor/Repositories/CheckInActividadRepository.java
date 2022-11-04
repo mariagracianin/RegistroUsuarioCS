@@ -15,6 +15,10 @@ public interface CheckInActividadRepository extends JpaRepository<CheckInActivid
     select new com.tictok.RUServidor.Projections.CuentaCheckIns(r.actividad.actividadId, count(r.actividad.cupos)) from CheckInActividad r
     where r.actividad.actividadId = ?1 and r.fecha = ?2
     group by r.actividad.actividadId
-""")
+    """)
     List<CuentaCheckIns> countCheckInsByServicioIdAndFecha(ServicioId servicioId, Date fecha);
+
+    @Query("select c from CheckInActividad c where c.usuario.cedula = ?1 and c.fecha between ?2 and ?3")
+    List<CheckInActividad> findByUsuario_CedulaAndFechaBetween(int cedula, Date fechaStart, Date fechaEnd);
+
 }
