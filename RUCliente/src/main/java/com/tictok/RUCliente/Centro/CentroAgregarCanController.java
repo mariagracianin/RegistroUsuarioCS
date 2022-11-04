@@ -93,6 +93,8 @@ public class CentroAgregarCanController implements Initializable {
             txtCupos.setText("");
             txtNombre.setText("");
             txtPrecio.setText("");
+            contenedorHorarios.getChildren().clear();
+            horariosReserva.clear();
         }else{
             administradorRegCentroController.abrirVentanaEmergenteError();
         }

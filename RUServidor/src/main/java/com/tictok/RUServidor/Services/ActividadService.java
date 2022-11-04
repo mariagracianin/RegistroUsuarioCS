@@ -157,22 +157,31 @@ public class ActividadService {
     public void guardarActividad(NuevoServicioDTO nuevaActividadDTO, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
         Imagen imagen = null;
-        if(nuevaActividadDTO.getImageString()!=null) {
+        if (nuevaActividadDTO.getImageString() != null) {
             imagen = new Imagen(nuevaActividadDTO.getImageString());
             imagenRepository.save(imagen);
         }
-        for(int i=0; i<nuevaActividadDTO.getHorarios().size(); i++){
-            HorarioDTO horarioDTOi = nuevaActividadDTO.getHorarios().get(i);
+        if (nuevaActividadDTO.getHorarios() != null && !nuevaActividadDTO.getPaseLibre()) {
+            for (int i = 0; i < nuevaActividadDTO.getHorarios().size(); i++) {
+                HorarioDTO horarioDTOi = nuevaActividadDTO.getHorarios().get(i);
 
-            Integer horaInicio = horarioDTOi.getHoraInicio();
-            Integer horaFin = horarioDTOi.getHoraFin();
+                Integer horaInicio = horarioDTOi.getHoraInicio();
+                Integer horaFin = horarioDTOi.getHoraFin();
 
-            LocalTime horaInicio1 = LocalTime.of(horaInicio/100,horaInicio-(horaInicio/100)*100);
-            LocalTime horaFin1 = LocalTime.of(horaFin/100,horaFin-(horaFin/100)*100);
-            DayOfWeek dia  = HorarioMapper.setearDia(horarioDTOi.getDia());
+                LocalTime horaInicio1 = LocalTime.of(horaInicio / 100, horaInicio - (horaInicio / 100) * 100);
+                LocalTime horaFin1 = LocalTime.of(horaFin / 100, horaFin - (horaFin / 100) * 100);
+                DayOfWeek dia = HorarioMapper.setearDia(horarioDTOi.getDia());
 
-            Actividad actividadI = new Actividad(centro1,nuevaActividadDTO.getNombreServicio(),dia,horaInicio1,horaFin1,nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
-            if(nuevaActividadDTO.getImageString()!=null){
+                Actividad actividadI = new Actividad(centro1, nuevaActividadDTO.getNombreServicio(), dia, horaInicio1, horaFin1, nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+                if (nuevaActividadDTO.getImageString() != null) {
+                    actividadI.setImagen(imagen);
+                }
+                actividadRepository.save(actividadI);
+                centro1.setActividad(actividadI);
+            }
+        } else {
+            Actividad actividadI = new Actividad(centro1, nuevaActividadDTO.getNombreServicio(), null, null, null, nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+            if (nuevaActividadDTO.getImageString() != null) {
                 actividadI.setImagen(imagen);
             }
             actividadRepository.save(actividadI);

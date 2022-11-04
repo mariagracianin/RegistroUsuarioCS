@@ -106,7 +106,7 @@ public class CentroAgregarActController implements Initializable {
     public void guardarDatos(ActionEvent actionEvent) throws IOException {
         HttpResponse<String> response;
         if (txtCupos.isDisable()){
-            response = centroDeportivoRest.guardarActividad(txtNombre.getText(),Double.parseDouble(txtPrecio.getText()),Integer.parseInt(txtCupos.getText()), true, this.img, null );
+            response = centroDeportivoRest.guardarActividad(txtNombre.getText(),Double.parseDouble(txtPrecio.getText()),-1, true, this.img, null );
 
             //mandar datos con pase libre = true
             //sin horarios
@@ -124,6 +124,8 @@ public class CentroAgregarActController implements Initializable {
             txtCupos.setText("");
             txtNombre.setText("");
             txtPrecio.setText("");
+            contenedorHorarios.getChildren().clear();
+            horariosReserva.clear();
         }else{
             administradorRegCentroController.abrirVentanaEmergenteError();
         }

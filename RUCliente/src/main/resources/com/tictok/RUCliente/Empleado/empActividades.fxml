@@ -179,7 +179,7 @@
       </HBox>
    </top>
    <center>
-      <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="10" prefHeight="200.0" prefWidth="200.0" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
+      <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="10" prefHeight="600.0" prefWidth="998.0" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <styleClass>
             <String fx:value="pagination-control" />
             <String fx:value="pagination" />

@@ -37,7 +37,7 @@ public class CardCheckInConReservaController implements Initializable {
         cedulaUsuario=cedula;
         reservaSeleccionada=reservaDTO;
         nombreReserva.setText(reservaDTO.getNombreActividad());
-       // costoReserva.setText(reservaDTO.getPrecio.toString());
+       // costoReserva.setText(reservaDTO.getPrecio().toString());
         String dia = "";
         switch (reservaDTO.getHorario().getDia()) {
             case 1 -> dia = "Lunes, ";

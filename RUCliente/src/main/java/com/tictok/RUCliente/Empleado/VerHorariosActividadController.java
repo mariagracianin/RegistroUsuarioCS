@@ -92,7 +92,7 @@ public class VerHorariosActividadController implements Initializable {
     }
 
     private List<HorarioConCuposDTO> obtenerHorarioConCupos() throws JsonProcessingException {
-        HttpResponse<String> response = centroDeportivoRest.obtenerActividadConCupos(estaActividad.getNombreCentro(),estaActividad.getNombreServicio());
+        HttpResponse<String> response = CentroDeportivoRest.obtenerActividadConCupos(estaActividad.getNombreCentro(),estaActividad.getNombreServicio());
         System.out.println(response.getBody());
         ObjectMapper objectMapper = new ObjectMapper();
         System.out.println(response.getBody() + "---------------------------------------- " + response.getCode());

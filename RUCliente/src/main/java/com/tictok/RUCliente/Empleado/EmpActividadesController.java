@@ -63,17 +63,24 @@ public class EmpActividadesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setImagenesBotones();
         pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+        pagination.setMaxHeight(550);
+        pagination.setMaxWidth(900);
         pagination.setPageFactory(new Callback<Integer, Node>() {
             @Override
             public Node call(Integer pageIndex) {
                 return createPage(pageIndex);
             }
         });
-
+        pagination.setMaxHeight(550);
+        pagination.setMaxWidth(900);
     }
 
     private GridPane createPage(Integer pageIndex) {
         GridPane contenedorAct = new GridPane();
+        contenedorAct.setPrefWidth(900);
+        contenedorAct.setPrefHeight(550);
+        contenedorAct.setMaxWidth(900);
+        contenedorAct.setMaxHeight(550);
         contenedorAct.getColumnConstraints().clear();
         contenedorAct.getRowConstraints().clear();
         ListaDTOConCount listaDTOConCount;
@@ -88,6 +95,8 @@ public class EmpActividadesController implements Initializable {
 
         int column=0;
         int row=0;
+
+        pagination.setPageCount(listaDTOConCount.getPages());
 
         try {
             for (int i=0; i<listaDTOConCount.getObjects().size(); i++){

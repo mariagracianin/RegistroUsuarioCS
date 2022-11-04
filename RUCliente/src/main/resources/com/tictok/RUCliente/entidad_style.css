@@ -74,22 +74,19 @@
 }
 
 .pagination .pagination-control .bullet-button {
-    -fx-background-color: white, transparent, rgba(3, 218, 198, 0.78), transparent, transparent;
+    -fx-background-color: transparent, transparent, rgba(3, 218, 198, 0.78), transparent, transparent;
     -fx-backgroud-radius: 5;
     -fx-border-radius: 5;
-    -fx-text-fill: white;
 }
 
 .pagination .pagination-control .bullet-button:selected {
     -fx-background-color: transparent, #616161, rgba(3, 218, 198, 0.78), #616161, rgba(3, 218, 198, 0.78);
     -fx-backgroud-radius: 5;
     -fx-border-radius: 5;
-    -fx-text-fill: white;
 }
 
 .pagination .pagination-control .left-arrow, .right-arrow{
     -fx-background-color: #616161, rgba(3, 218, 198, 0.78);
     -fx-backgroud-radius: 5;
     -fx-border-radius: 5;
-    -fx-text-fill: white;
 }
