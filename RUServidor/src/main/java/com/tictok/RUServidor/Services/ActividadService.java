@@ -70,6 +70,7 @@ public class ActividadService {
         imagenRepository.save(imagen);
     }
 
+    @Transactional
     public ReservaDTO reservarActividad(ReservaDTO reservaDTO) throws CuposAgotadosException, CuentaNoExisteException {
         Usuario usuario = cuentaService.findOnebyId(reservaDTO.getMailUsuario()).getUsuario();
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(reservaDTO.getHorario());
@@ -137,6 +138,7 @@ public class ActividadService {
         return listaSuperActividadDTO;
     }
 
+    @Transactional
     public ListaDTOConCount findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         Page<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
