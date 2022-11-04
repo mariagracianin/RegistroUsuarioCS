@@ -68,8 +68,13 @@ public class UsuarioController  {
     }
 
     @GetMapping("/getReservas/{mailUsuario}")
-    public List<ReservaDTO> getReservas(@PathVariable String mailUsuario) throws CuentaNoExisteException {
+    public List<ReservaDTO> getReservasFromMail(@PathVariable String mailUsuario) throws CuentaNoExisteException {
         return usuarioService.getReservasActuales(mailUsuario);
+    }
+
+    @GetMapping("/getReservasByCedula/{cedula}/{mailCentro}")
+    public List<ReservaDTO> getReservasFromCedulaAndCentroDeportivo(@PathVariable String cedula, @PathVariable String mailCentro) throws CuentaNoExisteException {
+        return usuarioService.getReservasUsuarioByCedulaAndCentro(Integer.parseInt(cedula), mailCentro);
     }
 
     @DeleteMapping("/reserva/{idReserva}")

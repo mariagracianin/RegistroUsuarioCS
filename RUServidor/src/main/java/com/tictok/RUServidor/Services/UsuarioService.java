@@ -31,11 +31,12 @@ public class UsuarioService {
     private final ReservaCanchaRepository reservaCanchaRepository;
     private final EmpresaService empresaService;
     private final CuentaService cuentaService;
+    private final CentroService centroService;
 
 
     @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
-                          EmpresaRepository empresaRepository, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository, EmpresaService empresaService, CuentaService cuentaService) {
+                          EmpresaRepository empresaRepository, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository, EmpresaService empresaService, CuentaService cuentaService, CentroService centroService) {
         this.usuarioRepository = usuarioRepository;
         this.cuentaRepository = cuentaRepository;
         this.empresaRepository = empresaRepository;
@@ -43,6 +44,7 @@ public class UsuarioService {
         this.reservaCanchaRepository = reservaCanchaRepository;
         this.empresaService = empresaService;
         this.cuentaService = cuentaService;
+        this.centroService = centroService;
     }
 
     public List<UsuarioDTO> findAll() {
@@ -118,5 +120,20 @@ public class UsuarioService {
         List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(usuario.getCedula(),Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
         List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
         return reservaDTOlist;
+    }
+
+    public List<ReservaDTO> getReservasUsuarioByCedulaAndCentro(int cedula, String mailCentro) throws CuentaNoExisteException {
+        CentroDeportivo centro = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
+        String nombreCentro = centro.getNombreCentro();
+        List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(cedula, Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+        List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(cedula,Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
+        List<ReservaDTO> reservaDTOListFromCentro = null;
+        for(int i=0; i<reservaDTOlist.size(); i++){
+            if(reservaDTOlist.get(i).getNombreCentro().equals(nombreCentro)){
+                reservaDTOListFromCentro.add(reservaDTOlist.get(i));
+            }
+        }
+        return reservaDTOListFromCentro;
     }
 }
