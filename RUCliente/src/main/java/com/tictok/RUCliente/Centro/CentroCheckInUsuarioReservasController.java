@@ -3,6 +3,7 @@ package com.tictok.RUCliente.Centro;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.RUCliente.Empleado.CardReservaRealizadaController;
 import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 
 @Component
 public class CentroCheckInUsuarioReservasController implements Initializable {
+    @Autowired
+    MiniCuenta miniCuenta;
 
     public GridPane contenedorReservas;
     private int cedulaUsuario;
@@ -30,21 +33,27 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<ReservaDTO> reservas= getReservasDeUsuario(this.cedulaUsuario);
         contenedorReservas.getChildren().clear();
-
+        int column=0;
         int row=0;
 
         try {
             for (int i=0; i<reservas.size(); i++){
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardReserva.fxml"));
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Centro/cardCheckInConReserva.fxml"));
                 SplitPane actBox = fxmlLoader.load();
 
-                CardReservaRealizadaController cardController = fxmlLoader.getController();
-                cardController.setDatos(reservas.get(i));
+                CardCheckInConReservaController  cardController = fxmlLoader.getController();
+                cardController.setDatos(reservas.get(i),this.cedulaUsuario);
+                cardController.setMiniCuenta(miniCuenta);
 
-                contenedorReservas.add(actBox,0,row++);
+                if (column == 2) {
+                    column = 0;
+                    row++;
+                }
+
+                contenedorReservas.add(actBox,column++,row);
                 GridPane.setMargin(actBox, new Insets(10));
 
             }

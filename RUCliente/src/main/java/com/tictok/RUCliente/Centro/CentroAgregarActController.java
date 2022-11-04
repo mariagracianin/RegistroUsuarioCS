@@ -4,26 +4,17 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.RUCliente.Admin.AdministradorRegCentroController;
 import com.tictok.RUCliente.CentroDeportivoRest;
-import com.tictok.RUCliente.Empleado.CardHorarioActividadController;
-import com.tictok.RUCliente.Empleado.VerHorariosActividadController;
-import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
-import com.tictok.RUCliente.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
@@ -31,12 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 @Component
@@ -181,9 +170,9 @@ public class CentroAgregarActController implements Initializable {
         contenedorHorarios.getChildren().clear();
         for (int i = 0; i < this.horariosReserva.size(); i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            HBox horarioBox = fxmlLoader.load(CardHorarioController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/cardHorario.fxml"));
+            HBox horarioBox = fxmlLoader.load(CardHorarioAgregarActOCanController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/cardHorarioAgregarActOCan.fxml"));
 
-            CardHorarioController cardHorarioController = fxmlLoader.getController();
+            CardHorarioAgregarActOCanController cardHorarioController = fxmlLoader.getController();
             cardHorarioController.setLabels(this.horariosReserva.get(i), "actividad");
 
             contenedorHorarios.add(horarioBox, 0, i + 1);

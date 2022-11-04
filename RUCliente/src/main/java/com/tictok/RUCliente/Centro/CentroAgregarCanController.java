@@ -4,8 +4,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.RUCliente.Admin.AdministradorRegCentroController;
 import com.tictok.RUCliente.CentroDeportivoRest;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -170,9 +168,9 @@ public class CentroAgregarCanController implements Initializable {
         contenedorHorarios.getChildren().clear();
         for (int i = 0; i < this.horariosReserva.size(); i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            HBox horarioBox = fxmlLoader.load(CardHorarioController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/cardHorario.fxml"));
+            HBox horarioBox = fxmlLoader.load(CardHorarioAgregarActOCanController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/cardHorarioAgregarActOCan.fxml"));
 
-            CardHorarioController cardHorarioController = fxmlLoader.getController();
+            CardHorarioAgregarActOCanController cardHorarioController = fxmlLoader.getController();
             cardHorarioController.setLabels(this.horariosReserva.get(i), "cancha");
 
             contenedorHorarios.add(horarioBox, 0, i + 1);

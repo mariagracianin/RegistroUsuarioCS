@@ -2,6 +2,7 @@ package com.tictok.RUCliente.Centro;
 
 import com.tictok.RUCliente.JavaFXApplication;
 import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -17,6 +19,7 @@ import java.util.ResourceBundle;
 
 @Component
 public class CentroController implements Initializable {
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

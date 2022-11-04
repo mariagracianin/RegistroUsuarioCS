@@ -34,7 +34,6 @@ public class CentroCheckInController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         btnConReserva.setToggleGroup(group);
         btnSinReserva.setToggleGroup(group);
-        lblDebeSeleccionar.setDisable(true);
     }
 
     public void agregarAct(ActionEvent actionEvent) throws IOException {
@@ -66,11 +65,10 @@ public class CentroCheckInController implements Initializable {
         if (btnConReserva.isSelected()) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-            CentroCheckInUsuarioReservasController controller = fxmlLoader.getController();
-            controller.setCedulaUsuario(Integer.parseInt(txtCedulaUsuario.getText()));
 
             Parent root = fxmlLoader.load(CentroCheckInUsuarioReservasController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroCheckInUsuarioReservas.fxml"));
-
+            CentroCheckInUsuarioReservasController controller = fxmlLoader.getController();
+            controller.setCedulaUsuario(Integer.parseInt(txtCedulaUsuario.getText()));
 
             Stage stage = new Stage();
             Scene escena = new Scene(root);
@@ -78,9 +76,20 @@ public class CentroCheckInController implements Initializable {
             escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
             stage.show();
         } else if (btnSinReserva.isSelected()) {
-            System.out.println("sin reserva");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+            Parent root = fxmlLoader.load(CentroCheckInUsuarioReservasController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroCheckInUsuarioSinReserva.fxml"));
+
+            CentroCheckInUsuarioSinReservaController controller = fxmlLoader.getController();
+            controller.setCedulaUsuario(Integer.parseInt(txtCedulaUsuario.getText()));
+
+            Stage stage = new Stage();
+            Scene escena = new Scene(root);
+            stage.setScene(escena);
+            escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+            stage.show();
         } else {
-            lblDebeSeleccionar.setDisable(false);
+            lblDebeSeleccionar.setText("Debe seleccionar alguna de las opciones");
         }
     }
 }

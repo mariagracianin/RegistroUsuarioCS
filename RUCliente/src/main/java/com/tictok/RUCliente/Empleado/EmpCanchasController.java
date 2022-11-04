@@ -69,8 +69,6 @@ public class EmpCanchasController implements Initializable {
         try {
             HttpResponse<String> response = centroDeportivoRest.obtenerCanchas();
             String responseBody = response.getBody();
-            System.out.println("----------------------------------------------------------------");
-            System.out.println(responseBody);
             ObjectMapper mapper = new ObjectMapper();
             List<SuperCanchaDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
 
