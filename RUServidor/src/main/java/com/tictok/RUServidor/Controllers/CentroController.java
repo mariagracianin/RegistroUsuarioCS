@@ -57,11 +57,11 @@ public class CentroController {
     }
 
     @PostMapping("/checkIn")
-    public void postNewCheckIn(@RequestBody CheckInDTO checkInDTO) throws CuentaNoExisteException, UsuarioNoExisteException, CuposAgotadosException, TipoDeCheckInNoExisteException {
+    public void postNewCheckInSinReserva(@RequestBody CheckInDTO checkInDTO) throws CuentaNoExisteException, UsuarioNoExisteException, CuposAgotadosException, TipoDeCheckInNoExisteException {
         if (checkInDTO.getTipo().equals("Cancha")){
             //actividadService.checkInCancha(checkInDTO)-->sin hacer aun
         } else if (checkInDTO.getTipo().equals("Actividad")) {
-            actividadService.checkInActividad(checkInDTO);
+            actividadService.checkInActividadSinReserva(checkInDTO);
         }
         else {
             throw new TipoDeCheckInNoExisteException();
