@@ -3,17 +3,20 @@ package com.tictok.RUServidor.Services;
 import com.tictok.Commons.CuentaDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.MiniCuentaDTO;
-import com.tictok.Commons.UsuarioDTO;
+import com.tictok.RUServidor.Entities.CheckInActividad;
 import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
 import com.tictok.RUServidor.Mappers.UsuarioMapper;
+import com.tictok.RUServidor.Repositories.CheckInActividadRepository;
 import com.tictok.RUServidor.Repositories.CuentaRepository;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
+import com.tictok.RUServidor.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,9 +26,14 @@ public class CuentaService {
 
     private final CuentaRepository cuentaRepository;
 
+    private final UsuarioRepository usuarioRepository;
+    private final CheckInActividadRepository checkInActividadRepository;
+
     @Autowired
-    public CuentaService(CuentaRepository cuentaRepository) {
+    public CuentaService(CuentaRepository cuentaRepository, UsuarioRepository usuarioRepository, CheckInActividadRepository checkInActividadRepository) {
         this.cuentaRepository = cuentaRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.checkInActividadRepository = checkInActividadRepository;
         System.out.println("Constuctor Admin");
         crearPrimerAdministrador();
         //crearPrimeraEmpresa();
@@ -97,10 +105,31 @@ public class CuentaService {
         Cuenta cuentaConEseMail = findOnebyId(mail);
 
         if(cuentaConEseMail.getTipo().equals("user")){
-            return UsuarioMapper.toMegaUsuarioDTO(cuentaConEseMail.getUsuario());
+            Usuario usuario = cuentaConEseMail.getUsuario();
+            Double gastos = getGastosUsuario(usuario.getCedula());
+            MegaUsuarioDTO megaUsuarioDTO = UsuarioMapper.toMegaUsuarioDTO(cuentaConEseMail.getUsuario());
+            Double saldo = megaUsuarioDTO.getSaldo() - gastos;
+            megaUsuarioDTO.setSaldo(saldo);
+            return megaUsuarioDTO;
         }else{
             throw new RuntimeException("LA FUNCION ESTA SOLO TIENE QUE SER PARA CUENTAS DE USUSARIO, LA ESTAS PIDIENDO CON OTRA COSA");
         }
+
+    }
+    private Double getGastosUsuario(int cedula){
+        LocalDate initial = LocalDate.now();
+        Date start = Date.valueOf(initial.withDayOfMonth(1));
+        Date end = Date.valueOf(initial.withDayOfMonth(initial.getMonth().length(initial.isLeapYear())));
+        List<CheckInActividad> listaCheckInDelMes =
+                checkInActividadRepository.findByUsuario_CedulaAndFechaBetween(cedula, start, end);
+
+        Double gastos = 0.0;
+        if (!listaCheckInDelMes.isEmpty()){
+            for (int i=0; i<listaCheckInDelMes.size(); i++){
+                gastos = gastos + listaCheckInDelMes.get(i).getPrecio();
+            }
+        }
+        return gastos;
     }
 
 
