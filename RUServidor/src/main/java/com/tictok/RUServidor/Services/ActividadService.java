@@ -97,7 +97,7 @@ public class ActividadService {
         return ReservaMapper.fromReservaActividadToReserva2DTO(reservaActividad);
     }
 
-    public void checkInActividad(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException {
+    public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException {
         Usuario usuario = usuarioService.findOnebyId2(checkInDTO.getCedulaUsuario());
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(checkInDTO.getHorario());
 
@@ -107,6 +107,7 @@ public class ActividadService {
         LocalDate fecha = HorarioMapper.getFecha(horarioId.getDia());
         Date dateFecha = Date.valueOf(fecha);
 
+        System.out.println(actividad.getCupos() + "---------------------------------------------------cupos");
         if (actividad.getCupos()!= -1){
             List<CuentaCheckIns> cuentaCheckInsList = checkInActividadRepository.countCheckInsByServicioIdAndFecha(actividadId,dateFecha);
             List<CuentaReservas> cuentaReservasList = reservaActividadRepository.countReservasByServicioIdAndFecha(actividadId, dateFecha);

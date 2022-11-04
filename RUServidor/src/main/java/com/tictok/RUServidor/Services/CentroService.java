@@ -126,5 +126,4 @@ public class CentroService {
         return new CentroDeportivoDTO(centro.getNombreCentro(),centro.getAddress(), centro.getBarrio(),centro.getTelefono(),centro.getEncargado(),centro.getRut(), centro.getRazonSocial());
     }
 
-
 }
