@@ -226,11 +226,7 @@ public class CentroDeportivoRest {
 
     }
 
-    public static HttpResponse<String> hacerCheckInConReserva(String tipo, Long codigoCheckIn, MiniCuenta miniCuenta) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        HttpResponse<String> response2 = obtenerCentroLogeado(miniCuenta);
-        CentroDeportivoDTO centroDeportivoDTO = objectMapper.readValue(response2.getBody(), CentroDeportivoDTO.class);
-
+    public static HttpResponse<String> hacerCheckInConReserva(String tipo, Long codigoCheckIn) throws JsonProcessingException {
         String checkInJSON = "";
 
         try {
