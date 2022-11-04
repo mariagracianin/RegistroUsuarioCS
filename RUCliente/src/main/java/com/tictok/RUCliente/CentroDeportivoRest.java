@@ -177,4 +177,17 @@ public class CentroDeportivoRest {
             throw new RuntimeException(e);
         }
     }
+
+    public HttpResponse<String> buscarReservasFromUsuario(int cedula){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservasByCedula/"+cedula+"/"+ miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

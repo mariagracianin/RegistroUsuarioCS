@@ -33,4 +33,7 @@ public interface ReservaCanchaRepository extends JpaRepository<ReservaCancha, Lo
 
     @Query("select r from ReservaCancha r where r.usuario.cedula = ?1 and r.fecha between ?2 and ?3")
     List<ReservaCancha> conseguirReservasEntreFechasYDeUsuario(int cedula, Date fechaStart, Date fechaEnd);
+
+    @Query("select r from ReservaCancha r where r.usuario.cedula = ?1")
+    List<ReservaCancha> conseguirReservasDeUsuario(int cedula);
 }
