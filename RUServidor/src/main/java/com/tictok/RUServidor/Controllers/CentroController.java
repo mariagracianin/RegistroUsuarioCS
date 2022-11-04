@@ -51,20 +51,20 @@ public class CentroController {
         return centroService.getCanchas(mailCentro);
     }
 
+    @GetMapping("/obtenerCentro/{mailCentro}")
+    public CentroDeportivoDTO getCentroFromMail(@PathVariable String mailCentro) throws  CuentaNoExisteException{
+        return centroService.getCentroDeportivo(mailCentro);
+    }
+
     @PostMapping("/checkIn")
-    public ReservaDTO postNewCheckIn(@RequestBody ReservaDTO reservaDTO)
-            throws TipoDeReservaNoExisteException, UsuarioNoExisteException, ReservaPosteriorAlInicioException,
-            CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuposAgotadosException, CuentaNoExisteException {
-        System.out.println("mail: " +reservaDTO.getMailUsuario() + "nombre actividad: "+ reservaDTO.getNombreActividad() );
-        if (reservaDTO.getTipo().equals("Cancha")){
-
-            return canchaService.reservarCancha(reservaDTO);
-
-        } else if (reservaDTO.getTipo().equals("Actividad")) {
-            return actividadService.reservarActividad(reservaDTO);
+    public void postNewCheckIn(@RequestBody CheckInDTO checkInDTO) throws CuentaNoExisteException, UsuarioNoExisteException, CuposAgotadosException, TipoDeCheckInNoExisteException {
+        if (checkInDTO.getTipo().equals("Cancha")){
+            //actividadService.checkInCancha(checkInDTO)-->sin hacer aun
+        } else if (checkInDTO.getTipo().equals("Actividad")) {
+            actividadService.checkInActividad(checkInDTO);
         }
         else {
-            throw new TipoDeReservaNoExisteException();
+            throw new TipoDeCheckInNoExisteException();
         }
     }
 }
