@@ -34,8 +34,7 @@ public class CheckInActividad {
     public CheckInActividad() {
     }
 
-    public CheckInActividad(Long id, Date fecha, Usuario usuario, Actividad actividad) {
-        this.id = id;
+    public CheckInActividad(Usuario usuario, Date fecha, Actividad actividad) {
         this.fecha = fecha;
         this.usuario = usuario;
         this.actividad = actividad;

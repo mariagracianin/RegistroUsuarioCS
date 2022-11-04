@@ -2,7 +2,7 @@ package com.tictok.RUServidor.Controllers;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.CentroDeportivo;
-import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
+import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Services.ActividadService;
 import com.tictok.RUServidor.Services.CanchaService;
 import com.tictok.RUServidor.Services.CentroService;
@@ -49,5 +49,22 @@ public class CentroController {
     @GetMapping("/getCanchas/{mailCentro}")
     public List<SuperCanchaDTO> getCanchas(@PathVariable String mailCentro) throws  CuentaNoExisteException{
         return centroService.getCanchas(mailCentro);
+    }
+
+    @PostMapping("/checkIn")
+    public ReservaDTO postNewCheckIn(@RequestBody ReservaDTO reservaDTO)
+            throws TipoDeReservaNoExisteException, UsuarioNoExisteException, ReservaPosteriorAlInicioException,
+            CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuposAgotadosException, CuentaNoExisteException {
+        System.out.println("mail: " +reservaDTO.getMailUsuario() + "nombre actividad: "+ reservaDTO.getNombreActividad() );
+        if (reservaDTO.getTipo().equals("Cancha")){
+
+            return canchaService.reservarCancha(reservaDTO);
+
+        } else if (reservaDTO.getTipo().equals("Actividad")) {
+            return actividadService.reservarActividad(reservaDTO);
+        }
+        else {
+            throw new TipoDeReservaNoExisteException();
+        }
     }
 }

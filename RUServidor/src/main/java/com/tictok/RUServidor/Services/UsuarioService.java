@@ -72,6 +72,16 @@ public class UsuarioService {
         }
     }
 
+    public Usuario findOnebyId2(Integer id) throws UsuarioNoExisteException {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if (usuario.isPresent()) {
+            return usuario.get();
+        }
+        else {
+            throw new UsuarioNoExisteException(id);
+        }
+    }
+
     public List<Usuario> findbyId(List<Integer> idList){
         return usuarioRepository.findAllById(idList);
     }
