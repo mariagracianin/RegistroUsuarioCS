@@ -224,5 +224,16 @@ public class CentroDeportivoRest {
         }
     }
 
+    public static HttpResponse<String> getReservaCanchaFromCodigo(String codigoReserva){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservaCanchaFromCodigo/" + codigoReserva)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

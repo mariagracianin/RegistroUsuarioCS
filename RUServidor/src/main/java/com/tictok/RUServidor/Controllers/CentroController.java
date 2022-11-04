@@ -61,11 +61,11 @@ public class CentroController {
         if (checkInDTO.getTipo().equals("Cancha")){
             //actividadService.checkInCancha(checkInDTO)-->sin hacer aun
         } else if (checkInDTO.getTipo().equals("Actividad")) {
-            System.out.println("cedula maria: " + checkInDTO.getCedulaUsuario() + "----------------------------------------------------");
             actividadService.checkInActividadSinReserva(checkInDTO);
         }
         else {
             throw new TipoDeCheckInNoExisteException();
         }
     }
+
 }

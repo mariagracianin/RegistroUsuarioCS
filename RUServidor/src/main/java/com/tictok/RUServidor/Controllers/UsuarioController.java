@@ -3,13 +3,17 @@ package com.tictok.RUServidor.Controllers;
 import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
+import com.tictok.RUServidor.Entities.ReservaCancha;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.*;
+import com.tictok.RUServidor.Mappers.ReservaMapper;
+import com.tictok.RUServidor.Repositories.ReservaCanchaRepository;
 import com.tictok.RUServidor.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
@@ -20,14 +24,16 @@ public class UsuarioController  {
     private final CuentaService cuentaService;
     private final CanchaService canchaService;
     private final ActividadService actividadService;
+    private final ReservaCanchaRepository reservaCanchaRepository;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService, EmpresaService empresaService, CuentaService cuentaService, CanchaService canchaService, ActividadService actividadService) {
+    public UsuarioController(UsuarioService usuarioService, EmpresaService empresaService, CuentaService cuentaService, CanchaService canchaService, ActividadService actividadService, ReservaCanchaRepository reservaCanchaRepository) {
         this.usuarioService = usuarioService;
         this.empresaService = empresaService;
         this.cuentaService = cuentaService;
         this.canchaService = canchaService;
         this.actividadService = actividadService;
+        this.reservaCanchaRepository = reservaCanchaRepository;
     }
 
     @GetMapping("/all")
@@ -79,6 +85,11 @@ public class UsuarioController  {
 
     @DeleteMapping("/reserva/{idReserva}")
     public void DeleteReserva(@PathVariable Long idReserva){
+    }
+
+    @GetMapping("/getReservaCanchaFromCodigo/{codigoPadre}")
+    public ReservaDTO getReservaCanchaFromCodigo(@PathVariable String codigoPadre) throws Exception {
+        return usuarioService.getReservaCanchaFromCodigo(codigoPadre);
     }
 
 
