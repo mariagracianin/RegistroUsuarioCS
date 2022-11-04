@@ -38,7 +38,7 @@ public class CentroDeportivoRest {
 
     public static HttpResponse<String> obtenerCentroLogeado(MiniCuenta miniCuenta){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/getActividades/"+miniCuenta.getMailMiniCuenta())
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/obtenerCentro/"+ miniCuenta.getMailMiniCuenta())
                     .header("Content-Type", "application/json")
                     .asString();
             return response;
