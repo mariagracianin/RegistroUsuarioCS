@@ -208,7 +208,7 @@ public class CentroDeportivoRest {
 
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            CheckInDTO checkInDTO = new CheckInDTO(cedula, centroDeportivoDTO.getNombreCentro(),nombreActividad,tipo,horarioDTO,null,null);
+            CheckInDTO checkInDTO = new CheckInDTO(cedula, centroDeportivoDTO.getNombreCentro(),nombreActividad,tipo,horarioDTO,null,null,null);
             checkInJSON = jsonObjectMapper.writeValueAsString(checkInDTO);
         }catch (Exception e){
             throw new RuntimeException(e);

@@ -10,6 +10,7 @@ public class CheckInDTO {
     private Long codigoCheckIn; // - codigoCheckIn
     private Long codigoReservaPadre; //
     private String fecha;
+    private Double precio;
 
     public CheckInDTO(){
     }
@@ -19,7 +20,8 @@ public class CheckInDTO {
         this.codigoCheckIn = codigoCheckIn;
     }
 
-    public CheckInDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoCheckIn, String fecha) {
+    public CheckInDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario,
+                      Long codigoCheckIn, String fecha, Double precio) {
         this.cedulaUsuario = cedulaUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
@@ -29,7 +31,8 @@ public class CheckInDTO {
         this.fecha = fecha;
     }
 
-    public CheckInDTO(Integer mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, Long codigoReservaPadre, String fecha) {
+    public CheckInDTO(Integer mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario,
+                      Long codigoReserva, Long codigoReservaPadre, String fecha, Double precio) {
         this.cedulaUsuario = mailUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;

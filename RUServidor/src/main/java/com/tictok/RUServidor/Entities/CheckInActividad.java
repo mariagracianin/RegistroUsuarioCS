@@ -28,8 +28,8 @@ public class CheckInActividad {
     })
     private Actividad actividad;
 
-    @Transient
-    private Integer precio;
+    @Column(name = "precio", nullable = false)
+    private Double precio;
 
     public CheckInActividad() {
     }
@@ -38,14 +38,7 @@ public class CheckInActividad {
         this.fecha = fecha;
         this.usuario = usuario;
         this.actividad = actividad;
-    }
-
-    public Double getPrecio() {
-        return actividad.getPrecio();
-    }
-
-    public void setPrecio(Integer precio) {
-        this.precio = precio;
+        this.precio = actividad.getPrecio();
     }
 
     public Actividad getActividad() {
@@ -80,4 +73,11 @@ public class CheckInActividad {
         this.id = id;
     }
 
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
 }
