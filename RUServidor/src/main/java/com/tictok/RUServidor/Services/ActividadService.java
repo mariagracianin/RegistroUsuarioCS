@@ -96,7 +96,7 @@ public class ActividadService {
         return ReservaMapper.fromReservaActividadToReserva2DTO(reservaActividad);
     }
 
-    public CheckInDTO checkInActividad(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException {
+    public void checkInActividad(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException {
         Usuario usuario = usuarioService.findOnebyId2(checkInDTO.getCedulaUsuario());
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(checkInDTO.getHorario());
 
@@ -106,25 +106,26 @@ public class ActividadService {
         LocalDate fecha = HorarioMapper.getFecha(horarioId.getDia());
         Date dateFecha = Date.valueOf(fecha);
 
-        //tomo la reserva como un checkin (si reservaste no necesitas hacer checkin)???
         if (actividad.getCupos()!= -1){
-            List<CuentaCheckIns> cuentaChekinsList = checkInActividadRepository.countCheckInsByServicioIdAndFecha(actividadId,dateFecha);
+            List<CuentaCheckIns> cuentaCheckInsList = checkInActividadRepository.countCheckInsByServicioIdAndFecha(actividadId,dateFecha);
             List<CuentaReservas> cuentaReservasList = reservaActividadRepository.countReservasByServicioIdAndFecha(actividadId, dateFecha);
-            if (!cuentaReservasList.isEmpty() && !cuentaChekinsList.isEmpty()){
-                int cuposReservados = (int) cuentaReservasList.get(0).getCupos();
-                int cuposCheckineados = (int) cuentaChekinsList.get(0).getCupos();
-                int cuposUsados = cuposReservados + cuposCheckineados;
+            int cuposReservados = 0;
+            int cuposCheckineados = 0;
+            if (!cuentaReservasList.isEmpty()) {
+                cuposReservados = (int) cuentaReservasList.get(0).getCupos();
+            }
+            if (!cuentaCheckInsList.isEmpty()) {
+                cuposCheckineados = (int) cuentaCheckInsList.get(0).getCupos();
+            }
+            int cuposUsados = cuposReservados + cuposCheckineados;
                 //int cuposYaUsadosPeroNoReservados = (int) cu
                 if (actividad.getCupos() <= cuposUsados){
                     throw new CuposAgotadosException();
                 }
             }
-        }
-
         CheckInActividad checkInActividad = new CheckInActividad(usuario, dateFecha, actividad);
         checkInActividad = checkInActividadRepository.save(checkInActividad);
-
-        return null;// CheckInMapper.fromCheckInActividadToCheckInDTO(checkInActividad);
+        //return  CheckInMapper.fromCheckInActividadToCheckInDTO(checkInActividad); ????????
     }
 
     public List<SuperActividadDTO> findAll(){

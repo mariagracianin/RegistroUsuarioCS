@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Services;
 
+import com.tictok.Commons.CentroDeportivoDTO;
 import com.tictok.Commons.NuevoCentroDTO;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
@@ -116,6 +117,11 @@ public class CentroService {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
         List<SuperCanchaDTO> listaDTO = CanchaMapper.fromCanchaListToSuperCanchaDTOList(centro1.getCanchas());
         return listaDTO;
+    }
+
+    public CentroDeportivoDTO getCentroDeportivo(String mail) throws CuentaNoExisteException {
+        CentroDeportivo centro = cuentaService.findOnebyId(mail).getCentroDeportivo();
+        return new CentroDeportivoDTO(centro.getNombreCentro(),centro.getAddress(), centro.getBarrio(),centro.getTelefono(),centro.getEncargado(),centro.getRut(), centro.getRazonSocial());
     }
 
 

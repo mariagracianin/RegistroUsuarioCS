@@ -1,6 +1,12 @@
 package com.tictok.RUCliente.Centro;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.CentroDeportivoDTO;
 import com.tictok.Commons.ReservaDTO;
+import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Empleado.CardReservaRealizadaController;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.MiniCuenta;
@@ -16,12 +22,16 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
 public class CentroCheckInUsuarioReservasController implements Initializable {
     @Autowired
     MiniCuenta miniCuenta;
+
+    @Autowired
+    CentroDeportivoRest centroDeportivoRest;
 
     public GridPane contenedorReservas;
     private int cedulaUsuario;
@@ -31,7 +41,12 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<ReservaDTO> reservas= getReservasDeUsuario(this.cedulaUsuario);
+        List<ReservaDTO> reservas= null;
+        try {
+            reservas = getReservasDeUsuario(this.cedulaUsuario);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         contenedorReservas.getChildren().clear();
         int column=0;
         int row=0;
@@ -64,10 +79,11 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
         
     }
 
-    private ArrayList<ReservaDTO> getReservasDeUsuario(int cedula){
-
-        //llamar funcion mery que me devuelva la lista con las reservas de usuario a partir de la cedula
-        return null;
+    private List<ReservaDTO> getReservasDeUsuario(int cedula) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        HttpResponse<String> response = centroDeportivoRest.buscarReservasFromUsuario(cedula);
+        List<ReservaDTO> list = objectMapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, ReservaDTO.class));
+        return list;
     }
 
     public void agregarAct(ActionEvent actionEvent) throws IOException {

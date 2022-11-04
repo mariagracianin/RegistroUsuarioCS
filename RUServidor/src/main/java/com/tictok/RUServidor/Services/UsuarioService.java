@@ -135,8 +135,11 @@ public class UsuarioService {
     public List<ReservaDTO> getReservasUsuarioByCedulaAndCentro(int cedula, String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
         String nombreCentro = centro.getNombreCentro();
+        System.out.println(nombreCentro+"---------------------------------------------");
+
         List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(cedula, Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
         List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(cedula,Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+
         List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
         List<ReservaDTO> reservaDTOListFromCentro = null;
         for(int i=0; i<reservaDTOlist.size(); i++){
