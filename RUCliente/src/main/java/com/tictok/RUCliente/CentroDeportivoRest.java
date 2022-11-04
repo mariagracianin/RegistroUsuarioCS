@@ -36,9 +36,9 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> obtenerCentroLogeado(){
+    public static HttpResponse<String> obtenerCentroLogeado(MiniCuenta miniCuenta){
         try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/getActividades/"+miniCuenta.getMailMiniCuenta())
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/obtenerCentro/"+ miniCuenta.getMailMiniCuenta())
                     .header("Content-Type", "application/json")
                     .asString();
             return response;
@@ -199,9 +199,9 @@ public class CentroDeportivoRest {
         }
     }
 
-    public HttpResponse<String> hacerCheckIn(int cedula, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoCheckIn) throws JsonProcessingException {
+    public static HttpResponse<String> hacerCheckIn(int cedula, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoCheckIn, MiniCuenta miniCuenta) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        HttpResponse<String> response2 = obtenerCentroLogeado();
+        HttpResponse<String> response2 = obtenerCentroLogeado(miniCuenta);
         CentroDeportivoDTO centroDeportivoDTO = objectMapper.readValue(response2.getBody(), CentroDeportivoDTO.class);
 
         String checkInJSON = "";

@@ -115,7 +115,7 @@ public class ActividadMapper {
                 imagenString = null;
             }
 
-            SuperActividadDTO superActividadDTO = new SuperActividadDTO(nombreCentro, nombreActividad, precio,
+            SuperActividadDTO superActividadDTO = new SuperActividadDTO(nombreActividad, nombreCentro, precio,
                     paseLibre, address, barrio, telefono, imagenString);
             superActividadDTOList.add(superActividadDTO);
         }

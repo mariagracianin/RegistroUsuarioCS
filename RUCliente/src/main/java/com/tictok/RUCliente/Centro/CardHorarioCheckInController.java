@@ -1,6 +1,9 @@
 package com.tictok.RUCliente.Centro;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tictok.Commons.HorarioConCuposDTO;
+import com.tictok.Commons.HorarioDTO;
+import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -85,8 +88,11 @@ public class CardHorarioCheckInController implements Initializable {
 
     }
 
-    public void hacerCheckInHorario(ActionEvent actionEvent) {
-        //post check in
+    public void hacerCheckInHorario(ActionEvent actionEvent) throws JsonProcessingException {
+        HorarioDTO horarioDTO = new HorarioDTO(horarioSeleccionado.getDia(),horarioSeleccionado.getHoraInicio(),horarioSeleccionado.getHoraFin());
+        if(nombreCancha ==  null){
+            CentroDeportivoRest.hacerCheckIn(cedulaUsuario,nombreActividad,"Actividad", horarioDTO,null, miniCuenta);
+        }
         btnCheckIn.setDisable(true);
     }
 }
