@@ -1,8 +1,10 @@
 package com.tictok.RUCliente.Centro;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tictok.Commons.ActividadConHorariosYCuposDTO;
 import com.tictok.Commons.CanchaConHorariosYCuposDTO;
 import com.tictok.Commons.ReservaDTO;
+import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -63,8 +65,8 @@ public class CardCheckInConReservaController implements Initializable {
         codReserva.setText(reservaDTO.getCodigoReserva().toString());
     }
 
-    public void ingresarCheckIn(ActionEvent actionEvent) {
-        //post check in
+    public void ingresarCheckIn(ActionEvent actionEvent) throws JsonProcessingException {
+        CentroDeportivoRest.hacerCheckInConReserva(reservaSeleccionada.getTipo(), reservaSeleccionada.getCodigoReserva());
         btnCheckIn.setDisable(true);
     }
 

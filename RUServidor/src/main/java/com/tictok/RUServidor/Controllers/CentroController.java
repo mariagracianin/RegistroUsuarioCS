@@ -67,9 +67,7 @@ public class CentroController {
             throw new TipoDeCheckInNoExisteException();
         }
     }
-<<<<<<< HEAD
 
-=======
     @PostMapping("/checkIn/reserva")
     public void postNewCheckInConReserva(@RequestBody CheckInDTO checkInDTO) throws EntidadNoExisteException, TipoDeCheckInNoExisteException {
         if (checkInDTO.getTipo().equals("Cancha")){
@@ -81,5 +79,4 @@ public class CentroController {
             throw new TipoDeCheckInNoExisteException();
         }
     }
->>>>>>> 614b5578ae1dd0bab1d8681786e6bf2859adcf88
 }
