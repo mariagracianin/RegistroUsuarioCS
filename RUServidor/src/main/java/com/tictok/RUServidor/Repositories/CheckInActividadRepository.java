@@ -21,4 +21,9 @@ public interface CheckInActividadRepository extends JpaRepository<CheckInActivid
     @Query("select c from CheckInActividad c where c.usuario.cedula = ?1 and c.fecha between ?2 and ?3")
     List<CheckInActividad> findByUsuario_CedulaAndFechaBetween(int cedula, Date fechaStart, Date fechaEnd);
 
+    @Query("""
+            select c from CheckInActividad c
+            where c.actividad.centroDeportivo.nombreCentro = ?1 and c.fecha between ?2 and ?3""")
+    List<CheckInActividad> getCheckInPorCentroYFechas(String nombreCentro, Date fechaStart, Date fechaEnd);
+
 }

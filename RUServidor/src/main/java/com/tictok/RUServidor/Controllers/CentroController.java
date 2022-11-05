@@ -79,4 +79,8 @@ public class CentroController {
             throw new TipoDeCheckInNoExisteException();
         }
     }
+    @GetMapping("/balance/{mailCentro}/{mes}/{year}")
+    public List<ServicioResumenDTO> getBalanceCentro(@PathVariable String mailCentro, @PathVariable int mes, @PathVariable int year) throws CuentaNoExisteException {
+        return centroService.getBalanceCentro(mailCentro, mes, year);
+    }
 }
