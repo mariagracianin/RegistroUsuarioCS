@@ -134,8 +134,21 @@ public class CentroService {
         String nombreCentro = centro.getNombreCentro();
         LocalDate fecha = LocalDate.of(year, mes, 1);
         Date start = Date.valueOf(fecha);
+
+        String fechaInicioStr = "'" +fecha.toString().replace('-', '/') + "'";
+
+        LocalDate fechaFin = fecha.plusMonths(1);
+        String fechaFinStr = "'" +fechaFin.toString().replace('-', '/') + "'";
+
         Date finish = Date.valueOf(fecha.withDayOfMonth(fecha.lengthOfMonth()));
-        checkInActividadRepository.getCheckInPorCentroYFechas(nombreCentro, start, finish);
+        List<CheckInActividad> checkInActividades = checkInActividadRepository.getCheckInPorCentroYFechas(nombreCentro, start, finish);
+        for (int i = 0; i<checkInActividades.size(); i++){
+            CheckInActividad checkInActividad = checkInActividades.get(i);
+            String nombreActividad = checkInActividad.getActividad().getActividadId().getNombreServicio();
+            String tipo = "coso";
+        }
+        checkInActividadRepository.getBalanceActividades(fechaInicioStr, fechaFinStr, nombreCentro);
+
         return null;
     }
 }
