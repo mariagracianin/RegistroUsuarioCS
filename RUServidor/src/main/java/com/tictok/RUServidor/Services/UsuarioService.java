@@ -151,4 +151,14 @@ public class UsuarioService {
         }
         return reservaDTOListFromCentro;
     }
+
+    public ReservaDTO getReservaCanchaFromCodigo(String codigoPadre) throws Exception {
+        Optional<ReservaCancha> reservaCancha = reservaCanchaRepository.findById(Long.parseLong(codigoPadre));
+        if (reservaCancha.isEmpty()) {
+            throw new Exception();
+        }
+        return ReservaMapper.fromReservaCanchaToReserva2DTO(reservaCancha.get());
+
+    }
+
 }
