@@ -11,11 +11,14 @@ import com.tictok.RUServidor.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Tuple;
 import javax.transaction.Transactional;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -118,6 +121,7 @@ public class CentroService {
         return listaDTO;
     }
 
+    @Transactional
     public List<SuperCanchaDTO> getCanchas(String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
         List<SuperCanchaDTO> listaDTO = CanchaMapper.fromCanchaListToSuperCanchaDTOList(centro1.getCanchas());
@@ -129,26 +133,48 @@ public class CentroService {
         return new CentroDeportivoDTO(centro.getNombreCentro(),centro.getAddress(), centro.getBarrio(),centro.getTelefono(),centro.getEncargado(),centro.getRut(), centro.getRazonSocial());
     }
 
+    @Transactional
     public List<ServicioResumenDTO> getBalanceCentro(String mail, int mes, int year) throws CuentaNoExisteException {
         CentroDeportivo centro = cuentaService.findOnebyId(mail).getCentroDeportivo();
         String nombreCentro = centro.getNombreCentro();
         LocalDate fecha = LocalDate.of(year, mes, 1);
-        Date start = Date.valueOf(fecha);
+//        Date start = Date.valueOf(fecha);
 
-        String fechaInicioStr = "'" +fecha.toString().replace('-', '/') + "'";
+//        String fechaInicioStr = "'" +fecha.toString().replace('-', '/') + "'";
+//        fechaInicioStr = fecha.toString().replace('-', '/');
 
         LocalDate fechaFin = fecha.plusMonths(1);
-        String fechaFinStr = "'" +fechaFin.toString().replace('-', '/') + "'";
-
-        Date finish = Date.valueOf(fecha.withDayOfMonth(fecha.lengthOfMonth()));
-        List<CheckInActividad> checkInActividades = checkInActividadRepository.getCheckInPorCentroYFechas(nombreCentro, start, finish);
-        for (int i = 0; i<checkInActividades.size(); i++){
-            CheckInActividad checkInActividad = checkInActividades.get(i);
-            String nombreActividad = checkInActividad.getActividad().getActividadId().getNombreServicio();
-            String tipo = "coso";
+        Date fechaIni = Date.valueOf(fecha);
+        Date fechaFi = Date.valueOf(fechaFin);
+//        String fechaFinStr = "'" +fechaFin.toString().replace('-', '/') + "'";
+//        fechaFinStr = fechaFin.toString().replace('-', '/');
+//        System.out.println(fechaInicioStr);
+//        System.out.println(fechaFinStr);
+//        Date finish = Date.valueOf(fecha.withDayOfMonth(fecha.lengthOfMonth()));
+//        List<CheckInActividad> checkInActividades = checkInActividadRepository.getCheckInPorCentroYFechas(nombreCentro, start, finish);
+//        for (int i = 0; i<checkInActividades.size(); i++){
+//            CheckInActividad checkInActividad = checkInActividades.get(i);
+//            String nombreActividad = checkInActividad.getActividad().getActividadId().getNombreServicio();
+//            String tipo = "coso";
+//        }
+        List<Tuple> tuplasBalances = checkInActividadRepository.getBalanceActividades(fechaIni, fechaFi, nombreCentro);
+        List<ServicioResumenDTO> servicioResumenDTOList = new ArrayList<ServicioResumenDTO>(tuplasBalances.size());
+        String nombreServicio;
+        String tipo;
+        int cantidadCheckIns;
+        BigInteger temp;
+        Double importeTotal;
+        for (int i = 0; i<tuplasBalances.size(); i++){
+            Tuple tupla = tuplasBalances.get(i);
+            nombreServicio = (String) tupla.get("nombre_servicio");
+            tipo = (String) tupla.get("tipo");
+            temp = (BigInteger) tupla.get("cantidad_check_ins");
+            cantidadCheckIns = temp.intValue();
+            importeTotal = (Double) tupla.get("precio_total");
+            ServicioResumenDTO servicioResumenDTO =
+                    new ServicioResumenDTO(nombreServicio, tipo, cantidadCheckIns, importeTotal);
+            servicioResumenDTOList.add(servicioResumenDTO);
         }
-        checkInActividadRepository.getBalanceActividades(fechaInicioStr, fechaFinStr, nombreCentro);
-
-        return null;
+        return servicioResumenDTOList;
     }
 }
