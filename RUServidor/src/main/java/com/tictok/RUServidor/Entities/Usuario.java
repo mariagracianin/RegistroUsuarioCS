@@ -49,6 +49,17 @@ public class Usuario {
     @OrderBy("fecha DESC")
     private List<CheckInActividad> checkInActividads = new ArrayList<>();
 
+    @OneToMany(mappedBy = "usuario", orphanRemoval = true)
+    private List<CheckInCancha> checkInCanchas = new ArrayList<>();
+
+    public List<CheckInCancha> getCheckInCanchas() {
+        return checkInCanchas;
+    }
+
+    public void setCheckInCanchas(List<CheckInCancha> checkInCanchas) {
+        this.checkInCanchas = checkInCanchas;
+    }
+
     public Double getSaldoActual() {
         return saldoActual;
     }
