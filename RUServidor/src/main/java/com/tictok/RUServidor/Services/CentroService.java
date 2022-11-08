@@ -143,9 +143,9 @@ public class CentroService {
 //        String fechaInicioStr = "'" +fecha.toString().replace('-', '/') + "'";
 //        fechaInicioStr = fecha.toString().replace('-', '/');
 
-        LocalDate fechaFin = fecha.plusMonths(1);
-        Date fechaIni = Date.valueOf(fecha);
-        Date fechaFi = Date.valueOf(fechaFin);
+        LocalDate fechaFinal= fecha.plusMonths(1);
+        Date fechaInicio = Date.valueOf(fecha);
+        Date fechaFin = Date.valueOf(fechaFinal);
 //        String fechaFinStr = "'" +fechaFin.toString().replace('-', '/') + "'";
 //        fechaFinStr = fechaFin.toString().replace('-', '/');
 //        System.out.println(fechaInicioStr);
@@ -157,7 +157,7 @@ public class CentroService {
 //            String nombreActividad = checkInActividad.getActividad().getActividadId().getNombreServicio();
 //            String tipo = "coso";
 //        }
-        List<Tuple> tuplasBalances = checkInActividadRepository.getBalanceActividades(fechaIni, fechaFi, nombreCentro);
+        List<Tuple> tuplasBalances = centroRepository.getBalanceActividades(fechaInicio, fechaFin, nombreCentro);
         List<ServicioResumenDTO> servicioResumenDTOList = new ArrayList<ServicioResumenDTO>(tuplasBalances.size());
         String nombreServicio;
         String tipo;
