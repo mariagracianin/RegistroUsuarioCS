@@ -64,4 +64,6 @@ public class EmpresaDTO {
     public void setCuentas(List<CuentaDTO> cuentas) {
         this.cuentas = cuentas;
     }
+
+
 }

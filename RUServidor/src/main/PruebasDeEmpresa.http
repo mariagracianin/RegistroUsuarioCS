@@ -15,3 +15,6 @@ Content-Type: application/json
   "encargado": "si"
 }
 
+###
+GET http://localhost:8080/empresa/balance/ramon@ramon.com/11/2020
+

@@ -199,7 +199,18 @@ public class CentroDeportivoRest {
         }
     }
 
-    public static HttpResponse<String> hacerCheckIn(int cedula, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoCheckIn, MiniCuenta miniCuenta) throws JsonProcessingException {
+    public static HttpResponse<String> getReservaCanchaFromCodigo(String codigoReserva){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservaCanchaFromCodigo/" + codigoReserva)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static HttpResponse<String> hacerCheckInSinReserva(int cedula, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoCheckIn, MiniCuenta miniCuenta) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         HttpResponse<String> response2 = obtenerCentroLogeado(miniCuenta);
         CentroDeportivoDTO centroDeportivoDTO = objectMapper.readValue(response2.getBody(), CentroDeportivoDTO.class);
@@ -208,7 +219,7 @@ public class CentroDeportivoRest {
 
         try {
             ObjectMapper jsonObjectMapper = new ObjectMapper();
-            CheckInDTO checkInDTO = new CheckInDTO(cedula, centroDeportivoDTO.getNombreCentro(),nombreActividad,tipo,horarioDTO,null,null);
+            CheckInDTO checkInDTO = new CheckInDTO(cedula, centroDeportivoDTO.getNombreCentro(),nombreActividad,tipo,horarioDTO,null,null,null);
             checkInJSON = jsonObjectMapper.writeValueAsString(checkInDTO);
         }catch (Exception e){
             throw new RuntimeException(e);
@@ -224,5 +235,35 @@ public class CentroDeportivoRest {
         }
     }
 
+    public static HttpResponse<String> hacerCheckInConReserva(String tipo, Long codigoReserva) throws JsonProcessingException {
+        String checkInJSON = "";
 
+        try {
+            ObjectMapper jsonObjectMapper = new ObjectMapper();
+            CheckInDTO checkInDTO = new CheckInDTO(tipo, codigoReserva);
+            checkInJSON = jsonObjectMapper.writeValueAsString(checkInDTO);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        try {
+            HttpResponse<String> response = Unirest.post("http://localhost:8080/centro/checkIn/reserva")
+                    .header("Content-Type", "application/json")
+                    .body(checkInJSON)
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerBalanceCentro(int mes, int year){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/balance/" + miniCuenta.getMailMiniCuenta() + "/"+ mes + "/" + year)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Services;
 
+import com.tictok.Commons.CheckInDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
@@ -7,6 +8,7 @@ import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.UsuarioMalDefinido;
 import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
+import com.tictok.RUServidor.Mappers.CheckInMapper;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
@@ -32,11 +34,13 @@ public class UsuarioService {
     private final EmpresaService empresaService;
     private final CuentaService cuentaService;
     private final CentroService centroService;
+    private final CheckInActividadRepository checkInActividadRepository;
+    private final CheckInCanchaRepository checkInCanchaRepository;
 
 
     @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
-                          EmpresaRepository empresaRepository, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository, EmpresaService empresaService, CuentaService cuentaService, CentroService centroService) {
+                          EmpresaRepository empresaRepository, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository, EmpresaService empresaService, CuentaService cuentaService, CentroService centroService, CheckInActividadRepository checkInActividadRepository, CheckInCanchaRepository checkInCanchaRepository) {
         this.usuarioRepository = usuarioRepository;
         this.cuentaRepository = cuentaRepository;
         this.empresaRepository = empresaRepository;
@@ -45,6 +49,8 @@ public class UsuarioService {
         this.empresaService = empresaService;
         this.cuentaService = cuentaService;
         this.centroService = centroService;
+        this.checkInActividadRepository = checkInActividadRepository;
+        this.checkInCanchaRepository = checkInCanchaRepository;
     }
 
     public List<UsuarioDTO> findAll() {
@@ -122,7 +128,7 @@ public class UsuarioService {
                 reservaActividadRepository.findActividadesReservadasDespuesDe(mail, fecha);
         List<ReservaCancha> canchasReservadas = reservaCanchaRepository.findCanchasReservadasDespuesDe(mail, fecha);
 
-        return ReservaMapper.fromListReservasToReserva2DTO(canchasReservadas, actividadesReservadas);
+        return ReservaMapper.fromListReservasToReservaDTO(canchasReservadas, actividadesReservadas);
     }
 
     @Transactional
@@ -130,7 +136,7 @@ public class UsuarioService {
         Usuario usuario = cuentaService.findOnebyId(mailUsuario).getUsuario();
         List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(usuario.getCedula(), Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
         List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(usuario.getCedula(),Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
-        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
+        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReservaDTO(reservaCanchas,reservasActividades);
         return reservaDTOlist;
     }
     @Transactional
@@ -141,7 +147,7 @@ public class UsuarioService {
         List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(cedula, Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
         List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(cedula,Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
 
-        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
+        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReservaDTO(reservaCanchas,reservasActividades);
 
         List<ReservaDTO> reservaDTOListFromCentro = new ArrayList<ReservaDTO>();
         for(int i=0; i<reservaDTOlist.size(); i++){
@@ -151,4 +157,28 @@ public class UsuarioService {
         }
         return reservaDTOListFromCentro;
     }
+
+    public ReservaDTO getReservaCanchaFromCodigo(String codigoPadre) throws Exception {
+        Optional<ReservaCancha> reservaCancha = reservaCanchaRepository.findById(Long.parseLong(codigoPadre));
+        if (reservaCancha.isEmpty()) {
+            throw new Exception();
+        }
+        return ReservaMapper.fromReservaCanchaToReservaDTO(reservaCancha.get());
+    }
+
+    public List<CheckInDTO> getCheckIns(int cedula, int mes, int year){
+        LocalDate fecha1 = LocalDate.of(year, mes, 1);
+        LocalDate fecha2= fecha1.plusMonths(1);
+        Date fechaInicio = Date.valueOf(fecha1);
+        Date fechaFin = Date.valueOf(fecha2);
+
+        List<CheckInCancha> checkInsCanchas = checkInCanchaRepository.findByUsuario_CedulaAndFechaBetween(cedula,fechaInicio,fechaFin);
+        List<CheckInActividad> checkInsActividads = checkInActividadRepository.findByUsuario_CedulaAndFechaBetween(cedula,fechaInicio,fechaFin);
+
+        List<CheckInDTO> checkInDTOList = CheckInMapper.fromListsCheckInsToCheckInDTO(checkInsCanchas,checkInsActividads);
+
+
+        return checkInDTOList;
+    }
+
 }

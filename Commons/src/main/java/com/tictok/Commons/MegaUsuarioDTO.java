@@ -125,4 +125,6 @@ public class MegaUsuarioDTO {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 }

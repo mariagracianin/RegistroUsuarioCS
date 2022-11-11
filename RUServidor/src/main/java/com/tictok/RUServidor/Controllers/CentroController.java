@@ -61,11 +61,26 @@ public class CentroController {
         if (checkInDTO.getTipo().equals("Cancha")){
             //actividadService.checkInCancha(checkInDTO)-->sin hacer aun
         } else if (checkInDTO.getTipo().equals("Actividad")) {
-            System.out.println("cedula maria: " + checkInDTO.getCedulaUsuario() + "----------------------------------------------------");
             actividadService.checkInActividadSinReserva(checkInDTO);
         }
         else {
             throw new TipoDeCheckInNoExisteException();
         }
+    }
+
+    @PostMapping("/checkIn/reserva")
+    public void postNewCheckInConReserva(@RequestBody CheckInDTO checkInDTO) throws EntidadNoExisteException, TipoDeCheckInNoExisteException {
+        if (checkInDTO.getTipo().equals("Cancha")){
+            //actividadService.checkInCancha(checkInDTO)-->sin hacer aun
+        } else if (checkInDTO.getTipo().equals("Actividad")) {
+            actividadService.checkInActividadConReserva(checkInDTO.getCodigoCheckIn());
+        }
+        else {
+            throw new TipoDeCheckInNoExisteException();
+        }
+    }
+    @GetMapping("/balance/{mailCentro}/{mes}/{year}")
+    public List<ServicioResumenDTO> getBalanceCentro(@PathVariable String mailCentro, @PathVariable int mes, @PathVariable int year) throws CuentaNoExisteException {
+        return centroService.getBalanceCentro(mailCentro, mes, year);
     }
 }

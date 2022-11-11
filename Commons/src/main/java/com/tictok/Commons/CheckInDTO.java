@@ -8,13 +8,20 @@ public class CheckInDTO {
     private String tipo; //cancha o act?
     private HorarioDTO horario;
     private Long codigoCheckIn; // - codigoCheckIn
-    private Long codigoReservaPadre; //
+    private Long checkInCanchaPadre; //
     private String fecha;
+    private Double precio;
 
     public CheckInDTO(){
     }
 
-    public CheckInDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoCheckIn, String fecha) {
+    public CheckInDTO(String tipo, Long codigoCheckIn) {
+        this.tipo = tipo;
+        this.codigoCheckIn = codigoCheckIn;
+    }
+
+    public CheckInDTO(Integer cedulaUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario,
+                      Long codigoCheckIn, String fecha, Double precio) {
         this.cedulaUsuario = cedulaUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
@@ -24,14 +31,15 @@ public class CheckInDTO {
         this.fecha = fecha;
     }
 
-    public CheckInDTO(Integer mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario, Long codigoReserva, Long codigoReservaPadre, String fecha) {
+    public CheckInDTO(Integer mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario,
+                      Long codigoReserva, Long codigoReservaPadre, String fecha, Double precio) {
         this.cedulaUsuario = mailUsuario;
         this.nombreCentro = nombreCentro;
         this.nombreActividad = nombreActividad;
         this.tipo = tipo;
         this.horario = horario;
         this.codigoCheckIn = codigoReserva;
-        this.codigoReservaPadre = codigoReservaPadre;
+        this.checkInCanchaPadre = codigoReservaPadre;
         this.fecha = fecha;
     }
 
@@ -92,11 +100,19 @@ public class CheckInDTO {
     }
 
     public Long getCodigoReservaPadre() {
-        return codigoReservaPadre;
+        return checkInCanchaPadre;
     }
 
     public void setCodigoReservaPadre(Long codigoReservaPadre) {
-        this.codigoReservaPadre = codigoReservaPadre;
+        this.checkInCanchaPadre = codigoReservaPadre;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
 }

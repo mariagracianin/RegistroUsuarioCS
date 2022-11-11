@@ -92,4 +92,6 @@ public class NuevaEmpresaDTO {
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
     }
+
+
 }

@@ -104,4 +104,6 @@ public class SuperCanchaDTO {
     public void setImageString(String imageString) {
         this.imageString = imageString;
     }
+
+
 }

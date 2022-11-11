@@ -45,14 +45,15 @@ public class CanchaService {
     public ReservaDTO reservarCancha(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
         ReservaCancha reservaCancha;
         ReservaDTO reservaDTOADevolver = null;
+
         if (reservaDTO.getCodigoReservaPadre() == null){
             reservaCancha = reservarCanchaPadre(reservaDTO);
-            reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReserva2DTO(reservaCancha);
+            reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReservaDTO(reservaCancha);
             reservaDTOADevolver.setCodigoReservaPadre(reservaDTOADevolver.getCodigoReserva());
         }
         else {
             reservaCancha = reservarCanchaHijo(reservaDTO);
-            reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReserva2DTO(reservaCancha);
+            reservaDTOADevolver = ReservaMapper.fromReservaCanchaToReservaDTO(reservaCancha);
             reservaDTOADevolver.setCodigoReservaPadre(reservaDTO.getCodigoReservaPadre());
         }
         return reservaDTOADevolver;
