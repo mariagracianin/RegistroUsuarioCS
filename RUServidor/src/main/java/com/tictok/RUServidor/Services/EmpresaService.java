@@ -154,7 +154,6 @@ public class EmpresaService {
                 checkInActividadRepository.findByUsuario_CedulaAndFechaBetween(cedulaUsuario ,fechaInicio, fechaFin);
         List<CheckInCancha> listaCheckInsCancha =
                 checkInCanchaRepository.findByUsuario_CedulaAndFechaBetween(cedulaUsuario, fechaInicio, fechaFin);
-        //TODO hacer el mapper de checkIn a CheckInDTO
 
         List<CheckInDTO> checkInDTOList = CheckInMapper.fromListsCheckInsToCheckInDTO( listaCheckInsCancha,listaCheckInsActividad);
         return checkInDTOList;
