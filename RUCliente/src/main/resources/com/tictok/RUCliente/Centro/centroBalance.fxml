@@ -36,7 +36,7 @@
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerActividades" mnemonicParsing="false" onAction="#verActividades" prefHeight="35.0" prefWidth="202.0" text="Ver actividades activas">
+            <Button fx:id="btnVerActividades" mnemonicParsing="false" onAction="#verActividades" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Ver actividades activas">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
