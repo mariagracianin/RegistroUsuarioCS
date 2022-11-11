@@ -1,29 +1,14 @@
 package com.tictok.Commons;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EmpresaDTO {
-
     private String nombreEmpresa;
     private String adress;
     private String telefono;
     private String encargado;
     private List<CuentaDTO> cuentas = new ArrayList<CuentaDTO>();
-
-    public EmpresaDTO() {
-    }
-
-    public EmpresaDTO(String nombreEmpresa, String adress, String telefono, String encargado, List<CuentaDTO> cuentas) {
-        this.nombreEmpresa = nombreEmpresa;
-        this.adress = adress;
-        this.telefono = telefono;
-        this.encargado = encargado;
-        this.cuentas = cuentas;
-    }
 
     public String getNombreEmpresa() {
         return nombreEmpresa;
@@ -64,6 +49,4 @@ public class EmpresaDTO {
     public void setCuentas(List<CuentaDTO> cuentas) {
         this.cuentas = cuentas;
     }
-
-
 }
