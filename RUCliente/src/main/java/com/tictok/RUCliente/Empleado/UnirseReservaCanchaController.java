@@ -25,7 +25,6 @@ public class UnirseReservaCanchaController implements Initializable {
     public Label costoReserva;
     public Label nombreReserva;
     public Label horarioReserva;
-    public Label direccionReserva;
     public Label centroReserva;
     public Label codReserva;
     public Label codReservaPadre;
@@ -66,7 +65,7 @@ public class UnirseReservaCanchaController implements Initializable {
 
     private void setDatos(ReservaDTO reservaDTO){
         nombreReserva.setText(reservaDTO.getNombreActividad());
-        // costoReserva.setText(reservaDTO.getPrecio.toString());
+        costoReserva.setText(reservaDTO.getPrecio().toString());
         String dia = "";
         switch (reservaDTO.getHorario().getDia()) {
             case 1 -> dia = "Lunes, ";
@@ -88,7 +87,6 @@ public class UnirseReservaCanchaController implements Initializable {
 
 
         horarioReserva.setText(dia + horaInicioStr + " - "+ horaFinStr);
-        // direccionReserva.setText(reservaDTO.get)
         centroReserva.setText(reservaDTO.getNombreCentro());
         codReserva.setText(reservaDTO.getCodigoReserva().toString());
         codReservaPadre.setText("Código para unirse: "+ reservaDTO.getCodigoReservaPadre().toString());

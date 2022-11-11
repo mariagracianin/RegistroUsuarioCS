@@ -107,6 +107,7 @@ public class CentroService {
         }
         return centro1.get();
     }
+
     @Transactional
     public List<SuperActividadDTO> getActividades(String mailCentro) throws CuentaNoExisteException {
         CentroDeportivo centro1 = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();

@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
-public class CentroCheckInUsuarioSinReservaController implements Initializable {
+public class CentroCheckInUsuarioSinReservaController{
 
     public GridPane contenedorActividades;
     public GridPane contenedorCanchas;
@@ -35,8 +35,8 @@ public class CentroCheckInUsuarioSinReservaController implements Initializable {
     @Autowired
     CentroController centroController;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+
+    public void inicializar(){
         ArrayList<SuperActividadDTO> actividades = getActividadesDeCentro();
 
         int row=0;
@@ -46,12 +46,15 @@ public class CentroCheckInUsuarioSinReservaController implements Initializable {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                System.out.println("-----------------------------------------wtf");
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Centro/cardCheckInSinReserva.fxml"));
                 SplitPane actBox = fxmlLoader.load();
 
                 CardCheckInSinReservaController  cardController = fxmlLoader.getController();
                 cardController.setDatos(actividades.get(i), null, this.cedulaUsuario);
                 cardController.setMiniCuenta(this.miniCuenta);
+                cardController.setCedula(this.cedulaUsuario);
+                System.out.println("CEDULA EN TXT2: " +this.cedulaUsuario+ "-----------------------------");
 
                 contenedorActividades.add(actBox,0,row++);
                 GridPane.setMargin(actBox, new Insets(10));

@@ -14,7 +14,6 @@ public class CardReservaRealizadaController implements Initializable {
     public Label costoReserva;
     public Label nombreReserva;
     public Label horarioReserva;
-    public Label direccionReserva;
     public Label centroReserva;
     public Label codReserva;
     public Label codReservaPadre;
@@ -33,7 +32,7 @@ public class CardReservaRealizadaController implements Initializable {
     public void setDatos(ReservaDTO reservaDTO) {
         reservaSeleccionada=reservaDTO;
         nombreReserva.setText(reservaDTO.getNombreActividad());
-       // costoReserva.setText(reservaDTO.getPrecio.toString());
+        costoReserva.setText(reservaDTO.getPrecio().toString());
         String dia = "";
         switch (reservaDTO.getHorario().getDia()) {
             case 1 -> dia = "Lunes, ";
@@ -55,7 +54,6 @@ public class CardReservaRealizadaController implements Initializable {
 
 
         horarioReserva.setText(dia + horaInicioStr + " - "+ horaFinStr);
-       // direccionReserva.setText(reservaDTO.get)
         centroReserva.setText(reservaDTO.getNombreCentro());
         codReserva.setText(reservaDTO.getCodigoReserva().toString());
         if (!(reservaDTO.getCodigoReservaPadre() == null)){

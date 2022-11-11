@@ -79,4 +79,24 @@ public class UsuarioRest {
        }
    }
 
+    public static HttpResponse<String> hacerReservaCanchaHija(Long codigoReservaPadre, MiniCuenta miniCuenta){
+        String reservarJSON = "";
+        try {
+            ObjectMapper jsonObjectMapper = new ObjectMapper();
+            ReservaDTO reservarDTO = new ReservaDTO(miniCuenta.getMailMiniCuenta(), null ,null,"Cancha",null,null,codigoReservaPadre,null, null);
+            reservarJSON = jsonObjectMapper.writeValueAsString(reservarDTO);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        try {
+            HttpResponse<String> response = Unirest.post("http://localhost:8080/usuario/reserva")
+                    .header("Content-Type", "application/json")
+                    .body(reservarJSON)
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }

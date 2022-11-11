@@ -106,7 +106,9 @@ public class CentroAgregarActController implements Initializable {
     public void guardarDatos(ActionEvent actionEvent) throws IOException {
         HttpResponse<String> response;
         if (txtCupos.isDisable()){
-            response = centroDeportivoRest.guardarActividad(txtNombre.getText(),Double.parseDouble(txtPrecio.getText()),-1, true, this.img, null );
+            this.horariosReserva = new ArrayList<>();
+            this.horariosReserva.add(new HorarioDTO(1,1000,1001));
+            response = centroDeportivoRest.guardarActividad(txtNombre.getText(),Double.parseDouble(txtPrecio.getText()),-1, true, this.img, this.horariosReserva );
 
             //mandar datos con pase libre = true
             //sin horarios

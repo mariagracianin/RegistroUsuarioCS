@@ -68,11 +68,18 @@ public class EmpActividadesController implements Initializable {
         pagination.setPageFactory(new Callback<Integer, Node>() {
             @Override
             public Node call(Integer pageIndex) {
+                pane.setPrefHeight(650);
+                pane.setPrefWidth(1200);
                 return createPage(pageIndex);
             }
         });
+        pane.setPrefHeight(650);
+        pane.setPrefWidth(1200);
         pagination.setMaxHeight(550);
         pagination.setMaxWidth(900);
+        pagination.setPrefHeight(550);
+        pagination.setPrefWidth(900);
+
     }
 
     private GridPane createPage(Integer pageIndex) {

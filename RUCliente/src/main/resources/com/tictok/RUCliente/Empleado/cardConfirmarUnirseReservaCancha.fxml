@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="pane" dividerPositions="0.9" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.UnirseReservaCanchaController">
+<SplitPane fx:id="pane" dividerPositions="0.9" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="500.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.UnirseReservaCanchaController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="294.0">
          <children>
-            <VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="445.0">
+            <VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="445.0">
                <children>
                   <Label fx:id="nombreReserva" prefHeight="1.0" prefWidth="316.0" text="Nombre" textFill="WHITE">
                      <font>
@@ -27,7 +27,7 @@
                   <Separator opacity="0.0" prefHeight="8.0" prefWidth="335.0" />
                   <HBox prefHeight="22.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="costo" prefHeight="22.0" prefWidth="90.0" text="Costo:" textFill="WHITE">
+                        <Label fx:id="costo" prefHeight="22.0" prefWidth="108.0" text="Costo:" textFill="WHITE">
                            <font>
                               <Font name="Candara Light" size="18.0" />
                            </font>
@@ -35,7 +35,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="costoReserva" prefHeight="22.0" prefWidth="313.0" text="valor" textFill="WHITE">
+                        <Label fx:id="costoReserva" prefHeight="22.0" prefWidth="320.0" text="valor" textFill="WHITE">
                            <font>
                               <Font name="Candara Light" size="18.0" />
                            </font>
@@ -71,29 +71,7 @@
                   </Separator>
                   <HBox prefHeight="22.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="22.0" prefWidth="90.0" text="Dirección:" textFill="WHITE">
-                           <font>
-                              <Font name="Candara Light" size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label fx:id="direccionReserva" prefHeight="22.0" prefWidth="314.0" text="valor" textFill="WHITE">
-                           <font>
-                              <Font name="Candara Light" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Separator opacity="0.5" prefHeight="2.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets left="8.0" right="20.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <HBox prefHeight="22.0" prefWidth="200.0">
-                     <children>
-                        <Label prefHeight="22.0" prefWidth="90.0" text="Centro:" textFill="WHITE">
+                        <Label prefHeight="22.0" prefWidth="108.0" text="Centro:" textFill="WHITE">
                            <font>
                               <Font name="Candara Light" size="18.0" />
                            </font>
@@ -113,28 +91,6 @@
                         <Insets left="8.0" right="20.0" />
                      </VBox.margin>
                   </Separator>
-                  <HBox prefHeight="22.0" prefWidth="200.0">
-                     <children>
-                        <Label prefHeight="22.0" prefWidth="200.0" text="Código de reserva:" textFill="WHITE">
-                           <font>
-                              <Font name="Candara Light" size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label fx:id="codReserva" prefHeight="22.0" prefWidth="314.0" text="valor" textFill="WHITE">
-                           <font>
-                              <Font name="Candara Light" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Separator opacity="0.5" prefHeight="2.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets left="8.0" right="20.0" />
-                     </VBox.margin>
-                  </Separator>
                   <Label fx:id="codReservaPadre" prefHeight="17.0" prefWidth="305.0" textFill="WHITE">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
@@ -149,9 +105,9 @@
       </AnchorPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="50.0">
          <children>
-            <Button fx:id="btnConfirmar" alignment="CENTER" contentDisplay="CENTER" layoutX="-80.0" layoutY="70.0" mnemonicParsing="false" onAction="#confirmarUnirse" prefHeight="60.0" prefWidth="200.0" rotate="-90.0" text="Confirmar" textAlignment="CENTER">
+            <Button fx:id="btnConfirmar" alignment="CENTER" contentDisplay="CENTER" layoutX="-55.0" layoutY="55.0" mnemonicParsing="false" onAction="#confirmarUnirse" prefHeight="53.0" prefWidth="157.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Confirmar" textAlignment="CENTER">
                <font>
-                  <Font name="Century Gothic" size="24.0" />
+                  <Font name="Century Gothic" size="22.0" />
                </font>
             </Button>
          </children>

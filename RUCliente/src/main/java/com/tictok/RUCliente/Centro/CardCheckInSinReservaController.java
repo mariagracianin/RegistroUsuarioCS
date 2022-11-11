@@ -70,28 +70,72 @@ public class CardCheckInSinReservaController implements Initializable {
 
 
     public void abrirVentanaConDatos(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-        fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Centro/verHorariosCheckInSinReserva.fxml"));
-        Parent root = fxmlLoader.load();
+        if (actSeleccionada!= null){
+            if (actSeleccionada.getPaseLibre()){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Centro/verInfoPaseLibreCheckInSinReserva.fxml"));
+                Parent root = fxmlLoader.load();
 
-        VerHorariosCheckInSinReservaController controller = fxmlLoader.getController();
-        controller.setCedulaUsuario(this.cedulaUsuario);
-        controller.setMiniCuenta(this.miniCuenta);
-        if (actSeleccionada != null){
-            controller.setActividad(this.actSeleccionada);
+                VerHorariosCheckInSinReservaController controller = fxmlLoader.getController();
+                controller.setCedulaUsuario(this.cedulaUsuario);
+
+                controller.setMiniCuenta(this.miniCuenta);
+                controller.setActividad(this.actSeleccionada);
+                controller.setLabelsPaseLibre();
+
+                Stage stage = new Stage();
+                Scene escena = new Scene(root);
+                stage.setScene(escena);
+                escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+                stage.show();
+            }else{
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Centro/verHorariosCheckInSinReserva.fxml"));
+                Parent root = fxmlLoader.load();
+
+                VerHorariosCheckInSinReservaController controller = fxmlLoader.getController();
+                controller.setCedulaUsuario(this.cedulaUsuario);
+
+                controller.setMiniCuenta(this.miniCuenta);
+
+                controller.setActividad(this.actSeleccionada);
+                controller.cargarHorarios();
+
+                Stage stage = new Stage();
+                Scene escena = new Scene(root);
+                stage.setScene(escena);
+                escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+                stage.show();
+            }
         }else if (canSeleccionada != null){
-            controller.setCancha(this.canSeleccionada);
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+            fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Centro/verHorariosCheckInSinReserva.fxml"));
+            Parent root = fxmlLoader.load();
+
+            VerHorariosCheckInSinReservaController controller = fxmlLoader.getController();
+            controller.setCedulaUsuario(this.cedulaUsuario);
+
+            controller.setMiniCuenta(this.miniCuenta);
+
+            controller.setActividad(this.actSeleccionada);
+            controller.cargarHorarios();
+
+            Stage stage = new Stage();
+            Scene escena = new Scene(root);
+            stage.setScene(escena);
+            escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+            stage.show();
+            }
         }
-        controller.cargarHorarios();
 
 
 
-        Stage stage = new Stage();
-        Scene escena = new Scene(root);
-        stage.setScene(escena);
-        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-        stage.show();
 
+    public void setCedula(int cedulaUsuario) {
+        this.cedulaUsuario=cedulaUsuario;
     }
 }

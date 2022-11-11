@@ -9,6 +9,7 @@ import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Empleado.CardHorarioActividadController;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.MiniCuenta;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -83,6 +84,7 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
                     cardHorarioController.setNombreCancha(canSeleccionada.getNombreServicio());
                 }
                 cardHorarioController.setCedulaUsuario(this.cedulaUsuario);
+
                 cardHorarioController.setDatosHorario(horariosConCupos.get(i));
                 cardHorarioController.setMiniCuenta(miniCuenta);
 
@@ -119,5 +121,19 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
 
     public void setCedulaUsuario(int cedulaUsuario) {
         this.cedulaUsuario = cedulaUsuario;
+    }
+    public void setLabelsPaseLibre(){
+        if (actSeleccionada != null){
+            nombreServicio.setText(actSeleccionada.getNombreServicio());
+            precioServicio.setText("Costo: "+ actSeleccionada.getPrecio());
+        }
+        else if (canSeleccionada != null){
+            nombreServicio.setText(canSeleccionada.getNombreServicio());
+            precioServicio.setText("Costo: "+ canSeleccionada.getPrecio());
+        }
+    }
+
+    public void hacerCheckInPaseLibre(ActionEvent actionEvent) throws JsonProcessingException {
+        CentroDeportivoRest.hacerCheckIn(cedulaUsuario,actSeleccionada.getNombreServicio(),"Actividad", new HorarioDTO(1,1000,1001),null, miniCuenta);
     }
 }

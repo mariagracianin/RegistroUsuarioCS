@@ -4,15 +4,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInUsuarioSinReservaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInUsuarioSinReservaController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
@@ -41,7 +41,7 @@
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Ver liquidación">
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Balance">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
@@ -73,9 +73,9 @@
    <center>
       <VBox prefHeight="510.0" prefWidth="778.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="60.0" prefWidth="778.0">
                <children>
-                  <Label prefHeight="51.0" prefWidth="389.0" text="Actividades" textFill="#bb86fc">
+                  <Label prefHeight="51.0" prefWidth="423.0" text="Actividades" textFill="#03dac6">
                      <font>
                         <Font name="Century Gothic" size="40.0" />
                      </font>
@@ -83,7 +83,8 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="51.0" prefWidth="389.0" text="Canchas" textFill="#bb86fc">
+                  <Separator opacity="0.59" orientation="VERTICAL" prefHeight="60.0" prefWidth="17.0" />
+                  <Label prefHeight="51.0" prefWidth="389.0" text="Canchas" textFill="#03dac6">
                      <font>
                         <Font name="Century Gothic" size="40.0" />
                      </font>
@@ -93,15 +94,15 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="413.0" prefWidth="778.0">
+            <HBox prefHeight="450.0" prefWidth="778.0">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="389.0" vbarPolicy="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="463.0" prefWidth="449.0" vbarPolicy="ALWAYS">
                      <content>
                         <GridPane fx:id="contenedorActividades">
                         </GridPane>
                      </content>
                   </ScrollPane>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="389.0" vbarPolicy="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="428.0" prefWidth="449.0" vbarPolicy="ALWAYS">
                      <content>
                         <GridPane fx:id="contenedorCanchas">
                         </GridPane>

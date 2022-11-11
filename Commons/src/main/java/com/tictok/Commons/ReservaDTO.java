@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReservaDTO {
-    private String mailUsuario;  // cedula
-    private String nombreCentro; //mail centro
+    private String mailUsuario;  //si
+    private String nombreCentro;
     private String nombreActividad;
     private Double precio;
     private String tipo;
     private HorarioDTO horario;
-    private Long codigoReserva; // - codigoCheckIn
-    private Long codigoReservaPadre; //
+    private Long codigoReserva;
+    private Long codigoReservaPadre; //si
     private String fecha;
 
     public ReservaDTO(){
@@ -104,5 +104,9 @@ public class ReservaDTO {
 
     public void setCodigoReservaPadre(Long codigoReservaPadre) {
         this.codigoReservaPadre = codigoReservaPadre;
+    }
+
+    public Double getPrecio() {
+        return precio;
     }
 }
