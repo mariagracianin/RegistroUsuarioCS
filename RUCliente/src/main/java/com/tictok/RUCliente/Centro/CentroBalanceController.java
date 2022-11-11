@@ -60,17 +60,41 @@ public class CentroBalanceController implements Initializable {
         int intMes=0;
         switch (choiceBoxMes.getValue()){
             case "Enero": intMes =1;
+                break;
+
             case "Febrero": intMes=2;
+                break;
+
             case "Marzo": intMes=3;
+                break;
+
             case "Abril": intMes=4;
+                break;
+
             case "Mayo": intMes=5;
+                break;
+
             case "Junio": intMes=6;
+                break;
+
             case "Julio": intMes=7;
+                break;
+
             case "Agosto": intMes=8;
+                break;
+
             case "Setiembre": intMes=9;
+                break;
+
             case "Octubre": intMes=10;
+                break;
+
             case "Noviembre": intMes=11;
+                break;
+
             case "Diciembre": intMes=12;
+                break;
+
         }
 
         try {
@@ -126,19 +150,44 @@ public class CentroBalanceController implements Initializable {
 
     public void filtrarMesAño(ActionEvent actionEvent) {
         int intMes=0;
+
         switch (choiceBoxMes.getValue()){
             case "Enero": intMes =1;
+                break;
+
             case "Febrero": intMes=2;
+                break;
+
             case "Marzo": intMes=3;
+                break;
+
             case "Abril": intMes=4;
+                break;
+
             case "Mayo": intMes=5;
+                break;
+
             case "Junio": intMes=6;
+                break;
+
             case "Julio": intMes=7;
+                break;
+
             case "Agosto": intMes=8;
+                break;
+
             case "Setiembre": intMes=9;
+                break;
+
             case "Octubre": intMes=10;
+                break;
+
             case "Noviembre": intMes=11;
+                break;
+
             case "Diciembre": intMes=12;
+                break;
+
         }
         try {
             HttpResponse<String> response = centroDeportivoRest.obtenerBalanceCentro(intMes, Integer.parseInt(choiceBoxAño.getValue()));

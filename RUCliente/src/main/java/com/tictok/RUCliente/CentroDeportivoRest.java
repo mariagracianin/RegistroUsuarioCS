@@ -257,10 +257,17 @@ public class CentroDeportivoRest {
     }
 
     public HttpResponse<String> obtenerBalanceCentro(int mes, int year){
+        System.out.println("---------------------------------Mi request");
+        System.out.println("mail: " + miniCuenta.getMailMiniCuenta());
+        System.out.println(year);
+        System.out.println(mes);
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/balance/" + miniCuenta.getMailMiniCuenta() + "/"+ mes + "/" + year)
                     .header("Content-Type", "application/json")
                     .asString();
+
+            System.out.println("BODY::::::");
+            System.out.println(response.getBody());
             return response;
         }catch (Exception e){
             throw new RuntimeException(e);
