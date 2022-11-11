@@ -3,6 +3,7 @@ package com.tictok.RUCliente.Centro;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
+import com.tictok.Commons.ServicioResumenDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.MiniCuenta;
@@ -52,16 +53,37 @@ public class CentroBalanceController implements Initializable {
         choiceBoxAño.setValue(c.get(Calendar.YEAR)+"");
         choiceBoxMes.setValue(mes[c.get(Calendar.MONTH)]);
 
-        this.colServicio.setCellValueFactory(new PropertyValueFactory("nombre"));
-        this.colCantCheckIns.setCellValueFactory(new PropertyValueFactory("cantCI"));
+        this.colServicio.setCellValueFactory(new PropertyValueFactory("nombreServicio"));
+        this.colCantCheckIns.setCellValueFactory(new PropertyValueFactory("cantidadCheckIns"));
         this.colImporte.setCellValueFactory(new PropertyValueFactory("importeTotal"));
 
+        int intMes=0;
+        switch (choiceBoxMes.getValue()){
+            case "Enero": intMes =1;
+            case "Febrero": intMes=2;
+            case "Marzo": intMes=3;
+            case "Abril": intMes=4;
+            case "Mayo": intMes=5;
+            case "Junio": intMes=6;
+            case "Julio": intMes=7;
+            case "Agosto": intMes=8;
+            case "Setiembre": intMes=9;
+            case "Octubre": intMes=10;
+            case "Noviembre": intMes=11;
+            case "Diciembre": intMes=12;
+        }
+
         try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerBalanceFromCentro(miniCuenta,choiceBoxMes.getValue(), choiceBoxAño.getValue());
+            HttpResponse<String> response = centroDeportivoRest.obtenerBalanceCentro(intMes, Integer.parseInt(choiceBoxAño.getValue()));
             String responseBody = response.getBody();
+            System.out.println(responseBody + "response body");
             ObjectMapper mapper = new ObjectMapper();
             List<ServicioResumenDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, ServicioResumenDTO.class));
+            for (int i= 0; i<list.size(); i++){
+                System.out.println(list.get(i).getNombreServicio());
+                System.out.println(list.get(i).getCantidadCheckIns());
 
+            }
             this.filas = FXCollections.observableList(list);
             this.tblServicioResumen.setItems(filas);
 
@@ -103,8 +125,23 @@ public class CentroBalanceController implements Initializable {
     }
 
     public void filtrarMesAño(ActionEvent actionEvent) {
+        int intMes=0;
+        switch (choiceBoxMes.getValue()){
+            case "Enero": intMes =1;
+            case "Febrero": intMes=2;
+            case "Marzo": intMes=3;
+            case "Abril": intMes=4;
+            case "Mayo": intMes=5;
+            case "Junio": intMes=6;
+            case "Julio": intMes=7;
+            case "Agosto": intMes=8;
+            case "Setiembre": intMes=9;
+            case "Octubre": intMes=10;
+            case "Noviembre": intMes=11;
+            case "Diciembre": intMes=12;
+        }
         try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerBalanceFromCentro(miniCuenta,choiceBoxMes.getValue(), choiceBoxAño.getValue());
+            HttpResponse<String> response = centroDeportivoRest.obtenerBalanceCentro(intMes, Integer.parseInt(choiceBoxAño.getValue()));
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             List<ServicioResumenDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, ServicioResumenDTO.class));

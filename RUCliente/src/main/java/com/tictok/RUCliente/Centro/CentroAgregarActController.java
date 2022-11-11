@@ -87,7 +87,7 @@ public class CentroAgregarActController implements Initializable {
         centroController.verActividades(actionEvent);
     }
 
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
+    public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
         centroController.mostrarLiquidacion(actionEvent);
     }
 

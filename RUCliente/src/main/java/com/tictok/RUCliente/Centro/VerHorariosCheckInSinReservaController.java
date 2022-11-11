@@ -134,6 +134,6 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
     }
 
     public void hacerCheckInPaseLibre(ActionEvent actionEvent) throws JsonProcessingException {
-        CentroDeportivoRest.hacerCheckIn(cedulaUsuario,actSeleccionada.getNombreServicio(),"Actividad", new HorarioDTO(1,1000,1001),null, miniCuenta);
+        CentroDeportivoRest.hacerCheckInSinReserva(cedulaUsuario,actSeleccionada.getNombreServicio(),"Actividad", new HorarioDTO(1,1000,1001),null, miniCuenta);
     }
 }

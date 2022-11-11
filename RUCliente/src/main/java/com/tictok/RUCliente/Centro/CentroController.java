@@ -41,7 +41,17 @@ public class CentroController implements Initializable {
     public void verActividades(ActionEvent actionEvent) {
     }
 
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
+    public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroBalance.fxml"));
+        stageActual.setTitle("Login");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
+        stageActual.setScene(escena);
+        stageActual.show();
     }
 
     public void salir(ActionEvent actionEvent) throws IOException {

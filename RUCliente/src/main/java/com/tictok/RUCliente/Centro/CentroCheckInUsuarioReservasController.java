@@ -103,7 +103,7 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
         centroController.verCanchas(actionEvent);
     }
 
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
+    public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
         centroController.mostrarLiquidacion(actionEvent);
     }
 
