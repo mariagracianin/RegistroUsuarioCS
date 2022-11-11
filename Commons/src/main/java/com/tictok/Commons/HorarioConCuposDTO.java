@@ -51,4 +51,6 @@ public class HorarioConCuposDTO {
     public void setCuposLibres(int cuposLibres) {
         this.cuposLibres = cuposLibres;
     }
+
+
 }

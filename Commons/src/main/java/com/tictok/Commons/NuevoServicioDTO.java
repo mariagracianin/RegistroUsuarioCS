@@ -69,4 +69,6 @@ public class NuevoServicioDTO {
     public void setHorarios(List<HorarioDTO> horarios) {
         this.horarios = horarios;
     }
+
+
 }

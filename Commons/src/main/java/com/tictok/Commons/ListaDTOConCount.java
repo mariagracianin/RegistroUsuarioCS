@@ -22,4 +22,12 @@ public class ListaDTOConCount {
     public List<SuperActividadDTO> getObjects() {
         return objects;
     }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    public void setObjects(List<SuperActividadDTO> objects) {
+        this.objects = objects;
+    }
 }

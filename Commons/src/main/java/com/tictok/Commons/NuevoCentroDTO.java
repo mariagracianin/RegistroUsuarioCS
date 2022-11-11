@@ -102,4 +102,6 @@ public class NuevoCentroDTO {
     public void setBarrio(String barrio) {
         this.barrio = barrio;
     }
+
+
 }

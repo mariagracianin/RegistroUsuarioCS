@@ -56,4 +56,6 @@ public class HorarioDTO {
     public int hashCode() {
         return Objects.hash(dia, horaInicio, horaFin);
     }
+
+
 }

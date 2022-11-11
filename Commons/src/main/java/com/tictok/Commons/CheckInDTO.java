@@ -8,7 +8,7 @@ public class CheckInDTO {
     private String tipo; //cancha o act?
     private HorarioDTO horario;
     private Long codigoCheckIn; // - codigoCheckIn
-    private Long codigoReservaPadre; //
+    private Long checkInCanchaPadre; //
     private String fecha;
     private Double precio;
 
@@ -39,7 +39,7 @@ public class CheckInDTO {
         this.tipo = tipo;
         this.horario = horario;
         this.codigoCheckIn = codigoReserva;
-        this.codigoReservaPadre = codigoReservaPadre;
+        this.checkInCanchaPadre = codigoReservaPadre;
         this.fecha = fecha;
     }
 
@@ -100,11 +100,19 @@ public class CheckInDTO {
     }
 
     public Long getCodigoReservaPadre() {
-        return codigoReservaPadre;
+        return checkInCanchaPadre;
     }
 
     public void setCodigoReservaPadre(Long codigoReservaPadre) {
-        this.codigoReservaPadre = codigoReservaPadre;
+        this.checkInCanchaPadre = codigoReservaPadre;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
 }

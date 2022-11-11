@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Controllers;
 
+import com.tictok.Commons.CheckInDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
@@ -90,6 +91,11 @@ public class UsuarioController  {
     @GetMapping("/getReservaCanchaFromCodigo/{codigoPadre}")
     public ReservaDTO getReservaCanchaFromCodigo(@PathVariable String codigoPadre) throws Exception {
         return usuarioService.getReservaCanchaFromCodigo(codigoPadre);
+    }
+
+    @GetMapping("/getCheckIns/{cedulaUsuario}/{mes}/{year}")
+    public List<CheckInDTO> getCheckIns(@PathVariable int cedulaUsuario, @PathVariable int mes, @PathVariable int year){
+        return usuarioService.getCheckIns(cedulaUsuario,mes,year);
     }
 
 

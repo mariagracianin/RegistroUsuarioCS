@@ -111,4 +111,8 @@ public class UsuarioDTO {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public void setCuentaMail(String cuentaMail) {
+        this.cuentaMail = cuentaMail;
+    }
 }

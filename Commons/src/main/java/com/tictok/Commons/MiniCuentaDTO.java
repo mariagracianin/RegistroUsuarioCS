@@ -30,4 +30,6 @@ public class MiniCuentaDTO {
     public void setTipoMiniCuentaDTO(String tipoMiniCuentaDTO) {
         this.tipoMiniCuentaDTO = tipoMiniCuentaDTO;
     }
+
+
 }

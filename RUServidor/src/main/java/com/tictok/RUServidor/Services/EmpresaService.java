@@ -8,6 +8,7 @@ import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.AccesoNoPermitidoException;
 import com.tictok.RUServidor.Exceptions.EmpresaNoExisteException;
 import com.tictok.RUServidor.Exceptions.EntidadNoExisteException;
+import com.tictok.RUServidor.Mappers.CheckInMapper;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
 import com.tictok.RUServidor.Mappers.EmpresaMapper;
 import com.tictok.RUServidor.Mappers.UsuarioMapper;
@@ -155,7 +156,7 @@ public class EmpresaService {
                 checkInCanchaRepository.findByUsuario_CedulaAndFechaBetween(cedulaUsuario, fechaInicio, fechaFin);
         //TODO hacer el mapper de checkIn a CheckInDTO
 
-
-        return null;
+        List<CheckInDTO> checkInDTOList = CheckInMapper.fromListsCheckInsToCheckInDTO( listaCheckInsCancha,listaCheckInsActividad);
+        return checkInDTOList;
     }
 }
