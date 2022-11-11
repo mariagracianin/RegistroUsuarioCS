@@ -255,4 +255,15 @@ public class CentroDeportivoRest {
             throw new RuntimeException(e);
         }
     }
+
+    public HttpResponse<String> obtenerBalanceCentro(int mes, int year){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/balance/" + miniCuenta.getMailMiniCuenta() + "/"+ mes + "/" + year)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

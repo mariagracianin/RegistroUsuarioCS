@@ -44,4 +44,26 @@ public class EmpresaRest {
             throw new RuntimeException(e);
         }
     }
+
+    public HttpResponse<String> obtenerBalanceGeneral(int mes, int year){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/" + miniCuenta.getMailMiniCuenta() + "/balance/"+ mes + "/" + year)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerBalanceDeUsuario(int cedulaUsario, int mes, int year){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/" + miniCuenta.getMailMiniCuenta() + "/balanceUsuario/"+ cedulaUsario + "/" + mes + "/" + year)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

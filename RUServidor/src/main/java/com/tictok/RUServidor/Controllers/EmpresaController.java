@@ -45,8 +45,8 @@ public class EmpresaController {
         return empresaService.getBalanceGeneral(mailEmpresa, mes, year);
     }
 
-    @GetMapping("{mailEmpresa}/balance/{cedulaUsuario}/{mes}/{year}")
+    @GetMapping("{mailEmpresa}/balanceUsuario/{cedulaUsuario}/{mes}/{year}")
     public List<CheckInDTO> getBalanceDeUsuario(@PathVariable String mailEmpresa, @PathVariable Integer cedulaUsuario,
                                     @PathVariable int mes, @PathVariable int year) throws EntidadNoExisteException, AccesoNoPermitidoException {
         return empresaService.getBalanceDeUsuario(mailEmpresa, cedulaUsuario, mes, year);
-}   }
+} }
