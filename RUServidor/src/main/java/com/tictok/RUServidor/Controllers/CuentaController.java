@@ -45,8 +45,4 @@ public class CuentaController {
         return cuentaService.getMegaUsuarioDTOfromMail(mail);
     }
 
-    @GetMapping("balance/centrosDeportivos/{mes}/{year}")
-    public List<BalanceDTO> getBalanceCentros(@PathVariable int mes, @PathVariable int year){
-        return cuentaService.getBalanceCentros(mes, year);
-    }
 }

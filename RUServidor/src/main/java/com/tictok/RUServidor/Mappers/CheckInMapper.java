@@ -25,7 +25,7 @@ public class CheckInMapper {
         Long codigoReservaPadre;
         Double precio = checkInCancha.getCancha().getPrecio();
         try {
-            codigoReservaPadre = checkInCancha.getCheckInCanchaPadre().getId();
+            codigoReservaPadre = checkInCancha.getReservaCanchaPadre().getId();
         } catch (NullPointerException n){
             codigoReservaPadre = null;
         }
