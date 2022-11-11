@@ -1,15 +1,13 @@
 package com.tictok.RUServidor.Controllers;
 
+import com.tictok.Commons.CheckInDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.NuevaEmpresaDTO;
 import com.tictok.Commons.Resumenes.UsuarioResumenDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Empresa;
 import com.tictok.RUServidor.Entities.Usuario;
-import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
-import com.tictok.RUServidor.Exceptions.CuentaYaExisteException;
-import com.tictok.RUServidor.Exceptions.EmpresaNoExisteException;
-import com.tictok.RUServidor.Exceptions.EntidadNoExisteException;
+import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Services.CuentaService;
 import com.tictok.RUServidor.Services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +39,14 @@ public class EmpresaController {
         Empresa empresa = empresaService.saveNewEmpresa(nuevaEmpresaDTO);
     }
 
-    @GetMapping("balance/{mailEmpresa}/{mes}/{year}")
+    @GetMapping("{mailEmpresa}/balance/{mes}/{year}")
     public List<UsuarioResumenDTO> getBalanceGeneral(@PathVariable String mailEmpresa,
                                                      @PathVariable int mes, @PathVariable int year) throws EntidadNoExisteException {
         return empresaService.getBalanceGeneral(mailEmpresa, mes, year);
     }
-}
+
+    @GetMapping("{mailEmpresa}/balance/{cedulaUsuario}/{mes}/{year}")
+    public List<CheckInDTO> getBalanceDeUsuario(@PathVariable String mailEmpresa, @PathVariable Integer cedulaUsuario,
+                                    @PathVariable int mes, @PathVariable int year) throws EntidadNoExisteException, AccesoNoPermitidoException {
+        return empresaService.getBalanceDeUsuario(mailEmpresa, cedulaUsuario, mes, year);
+}   }

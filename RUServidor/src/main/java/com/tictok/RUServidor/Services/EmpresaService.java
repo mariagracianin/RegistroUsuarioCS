@@ -1,17 +1,17 @@
 package com.tictok.RUServidor.Services;
 
+import com.tictok.Commons.CheckInDTO;
 import com.tictok.Commons.NuevaEmpresaDTO;
 import com.tictok.Commons.Resumenes.UsuarioResumenDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.*;
+import com.tictok.RUServidor.Exceptions.AccesoNoPermitidoException;
 import com.tictok.RUServidor.Exceptions.EmpresaNoExisteException;
 import com.tictok.RUServidor.Exceptions.EntidadNoExisteException;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
 import com.tictok.RUServidor.Mappers.EmpresaMapper;
 import com.tictok.RUServidor.Mappers.UsuarioMapper;
-import com.tictok.RUServidor.Repositories.CuentaRepository;
-import com.tictok.RUServidor.Repositories.EmpresaRepository;
-import com.tictok.RUServidor.Repositories.UsuarioRepository;
+import com.tictok.RUServidor.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,14 +27,16 @@ import java.util.Optional;
 public class EmpresaService {
     private final EmpresaRepository empresaRepository;
     private final CuentaRepository cuentaRepository;
-
     private final UsuarioRepository usuarioRepository;
-
+    private final CheckInActividadRepository checkInActividadRepository;
+    private final CheckInCanchaRepository checkInCanchaRepository;
     @Autowired
-    public EmpresaService(EmpresaRepository empresaRepository, CuentaRepository cuentaRepository, UsuarioRepository usuarioRepository) {
+    public EmpresaService(EmpresaRepository empresaRepository, CuentaRepository cuentaRepository, UsuarioRepository usuarioRepository, CheckInActividadRepository checkInActividadRepository, CheckInCanchaRepository checkInCanchaRepository) {
         this.empresaRepository = empresaRepository;
         this.cuentaRepository = cuentaRepository;
         this.usuarioRepository = usuarioRepository;
+        this.checkInActividadRepository = checkInActividadRepository;
+        this.checkInCanchaRepository = checkInCanchaRepository;
         System.out.println("Constuctor Empresa");
         crearPrimeraEmpresa();
     }
@@ -119,5 +121,41 @@ public class EmpresaService {
                         importe, saldoBase, saldo, sobregiro));
         }
         return usuarioResumenDTOList;
+    }
+
+    public List<CheckInDTO> getBalanceDeUsuario(String mailEmpresa, Integer cedulaUsuario, int mes, int year) throws EntidadNoExisteException, AccesoNoPermitidoException {
+        Optional<Cuenta> cuentaEmpresa = cuentaRepository.findById(mailEmpresa);
+
+        if (cuentaEmpresa.isEmpty()) {
+            System.out.println("No encontre la empresa");
+            throw new EntidadNoExisteException("La empresa con ese mail no existe");
+        }
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(cedulaUsuario);
+        if (usuarioOptional.isEmpty()) {
+            System.out.println("No encontre el usuario");
+            throw new EntidadNoExisteException("El usuario con esa cedula no existe");
+        }
+
+        LocalDate fecha = LocalDate.of(year, mes, 1);
+        LocalDate fechaFinalAux = fecha.plusMonths(1);
+        Date fechaInicio = Date.valueOf(fecha);
+        Date fechaFin = Date.valueOf(fechaFinalAux);
+
+        Empresa empresa = cuentaEmpresa.get().getEmpresa();
+        Usuario usuario = usuarioOptional.get();
+
+        if (!usuario.getEmpresa().equals(empresa)){
+            System.out.println("El usuario no pertenece a la empresa");
+            throw new AccesoNoPermitidoException("El usuario no pertenece a la empresa");
+        }
+
+        List<CheckInActividad> listaCheckInsActividad =
+                checkInActividadRepository.findByUsuario_CedulaAndFechaBetween(cedulaUsuario ,fechaInicio, fechaFin);
+        List<CheckInCancha> listaCheckInsCancha =
+                checkInCanchaRepository.findByUsuario_CedulaAndFechaBetween(cedulaUsuario, fechaInicio, fechaFin);
+        //TODO hacer el mapper de checkIn a CheckInDTO
+
+
+        return null;
     }
 }

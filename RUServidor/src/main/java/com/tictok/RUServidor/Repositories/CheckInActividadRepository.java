@@ -1,6 +1,7 @@
 package com.tictok.RUServidor.Repositories;
 
 import com.tictok.RUServidor.Entities.CheckInActividad;
+import com.tictok.RUServidor.Entities.Empresa;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Projections.CuentaCheckIns;
 import com.tictok.RUServidor.Projections.CuentaReservas;
