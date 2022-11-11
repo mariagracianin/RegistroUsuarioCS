@@ -2,6 +2,7 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
+import com.tictok.RUServidor.Mappers.UsuarioMapper;
 import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
@@ -9,10 +10,7 @@ import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
-import com.tictok.RUServidor.Repositories.CanchaRepository;
-import com.tictok.RUServidor.Repositories.ImagenRepository;
-import com.tictok.RUServidor.Repositories.ReservaCanchaRepository;
-import com.tictok.RUServidor.Repositories.UsuarioRepository;
+import com.tictok.RUServidor.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,15 +29,17 @@ public class CanchaService {
     private final UsuarioRepository usuarioRepository;
     private final CanchaRepository canchaRepository;
     private final ReservaCanchaRepository reservaCanchaRepository;
-    private  final ImagenRepository imagenRepository;
+    private final ImagenRepository imagenRepository;
+    private final CheckInCanchaRepository checkInCanchaRepository;
 
     @Autowired
-    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService, ImagenRepository imagenRepository) {
+    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService, ImagenRepository imagenRepository,CheckInCanchaRepository checkInCanchaRepository) {
         this.usuarioRepository = usuarioRepository;
         this.canchaRepository = canchaRepository;
         this.reservaCanchaRepository = reservaCanchaRepository;
         this.cuentaService = cuentaService;
         this.imagenRepository = imagenRepository;
+        this.checkInCanchaRepository = checkInCanchaRepository;
     }
 
     public ReservaDTO reservarCancha(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
@@ -80,6 +80,28 @@ public class CanchaService {
 
         ReservaCancha reservaCancha = new ReservaCancha(usuario, cancha, dateFecha);
         return reservaCanchaRepository.save(reservaCancha);
+    }
+
+    private void checkInCancha(CheckInDTO checkInCancha) throws ReservaNoExisteException {
+        String tipo = checkInCancha.getTipo();
+        Long codReserva = checkInCancha.getCodigoCheckIn(); //viaja en CodigoCheckIn pero es el de la reserva
+
+        Optional<ReservaCancha> reserva= reservaCanchaRepository.findById(codReserva);
+        if (!reserva.isPresent()) {
+            throw new ReservaNoExisteException();
+        }
+        ReservaCancha reservaCancha = reserva.get();
+        Usuario usuario = reservaCancha.getUsuario();
+        Cancha cancha = reservaCancha.getCancha();
+        Date date = reservaCancha.getFecha();
+
+        List<CheckInCancha> listCheckInsPrevios ;
+        if(checkInCanchaRepository.findById(codReserva))
+        if (!reserva.isPresent()) {
+            throw new ReservaNoExisteException();
+        }
+
+
     }
 
     private ReservaCancha reservarCanchaHijo(ReservaDTO reservaDTO) throws ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
