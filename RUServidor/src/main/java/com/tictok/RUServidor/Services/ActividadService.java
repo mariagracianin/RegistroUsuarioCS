@@ -95,7 +95,7 @@ public class ActividadService {
         ReservaActividad reservaActividad = new ReservaActividad(usuario, dateFecha, actividad);
         reservaActividad = reservaActividadRepository.save(reservaActividad);
 
-        return ReservaMapper.fromReservaActividadToReserva2DTO(reservaActividad);
+        return ReservaMapper.fromReservaActividadToReservaDTO(reservaActividad);
     }
 
     public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException {

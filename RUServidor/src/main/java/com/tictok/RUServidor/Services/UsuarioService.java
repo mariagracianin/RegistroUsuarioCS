@@ -128,7 +128,7 @@ public class UsuarioService {
                 reservaActividadRepository.findActividadesReservadasDespuesDe(mail, fecha);
         List<ReservaCancha> canchasReservadas = reservaCanchaRepository.findCanchasReservadasDespuesDe(mail, fecha);
 
-        return ReservaMapper.fromListReservasToReserva2DTO(canchasReservadas, actividadesReservadas);
+        return ReservaMapper.fromListReservasToReservaDTO(canchasReservadas, actividadesReservadas);
     }
 
     @Transactional
@@ -136,7 +136,7 @@ public class UsuarioService {
         Usuario usuario = cuentaService.findOnebyId(mailUsuario).getUsuario();
         List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(usuario.getCedula(), Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
         List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(usuario.getCedula(),Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
-        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
+        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReservaDTO(reservaCanchas,reservasActividades);
         return reservaDTOlist;
     }
     @Transactional
@@ -147,7 +147,7 @@ public class UsuarioService {
         List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(cedula, Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
         List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(cedula,Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
 
-        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReserva2DTO(reservaCanchas,reservasActividades);
+        List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReservaDTO(reservaCanchas,reservasActividades);
 
         List<ReservaDTO> reservaDTOListFromCentro = new ArrayList<ReservaDTO>();
         for(int i=0; i<reservaDTOlist.size(); i++){
@@ -163,7 +163,7 @@ public class UsuarioService {
         if (reservaCancha.isEmpty()) {
             throw new Exception();
         }
-        return ReservaMapper.fromReservaCanchaToReserva2DTO(reservaCancha.get());
+        return ReservaMapper.fromReservaCanchaToReservaDTO(reservaCancha.get());
     }
 
     public List<CheckInDTO> getCheckIns(int cedula, int mes, int year){

@@ -12,7 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.tictok.RUServidor.Mappers.ReservaMapper.fromReservaCanchaToReserva2DTO;
+import static com.tictok.RUServidor.Mappers.ReservaMapper.fromReservaCanchaToReservaDTO;
 
 public class CheckInMapper {
     public static CheckInDTO fromCheckInCanchaToCheckInDTO(CheckInCancha checkInCancha){
