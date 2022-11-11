@@ -1,8 +1,11 @@
 package com.tictok.RUServidor.Services;
 
+import com.tictok.Commons.BalanceDTO;
 import com.tictok.Commons.CuentaDTO;
 import com.tictok.Commons.MegaUsuarioDTO;
 import com.tictok.Commons.MiniCuentaDTO;
+import com.tictok.Commons.Resumenes.UsuarioResumenDTO;
+import com.tictok.RUServidor.Entities.CentroDeportivo;
 import com.tictok.RUServidor.Entities.CheckInActividad;
 import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
@@ -15,7 +18,9 @@ import com.tictok.RUServidor.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Tuple;
 import javax.transaction.Transactional;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -137,4 +142,43 @@ public class CuentaService {
     }
 
 
+    public List<BalanceDTO> getBalanceCentros(int mes, int year) {
+        List<BalanceDTO> balanceDTOS = new ArrayList<BalanceDTO>();
+
+        LocalDate fecha = LocalDate.of(year, mes, 1);
+        LocalDate fechaFinalAux = fecha.plusMonths(1);
+        Date fechaInicio = Date.valueOf(fecha);
+        Date fechaFin = Date.valueOf(fechaFinalAux);
+
+        List<Tuple> tuplasBalances = cuentaRepository.getBalanceAdminCentros(fechaInicio, fechaFin);
+
+        String nombre;
+        String encargado;
+        String address;
+        String telefono;
+        String tipo = "Centro Deportivo";
+        int cantidadCheckIns;
+        String rut;
+        BigInteger temp;
+        double importe;
+
+        for (int i = 0; i<tuplasBalances.size(); i++){
+            Tuple tupla = tuplasBalances.get(i);
+            nombre = (String) tupla.get("nombre");
+            encargado = (String) tupla.get("encargado");
+            address = (String) tupla.get("address");
+            telefono = (String) tupla.get("telefono");
+            rut = (String) tupla.get("rut");
+            temp = (BigInteger) tupla.get("cantidad_check_ins");
+            cantidadCheckIns = temp.intValue();
+            try {
+                importe = (double) tupla.get("importe_total");
+            } catch  (NullPointerException n){
+                importe = 0.0;
+            }
+            balanceDTOS.add(new
+                    BalanceDTO(nombre, encargado, address, telefono, tipo, rut, cantidadCheckIns, importe));
+        }
+        return balanceDTOS;
+    }
 }

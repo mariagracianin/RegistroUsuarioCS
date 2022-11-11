@@ -11,9 +11,9 @@ public class CheckInCancha {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "check_in_cancha_padre_id")
-    private CheckInCancha checkInCanchaPadre;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "reserva_cancha_padre_id", nullable = false)
+    private ReservaCancha reservaCanchaPadre;
 
     @Column(name = "fecha", nullable = false)
     private Date fecha;
@@ -38,8 +38,8 @@ public class CheckInCancha {
     public CheckInCancha() {
     }
 
-    public CheckInCancha(CheckInCancha checkInCanchaPadre, Date fecha, Usuario usuario, Cancha cancha, Double precio) {
-        this.checkInCanchaPadre = checkInCanchaPadre;
+    public CheckInCancha(ReservaCancha reservaCanchaPadre, Date fecha, Usuario usuario, Cancha cancha, Double precio) {
+        this.reservaCanchaPadre = reservaCanchaPadre;
         this.fecha = fecha;
         this.usuario = usuario;
         this.cancha = cancha;
@@ -85,20 +85,19 @@ public class CheckInCancha {
         this.fecha = fecha;
     }
 
-    public CheckInCancha getCheckInCanchaPadre() {
-        return checkInCanchaPadre;
-    }
-
-    public void setCheckInCanchaPadre(CheckInCancha checkInCanchaPadre) {
-        this.checkInCanchaPadre = checkInCanchaPadre;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ReservaCancha getReservaCanchaPadre() {
+        return reservaCanchaPadre;
+    }
+    public void setReservaCanchaPadre(ReservaCancha reservaCanchaPadre) {
+        this.reservaCanchaPadre = reservaCanchaPadre;
     }
 
 }
