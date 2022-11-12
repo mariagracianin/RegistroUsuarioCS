@@ -186,12 +186,13 @@ public class EmpresaRegistroEmplController implements Initializable {
     }
 
     @FXML
-    private void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
+    public void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
         empresaController.mostrarTablaEmpleados(actionEvent);
     }
 
     @FXML
-    private void mostrarLiquidacion(ActionEvent actionEvent) {
+    public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
+        empresaController.mostrarLiquidacion(actionEvent);
     }
 
     public void agregarCuenta(ActionEvent actionEvent) throws IOException {

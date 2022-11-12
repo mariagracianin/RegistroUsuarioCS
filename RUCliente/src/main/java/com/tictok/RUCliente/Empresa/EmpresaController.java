@@ -1,5 +1,6 @@
 package com.tictok.RUCliente.Empresa;
 
+import com.tictok.RUCliente.Centro.CentroController;
 import com.tictok.RUCliente.JavaFXApplication;
 import com.tictok.RUCliente.LoginController;
 import com.tictok.RUCliente.Main;
@@ -70,7 +71,17 @@ public class EmpresaController implements Initializable {
 
     }
 
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
+    public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Empresa/empresaBalance.fxml"));
+        stageActual.setTitle("Balance");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stageActual.setScene(escena);
+        stageActual.show();
     }
 
     public void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {

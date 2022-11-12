@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroBalanceController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroBalanceController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
@@ -21,22 +21,22 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="btnCheckIn" mnemonicParsing="false" onAction="#irACheckIn" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Check-in">
+            <Button fx:id="btnCheckIn" mnemonicParsing="false" onAction="#irACheckIn" prefHeight="35.0" prefWidth="202.0" text="Check-in">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnAgregarActividad" mnemonicParsing="false" onAction="#agregarAct" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar actividad">
+            <Button fx:id="btnAgregarActividad" mnemonicParsing="false" onAction="#agregarAct" prefHeight="35.0" prefWidth="202.0" text="Agregar actividad">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnAgregarCanchas" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Agregar cancha">
+            <Button fx:id="btnAgregarCanchas" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" text="Agregar cancha">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerActividades" mnemonicParsing="false" onAction="#verActividades" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Ver actividades activas">
+            <Button fx:id="btnVerActividades" mnemonicParsing="false" onAction="#verActividades" prefHeight="35.0" prefWidth="202.0" text="Ver actividades activas">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
@@ -46,12 +46,12 @@
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" stylesheets="@../entidad_style.css" text="Balance">
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" text="Balance">
                <font>
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" styleClass="btnCerrarSesion" stylesheets="@../entidad_style.css" text="Cerrar sesión">
+            <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" styleClass="btnCerrarSesion" text="Cerrar sesión">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -60,7 +60,7 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="mainPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="80.0" prefWidth="798.0" styleClass="leftPane">
                <children>
