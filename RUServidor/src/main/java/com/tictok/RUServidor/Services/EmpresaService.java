@@ -75,7 +75,8 @@ public class EmpresaService {
         return empresa1;
     }
 
-    public List<UsuarioResumenDTO> getBalanceGeneral(String mailEmpresa, int mes, int year) throws EntidadNoExisteException {
+    public List<UsuarioResumenDTO> getBalanceGeneral(String mailEmpresa, int mes, int year)
+            throws EntidadNoExisteException {
 
         Optional<Cuenta> cuentaEmpresa = cuentaRepository.findById(mailEmpresa);
         if (cuentaEmpresa.isEmpty()) {
@@ -87,6 +88,8 @@ public class EmpresaService {
         LocalDate fechaFinal = fecha.plusMonths(1);
         Date fechaInicio = Date.valueOf(fecha);
         Date fechaFin = Date.valueOf(fechaFinal);
+        System.out.println(fechaInicio);
+
 
         Empresa empresa = cuentaEmpresa.get().getEmpresa();
 
@@ -111,8 +114,14 @@ public class EmpresaService {
             cantidadCheckIns = temp.intValue();
             try {
                 importe = (double) tupla.get("importe_total");
+                System.out.println("Importe:  " + importe);
             } catch  (NullPointerException n){
                 importe = 0.0;
+                Object[] arrayTupla = tupla.toArray();
+                for (int j = 0; j<arrayTupla.length; j++){
+                    System.out.println(arrayTupla[j]);
+                }
+                System.out.println("No tengo importe");
             }
             saldoBase = (double) tupla.get("saldo_base");
             saldo = saldoBase - importe;
@@ -154,7 +163,6 @@ public class EmpresaService {
                 checkInActividadRepository.findByUsuario_CedulaAndFechaBetween(cedulaUsuario ,fechaInicio, fechaFin);
         List<CheckInCancha> listaCheckInsCancha =
                 checkInCanchaRepository.findByUsuario_CedulaAndFechaBetween(cedulaUsuario, fechaInicio, fechaFin);
-        //TODO hacer el mapper de checkIn a CheckInDTO
 
         List<CheckInDTO> checkInDTOList = CheckInMapper.fromListsCheckInsToCheckInDTO( listaCheckInsCancha,listaCheckInsActividad);
         return checkInDTOList;

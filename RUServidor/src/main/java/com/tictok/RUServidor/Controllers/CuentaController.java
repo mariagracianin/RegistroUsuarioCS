@@ -1,9 +1,6 @@
 package com.tictok.RUServidor.Controllers;
 
-import com.tictok.Commons.CuentaDTO;
-import com.tictok.Commons.MegaUsuarioDTO;
-import com.tictok.Commons.MiniCuentaDTO;
-import com.tictok.Commons.UsuarioDTO;
+import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.Cuenta;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
