@@ -82,26 +82,53 @@ public class CanchaService {
         return reservaCanchaRepository.save(reservaCancha);
     }
 
-    private void checkInCancha(CheckInDTO checkInCancha) throws ReservaNoExisteException {
+    public void checkInCancha(CheckInDTO checkInCancha) throws ReservaNoExisteException {
         String tipo = checkInCancha.getTipo();
         Long codReserva = checkInCancha.getCodigoCheckIn(); //viaja en CodigoCheckIn pero es el de la reserva
 
-        Optional<ReservaCancha> reserva= reservaCanchaRepository.findById(codReserva);
+        Optional<ReservaCancha> reserva= reservaCanchaRepository.findById(codReserva);  //get reserva de ESE usuario
         if (!reserva.isPresent()) {
             throw new ReservaNoExisteException();
         }
         ReservaCancha reservaCancha = reserva.get();
+        Long codReservaPadre;
+        boolean esPadre = false;
+        try {
+            codReservaPadre = reservaCancha.getReservaCanchaPadre().getId();
+        }catch (NullPointerException n ){
+            codReservaPadre = reservaCancha.getId();
+            esPadre =true;
+        }
+
         Usuario usuario = reservaCancha.getUsuario();
         Cancha cancha = reservaCancha.getCancha();
         Date date = reservaCancha.getFecha();
+        Double precio = cancha.getPrecio();
 
-        List<CheckInCancha> listCheckInsPrevios ;
-        if(checkInCanchaRepository.findById(codReserva))
-        if (!reserva.isPresent()) {
-            throw new ReservaNoExisteException();
+        List<CheckInCancha> listCheckInsPrevios = checkInCanchaRepository.findByReservaCanchaPadre(codReservaPadre);
+        if(listCheckInsPrevios.isEmpty()){
+            CheckInCancha check;
+            if(esPadre){
+                check = new CheckInCancha(reservaCancha,date,usuario,cancha,precio);
+            }else {
+                check = new CheckInCancha(reservaCancha.getReservaCanchaPadre(),date,usuario,cancha,precio);
+            }
+            checkInCanchaRepository.save(check);
+        }else{
+            Double precioEntreCheckIns = precio/(listCheckInsPrevios.size()+1);
+            for(int i = 0; i<listCheckInsPrevios.size();i++){
+                CheckInCancha checkIni = listCheckInsPrevios.get(0);
+                checkIni.setPrecio(precioEntreCheckIns);
+                checkInCanchaRepository.save(checkIni);
+            }
+            CheckInCancha check;
+            if(esPadre){
+                check = new CheckInCancha(reservaCancha,date,usuario,cancha,precioEntreCheckIns);
+            }else {
+                check = new CheckInCancha(reservaCancha.getReservaCanchaPadre(),date,usuario,cancha,precioEntreCheckIns);
+            }
+            checkInCanchaRepository.save(check);
         }
-
-
     }
 
     private ReservaCancha reservarCanchaHijo(ReservaDTO reservaDTO) throws ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
