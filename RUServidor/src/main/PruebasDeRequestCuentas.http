@@ -29,3 +29,6 @@ GET http://localhost:8080/centro/canchas
 
 ###
 GET http://localhost:8080/usuario/getReservas/maria@mail.com
+
+###
+GET http://localhost:8080/admin/balance/empresas/11/2022

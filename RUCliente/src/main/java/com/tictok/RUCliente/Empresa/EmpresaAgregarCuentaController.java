@@ -27,7 +27,8 @@ public class EmpresaAgregarCuentaController implements Initializable {
         empresaController.registrarUsuario(actionEvent);
     }
 
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
+    public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
+        empresaController.mostrarLiquidacion(actionEvent);
     }
 
     public void salir(ActionEvent actionEvent) throws IOException {

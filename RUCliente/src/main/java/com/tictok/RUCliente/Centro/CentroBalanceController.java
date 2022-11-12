@@ -100,7 +100,6 @@ public class CentroBalanceController implements Initializable {
         try {
             HttpResponse<String> response = centroDeportivoRest.obtenerBalanceCentro(intMes, Integer.parseInt(choiceBoxAño.getValue()));
             String responseBody = response.getBody();
-            System.out.println(responseBody + "response body");
             ObjectMapper mapper = new ObjectMapper();
             List<ServicioResumenDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, ServicioResumenDTO.class));
             for (int i= 0; i<list.size(); i++){

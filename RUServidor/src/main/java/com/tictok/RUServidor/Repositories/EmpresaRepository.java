@@ -18,14 +18,14 @@ public interface EmpresaRepository extends JpaRepository<Empresa, String> {
                         count(ci.precio) as cantidad_check_ins, sum(ci.precio) as importe_total,
                         u.saldo_base as saldo_base, u.sobregiro as sobregiro
                 from usuario u
-              	left outer join (select cia.usuario_cedula, cia.precio
+              	left outer join (select cia.usuario_cedula as cedula, cia.precio
                                     from check_in_actividad cia
                   					where cia.fecha between :inicio and :fin
                                 union
-                  				select cic.usuario_cedula, cic.precio
+                  				select cic.usuario_cedula as cedula, cic.precio
                                     from check_in_cancha cic
                   					where cic.fecha between :inicio and :fin)
-                    as ci on ci.usuario_cedula = u.cedula
+                    as ci on ci.cedula = u.cedula
                 where u.empresa_nombre_empresa = :nombre_empresa
                 group by u.cedula
             		""",

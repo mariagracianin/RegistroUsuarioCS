@@ -47,9 +47,9 @@ public class CentroController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
         Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroBalance.fxml"));
-        stageActual.setTitle("Login");
+        stageActual.setTitle("Balance");
         Scene escena = new Scene(root);
-        escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
         stageActual.show();
     }

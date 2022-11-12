@@ -16,5 +16,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/empresa/balance/ramon@ramon.com/11/2020
+GET http://localhost:8080/empresa/ramon@ramon.com/balance/11/2022
+
+###
+GET http://localhost:8080/centro/balance/bella@vista.com/11/2022
 

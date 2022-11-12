@@ -35,13 +35,13 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
 
     public GridPane contenedorReservas;
     private int cedulaUsuario;
+    private List<ReservaDTO> reservas;
 
     @Autowired
     CentroController centroController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<ReservaDTO> reservas= null;
         try {
             reservas = getReservasDeUsuario(this.cedulaUsuario);
         } catch (JsonProcessingException e) {

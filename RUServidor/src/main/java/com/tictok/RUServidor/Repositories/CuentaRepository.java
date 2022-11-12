@@ -30,5 +30,25 @@ public interface CuentaRepository extends JpaRepository<Cuenta, String>{
             nativeQuery = true)
     List<Tuple> getBalanceAdminCentros(@Param("inicio") Date dateInicio, @Param("fin") Date dateFin);
 
+    @Query(value = """
+            select e.nombre_empresa as nombre, e.adress as address, e.encargado as encargado,
+				e.telefono as telefono, e.rut as rut, count(u.cedula) as cantidad_usuarios,
+                count(ci.precio) as cantidad_check_ins, sum(ci.precio) as importe_total
+                from empresa e
+                left outer join usuario u on u.empresa_nombre_empresa = e.nombre_empresa
+              	left outer join (select cia.usuario_cedula as usuario, cia.precio
+                                    from check_in_actividad cia
+                  					where cia.fecha between :inicio and :fin
+                                union
+                  				select cic.usuario_cedula as usuario, cic.precio
+                                    from check_in_cancha cic
+                  					where cic.fecha between :inicio and :fin)
+                    as ci on ci.usuario = u.cedula\s
+                group by e.nombre_empresa
+                ;
+            		""",
+            nativeQuery = true)
+    List<Tuple> getBalanceAdminEmpresas(@Param("inicio") Date dateInicio,
+                                  @Param("fin") Date dateFin);
 
 }

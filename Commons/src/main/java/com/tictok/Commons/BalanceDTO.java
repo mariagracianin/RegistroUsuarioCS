@@ -8,6 +8,16 @@ public class BalanceDTO {
     String tipo;
     String rut;
     int cantidadDeCheckIns;
+    int cantidadUsuarios;
+
+    public int getCantidadUsuarios() {
+        return cantidadUsuarios;
+    }
+
+    public void setCantidadUsuarios(int cantidadUsuarios) {
+        this.cantidadUsuarios = cantidadUsuarios;
+    }
+
     Double importe;
 
     public BalanceDTO() {

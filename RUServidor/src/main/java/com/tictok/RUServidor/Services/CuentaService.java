@@ -143,42 +143,67 @@ public class CuentaService {
 
 
     public List<BalanceDTO> getBalanceCentros(int mes, int year) {
-        List<BalanceDTO> balanceDTOS = new ArrayList<BalanceDTO>();
-
         LocalDate fecha = LocalDate.of(year, mes, 1);
         LocalDate fechaFinalAux = fecha.plusMonths(1);
         Date fechaInicio = Date.valueOf(fecha);
         Date fechaFin = Date.valueOf(fechaFinalAux);
 
         List<Tuple> tuplasBalances = cuentaRepository.getBalanceAdminCentros(fechaInicio, fechaFin);
+        List<BalanceDTO> balanceDTOS = new ArrayList<BalanceDTO>(tuplasBalances.size());
 
+        for (int i = 0; i<tuplasBalances.size(); i++) {
+            Tuple tupla = tuplasBalances.get(i);
+            BalanceDTO balanceDTO = fromTuplaToBalanceDTO(tupla, "Centro Deportivo");
+            balanceDTOS.add(balanceDTO);
+        }
+        return balanceDTOS;
+    }
+
+    public List<BalanceDTO> getBalanceEmpresas(int mes, int year) {
+        LocalDate fecha = LocalDate.of(year, mes, 1);
+        LocalDate fechaFinalAux = fecha.plusMonths(1);
+        Date fechaInicio = Date.valueOf(fecha);
+        Date fechaFin = Date.valueOf(fechaFinalAux);
+
+        List<Tuple> tuplasBalances = cuentaRepository.getBalanceAdminEmpresas(fechaInicio, fechaFin);
+        List<BalanceDTO> balancesDTO = new ArrayList<BalanceDTO>();
+
+        for (int i = 0; i<tuplasBalances.size(); i++) {
+            Tuple tupla = tuplasBalances.get(i);
+            BalanceDTO balanceDTO = fromTuplaToBalanceDTO(tupla, "Empresa");
+            balancesDTO.add(balanceDTO);
+        }
+
+        return balancesDTO;
+    }
+
+    private BalanceDTO fromTuplaToBalanceDTO(Tuple tupla, String tipo){
         String nombre;
         String encargado;
         String address;
         String telefono;
-        String tipo = "Centro Deportivo";
         int cantidadCheckIns;
         String rut;
         BigInteger temp;
         double importe;
-
-        for (int i = 0; i<tuplasBalances.size(); i++){
-            Tuple tupla = tuplasBalances.get(i);
-            nombre = (String) tupla.get("nombre");
-            encargado = (String) tupla.get("encargado");
-            address = (String) tupla.get("address");
-            telefono = (String) tupla.get("telefono");
-            rut = (String) tupla.get("rut");
-            temp = (BigInteger) tupla.get("cantidad_check_ins");
-            cantidadCheckIns = temp.intValue();
-            try {
+        nombre = (String) tupla.get("nombre");
+        encargado = (String) tupla.get("encargado");
+        address = (String) tupla.get("address");
+        telefono = (String) tupla.get("telefono");
+        rut = (String) tupla.get("rut");
+        temp = (BigInteger) tupla.get("cantidad_check_ins");
+        cantidadCheckIns = temp.intValue();
+        try {
                 importe = (double) tupla.get("importe_total");
-            } catch  (NullPointerException n){
-                importe = 0.0;
-            }
-            balanceDTOS.add(new
-                    BalanceDTO(nombre, encargado, address, telefono, tipo, rut, cantidadCheckIns, importe));
+            } catch  (NullPointerException n) {
+            importe = 0.0;
         }
-        return balanceDTOS;
+        BalanceDTO balanceDTO = new BalanceDTO(nombre, encargado, address, telefono,
+                tipo, rut, cantidadCheckIns, importe);
+        if (tipo.equals("Empresa")) {
+            temp = (BigInteger) tupla.get("cantidad_usuarios");
+            balanceDTO.setCantidadUsuarios(temp.intValue());
+        }
+        return balanceDTO;
     }
 }
