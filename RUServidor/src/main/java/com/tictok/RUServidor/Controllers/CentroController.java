@@ -59,7 +59,7 @@ public class CentroController {
     @PostMapping("/checkIn")
     public void postNewCheckInSinReserva(@RequestBody CheckInDTO checkInDTO) throws CuentaNoExisteException, UsuarioNoExisteException, CuposAgotadosException, TipoDeCheckInNoExisteException, SaldoInsuficienteException {
         if (checkInDTO.getTipo().equals("Cancha")){
-            //actividadService.checkInCancha(checkInDTO)-->sin hacer aun
+            //canchaService.checkInCancha(checkInDTO)-->sin hacer aun (NO VA A ESTAR ESTA FUNCION?)
         } else if (checkInDTO.getTipo().equals("Actividad")) {
             actividadService.checkInActividadSinReserva(checkInDTO);
         }
@@ -69,9 +69,9 @@ public class CentroController {
     }
 
     @PostMapping("/checkIn/reserva")
-    public void postNewCheckInConReserva(@RequestBody CheckInDTO checkInDTO) throws EntidadNoExisteException, TipoDeCheckInNoExisteException, SaldoInsuficienteException {
+    public void postNewCheckInConReserva(@RequestBody CheckInDTO checkInDTO) throws EntidadNoExisteException, TipoDeCheckInNoExisteException, SaldoInsuficienteException, ReservaNoExisteException{
         if (checkInDTO.getTipo().equals("Cancha")){
-            //actividadService.checkInCancha(checkInDTO)-->sin hacer aun
+            canchaService.checkInCancha(checkInDTO);
         } else if (checkInDTO.getTipo().equals("Actividad")) {
             actividadService.checkInActividadConReserva(checkInDTO.getCodigoCheckIn());
         }
@@ -79,6 +79,7 @@ public class CentroController {
             throw new TipoDeCheckInNoExisteException();
         }
     }
+
     @GetMapping("/balance/{mailCentro}/{mes}/{year}")
     public List<ServicioResumenDTO> getBalanceCentro(@PathVariable String mailCentro, @PathVariable int mes, @PathVariable int year) throws CuentaNoExisteException {
         return centroService.getBalanceCentro(mailCentro, mes, year);

@@ -45,14 +45,6 @@ public class CheckInDTO {
         this.precio = precio;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public Integer getCedulaUsuario() {
         return cedulaUsuario;
     }
@@ -101,12 +93,20 @@ public class CheckInDTO {
         this.codigoCheckIn = codigoCheckIn;
     }
 
-    public Long getCodigoReservaPadre() {
+    public Long getCheckInCanchaPadre() {
         return checkInCanchaPadre;
     }
 
-    public void setCodigoReservaPadre(Long codigoReservaPadre) {
-        this.checkInCanchaPadre = codigoReservaPadre;
+    public void setCheckInCanchaPadre(Long checkInCanchaPadre) {
+        this.checkInCanchaPadre = checkInCanchaPadre;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public Double getPrecio() {
@@ -116,5 +116,4 @@ public class CheckInDTO {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
-
 }

@@ -51,11 +51,11 @@
             <TableView fx:id="tablEmpl" prefHeight="463.0" prefWidth="498.0" stylesheets="@../entidad_style.css">
                <columns>
                   <TableColumn fx:id="colCorreo" prefWidth="115.0" text="Correo Electrónico" />
-                  <TableColumn fx:id="colNombres" minWidth="9.0" prefWidth="100.0" text="Nombres" />
-                  <TableColumn fx:id="colApellidos" prefWidth="100.0" text="Apellidos" />
-                  <TableColumn fx:id="colCedula" prefWidth="100.0" text="Cédula" />
+                  <TableColumn fx:id="colNombres" minWidth="9.0" prefWidth="125.0" text="Nombres" />
+                  <TableColumn fx:id="colApellidos" prefWidth="125.0" text="Apellidos" />
+                  <TableColumn fx:id="colCedula" prefWidth="110.0" text="Cédula" />
                   <TableColumn fx:id="colVenCarne" prefWidth="120.0" text="Vencimiento Carné" />
-                  <TableColumn fx:id="colSaldo" prefWidth="76.0" text="Saldo" />
+                  <TableColumn fx:id="colSaldo" prefWidth="100.0" text="Saldo" />
                </columns>
             </TableView>
             <Button fx:id="btnActualizar" alignment="CENTER" mnemonicParsing="false" onAction="#actualizar" prefHeight="37.0" prefWidth="76.0" text="Actualizar" />
