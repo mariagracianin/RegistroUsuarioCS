@@ -33,6 +33,17 @@ public class CentroController {
 
     @PostMapping("/postActividad/{mailCentro}")
     public void postNewActividad(@RequestBody NuevoServicioDTO nuevaActividadDTO, @PathVariable String mailCentro) throws CuentaNoExisteException {
+        //nombre, precio, paseLibre, imagen
+        System.out.println("------------------------------------------------------------------");
+        System.out.println(nuevaActividadDTO.getNombreServicio()+":NombreServicio");
+        System.out.println(nuevaActividadDTO.getPrecio()+":Precio");
+        System.out.println(nuevaActividadDTO.getCupos()+":Cupos");
+        System.out.println(nuevaActividadDTO.getPaseLibre()+":PaseLibre");
+        System.out.println(nuevaActividadDTO.getImageString()+"Imagen");
+        System.out.println(nuevaActividadDTO.getHorarios().get(0).getDia());
+        System.out.println(nuevaActividadDTO.getHorarios().get(0).getHoraInicio());
+        System.out.println(nuevaActividadDTO.getHorarios().get(0).getHoraFin());
+
         actividadService.guardarActividad(nuevaActividadDTO, mailCentro);
     }
 
@@ -83,5 +94,10 @@ public class CentroController {
     @GetMapping("/balance/{mailCentro}/{mes}/{year}")
     public List<ServicioResumenDTO> getBalanceCentro(@PathVariable String mailCentro, @PathVariable int mes, @PathVariable int year) throws CuentaNoExisteException {
         return centroService.getBalanceCentro(mailCentro, mes, year);
+    }
+
+    @PostMapping("/{mailCentro}/postCuenta")
+    public void postNewCuenta(@PathVariable String mailCentro, @RequestBody CuentaDTO cuentaDTO) throws CuentaNoExisteException {
+        centroService.nuevaCuenta(mailCentro,cuentaDTO);
     }
 }

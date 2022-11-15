@@ -1,5 +1,7 @@
 package com.tictok.RUCliente.Empresa;
 
+import com.tictok.RUCliente.CentroDeportivoRest;
+import com.tictok.RUCliente.EmpresaRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -15,6 +17,9 @@ public class EmpresaAgregarCuentaController implements Initializable {
 
     @Autowired
     EmpresaController empresaController;
+
+    @Autowired
+    EmpresaRest empresaRest;
 
     public TextField mailCuenta;
     public TextField contraseñaCuenta;
@@ -36,10 +41,10 @@ public class EmpresaAgregarCuentaController implements Initializable {
     }
 
     public void guardarDatos(ActionEvent actionEvent) {
+        empresaRest.guardarNuevaCuentaDeEmpresa(mailCuenta.getText(),contraseñaCuenta.getText());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 }
