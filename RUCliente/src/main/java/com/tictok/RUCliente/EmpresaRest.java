@@ -56,7 +56,7 @@ public class EmpresaRest {
         }
     }
 
-    public HttpResponse<String> obtenerBalanceDeUsuario(int cedulaUsario, int mes, int year){
+    public static HttpResponse<String> obtenerBalanceDeUsuario(int cedulaUsario, int mes, int year, MiniCuenta miniCuenta){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/empresa/" + miniCuenta.getMailMiniCuenta() + "/balanceUsuario/"+ cedulaUsario + "/" + mes + "/" + year)
                     .header("Content-Type", "application/json")

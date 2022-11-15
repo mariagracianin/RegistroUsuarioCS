@@ -103,13 +103,13 @@
             <TableView fx:id="tblServicioResumen" prefHeight="611.0" prefWidth="698.0" stylesheets="@../entidad_style.css">
                <columns>
                   <TableColumn fx:id="colServicio" prefWidth="375.0" text="Servicio" />
-                  <TableColumn fx:id="colCantCheckIns" minWidth="9.0" prefWidth="160.0" text="Cantidad de Check-In" />
+                  <TableColumn fx:id="colCantCheckIns" prefWidth="160.0" text="Cantidad de Check-In" />
                   <TableColumn fx:id="colImporte" prefWidth="160.0" text="Importe" />
                </columns>
             </TableView>
             <AnchorPane prefHeight="41.0" prefWidth="698.0">
                <children>
-                  <Label layoutX="38.0" layoutY="5.0" prefHeight="37.0" prefWidth="114.0" text="Importe total:" textFill="WHITE">
+                  <Label layoutX="38.0" layoutY="5.0" prefHeight="37.0" prefWidth="114.0" text="Importe total:" textFill="#cda6fc">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>

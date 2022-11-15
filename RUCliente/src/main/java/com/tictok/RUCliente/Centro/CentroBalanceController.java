@@ -102,11 +102,7 @@ public class CentroBalanceController implements Initializable {
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             List<ServicioResumenDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, ServicioResumenDTO.class));
-            for (int i= 0; i<list.size(); i++){
-                System.out.println(list.get(i).getNombreServicio());
-                System.out.println(list.get(i).getCantidadCheckIns());
 
-            }
             this.filas = FXCollections.observableList(list);
             this.tblServicioResumen.setItems(filas);
 
