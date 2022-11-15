@@ -45,7 +45,6 @@ public class CentroService {
         this.reservaActividadRepository = reservaActividadRepository;
         this.reservaCanchaRepository = reservaCanchaRepository;
         this.checkInActividadRepository = checkInActividadRepository;
-        crearPrimerCentro();
 
 //        CentroDeportivo centroDeportivo = new CentroDeportivo("Coso", "Juan", "005262", "Juan2");
 //        centroRepository.save(centroDeportivo);
