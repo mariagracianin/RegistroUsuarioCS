@@ -2,18 +2,20 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
-import com.tictok.RUServidor.Mappers.UsuarioMapper;
+import com.tictok.RUServidor.Mappers.*;
 import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
 import com.tictok.RUServidor.Exceptions.*;
-import com.tictok.RUServidor.Mappers.CanchaMapper;
-import com.tictok.RUServidor.Mappers.HorarioMapper;
-import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Tuple;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.time.DayOfWeek;
@@ -160,6 +162,22 @@ public class CanchaService {
         return listaSuperCanchaDTO;
     }
 
+    public ListaCanchasDTOConCount procesarCanchas(Page<Tuple> canchasInfosObjects){
+        int pages = canchasInfosObjects.getTotalPages();
+        if (canchasInfosObjects.isEmpty()){
+            return null;
+        }
+        List<SuperCanchaDTO> superCanchaDTOList =
+                CanchaMapper.fromQueryResultListToSuperCanchaDTOList(canchasInfosObjects.getContent(), imagenRepository);
+        ListaCanchasDTOConCount listaCanchasDTOConCount = new ListaCanchasDTOConCount(pages, superCanchaDTOList);
+        return listaCanchasDTOConCount;
+    }
+    public ListaCanchasDTOConCount findAllPageable(int page, int size) {
+        Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
+        Page<Tuple> canchasInfosObjects = canchaRepository.findDistinctBy(paging);
+        return procesarCanchas(canchasInfosObjects);
+    }
+
     public List<SuperCanchaDTO> buscarCanchas(String campoBusqueda){
         List<Cancha> canchaList = canchaRepository.findByNombreOBarrioIsLike(campoBusqueda.toUpperCase());
         if (canchaList.isEmpty()){
@@ -168,6 +186,7 @@ public class CanchaService {
         List<SuperCanchaDTO> listaSuperCanchaDTO = CanchaMapper.fromCanchaListToSuperCanchaDTOList(canchaList);
         return listaSuperCanchaDTO;
     }
+
     @Transactional
     public CanchaConHorariosYCuposDTO getCanchaConHorariosYCuposDTO(String centroDeportivo, String canchaNombre) throws EntidadNoExisteException {
         List<Cancha> listaDeCanchas = canchaRepository.findByCentroAndNombre(centroDeportivo, canchaNombre);

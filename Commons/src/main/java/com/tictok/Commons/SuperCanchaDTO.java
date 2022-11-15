@@ -39,6 +39,16 @@ public class SuperCanchaDTO {
         this.horarios = horarios;
     }
 
+    public SuperCanchaDTO(String nombreServicio, String nombreCentro, Double precio, String address, String barrio, String telefono, String imageString) {
+        this.nombreServicio = nombreServicio;
+        this.nombreCentro = nombreCentro;
+        this.precio = precio;
+        this.address = address;
+        this.barrio = barrio;
+        this.telefono = telefono;
+        this.imageString = imageString;
+    }
+
     public void addHorario(HorarioDTO horarioDTO){
         horarios.add(horarioDTO);
     }

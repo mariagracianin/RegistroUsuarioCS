@@ -11,7 +11,7 @@ public class ReservaCancha {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "reserva_cancha_padre_id")
     private ReservaCancha reservaCanchaPadre;
 
