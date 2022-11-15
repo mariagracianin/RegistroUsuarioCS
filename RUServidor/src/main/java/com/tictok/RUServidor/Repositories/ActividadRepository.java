@@ -27,7 +27,7 @@ public interface ActividadRepository extends JpaRepository<Actividad, ServicioId
             select a from Actividad a
             where upper(a.actividadId.nombreServicio) like %:campoBusqueda% or upper(a.actividadId.centroDeportivo) like %:campoBusqueda% or
              upper(a.centroDeportivo.barrio) like %:campoBusqueda% or upper(a.centroDeportivo.address) like %:campoBusqueda%""")
-    List<Actividad> findByNombreOBarrioIsLike(@Param("campoBusqueda") String campoBusqueda);
+    List<Actividad> findByNombreOBarrioIsLike1(@Param("campoBusqueda") String campoBusqueda);
 
     @Query(value = """
         select distinct a.centro_deportivo_nombre_centro as nombreCentro, a.nombre_servicio as nombreActividad,
@@ -39,6 +39,15 @@ public interface ActividadRepository extends JpaRepository<Actividad, ServicioId
         )
     Page<Tuple> findDistinctBy(Pageable pageable);
 
-
+    @Query(value = """
+    select distinct a.centro_deportivo_nombre_centro as nombreCentro, a.nombre_servicio as nombreActividad,
+                  			a.pase_libre as paseLibre, a.precio as precio, a.imagen_id as imageId, cd.address as address,
+                  			cd.barrio as barrio, cd.telefono as telefono
+                  			from actividad a
+                  			join centro_deportivo cd on a.centro_deportivo_nombre_centro = cd.nombre_centro
+    """,
+            nativeQuery = true
+    )
+    Page<Tuple> findByNombreOBarrioIsLike(Pageable pageable, @Param("campoBusqueda") String campoBusqueda);
 
 }

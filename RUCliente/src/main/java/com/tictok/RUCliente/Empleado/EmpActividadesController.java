@@ -2,15 +2,10 @@ package com.tictok.RUCliente.Empleado;
 
 //import com.tictok.Commons.HorarioConCuposDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
-import com.tictok.Commons.ActividadConHorariosYCuposDTO;
-import com.tictok.Commons.ListaDTOConCount;
-import com.tictok.Commons.SuperActividadDTO;
+import com.tictok.Commons.ListaActividadesDTOConCount;
 import com.tictok.RUCliente.CentroDeportivoRest;
-import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,11 +27,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import static javafx.scene.control.Pagination.STYLE_CLASS_BULLET;
 
 @Component
 public class EmpActividadesController implements Initializable {
@@ -90,12 +81,12 @@ public class EmpActividadesController implements Initializable {
         contenedorAct.setMaxHeight(550);
         contenedorAct.getColumnConstraints().clear();
         contenedorAct.getRowConstraints().clear();
-        ListaDTOConCount listaDTOConCount;
+        ListaActividadesDTOConCount listaActividadesDTOConCount;
         try {
             HttpResponse<String> response = centroDeportivoRest.obtenerActividadesPageable(pageIndex, 9);
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
-            listaDTOConCount = mapper.readValue(responseBody, ListaDTOConCount.class);
+            listaActividadesDTOConCount = mapper.readValue(responseBody, ListaActividadesDTOConCount.class);
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -103,10 +94,10 @@ public class EmpActividadesController implements Initializable {
         int column=0;
         int row=0;
 
-        pagination.setPageCount(listaDTOConCount.getPages());
+        pagination.setPageCount(listaActividadesDTOConCount.getPages());
 
         try {
-            for (int i=0; i<listaDTOConCount.getObjects().size(); i++){
+            for (int i = 0; i< listaActividadesDTOConCount.getObjects().size(); i++){
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
@@ -114,7 +105,7 @@ public class EmpActividadesController implements Initializable {
                 SplitPane actBox = fxmlLoader.load();
 
                 CardActividadController cardController = fxmlLoader.getController();
-                cardController.setDatosActividad(listaDTOConCount.getObjects().get(i));
+                cardController.setDatosActividad(listaActividadesDTOConCount.getObjects().get(i));
                 cardController.setMiniCuenta(miniCuenta);
 
                 if (column == 3) {

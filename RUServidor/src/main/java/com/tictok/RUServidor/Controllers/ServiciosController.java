@@ -33,7 +33,7 @@ public class ServiciosController {
     }
 
     @GetMapping("/actividades/{page}/{size}")
-    public ListaDTOConCount getAllActividadesPageable(@PathVariable int page, @PathVariable int size){
+    public ListaActividadesDTOConCount getAllActividadesPageable(@PathVariable int page, @PathVariable int size){
         return actividadService.findAllPageable(page, size);
     }
 
@@ -55,6 +55,12 @@ public class ServiciosController {
     @GetMapping("actividades/{campoBusqueda}")
     public List<SuperActividadDTO> getActividadesBuscadas(@PathVariable String campoBusqueda){
         return actividadService.buscarActividades(campoBusqueda);
+    }
+
+    @GetMapping("actividades/{campoBusqueda}/{page}/{size}")
+    public ListaActividadesDTOConCount getActividadesBuscadasPageable(@PathVariable String campoBusqueda,
+                                                                  @PathVariable int page, @PathVariable int size){
+        return actividadService.buscarActividadesPageable(campoBusqueda, page, size);
     }
 
     @GetMapping("canchas/{campoBusqueda}")

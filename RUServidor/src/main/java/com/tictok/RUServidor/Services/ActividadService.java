@@ -3,7 +3,6 @@ package com.tictok.RUServidor.Services;
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.*;
-import com.tictok.RUServidor.Projections.ActividadInfo;
 import com.tictok.RUServidor.Projections.CuentaCheckIns;
 import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
@@ -12,25 +11,22 @@ import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import javax.persistence.Tuple;
-import javax.persistence.TupleElement;
 import javax.transaction.Transactional;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -163,19 +159,35 @@ public class ActividadService {
         List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
         return listaSuperActividadDTO;
     }
-
-    @Transactional
-    public ListaDTOConCount findAllPageable(int page, int size) {
-        Pageable paging = PageRequest.of(page, size);
-        Page<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
+    public ListaActividadesDTOConCount procesarActividades(Page<Tuple> actividadInfosObjects){
         int pages = actividadInfosObjects.getTotalPages();
         if (actividadInfosObjects.isEmpty()){
             return null;
         }
         List<SuperActividadDTO> superActividadDTOList =
                 ActividadMapper.fromQueryResultListToSuperActividadDTOList(actividadInfosObjects.getContent(), imagenRepository);
-        ListaDTOConCount listaDTOConCount = new ListaDTOConCount(pages, superActividadDTOList);
-        return listaDTOConCount;
+        ListaActividadesDTOConCount listaActividadesDTOConCount = new ListaActividadesDTOConCount(pages, superActividadDTOList);
+        return listaActividadesDTOConCount;
+    }
+    @Transactional
+    public ListaActividadesDTOConCount findAllPageable(int page, int size) {
+        Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
+        Page<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
+        return procesarActividades(actividadInfosObjects);
+    }
+
+    public ListaActividadesDTOConCount buscarActividadesPageable(String campoBusqueda, int page, int size){
+        Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
+        Page<Tuple> actividadInfosObjects = actividadRepository.findByNombreOBarrioIsLike(paging, campoBusqueda.toUpperCase());
+        return procesarActividades(actividadInfosObjects);
+    }
+    public List<SuperActividadDTO> buscarActividades(String campoBusqueda){
+        List<Actividad> actividadList = actividadRepository.findByNombreOBarrioIsLike1(campoBusqueda.toUpperCase());
+        if (actividadList.isEmpty()){
+            return null;
+        }
+        List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
+        return listaSuperActividadDTO;
     }
 
     private void setImagenSuperActividad(SuperActividadDTO superActividad){
@@ -217,14 +229,6 @@ public class ActividadService {
         }
     }
 
-    public List<SuperActividadDTO> buscarActividades(String campoBusqueda){
-        List<Actividad> actividadList = actividadRepository.findByNombreOBarrioIsLike(campoBusqueda.toUpperCase());
-        if (actividadList.isEmpty()){
-            return null;
-        }
-        List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
-        return listaSuperActividadDTO;
-    }
     @Transactional
     public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(String centroDeportivo, String actividadNombre) throws EntidadNoExisteException {
         System.out.println(centroDeportivo + "   " + actividadNombre);

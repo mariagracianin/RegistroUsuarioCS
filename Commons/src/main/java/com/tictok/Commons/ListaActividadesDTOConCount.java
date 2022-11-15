@@ -2,17 +2,17 @@ package com.tictok.Commons;
 
 import java.util.List;
 
-public class ListaDTOConCount {
+public class ListaActividadesDTOConCount {
 
     private int pages;
     private List<SuperActividadDTO> objects;
 
-    public ListaDTOConCount(int pages, List<SuperActividadDTO> objects) {
+    public ListaActividadesDTOConCount(int pages, List<SuperActividadDTO> objects) {
         this.pages = pages;
         this.objects = objects;
     }
 
-    public ListaDTOConCount() {
+    public ListaActividadesDTOConCount() {
     }
 
     public int getPages() {
