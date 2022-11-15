@@ -12,6 +12,7 @@ import java.util.List;
 
 @Component
 public class CentroDeportivoRest {
+
     @Autowired
     private MiniCuenta miniCuenta;
 
@@ -155,9 +156,31 @@ public class CentroDeportivoRest {
         }
     }
 
+    public HttpResponse<String> obtenerActividadesByFiltroPageable(String filtro, int page, int size){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades/" + filtro + "/" + page + "/" + size)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
     public HttpResponse<String> obtenerCanchasByFiltro(String filtro){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas/"+filtro)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerCanchasByFiltroPageable(String filtro, int page, int size){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas/" + filtro + "/" + page + "/" + size)
                     .header("Content-Type", "application/json")
                     .asString();
             return response;
