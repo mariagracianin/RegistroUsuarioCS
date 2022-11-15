@@ -107,6 +107,10 @@ public class CentroCheckInUsuarioSinReservaController{
         try {
             HttpResponse<String> response = CentroDeportivoRest.obtenerActividadesFromCentroLogeado(this.miniCuenta);
             String responseBody = response.getBody();
+            System.out.println("0000000000000000000000000000000");
+            System.out.println(response.getCode());
+            System.out.println("0000000000000000000000000000000");
+            System.out.println(responseBody);
             ObjectMapper mapper = new ObjectMapper();
             ArrayList<SuperActividadDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
 

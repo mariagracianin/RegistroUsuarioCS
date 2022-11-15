@@ -29,6 +29,7 @@ public class CheckInDTO {
         this.horario = horario;
         this.codigoCheckIn = codigoCheckIn;
         this.fecha = fecha;
+        this.precio = precio;
     }
 
     public CheckInDTO(Integer mailUsuario, String nombreCentro, String nombreActividad, String tipo, HorarioDTO horario,
@@ -41,6 +42,7 @@ public class CheckInDTO {
         this.codigoCheckIn = codigoReserva;
         this.checkInCanchaPadre = codigoReservaPadre;
         this.fecha = fecha;
+        this.precio = precio;
     }
 
     public String getFecha() {

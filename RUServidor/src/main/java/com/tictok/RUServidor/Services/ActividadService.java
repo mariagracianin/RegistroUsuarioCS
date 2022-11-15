@@ -2,15 +2,12 @@ package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
-import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
+import com.tictok.RUServidor.Exceptions.*;
 import com.tictok.RUServidor.Projections.ActividadInfo;
 import com.tictok.RUServidor.Projections.CuentaCheckIns;
 import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.NotTables.Horario;
 import com.tictok.RUServidor.Entities.NotTables.ServicioId;
-import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
-import com.tictok.RUServidor.Exceptions.CuposAgotadosException;
-import com.tictok.RUServidor.Exceptions.EntidadNoExisteException;
 import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
@@ -33,6 +30,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,21 +96,16 @@ public class ActividadService {
         return ReservaMapper.fromReservaActividadToReservaDTO(reservaActividad);
     }
 
-    public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException {
-        System.out.println("11111111111111111111111111111111111111111");
+    public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException, SaldoInsuficienteException {
         Usuario usuario = usuarioService.findOnebyId2(checkInDTO.getCedulaUsuario());
-        System.out.println(usuario.getAddress());
-        System.out.println("22222222222222222222222222222222222222222");
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(checkInDTO.getHorario());
 
         ServicioId actividadId = new ServicioId(checkInDTO.getNombreActividad(), checkInDTO.getNombreCentro(), horarioId.getDia(), horarioId.getHoraInicio(), horarioId.getHoraFin());
         Actividad actividad = actividadRepository.getReferenceById(actividadId);
-        System.out.println("3333333333333333333333333333333333333333");
 
         LocalDate fecha = HorarioMapper.getFecha(horarioId.getDia());
         Date dateFecha = Date.valueOf(fecha);
 
-        System.out.println(actividad.getCupos() + "---------------------------------------------------cupos");
         if (actividad.getCupos()!= -1){
             List<CuentaCheckIns> cuentaCheckInsList = checkInActividadRepository.countCheckInsByServicioIdAndFecha(actividadId,dateFecha);
             List<CuentaReservas> cuentaReservasList = reservaActividadRepository.countReservasByServicioIdAndFecha(actividadId, dateFecha);
@@ -130,13 +123,18 @@ public class ActividadService {
                     throw new CuposAgotadosException();
                 }
             }
+        // Control de saldo
+        Double gastos = usuarioService.getGastosMes(usuario.getCedula(), fecha.getMonthValue(), fecha.getYear());
+        if (usuario.getSaldoBase() + usuario.getSobregiro() < gastos + actividad.getPrecio()){
+            throw new SaldoInsuficienteException();
+        }
         CheckInActividad checkInActividad = new CheckInActividad(usuario, dateFecha, actividad);
         checkInActividad = checkInActividadRepository.save(checkInActividad);
         //return  CheckInMapper.fromCheckInActividadToCheckInDTO(checkInActividad); ????????
     }
 
     @Transactional
-    public void checkInActividadConReserva(Long codigoReserva) throws EntidadNoExisteException {
+    public void checkInActividadConReserva(Long codigoReserva) throws EntidadNoExisteException, SaldoInsuficienteException {
          Optional<ReservaActividad> reservaActividadOptional = reservaActividadRepository.findById(codigoReserva);
          if (reservaActividadOptional.isEmpty()) {
              throw new EntidadNoExisteException("La reserva no existe");
@@ -144,8 +142,15 @@ public class ActividadService {
          ReservaActividad reservaActividad = reservaActividadOptional.get();
          Usuario usuario = reservaActividad.getUsuario();
          Date dateFecha = reservaActividad.getFecha();
+         LocalDate fecha = dateFecha.toLocalDate();
          Actividad actividad = reservaActividad.getActividad();
          CheckInActividad checkInActividad = new CheckInActividad(usuario, dateFecha, actividad);
+         // Control de saldo
+         Double gastos = usuarioService.getGastosMes(usuario.getCedula(), fecha.getMonthValue(), fecha.getYear());
+         if (usuario.getSaldo() + usuario.getSobregiro() < gastos + actividad.getPrecio()){
+            throw new SaldoInsuficienteException();
+        }
+
          reservaActividadRepository.delete(reservaActividad);
          checkInActividadRepository.save(checkInActividad);
     }

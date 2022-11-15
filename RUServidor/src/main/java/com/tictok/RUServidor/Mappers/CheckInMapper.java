@@ -23,7 +23,7 @@ public class CheckInMapper {
         HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(checkInCancha.getCancha().getCanchaId());
         Long codigoCheckin = checkInCancha.getId();
         Long codigoReservaPadre;
-        Double precio = checkInCancha.getCancha().getPrecio();
+        Double precio = checkInCancha.getPrecio();
         try {
             codigoReservaPadre = checkInCancha.getReservaCanchaPadre().getId();
         } catch (NullPointerException n){
@@ -41,7 +41,7 @@ public class CheckInMapper {
         HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(checkInActividad.getActividad().getActividadId());
         Long codigoCheckIn = checkInActividad.getId();
         String fecha = checkInActividad.getFecha().toString();
-        Double precio = checkInActividad.getActividad().getPrecio();
+        Double precio = checkInActividad.getPrecio();
         return new CheckInDTO(cedula,nombreCentro,nombreActividad,tipo,horario,codigoCheckIn,fecha,precio);
     }
 

@@ -181,4 +181,13 @@ public class UsuarioService {
         return checkInDTOList;
     }
 
+    public Double getGastosMes(int cedula, int mes, int year){
+        List<CheckInDTO> checkInDTOList= getCheckIns(cedula, mes, year);
+        Double gastos = 0.0;
+        for (int i = 0; i < checkInDTOList.size(); i++){
+            gastos += checkInDTOList.get(i).getPrecio();
+        }
+        return gastos;
+    }
+
 }

@@ -85,22 +85,6 @@ public class Usuario {
     }
 
 
-    public String getStringCuenta() {
-        return cuenta.getId();
-    }
-
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
     public Usuario() {
 
     }
@@ -178,4 +162,20 @@ public class Usuario {
         this.address = address;
     }
 
+
+    public String getStringCuenta() {
+        return cuenta.getId();
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 }

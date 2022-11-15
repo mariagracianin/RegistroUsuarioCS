@@ -36,3 +36,24 @@ Content-Type: application/json
 GET http://localhost:8080/centro/balance/bella@vista.com/11/2022
 Content-Type: application/json
 
+###
+POST http://localhost:8080/centro/checkIn
+Content-Type: application/json
+
+{
+  "cedulaUsuario": 12344321,
+  "nombreCentro": "CA Bella Vista ",
+  "nombreActividad": "Otra actividad cara",
+  "paseLibre": false,
+  "tipo": "Actividad",
+  "horario":
+    {
+      "dia": 3,
+      "horaInicio": 1102,
+      "horaFin": 1200
+    },
+  "codigoCheckIn": null,
+  "checkInCanchaPadre": null,
+  "fecha": "2022-11-15",
+  "precio": 5000
+}
