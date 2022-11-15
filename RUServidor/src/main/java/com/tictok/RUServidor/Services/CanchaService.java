@@ -264,6 +264,22 @@ public class CanchaService {
         if (reservaCancha.isEmpty()){
             throw new EntidadNoExisteException("No existe reserva con ese id");
         }
-        reservaCanchaRepository.delete(reservaCancha.get());
+        ReservaCancha reservaCancha1 = reservaCancha.get();
+
+        boolean esPadre = false;
+        try {
+            reservaCancha1.getReservaCanchaPadre().getId();
+        }catch (NullPointerException n ){
+            esPadre = true;
+        }
+
+        if(esPadre){
+            List<ReservaCancha> listReservasHijas = reservaCanchaRepository.findByReservaCanchaPadre(id);
+            for(int i = 0; i<listReservasHijas.size(); i++){
+                ReservaCancha reservaI = listReservasHijas.get(i);
+                reservaCanchaRepository.delete(reservaI);
+            }
+        }
+        reservaCanchaRepository.delete(reservaCancha1);
     }
 }
