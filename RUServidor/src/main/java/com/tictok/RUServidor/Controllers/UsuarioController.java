@@ -84,8 +84,13 @@ public class UsuarioController  {
         return usuarioService.getReservasUsuarioByCedulaAndCentro(Integer.parseInt(cedula), mailCentro);
     }
 
-    @DeleteMapping("/reserva/{idReserva}")
-    public void DeleteReserva(@PathVariable Long idReserva){
+    @DeleteMapping("/deleteReserva/{tipo}/{idReserva}")
+    public void DeleteReserva(@PathVariable Long idReserva, @PathVariable String tipo) throws Exception {
+        if(tipo.equals("Cancha")){
+            canchaService.cancelarReserva(idReserva);
+        }else if (tipo.equals("Actividad")){
+            actividadService.cancelarReserva(idReserva);
+        }
     }
 
     @GetMapping("/getReservaCanchaFromCodigo/{codigoPadre}")

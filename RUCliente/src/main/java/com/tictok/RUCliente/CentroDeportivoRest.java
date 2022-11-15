@@ -37,6 +37,27 @@ public class CentroDeportivoRest {
         }
     }
 
+    public HttpResponse<String> guardarNuevaCuentaDeCentro(String mail, String password) {
+        String nuevaCuentaJSON = "";
+        try {
+            ObjectMapper jsonObjectMapper = new ObjectMapper();
+            CuentaDTO cuentaDTO = new CuentaDTO(mail,password,"empresa");
+            nuevaCuentaJSON = jsonObjectMapper.writeValueAsString(cuentaDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            HttpResponse<String> response = Unirest.post("http://localhost:8080/centro/" + miniCuenta.getMailMiniCuenta() + "/postCuenta")
+                    .header("Content-Type", "application/json")
+                    .body(nuevaCuentaJSON)
+                    .asString();
+            return response;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static HttpResponse<String> obtenerCentroLogeado(MiniCuenta miniCuenta){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/centro/obtenerCentro/"+ miniCuenta.getMailMiniCuenta())

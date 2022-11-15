@@ -45,6 +45,8 @@ public interface ActividadRepository extends JpaRepository<Actividad, ServicioId
                   			cd.barrio as barrio, cd.telefono as telefono
                   			from actividad a
                   			join centro_deportivo cd on a.centro_deportivo_nombre_centro = cd.nombre_centro
+                            where upper(a.nombre_servicio) like %:campoBusqueda% or upper(a.centro_deportivo_nombre_centro) like %:campoBusqueda% or
+                            upper(cd.barrio) like %:campoBusqueda% or upper(cd.barrio) like %:campoBusqueda%
     """,
             nativeQuery = true
     )

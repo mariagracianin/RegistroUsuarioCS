@@ -1,10 +1,16 @@
 package com.tictok.RUServidor.Mappers;
 
 import com.tictok.Commons.HorarioDTO;
+import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUServidor.Entities.Cancha;
+import com.tictok.RUServidor.Entities.Imagen;
 import com.tictok.RUServidor.Entities.NotTables.ServicioIdSinHorario;
+import com.tictok.RUServidor.Repositories.ImagenRepository;
 
+import javax.persistence.Tuple;
+import javax.persistence.TupleElement;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -44,7 +50,45 @@ public class CanchaMapper {
         return hashDeCanchas.values().stream().toList();
     }
 
+    public static List<SuperCanchaDTO> fromQueryResultListToSuperCanchaDTOList(List<Tuple> canchasInfosObjects, ImagenRepository imagenRepository) {
+        List<SuperCanchaDTO> superActividadDTOList = new ArrayList<SuperCanchaDTO>(canchasInfosObjects.size());
 
+        Imagen imagen;
+
+        String nombreCentro;
+        String nombreCancha;
+        Double precio;
+        Long imageId;
+        BigInteger imageIdBig;
+        String address;
+        String barrio;
+        String telefono;
+        String imagenString;
+        for (Tuple canchaTuple: canchasInfosObjects){
+            List<TupleElement<?>> elements = canchaTuple.getElements();
+            nombreCentro = (String) canchaTuple.get("nombrecentro");
+            nombreCancha = (String) canchaTuple.get("nombrecancha");
+            precio = (Double) canchaTuple.get("precio");
+            imageIdBig = (BigInteger) canchaTuple.get("imageid");
+            address = (String) canchaTuple.get("address");
+            barrio = (String) canchaTuple.get("barrio");
+            telefono = (String) canchaTuple.get("telefono");
+
+            if (imageIdBig != null) {
+                imageId = imageIdBig.longValue();
+                imagen = imagenRepository.findById(imageId).get();
+                imagenString = imagen.getImagenString();
+            }
+            else{
+                imagenString = null;
+            }
+
+            SuperCanchaDTO superCanchaDTO = new SuperCanchaDTO(nombreCancha, nombreCentro, precio,
+                    address, barrio, telefono, imagenString);
+            superActividadDTOList.add(superCanchaDTO);
+        }
+        return superActividadDTOList;
+    }
 
 
 //    public static SuperChanchaDTO toSuperChanchaDTO(Cancha cancha){

@@ -1,11 +1,13 @@
 package com.tictok.RUServidor.Services;
 
 import com.tictok.Commons.CheckInDTO;
+import com.tictok.Commons.CuentaDTO;
 import com.tictok.Commons.NuevaEmpresaDTO;
 import com.tictok.Commons.Resumenes.UsuarioResumenDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.AccesoNoPermitidoException;
+import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
 import com.tictok.RUServidor.Exceptions.EmpresaNoExisteException;
 import com.tictok.RUServidor.Exceptions.EntidadNoExisteException;
 import com.tictok.RUServidor.Mappers.CheckInMapper;
@@ -168,5 +170,20 @@ public class EmpresaService {
 
         List<CheckInDTO> checkInDTOList = CheckInMapper.fromListsCheckInsToCheckInDTO( listaCheckInsCancha,listaCheckInsActividad);
         return checkInDTOList;
+    }
+
+    public void nuevaCuenta(String mailEmpresa, CuentaDTO cuentaDTO) throws CuentaNoExisteException {
+        Cuenta cuentaNueva = new Cuenta(cuentaDTO.getMail(),cuentaDTO.getPassword(),cuentaDTO.getTipo());
+        Optional<Cuenta> cuentaEmpresaLogeadaOpt = cuentaRepository.findById(mailEmpresa);
+        if (!cuentaEmpresaLogeadaOpt.isPresent()) {
+            throw new CuentaNoExisteException(mailEmpresa);
+        }
+        Cuenta cuentaEmpresaLogeada = cuentaEmpresaLogeadaOpt.get();
+        Empresa empresaLogeada = cuentaEmpresaLogeada.getEmpresa();
+
+        empresaLogeada.setCuenta(cuentaNueva);
+        cuentaNueva.setEmpresa(empresaLogeada);
+        cuentaRepository.save(cuentaNueva);
+        empresaRepository.save(empresaLogeada);
     }
 }

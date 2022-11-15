@@ -1,11 +1,9 @@
 package com.tictok.RUServidor.Controllers;
 
 import com.tictok.Commons.BalanceDTO;
+import com.tictok.RUServidor.Services.CargaDeDatosService;
 import com.tictok.RUServidor.Services.CuentaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,9 +12,11 @@ import java.util.List;
 public class AdminController {
 
     private final CuentaService cuentaService;
+    private final CargaDeDatosService cargaDeDatosService;
 
-    public AdminController(CuentaService cuentaService) {
+    public AdminController(CuentaService cuentaService, CargaDeDatosService cargaDeDatosService) {
         this.cuentaService = cuentaService;
+        this.cargaDeDatosService = cargaDeDatosService;
     }
 
     @GetMapping("balance/centrosDeportivos/{mes}/{year}")
@@ -27,5 +27,10 @@ public class AdminController {
     @GetMapping("balance/empresas/{mes}/{year}")
     public List<BalanceDTO> getBalanceEmpresas(@PathVariable int mes, @PathVariable int year){
         return cuentaService.getBalanceEmpresas(mes, year);
+    }
+
+    @PostMapping("cargaDeDatos")
+    public void cargarDeDatos(){
+        cargaDeDatosService.cargaDeDatos();
     }
 }

@@ -1,6 +1,8 @@
 ###
 GET http://localhost:8080/servicio/canchas
 
+###
+GET http://localhost:8080/servicio/canchas/0/9
 
 ###
 POST http://localhost:8080/centro/postActividad/centro@mail

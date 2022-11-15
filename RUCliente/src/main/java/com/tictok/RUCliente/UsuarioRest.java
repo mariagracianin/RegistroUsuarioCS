@@ -99,4 +99,14 @@ public class UsuarioRest {
         }
     }
 
+    public HttpResponse<String> deleteReserva(String tipo, long numero){
+        try {
+            HttpResponse<String> response = Unirest.delete("http://localhost:8080/usuario/deleteReserva/" + tipo + "/" + numero)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

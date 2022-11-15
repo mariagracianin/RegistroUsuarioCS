@@ -42,6 +42,11 @@ public class ServiciosController {
         return canchaService.findAll();
     }
 
+    @GetMapping("/canchas/{page}/{size}")
+    public ListaCanchasDTOConCount getAllCanchasPageable(@PathVariable int page, @PathVariable int size){
+        return canchaService.findAllPageable(page, size);
+    }
+
     @GetMapping("/actividad/{centroDeportivo}/{actividadNombre}")
     public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(@PathVariable String centroDeportivo, @PathVariable String actividadNombre) throws EntidadNoExisteException{
         return actividadService.getActividadConHorariosYCuposDTO(centroDeportivo, actividadNombre);

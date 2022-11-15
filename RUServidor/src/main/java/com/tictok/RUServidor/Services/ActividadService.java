@@ -283,4 +283,12 @@ public class ActividadService {
         }
         return actividadConHorariosYCuposDTO;
     }
+
+    public void cancelarReserva(Long id) throws EntidadNoExisteException {
+        Optional<ReservaActividad> reservaActividad = reservaActividadRepository.findById(id);
+        if (reservaActividad.isEmpty()){
+            throw new EntidadNoExisteException("No existe reserva con ese id");
+        }
+        reservaActividadRepository.delete(reservaActividad.get());
+    }
 }

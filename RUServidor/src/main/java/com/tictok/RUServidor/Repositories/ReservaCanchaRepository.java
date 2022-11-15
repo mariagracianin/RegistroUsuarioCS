@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Repositories;
 
+import com.tictok.RUServidor.Entities.CheckInCancha;
 import com.tictok.RUServidor.Entities.ReservaActividad;
 import com.tictok.RUServidor.Projections.CuentaReservas;
 import com.tictok.RUServidor.Entities.ReservaCancha;
@@ -36,4 +37,7 @@ public interface ReservaCanchaRepository extends JpaRepository<ReservaCancha, Lo
 
     @Query("select r from ReservaCancha r where r.usuario.cedula = ?1")
     List<ReservaCancha> conseguirReservasDeUsuario(int cedula);
+
+    @Query("select c from ReservaCancha c where c.reservaCanchaPadre.id = ?1")
+    List<ReservaCancha> findByReservaCanchaPadre(Long codReserva);
 }
