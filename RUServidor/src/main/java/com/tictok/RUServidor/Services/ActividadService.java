@@ -251,10 +251,11 @@ public class ActividadService {
         int horaInicio;
         int horaFin;
         CuentaReservas cuentaReservas;
+        CuentaCheckIns cuentaCheckIns;
         int cuposLibres;
 
         List<CuentaReservas> actividadesReservadas = reservaActividadRepository.conseguirHorariosReservadosEntreFechas(actividadNombre, centroDeportivo, fechaHoy, fechaFin);
-
+        List<CuentaCheckIns> actividadesConCheckIn = checkInActividadRepository.conseguirHorariosReservadosEntreFechas(actividadNombre, centroDeportivo, fechaHoy, fechaFin);
 
         for (int i = 0; i < listaDeActividades.size(); i++) {
             actividad = listaDeActividades.get(i);
@@ -266,6 +267,12 @@ public class ActividadService {
                 cuentaReservas = actividadesReservadas.get(j);
                 if (actividad.getActividadId().equals(cuentaReservas.getServicioId())) {
                     cuposLibres = cuposLibres - (int) cuentaReservas.getCupos();
+                }
+            }
+            for (int j = 0; j < actividadesConCheckIn.size(); j++){
+                cuentaCheckIns = actividadesConCheckIn.get(j);
+                if (actividad.getActividadId().equals(cuentaCheckIns.getServicioId())){
+                    cuposLibres = cuposLibres - (int) cuentaCheckIns.getCupos();
                 }
             }
             actividadConHorariosYCuposDTO.addHorarioConCupos(new HorarioConCuposDTO(dia, horaInicio, horaFin, cuposLibres));
