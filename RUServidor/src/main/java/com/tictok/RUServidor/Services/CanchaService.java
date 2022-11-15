@@ -117,7 +117,7 @@ public class CanchaService {
         }else{
             Double precioEntreCheckIns = precio/(listCheckInsPrevios.size()+1);
             for(int i = 0; i<listCheckInsPrevios.size();i++){
-                CheckInCancha checkIni = listCheckInsPrevios.get(0);
+                CheckInCancha checkIni = listCheckInsPrevios.get(i);
                 checkIni.setPrecio(precioEntreCheckIns);
                 checkInCanchaRepository.save(checkIni);
             }
