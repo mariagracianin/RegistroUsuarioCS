@@ -48,12 +48,13 @@
 }
 
 .table-view .column-header .label{
-    -fx-text-fill: #121212;
+    -fx-text-fill: #616161;
     -fx-alignment: CENTER;
-    -fx-font: 17px;
+    -fx-font-size: 15px;
 }
 .table-view .column-header{
     -fx-background-color: #57E6D9;
+    -fx-border-radius: 3px;
 }
 
 .table-view:row-selection .table-row-cell:filled:selected {

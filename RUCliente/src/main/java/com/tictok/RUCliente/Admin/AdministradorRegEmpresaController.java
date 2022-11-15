@@ -100,4 +100,12 @@ public class AdministradorRegEmpresaController {
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close();
     }
+
+    public void mostrarBalanceEmpresas(ActionEvent actionEvent) throws IOException {
+        administradorController.mostrarBalanceEmpresas(actionEvent);
+    }
+
+    public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException{
+        administradorController.mostrarBalanceCentros(actionEvent);
+    }
 }

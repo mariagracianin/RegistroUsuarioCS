@@ -58,9 +58,7 @@ public class AdministradorController {
     @FXML
     public void mostrarTablaCentros(ActionEvent actionEvent) {
     }
-    @FXML
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
-    }
+
     @FXML
     public void registrarCentro(ActionEvent actionEvent) throws IOException {
 
@@ -77,4 +75,9 @@ public class AdministradorController {
         stage.show(); //no es ventana emergente
     }
 
+    public void mostrarBalanceEmpresas(ActionEvent actionEvent) {
+    }
+
+    public void mostrarBalanceCentros(ActionEvent actionEvent) {
+    }
 }

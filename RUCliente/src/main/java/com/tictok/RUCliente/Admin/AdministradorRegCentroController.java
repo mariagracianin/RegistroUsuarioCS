@@ -63,9 +63,6 @@ public class AdministradorRegCentroController implements Initializable {
     public void mostrarTablaCentros(ActionEvent actionEvent) {
     }
 
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
-    }
-
     public void guardarDatos(ActionEvent actionEvent) throws IOException {
         HttpResponse<String> responseCode = centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText(), rut.getText(),razonSocial.getText(),barrio.getText());
         if(responseCode.getCode()==409){
@@ -112,5 +109,13 @@ public class AdministradorRegCentroController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
+
+    public void mostrarBalanceEmpresas(ActionEvent actionEvent) throws IOException{
+        administradorController.mostrarBalanceEmpresas(actionEvent);
+    }
+
+    public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException {
+        administradorController.mostrarTablaCentros(actionEvent);
     }
 }
