@@ -29,7 +29,7 @@ public interface CanchaRepository extends JpaRepository<Cancha, ServicioId> {
                   			c.precio as precio, c.imagen_id as imageId, cd.address as address,
                   			cd.barrio as barrio, cd.telefono as telefono
                   			from cancha c
-                  			join centro_deportivo cd on a.centro_deportivo_nombre_centro = cd.nombre_centro""",
+                  			join centro_deportivo cd on c.centro_deportivo_nombre_centro = cd.nombre_centro""",
             nativeQuery = true
     )
     Page<Tuple> findDistinctBy(Pageable pageable);
