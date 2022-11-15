@@ -239,4 +239,12 @@ public class CanchaService {
             centro1.setCancha(canchaI);
         }
     }
+
+    public void cancelarReserva(Long id) throws EntidadNoExisteException {
+        Optional<ReservaCancha> reservaCancha = reservaCanchaRepository.findById(id);
+        if (reservaCancha.isEmpty()){
+            throw new EntidadNoExisteException("No existe reserva con ese id");
+        }
+        reservaCanchaRepository.delete(reservaCancha.get());
+    }
 }

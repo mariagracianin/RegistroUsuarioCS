@@ -38,6 +38,7 @@ public interface ReservaActividadRepository extends JpaRepository<ReservaActivid
     List<ReservaActividad> conseguirReservasDeUsuario(int cedula);
 
 
+
     //    @Query("""
 //    select r from ReservaActividad r
 //    where r.usuario.cedula = ?1
