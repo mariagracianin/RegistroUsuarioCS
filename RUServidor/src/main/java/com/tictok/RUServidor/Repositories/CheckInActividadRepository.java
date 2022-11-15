@@ -29,4 +29,12 @@ public interface CheckInActividadRepository extends JpaRepository<CheckInActivid
             where c.actividad.centroDeportivo.nombreCentro = ?1 and c.fecha between ?2 and ?3""")
     List<CheckInActividad> getCheckInPorCentroYFechas(String nombreCentro, Date fechaStart, Date fechaEnd);
 
+    @Query("""
+    select new com.tictok.RUServidor.Projections.CuentaCheckIns(c.actividad.actividadId, count(c.actividad.cupos)) from CheckInActividad c
+    where c.actividad.actividadId.nombreServicio = ?1 and c.actividad.actividadId.centroDeportivo = ?2
+        and c.fecha between ?3 and ?4
+    group by c.actividad.actividadId
+    """)
+    List<CuentaCheckIns> conseguirHorariosReservadosEntreFechas(String nombreServicio, String centroDeportivo, Date fechaStart, Date fechaEnd);
+
 }
