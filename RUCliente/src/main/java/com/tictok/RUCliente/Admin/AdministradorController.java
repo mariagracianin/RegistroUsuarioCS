@@ -75,9 +75,33 @@ public class AdministradorController {
         stage.show(); //no es ventana emergente
     }
 
-    public void mostrarBalanceEmpresas(ActionEvent actionEvent) {
+    public void mostrarBalanceEmpresas(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AdministradorController.class.getResourceAsStream("administradorBalanceEmpresas.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Balance empresas");
+
+        stage.show(); //no es ventana emergente
     }
 
-    public void mostrarBalanceCentros(ActionEvent actionEvent) {
+    public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AdministradorController.class.getResourceAsStream("administradorBalanceCentros.fxml"));
+        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stage.setTitle("Balance centros");
+
+        stage.show(); //no es ventana emergente
     }
 }

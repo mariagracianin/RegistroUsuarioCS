@@ -1,17 +1,18 @@
-package com.tictok.RUCliente.Centro;
+package com.tictok.RUCliente.Admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
-import com.tictok.Commons.ServicioResumenDTO;
-import com.tictok.Commons.UsuarioDTO;
-import com.tictok.RUCliente.CentroDeportivoRest;
-import com.tictok.RUCliente.MiniCuenta;
+import com.tictok.Commons.BalanceDTO;
+import com.tictok.RUCliente.AdminRest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,26 +24,28 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
-public class CentroBalanceController implements Initializable {
-
-    @Autowired
-    MiniCuenta miniCuenta;
-    @Autowired
-    CentroDeportivoRest centroDeportivoRest;
-    @Autowired
-    CentroController centroController;
+public class AdministradorBalanceEmpresasController implements Initializable {
 
     public ChoiceBox<String> choiceBoxMes;
     public ChoiceBox<String> choiceBoxAño;
-    public Button btnFiltrarMesAño;
-    public TableView<ServicioResumenDTO> tblServicioResumen;
-    public TableColumn<TableView<ServicioResumenDTO>,String> colServicio;
-    public TableColumn<TableView<ServicioResumenDTO>,Integer> colCantCheckIns;
-    public TableColumn<TableView<ServicioResumenDTO>,Double> colImporte;
-    public TableColumn<TableView<ServicioResumenDTO>,String> colTipo;
-
     public Label valorImporteTotal;
-    private ObservableList<ServicioResumenDTO> filas;
+    public TableView<BalanceDTO> tblEmpresasResumen;
+    public TableColumn<TableView<BalanceDTO>,String> colEmpresa;
+    public TableColumn<TableView<BalanceDTO>,String> colRUT;
+    public TableColumn<TableView<BalanceDTO>,Double> colImporte;
+    public TableColumn<TableView<BalanceDTO>,Integer> colCantCheckIns;
+    public TableColumn<TableView<BalanceDTO>,Integer> colCantUsuarios;
+    public TableColumn<TableView<BalanceDTO>,String> colEncargado;
+    public TableColumn<TableView<BalanceDTO>,String> colDireccion;
+    public TableColumn<TableView<BalanceDTO>,String> colTelefono;
+
+    private ObservableList<BalanceDTO> filas;
+
+
+    @Autowired
+    AdministradorController administradorController;
+    @Autowired
+    AdminRest adminRest;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,10 +58,15 @@ public class CentroBalanceController implements Initializable {
         choiceBoxAño.setValue(c.get(Calendar.YEAR)+"");
         choiceBoxMes.setValue(mes[c.get(Calendar.MONTH)]);
 
-        this.colServicio.setCellValueFactory(new PropertyValueFactory("nombreServicio"));
-        this.colCantCheckIns.setCellValueFactory(new PropertyValueFactory("cantidadCheckIns"));
-        this.colImporte.setCellValueFactory(new PropertyValueFactory("importeTotal"));
-        this.colTipo.setCellValueFactory(new PropertyValueFactory("tipoDeActividad"));
+        this.colEmpresa.setCellValueFactory(new PropertyValueFactory("nombre"));
+        this.colRUT.setCellValueFactory(new PropertyValueFactory("rut"));
+        this.colImporte.setCellValueFactory(new PropertyValueFactory("importe"));
+        this.colCantCheckIns.setCellValueFactory(new PropertyValueFactory("cantidadDeCheckIns"));
+        this.colCantUsuarios.setCellValueFactory(new PropertyValueFactory("cantidadUsuarios"));
+        this.colEncargado.setCellValueFactory(new PropertyValueFactory("encargado"));
+        this.colDireccion.setCellValueFactory(new PropertyValueFactory("address"));
+        this.colTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
+
 
         int intMes=0;
         switch (choiceBoxMes.getValue()){
@@ -101,17 +109,17 @@ public class CentroBalanceController implements Initializable {
         }
 
         try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerBalanceCentro(intMes, Integer.parseInt(choiceBoxAño.getValue()));
+            HttpResponse<String> response = adminRest.obtenerBalanceEmpresas(intMes, Integer.parseInt(choiceBoxAño.getValue()));
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
-            List<ServicioResumenDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, ServicioResumenDTO.class));
+            List<BalanceDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, BalanceDTO.class));
 
             this.filas = FXCollections.observableList(list);
-            this.tblServicioResumen.setItems(filas);
+            this.tblEmpresasResumen.setItems(filas);
 
             Double importeTotal = (double) 0;
             for (int i = 0; i<this.filas.size(); i++){
-                importeTotal += this.filas.get(i).getImporteTotal();
+                importeTotal += this.filas.get(i).getImporte();
             }
 
             valorImporteTotal.setText(importeTotal + "");
@@ -122,33 +130,32 @@ public class CentroBalanceController implements Initializable {
 
     }
 
-    public void irACheckIn(ActionEvent actionEvent) throws IOException {
-        centroController.irACheckIn(actionEvent);
+    public void registrarEmpresa(ActionEvent actionEvent) throws IOException {
+        administradorController.registrarEmpresa(actionEvent);
     }
 
-    public void agregarAct(ActionEvent actionEvent) throws IOException {
-        centroController.agregarAct(actionEvent);
+    public void registrarCentro(ActionEvent actionEvent) throws IOException {
+        administradorController.registrarCentro(actionEvent);
     }
 
-    public void verActividades(ActionEvent actionEvent) {
-        centroController.verActividades(actionEvent);
+    public void mostrarTablaEmpresas(ActionEvent actionEvent) {
+        administradorController.mostrarTablaEmpresas(actionEvent);
     }
 
-    public void verCanchas(ActionEvent actionEvent) {
-        centroController.verCanchas(actionEvent);
+    public void mostrarTablaCentros(ActionEvent actionEvent) {
+        administradorController.mostrarTablaCentros(actionEvent);
+    }
+
+    public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException {
+        administradorController.mostrarBalanceCentros(actionEvent);
     }
 
     public void salir(ActionEvent actionEvent) throws IOException {
-        centroController.salir(actionEvent);
-    }
-
-    public void agregarCancha(ActionEvent actionEvent) throws IOException {
-        centroController.agregarCancha(actionEvent);
+        administradorController.salir(actionEvent);
     }
 
     public void filtrarMesAño(ActionEvent actionEvent) {
         int intMes=0;
-
         switch (choiceBoxMes.getValue()){
             case "Enero": intMes =1;
                 break;
@@ -187,18 +194,19 @@ public class CentroBalanceController implements Initializable {
                 break;
 
         }
+
         try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerBalanceCentro(intMes, Integer.parseInt(choiceBoxAño.getValue()));
+            HttpResponse<String> response = adminRest.obtenerBalanceEmpresas(intMes, Integer.parseInt(choiceBoxAño.getValue()));
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
-            List<ServicioResumenDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, ServicioResumenDTO.class));
+            List<BalanceDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, BalanceDTO.class));
 
             this.filas = FXCollections.observableList(list);
-            this.tblServicioResumen.setItems(filas);
+            this.tblEmpresasResumen.setItems(filas);
 
             Double importeTotal = (double) 0;
             for (int i = 0; i<this.filas.size(); i++){
-                importeTotal += this.filas.get(i).getImporteTotal();
+                importeTotal += this.filas.get(i).getImporte();
             }
 
             valorImporteTotal.setText(importeTotal + "");
@@ -207,6 +215,4 @@ public class CentroBalanceController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-
 }

@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,9 +30,17 @@ public class AdministradorBalanceCentrosController implements Initializable {
     public ChoiceBox<String> choiceBoxAño;
     public Button btnFiltrarMesAño;
     public TableView<BalanceDTO> tblCentrosResumen;
-    public TableColumn<TableView<BalanceDTO>,String> colEmpresa;
+    public TableColumn<TableView<BalanceDTO>,String> colCentro;
     public TableColumn<TableView<BalanceDTO>,String> colRUT;
-    public TableColumn<TableView<ServicioResumenDTO>,Double> colImporte;
+    public TableColumn<TableView<BalanceDTO>,Double> colImporte;
+    public TableColumn<TableView<BalanceDTO>,Integer> colCantCheckIns;
+    public TableColumn<TableView<BalanceDTO>,Integer> colCantUsuarios;
+    public TableColumn<TableView<BalanceDTO>,String> colEncargado;
+    public TableColumn<TableView<BalanceDTO>,String> colDireccion;
+    public TableColumn<TableView<BalanceDTO>,String> colTelefono;
+
+
+
     public Label valorImporteTotal;
     private ObservableList<BalanceDTO> filas;
 
@@ -53,9 +62,15 @@ public class AdministradorBalanceCentrosController implements Initializable {
         choiceBoxAño.setValue(c.get(Calendar.YEAR)+"");
         choiceBoxMes.setValue(mes[c.get(Calendar.MONTH)]);
 
-        this.colEmpresa.setCellValueFactory(new PropertyValueFactory("nombre"));
+        this.colCentro.setCellValueFactory(new PropertyValueFactory("nombre"));
         this.colRUT.setCellValueFactory(new PropertyValueFactory("rut"));
         this.colImporte.setCellValueFactory(new PropertyValueFactory("importe"));
+        this.colCantCheckIns.setCellValueFactory(new PropertyValueFactory("cantidadDeCheckIns"));
+        this.colCantUsuarios.setCellValueFactory(new PropertyValueFactory("cantidadUsuarios"));
+        this.colEncargado.setCellValueFactory(new PropertyValueFactory("encargado"));
+        this.colDireccion.setCellValueFactory(new PropertyValueFactory("address"));
+        this.colTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
+
 
         int intMes=0;
         switch (choiceBoxMes.getValue()){
@@ -131,11 +146,11 @@ public class AdministradorBalanceCentrosController implements Initializable {
         administradorController.mostrarTablaEmpresas(actionEvent);
     }
 
-    public void mostrarTablaCentros(ActionEvent actionEvent) {
+    public void mostrarTablaCentros(ActionEvent actionEvent)  {
         administradorController.mostrarTablaCentros(actionEvent);
     }
 
-    public void mostrarBalanceEmpresas(ActionEvent actionEvent) {
+    public void mostrarBalanceEmpresas(ActionEvent actionEvent) throws IOException {
         administradorController.mostrarBalanceEmpresas(actionEvent);
     }
 
@@ -144,5 +159,64 @@ public class AdministradorBalanceCentrosController implements Initializable {
     }
 
     public void filtrarMesAño(ActionEvent actionEvent) {
+        int intMes=0;
+        switch (choiceBoxMes.getValue()){
+            case "Enero": intMes =1;
+                break;
+
+            case "Febrero": intMes=2;
+                break;
+
+            case "Marzo": intMes=3;
+                break;
+
+            case "Abril": intMes=4;
+                break;
+
+            case "Mayo": intMes=5;
+                break;
+
+            case "Junio": intMes=6;
+                break;
+
+            case "Julio": intMes=7;
+                break;
+
+            case "Agosto": intMes=8;
+                break;
+
+            case "Setiembre": intMes=9;
+                break;
+
+            case "Octubre": intMes=10;
+                break;
+
+            case "Noviembre": intMes=11;
+                break;
+
+            case "Diciembre": intMes=12;
+                break;
+
+        }
+
+        try {
+            HttpResponse<String> response = adminRest.obtenerBalanceCentroDeportivo(intMes, Integer.parseInt(choiceBoxAño.getValue()));
+            String responseBody = response.getBody();
+            ObjectMapper mapper = new ObjectMapper();
+            List<BalanceDTO> list = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, BalanceDTO.class));
+
+            this.filas = FXCollections.observableList(list);
+            this.tblCentrosResumen.setItems(filas);
+
+            Double importeTotal = (double) 0;
+            for (int i = 0; i<this.filas.size(); i++){
+                importeTotal += this.filas.get(i).getImporte();
+            }
+
+            valorImporteTotal.setText(importeTotal + "");
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 }

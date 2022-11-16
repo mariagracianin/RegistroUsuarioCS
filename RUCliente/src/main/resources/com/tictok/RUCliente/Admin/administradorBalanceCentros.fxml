@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Admin.AdministradorBalanceCentrosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Admin.AdministradorBalanceCentrosController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
@@ -102,8 +102,13 @@
             </HBox>
             <TableView fx:id="tblCentrosResumen" prefHeight="611.0" prefWidth="698.0" stylesheets="@../entidad_style.css">
                <columns>
-                  <TableColumn fx:id="colEmpresa" prefWidth="375.0" text="Empresa" />
-                  <TableColumn fx:id="colRUT" prefWidth="160.0" text="RUT" />
+                  <TableColumn fx:id="colCentro" prefWidth="200.0" text="Centro" />
+                  <TableColumn fx:id="colRUT" prefWidth="130.0" text="RUT" />
+                  <TableColumn fx:id="colTelefono" prefWidth="110.0" text="Teléfono" />
+                  <TableColumn fx:id="colDireccion" prefWidth="180.0" text="Dirección" />
+                  <TableColumn fx:id="colEncargado" prefWidth="130.0" text="Encargado" />
+                  <TableColumn fx:id="colCantCheckIns" prefWidth="120.0" text="Cant. Check-In" />
+                  <TableColumn fx:id="colCantUsuarios" prefWidth="120.0" text="Cant. Usuarios" />
                   <TableColumn fx:id="colImporte" prefWidth="160.0" text="Importe" />
                </columns>
             </TableView>
