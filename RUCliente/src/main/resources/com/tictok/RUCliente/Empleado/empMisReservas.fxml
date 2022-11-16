@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.image.Image?>
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1174.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.EmpMisReservasController">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.EmpMisReservasController">
    <left>
       <VBox prefHeight="637.0" prefWidth="174.0" styleClass="leftPane" BorderPane.alignment="CENTER">
          <children>
