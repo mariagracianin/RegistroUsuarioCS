@@ -54,7 +54,7 @@
          <children>
             <HBox prefHeight="85.0" prefWidth="998.0" styleClass="leftPane">
                <children>
-                  <Label text="Mes" textFill="WHITE">
+                  <Label text="Mes" textFill="#03dac6">
                      <HBox.margin>
                         <Insets left="20.0" top="23.0" />
                      </HBox.margin>
@@ -67,7 +67,7 @@
                         <Insets left="10.0" top="20.0" />
                      </HBox.margin>
                   </ChoiceBox>
-                  <Label text="Año" textFill="WHITE">
+                  <Label text="Año" textFill="#03dac6">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -203,7 +203,7 @@
                   </ScrollPane>
                   <AnchorPane prefHeight="47.0" prefWidth="798.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="5.0" prefHeight="37.0" prefWidth="114.0" text="Importe total:" textFill="WHITE">
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="37.0" prefWidth="114.0" text="Importe total:" textFill="#d1aefd">
                            <font>
                               <Font name="Candara" size="18.0" />
                            </font>

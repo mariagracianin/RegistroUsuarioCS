@@ -40,10 +40,9 @@ public class EmpMisReservasController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        reservas= new ArrayList<>();
         contenedorReservas.getChildren().clear();
         try {
-            reservas.addAll(getDatos());
+            reservas = getDatos();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -55,7 +54,7 @@ public class EmpMisReservasController implements Initializable {
             for (int i=0; i<reservas.size(); i++){
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardReserva.fxml"));
                 SplitPane actBox = fxmlLoader.load();
 
@@ -77,6 +76,44 @@ public class EmpMisReservasController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+    public void actualizarReservas(){
+        reservas= new ArrayList<>();
+        contenedorReservas.getChildren().clear();
+        try {
+            reservas.addAll(getDatos());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        int column=0;
+        int row=0;
+
+        try {
+            for (int i=0; i<reservas.size(); i++){
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardReserva.fxml"));
+                SplitPane actBox = fxmlLoader.load();
+
+                CardReservaRealizadaController cardController = fxmlLoader.getController();
+                cardController.setDatos(reservas.get(i));
+                // cardReservaRealizadaController.setDatos(reservas.get(i));
+
+                if (column == 2) {
+                    column = 0;
+                    row++;
+                }
+
+                contenedorReservas.add(actBox,column++,row);
+                GridPane.setMargin(actBox, new Insets(10));
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private List<ReservaDTO> getDatos() throws JsonProcessingException {

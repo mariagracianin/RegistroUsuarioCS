@@ -1,6 +1,9 @@
 package com.tictok.RUCliente.Empleado;
 
 import com.tictok.Commons.ReservaDTO;
+import com.tictok.RUCliente.Centro.CentroAgregarActController;
+import com.tictok.RUCliente.Main;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -9,7 +12,6 @@ import org.springframework.stereotype.Component;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@Component
 public class CardReservaRealizadaController implements Initializable {
     public Label costoReserva;
     public Label nombreReserva;
@@ -20,19 +22,23 @@ public class CardReservaRealizadaController implements Initializable {
 
     private ReservaDTO reservaSeleccionada;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
     }
 
     public void cancelarReserva(ActionEvent actionEvent) {
+        UsuarioRest.deleteReserva(reservaSeleccionada.getTipo(),reservaSeleccionada.getCodigoReserva());
+        EmpMisReservasController controller = (EmpMisReservasController) Main.getContext().getBean("empMisReservasController");
+        controller.actualizarReservas();
         //borrar de la tabla reservas con los datos de atributo reservaSeleccionada
     }
 
     public void setDatos(ReservaDTO reservaDTO) {
-        reservaSeleccionada=reservaDTO;
-        nombreReserva.setText(reservaDTO.getNombreActividad());
-        costoReserva.setText(reservaDTO.getPrecio().toString());
+        this.reservaSeleccionada=reservaDTO;
+        this.nombreReserva.setText(reservaDTO.getNombreActividad());
+        this.costoReserva.setText(reservaDTO.getPrecio().toString());
         String dia = "";
         switch (reservaDTO.getHorario().getDia()) {
             case 1 -> dia = "Lunes, ";

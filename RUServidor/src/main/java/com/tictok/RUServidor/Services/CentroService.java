@@ -176,4 +176,19 @@ public class CentroService {
         }
         return servicioResumenDTOList;
     }
+
+    public void nuevaCuenta(String mailCentro, CuentaDTO cuentaDTO) throws CuentaNoExisteException {
+        Cuenta cuentaNueva = new Cuenta(cuentaDTO.getMail(),cuentaDTO.getPassword(),cuentaDTO.getTipo());
+        Optional<Cuenta> cuentaCentroLogeadaOpt = cuentaRepository.findById(mailCentro);
+        if (!cuentaCentroLogeadaOpt.isPresent()) {
+            throw new CuentaNoExisteException(mailCentro);
+        }
+        Cuenta cuentaCentroLogeada = cuentaCentroLogeadaOpt.get();
+        CentroDeportivo centroDeportivoLogeado = cuentaCentroLogeada.getCentroDeportivo();
+
+        centroDeportivoLogeado.setCuenta(cuentaNueva);
+        cuentaNueva.setCentroDeportivo(centroDeportivoLogeado);
+        cuentaRepository.save(cuentaNueva);
+        centroRepository.save(centroDeportivoLogeado);
+    }
 }

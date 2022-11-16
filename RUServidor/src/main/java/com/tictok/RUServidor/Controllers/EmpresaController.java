@@ -1,10 +1,7 @@
 package com.tictok.RUServidor.Controllers;
 
-import com.tictok.Commons.CheckInDTO;
-import com.tictok.Commons.MegaUsuarioDTO;
-import com.tictok.Commons.NuevaEmpresaDTO;
+import com.tictok.Commons.*;
 import com.tictok.Commons.Resumenes.UsuarioResumenDTO;
-import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.Empresa;
 import com.tictok.RUServidor.Entities.Usuario;
 import com.tictok.RUServidor.Exceptions.*;
@@ -49,4 +46,12 @@ public class EmpresaController {
     public List<CheckInDTO> getBalanceDeUsuario(@PathVariable String mailEmpresa, @PathVariable Integer cedulaUsuario,
                                     @PathVariable int mes, @PathVariable int year) throws EntidadNoExisteException, AccesoNoPermitidoException {
         return empresaService.getBalanceDeUsuario(mailEmpresa, cedulaUsuario, mes, year);
-} }
+    }
+
+    @PostMapping("/{mailEmpresa}/postCuenta")
+    public void postNewCuenta(@PathVariable String mailEmpresa, @RequestBody CuentaDTO cuentaDTO) throws CuentaNoExisteException {
+        empresaService.nuevaCuenta(mailEmpresa,cuentaDTO);
+    }
+
+}
+

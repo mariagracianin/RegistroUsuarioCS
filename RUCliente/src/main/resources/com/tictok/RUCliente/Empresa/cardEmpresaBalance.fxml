@@ -10,75 +10,78 @@
    <children>
       <Label fx:id="lblCedula" prefHeight="30.0" prefWidth="110.0" text="Cedula" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="14.0" />
+            <Font name="Candara Bold" size="15.0" />
          </font>
          <HBox.margin>
-            <Insets left="15.0" top="5.0" />
+            <Insets left="7.0" top="2.0" />
          </HBox.margin>
       </Label>
       <Label fx:id="lblNombre" prefHeight="30.0" prefWidth="160.0" text="Nombre" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="14.0" />
+            <Font name="Candara Bold" size="15.0" />
          </font>
          <HBox.margin>
-            <Insets top="5.0" />
+            <Insets top="2.0" />
          </HBox.margin>
       </Label>
       <Label fx:id="lblApellido" prefHeight="30.0" prefWidth="160.0" text="Apellido" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="14.0" />
+            <Font name="Candara Bold" size="15.0" />
          </font>
          <HBox.margin>
-            <Insets top="5.0" />
+            <Insets top="2.0" />
          </HBox.margin>
       </Label>
       <Label fx:id="lblCantCheckIns" prefHeight="30.0" prefWidth="140.0" text="Cant Check Ins" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="14.0" />
+            <Font name="Candara Bold" size="15.0" />
          </font>
          <HBox.margin>
-            <Insets top="5.0" />
+            <Insets top="2.0" />
          </HBox.margin>
       </Label>
       <Label fx:id="lblImporte" prefHeight="30.0" prefWidth="135.0" text="Importe" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="14.0" />
+            <Font name="Candara Bold" size="15.0" />
          </font>
          <HBox.margin>
-            <Insets top="5.0" />
+            <Insets top="2.0" />
          </HBox.margin>
       </Label>
       <Label fx:id="lblSaldo" prefHeight="30.0" prefWidth="115.0" text="Saldo" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="14.0" />
+            <Font name="Candara Bold" size="15.0" />
          </font>
          <HBox.margin>
-            <Insets top="5.0" />
+            <Insets top="2.0" />
          </HBox.margin>
       </Label>
       <Label fx:id="lblSaldoBase" prefHeight="30.0" prefWidth="115.0" text="Saldo base" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="14.0" />
+            <Font name="Candara Bold" size="15.0" />
          </font>
          <HBox.margin>
-            <Insets top="5.0" />
+            <Insets top="2.0" />
          </HBox.margin>
       </Label>
       <Label fx:id="lblSobregiro" prefHeight="30.0" prefWidth="100.0" text="Sobregiro" textFill="WHITE">
          <font>
-            <Font name="Candara Bold" size="14.0" />
+            <Font name="Candara Bold" size="15.0" />
          </font>
          <HBox.margin>
-            <Insets top="5.0" />
+            <Insets top="2.0" />
          </HBox.margin>
       </Label>
-      <Button fx:id="btnAmpliar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ampliar" prefHeight="33.0" prefWidth="75.0" styleClass="btnCerrarSesion" text="Ampliar" textAlignment="CENTER">
+      <Button fx:id="btnAmpliar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ampliar" prefHeight="25.0" prefWidth="75.0" styleClass="btnCerrarSesion" text="Ampliar" textAlignment="CENTER">
          <HBox.margin>
-            <Insets bottom="2.0" top="2.0" />
+            <Insets />
          </HBox.margin>
          <font>
             <Font name="Candara Bold" size="15.0" />
          </font>
       </Button>
    </children>
+   <padding>
+      <Insets left="5.0" top="5.0" />
+   </padding>
 </HBox>

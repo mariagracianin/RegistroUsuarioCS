@@ -12,57 +12,57 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroBalanceController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Admin.AdministradorBalanceCentrosController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Centro" textAlignment="CENTER" textFill="#03dac6">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="202.0" text="Administrador" textAlignment="CENTER" textFill="#03dac6">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="btnCheckIn" mnemonicParsing="false" onAction="#irACheckIn" prefHeight="35.0" prefWidth="202.0" text="Check-in">
+            <Button fx:id="btnRegistrarEmpresa" mnemonicParsing="false" onAction="#registrarEmpresa" prefHeight="35.0" prefWidth="202.0" stylesheets="@../entidad_style.css" text="Registrar empresa">
                <font>
-                  <Font name="Candara Bold" size="18.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnAgregarActividad" mnemonicParsing="false" onAction="#agregarAct" prefHeight="35.0" prefWidth="202.0" text="Agregar actividad">
+            <Button fx:id="btnRegistrarCentro" mnemonicParsing="false" onAction="#registrarCentro" prefHeight="35.0" prefWidth="202.0" text="Registrar centro deportivo">
                <font>
-                  <Font name="Candara Bold" size="18.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnAgregarCanchas" mnemonicParsing="false" onAction="#agregarCancha" prefHeight="35.0" prefWidth="202.0" text="Agregar cancha">
+            <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="35.0" prefWidth="202.0" text="Ver empresas">
                <font>
-                  <Font name="Candara Bold" size="18.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerActividades" mnemonicParsing="false" onAction="#verActividades" prefHeight="35.0" prefWidth="202.0" text="Ver actividades activas">
+            <Button fx:id="btnVerCentros" mnemonicParsing="false" onAction="#mostrarTablaCentros" prefHeight="35.0" prefWidth="202.0" text="Ver centros deportivos">
                <font>
-                  <Font name="Candara Bold" size="18.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerCanchas" mnemonicParsing="false" onAction="#verCanchas" prefHeight="35.0" prefWidth="202.0" text="Ver canchas activas">
+            <Button fx:id="btnBalanceEmpresas" mnemonicParsing="false" onAction="#mostrarBalanceEmpresas" prefHeight="35.0" prefWidth="202.0" text="Balance empresas">
                <font>
-                  <Font name="Candara Bold" size="18.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" text="Balance">
+            <Button fx:id="btnBalanceCentros" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" text="Balance centros">
                <font>
-                  <Font name="Candara Bold" size="18.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" styleClass="btnCerrarSesion" text="Cerrar sesión">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
          </children>
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="80.0" prefWidth="798.0" styleClass="leftPane">
+            <HBox prefHeight="83.0" prefWidth="698.0" styleClass="leftPane">
                <children>
                   <Label text="Mes" textFill="WHITE">
                      <HBox.margin>
@@ -100,15 +100,19 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="tblServicioResumen" prefHeight="611.0" prefWidth="698.0" stylesheets="@../entidad_style.css">
+            <TableView fx:id="tblCentrosResumen" prefHeight="611.0" prefWidth="698.0" stylesheets="@../entidad_style.css">
                <columns>
-                  <TableColumn fx:id="colServicio" prefWidth="250.0" text="Servicio" />
-                  <TableColumn fx:id="colTipo" prefWidth="130.0" text="Tipo" />
-                  <TableColumn fx:id="colCantCheckIns" prefWidth="160.0" text="Cantidad de Check-In" />
+                  <TableColumn fx:id="colCentro" prefWidth="200.0" text="Centro" />
+                  <TableColumn fx:id="colRUT" prefWidth="130.0" text="RUT" />
+                  <TableColumn fx:id="colTelefono" prefWidth="110.0" text="Teléfono" />
+                  <TableColumn fx:id="colDireccion" prefWidth="180.0" text="Dirección" />
+                  <TableColumn fx:id="colEncargado" prefWidth="130.0" text="Encargado" />
+                  <TableColumn fx:id="colCantCheckIns" prefWidth="120.0" text="Cant. Check-In" />
+                  <TableColumn fx:id="colCantUsuarios" prefWidth="120.0" text="Cant. Usuarios" />
                   <TableColumn fx:id="colImporte" prefWidth="160.0" text="Importe" />
                </columns>
             </TableView>
-            <AnchorPane prefHeight="41.0" prefWidth="698.0">
+            <AnchorPane prefHeight="41.0" prefWidth="698.0" styleClass="leftPane" stylesheets="@../entidad_style.css">
                <children>
                   <Label layoutX="38.0" layoutY="5.0" prefHeight="37.0" prefWidth="114.0" text="Importe total:" textFill="#cda6fc">
                      <font>
