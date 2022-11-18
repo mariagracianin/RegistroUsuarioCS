@@ -19,18 +19,18 @@ public class AdminController {
         this.cargaDeDatosService = cargaDeDatosService;
     }
 
-    @GetMapping("balance/centrosDeportivos/{mes}/{year}")
+    @GetMapping("/balance/centrosDeportivos/{mes}/{year}")
     public List<BalanceDTO> getBalanceCentros(@PathVariable int mes, @PathVariable int year){
         return cuentaService.getBalanceCentros(mes, year);
     }
 
-    @GetMapping("balance/empresas/{mes}/{year}")
+    @GetMapping("/balance/empresas/{mes}/{year}")
     public List<BalanceDTO> getBalanceEmpresas(@PathVariable int mes, @PathVariable int year){
         return cuentaService.getBalanceEmpresas(mes, year);
     }
 
-    @PostMapping("cargaDeDatos")
-    public void cargarDeDatos(){
+    @PostMapping("/cargaDeDatos")
+    public void cargarDeDatos() throws Exception {
         cargaDeDatosService.cargaDeDatos();
     }
 }
