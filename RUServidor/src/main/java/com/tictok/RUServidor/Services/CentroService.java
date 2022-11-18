@@ -3,6 +3,7 @@ package com.tictok.RUServidor.Services;
 import com.tictok.Commons.*;
 import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
+import com.tictok.RUServidor.Exceptions.EntidadNoExisteException;
 import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.CanchaMapper;
 import com.tictok.RUServidor.Mappers.CentroMapper;
@@ -46,15 +47,6 @@ public class CentroService {
         this.reservaCanchaRepository = reservaCanchaRepository;
         this.checkInActividadRepository = checkInActividadRepository;
 
-//        CentroDeportivo centroDeportivo = new CentroDeportivo("Coso", "Juan", "005262", "Juan2");
-//        centroRepository.save(centroDeportivo);
-//        System.out.println("Creamos centro");
-//
-//        DayOfWeek dia = LocalDate.MAX.getDayOfWeek();
-//        LocalTime horaInicio = LocalTime.now();
-//        Cancha cancha = new Cancha(centroDeportivo,"la canchita", dia, horaInicio, horaInicio, 100, 100);
-//        canchaRepository.save(cancha);
-//        System.out.println("Guardamos cancha");
     }
 
     public void crearPrimerCentro(){
@@ -105,10 +97,10 @@ public class CentroService {
         return centro1;
     }
 
-    public CentroDeportivo findById(String nombreCentro) throws Exception {
+    public CentroDeportivo findById(String nombreCentro) throws EntidadNoExisteException {
         Optional<CentroDeportivo> centro1 = centroRepository.findById(nombreCentro);
         if (centro1.isEmpty()){
-            throw new Exception(); //Todo mandar cosos
+            throw new EntidadNoExisteException("El centro no existe"); //Todo mandar cosos
         }
         return centro1.get();
     }
@@ -137,25 +129,9 @@ public class CentroService {
         CentroDeportivo centro = cuentaService.findOnebyId(mail).getCentroDeportivo();
         String nombreCentro = centro.getNombreCentro();
         LocalDate fecha = LocalDate.of(year, mes, 1);
-//        Date start = Date.valueOf(fecha);
-
-//        String fechaInicioStr = "'" +fecha.toString().replace('-', '/') + "'";
-//        fechaInicioStr = fecha.toString().replace('-', '/');
-
         LocalDate fechaFinal= fecha.plusMonths(1);
         Date fechaInicio = Date.valueOf(fecha);
         Date fechaFin = Date.valueOf(fechaFinal);
-//        String fechaFinStr = "'" +fechaFin.toString().replace('-', '/') + "'";
-//        fechaFinStr = fechaFin.toString().replace('-', '/');
-//        System.out.println(fechaInicioStr);
-//        System.out.println(fechaFinStr);
-//        Date finish = Date.valueOf(fecha.withDayOfMonth(fecha.lengthOfMonth()));
-//        List<CheckInActividad> checkInActividades = checkInActividadRepository.getCheckInPorCentroYFechas(nombreCentro, start, finish);
-//        for (int i = 0; i<checkInActividades.size(); i++){
-//            CheckInActividad checkInActividad = checkInActividades.get(i);
-//            String nombreActividad = checkInActividad.getActividad().getActividadId().getNombreServicio();
-//            String tipo = "coso";
-//        }
         List<Tuple> tuplasBalances = centroRepository.getBalanceActividades(fechaInicio, fechaFin, nombreCentro);
         List<ServicioResumenDTO> servicioResumenDTOList = new ArrayList<ServicioResumenDTO>(tuplasBalances.size());
         String nombreServicio;
