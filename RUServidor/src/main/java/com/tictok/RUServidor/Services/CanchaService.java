@@ -28,6 +28,7 @@ import java.util.*;
 public class CanchaService {
 
     private final CuentaService cuentaService;
+    private final UsuarioService usuarioService;
     private final UsuarioRepository usuarioRepository;
     private final CanchaRepository canchaRepository;
     private final ReservaCanchaRepository reservaCanchaRepository;
@@ -35,11 +36,12 @@ public class CanchaService {
     private final CheckInCanchaRepository checkInCanchaRepository;
 
     @Autowired
-    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService, ImagenRepository imagenRepository,CheckInCanchaRepository checkInCanchaRepository) {
+    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService, UsuarioService usuarioService, ImagenRepository imagenRepository, CheckInCanchaRepository checkInCanchaRepository) {
         this.usuarioRepository = usuarioRepository;
         this.canchaRepository = canchaRepository;
         this.reservaCanchaRepository = reservaCanchaRepository;
         this.cuentaService = cuentaService;
+        this.usuarioService = usuarioService;
         this.imagenRepository = imagenRepository;
         this.checkInCanchaRepository = checkInCanchaRepository;
     }
@@ -84,15 +86,17 @@ public class CanchaService {
         return reservaCanchaRepository.save(reservaCancha);
     }
 
-    public void checkInCancha(CheckInDTO checkInCancha) throws ReservaNoExisteException {
-        String tipo = checkInCancha.getTipo();
+    public void checkInCancha(CheckInDTO checkInCancha) throws EntidadNoExisteException, SaldoInsuficienteException {
         Long codReserva = checkInCancha.getCodigoCheckIn(); //viaja en CodigoCheckIn pero es el de la reserva
 
         Optional<ReservaCancha> reserva= reservaCanchaRepository.findById(codReserva);  //get reserva de ESE usuario
         if (!reserva.isPresent()) {
-            throw new ReservaNoExisteException();
+            throw new EntidadNoExisteException("La reserva no existe");
         }
         ReservaCancha reservaCancha = reserva.get();
+        LocalDate fecha = HorarioMapper.getFecha(reservaCancha.getCancha().getCanchaId().getDia());
+        Date dateFecha = Date.valueOf(fecha);
+
         Long codReservaPadre;
         boolean esPadre = false;
         try {
@@ -115,6 +119,11 @@ public class CanchaService {
             }else {
                 check = new CheckInCancha(reservaCancha.getReservaCanchaPadre(),date,usuario,cancha,precio);
             }
+            // Control de saldo
+            Double gastos = usuarioService.getGastosMes(usuario.getCedula(), fecha.getMonthValue(), fecha.getYear());
+            if (usuario.getSaldoBase() + usuario.getSobregiro() < gastos + precio){
+                throw new SaldoInsuficienteException();
+            }
             checkInCanchaRepository.save(check);
         }else{
             Double precioEntreCheckIns = precio/(listCheckInsPrevios.size()+1);
@@ -128,6 +137,11 @@ public class CanchaService {
                 check = new CheckInCancha(reservaCancha,date,usuario,cancha,precioEntreCheckIns);
             }else {
                 check = new CheckInCancha(reservaCancha.getReservaCanchaPadre(),date,usuario,cancha,precioEntreCheckIns);
+            }
+            // Control de saldo
+            Double gastos = usuarioService.getGastosMes(usuario.getCedula(), fecha.getMonthValue(), fecha.getYear());
+            if (usuario.getSaldoBase() + usuario.getSobregiro() < gastos + precioEntreCheckIns){
+                throw new SaldoInsuficienteException();
             }
             checkInCanchaRepository.save(check);
         }
