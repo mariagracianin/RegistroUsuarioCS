@@ -11,6 +11,7 @@ import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
+import net.bytebuddy.asm.Advice;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -102,7 +103,13 @@ public class ActividadService {
         ServicioId actividadId = new ServicioId(checkInDTO.getNombreActividad(), checkInDTO.getNombreCentro(), horarioId.getDia(), horarioId.getHoraInicio(), horarioId.getHoraFin());
         Actividad actividad = actividadRepository.getReferenceById(actividadId);
 
-        LocalDate fecha = HorarioMapper.getFecha(horarioId.getDia());
+        LocalDate fecha;
+        if (actividad.getPaseLibre()){
+            fecha = LocalDate.now();
+        }
+        else {
+            fecha = HorarioMapper.getFecha(horarioId.getDia());
+        }
         Date dateFecha = Date.valueOf(fecha);
 
         if (actividad.getCupos()!= -1){
@@ -122,12 +129,14 @@ public class ActividadService {
                     throw new CuposAgotadosException();
                 }
             }
+
         // Control de saldo
         Double gastos = usuarioService.getGastosMes(usuario.getCedula(), fecha.getMonthValue(), fecha.getYear());
         if (usuario.getSaldoBase() + usuario.getSobregiro() < gastos + actividad.getPrecio()){
             throw new SaldoInsuficienteException();
         }
         CheckInActividad checkInActividad = new CheckInActividad(usuario, dateFecha, actividad);
+        System.out.println("Lo cree");
         checkInActividad = checkInActividadRepository.save(checkInActividad);
         //return  CheckInMapper.fromCheckInActividadToCheckInDTO(checkInActividad); ????????
     }

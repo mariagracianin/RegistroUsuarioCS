@@ -204,6 +204,12 @@ public class CanchaService {
         return listaSuperCanchaDTO;
     }
 
+    public ListaCanchasDTOConCount buscarCanchasPageable(String campoBusqueda, int page, int size){
+        Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
+        Page<Tuple> canchasInfosObjects = canchaRepository.findWithBusqueda(paging, campoBusqueda);
+        return procesarCanchas(canchasInfosObjects);
+    }
+
     @Transactional
     public CanchaConHorariosYCuposDTO getCanchaConHorariosYCuposDTO(String centroDeportivo, String canchaNombre) throws EntidadNoExisteException {
         List<Cancha> listaDeCanchas = canchaRepository.findByCentroAndNombre(centroDeportivo, canchaNombre);

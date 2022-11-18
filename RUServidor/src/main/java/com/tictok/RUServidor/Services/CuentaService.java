@@ -197,6 +197,7 @@ public class CuentaService {
                 importe = (double) tupla.get("importe_total");
             } catch  (NullPointerException n) {
             importe = 0.0;
+            cantidadCheckIns = 0;
         }
         BalanceDTO balanceDTO = new BalanceDTO(nombre, encargado, address, telefono,
                 tipo, rut, cantidadCheckIns, importe);

@@ -35,5 +35,21 @@ public interface CanchaRepository extends JpaRepository<Cancha, ServicioId> {
     Page<Tuple> findDistinctBy(Pageable pageable);
 
 
+    @Query(value = """
+        select distinct c.centro_deportivo_nombre_centro as nombreCentro, c.nombre_servicio as nombreCancha,
+                  			c.precio as precio, c.imagen_id as imageId, cd.address as address,
+                  			cd.barrio as barrio, cd.telefono as telefono
+                  			from cancha c
+                  			join centro_deportivo cd on c.centro_deportivo_nombre_centro = cd.nombre_centro
+                            where upper(a.nombre_servicio) like %:campoBusqueda% or
+                            upper(a.centro_deportivo_nombre_centro) like %:campoBusqueda% or
+                            upper(cd.barrio) like %:campoBusqueda% or upper(cd.barrio) like %:campoBusqueda%
+
+""",
+            nativeQuery = true
+    )
+    Page<Tuple> findWithBusqueda(Pageable paging,  @Param("campoBusqueda") String campoBusqueda);
+
+
     //Intentemos que funque
 }
