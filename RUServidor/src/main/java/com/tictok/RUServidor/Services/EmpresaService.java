@@ -117,14 +117,9 @@ public class EmpresaService {
             cantidadCheckIns = temp.intValue();
             try {
                 importe = (double) tupla.get("importe_total");
-                System.out.println("Importe:  " + importe);
             } catch  (NullPointerException n){
                 importe = 0.0;
-                Object[] arrayTupla = tupla.toArray();
-                for (int j = 0; j<arrayTupla.length; j++){
-                    System.out.println(arrayTupla[j]);
-                }
-                System.out.println("No tengo importe");
+                cantidadCheckIns = 0;
             }
             saldoBase = (double) tupla.get("saldo_base");
             saldo = saldoBase - importe;

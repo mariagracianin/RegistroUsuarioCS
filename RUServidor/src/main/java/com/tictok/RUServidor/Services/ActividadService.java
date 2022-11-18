@@ -220,7 +220,7 @@ public class ActividadService {
                 centro1.setActividad(actividadI);
             }
         } else {
-            Actividad actividadI = new Actividad(centro1, nuevaActividadDTO.getNombreServicio(), null, null, null, nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
+            Actividad actividadI = new Actividad(centro1, nuevaActividadDTO.getNombreServicio(), DayOfWeek.MONDAY, LocalTime.of(0,0), LocalTime.of(0,1), nuevaActividadDTO.getPrecio(), nuevaActividadDTO.getCupos(), nuevaActividadDTO.getPaseLibre());
             if (nuevaActividadDTO.getImageString() != null) {
                 actividadI.setImagen(imagen);
             }
