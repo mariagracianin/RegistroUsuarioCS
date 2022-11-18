@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Tuple;
+import javax.transaction.Transactional;
 import java.math.BigInteger;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -135,6 +136,7 @@ public class EmpresaService {
         return usuarioResumenDTOList;
     }
 
+    @Transactional
     public List<CheckInDTO> getBalanceDeUsuario(String mailEmpresa, Integer cedulaUsuario, int mes, int year) throws EntidadNoExisteException, AccesoNoPermitidoException {
         Optional<Cuenta> cuentaEmpresa = cuentaRepository.findById(mailEmpresa);
 

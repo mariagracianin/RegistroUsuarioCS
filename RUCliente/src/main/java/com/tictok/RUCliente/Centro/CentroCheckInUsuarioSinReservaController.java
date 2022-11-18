@@ -146,4 +146,8 @@ public class CentroCheckInUsuarioSinReservaController{
     public void setCedulaUsuario(int cedulaUsuario) {
         this.cedulaUsuario = cedulaUsuario;
     }
+
+    public void volverAtras(ActionEvent actionEvent) throws IOException {
+        centroController.irACheckIn(actionEvent);
+    }
 }

@@ -39,23 +39,12 @@ public class CargaDeDatosService {
     }
 
     public void crearCentrosConServicios(){
-        NuevoCentroDTO primerCentroDTO = new NuevoCentroDTO("centro@mail","contra","centro", "direccion2", "telefono2", "encargado2","rut2","razonSocial2","barrio");
+        NuevoCentroDTO primerCentroDTO = new NuevoCentroDTO("centro@mail","contra","Polideportivo Carrasco", "direccion2", "09973515", "encargado2","rut2","razonSocial2","Carrasco");
         NuevoCentroDTO segundoCentroDTO = new NuevoCentroDTO("centro2@mail","contra","centro2", "direccion3", "telefono3", "encargado3","rut3","razonSocial3","barrio2");
         CentroDeportivo primerCentro = centroService.saveNewCentro(primerCentroDTO);
         CentroDeportivo segundoCentro = centroService.saveNewCentro(segundoCentroDTO);
 
-        List<Cancha> cancha1 = new ArrayList<Cancha>(50);
-        LocalTime hora = LocalTime.of(8, 0);
-        LocalTime horaFin = hora.plusHours(1l);
-        DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
-        for (long j = 0l; j<5l; j++){
-            for (long i = 0l; i<10l; i++){
-                cancha1.add(new Cancha(primerCentro, "Cancha 1 (Tenis)", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 500.0, 5));
-            }
-        }
-        Cancha newCancha1 = new Cancha(primerCentro,"Cancha de Tenis", DayOfWeek.MONDAY, LocalTime.of(10,00),LocalTime.of(11,00),1000.0,100);
-        Cancha newCancha2 = new Cancha(primerCentro,"Cancha de Fútbol",DayOfWeek.MONDAY,LocalTime.of(10,00),LocalTime.of(11,00),1000.0,10);
-        Cancha newCancha3 = new Cancha(primerCentro,"Cancha de Fútbol",DayOfWeek.MONDAY,LocalTime.of(9,00),LocalTime.of(10,00),1000.0,10);
+        agregarCanchasAPrimerCentro(primerCentro);
 
         Actividad newActividad1 = new Actividad(primerCentro,"Tenis",DayOfWeek.MONDAY, LocalTime.of(10,00),LocalTime.of(11,00),1000.0,10,false);
         Actividad newActividad2 = new Actividad(primerCentro,"Tenis",DayOfWeek.SUNDAY, LocalTime.of(9,00),LocalTime.of(10,00),1000.0,10,false);
@@ -68,12 +57,7 @@ public class CargaDeDatosService {
         Cancha newCancha5 = new Cancha(segundoCentro,"cancha2",DayOfWeek.MONDAY,LocalTime.of(10,00),LocalTime.of(11,00),1000.0,10);
         Cancha newCancha6  = new Cancha(segundoCentro,"cancha_basquet2",DayOfWeek.MONDAY,LocalTime.of(9,00),LocalTime.of(10,00),1000.0,10);
 
-        for (int i = 0; i< cancha1.size(); i++){
-            canchaRepository.save(cancha1.get(i));
-        }
-        canchaRepository.save(newCancha1);
-        canchaRepository.save(newCancha2);
-        canchaRepository.save(newCancha3);
+
         canchaRepository.save(newCancha4);
         canchaRepository.save(newCancha5);
         canchaRepository.save(newCancha6);
@@ -85,4 +69,79 @@ public class CargaDeDatosService {
         actividadRepository.save(newActividad6);
         actividadRepository.save(newActividad7);
     }
+
+
+    private void agregarCanchasAPrimerCentro(CentroDeportivo centroDeportivo){
+        List<Cancha> canchas1 = new ArrayList<Cancha>(50);
+        LocalTime hora = LocalTime.of(8, 0);
+        LocalTime horaFin = hora.plusHours(1l);
+        DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
+        for (long j = 0l; j<5l; j++){
+            for (long i = 0l; i<10l; i++){
+                canchas1.add(new Cancha(centroDeportivo, "Tenis 1", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 500.0, 5));
+                canchas1.add(new Cancha(centroDeportivo, "Tenis 2", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 500.0, 5));
+                canchas1.add(new Cancha(centroDeportivo, "Tenis 3", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 500.0, 5));
+                canchas1.add(new Cancha(centroDeportivo, "Fútbol 1", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 800.0, 10));
+                canchas1.add(new Cancha(centroDeportivo, "Fútbol 2", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 800.0, 10));
+                canchas1.add(new Cancha(centroDeportivo, "Fútbol 3", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 500.0, 5));
+            }
+        }
+        dayOfWeek = DayOfWeek.SATURDAY;
+        List<Cancha> cancha1FinDeSemana = new ArrayList<Cancha>(10);
+        for (long j = 0l; j<1l; j++){
+            for (long i = 0l; i<10l; i++){
+                canchas1.add(new Cancha(centroDeportivo, "Tenis 1 (Fin de semana)", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 750.0, 5));
+                canchas1.add(new Cancha(centroDeportivo, "Tenis 2 (Fin de semana)", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 750.0, 5));
+                canchas1.add(new Cancha(centroDeportivo, "Tenis 3 (Fin de semana)", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 750.0, 5));
+                canchas1.add(new Cancha(centroDeportivo, "Fútbol 1 (Fin de semana)", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 1000.0, 10));
+                canchas1.add(new Cancha(centroDeportivo, "Fútbol 2 (Fin de semana)", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 1000.0, 10));
+                canchas1.add(new Cancha(centroDeportivo, "Fútbol 3 (Fin de semana)", dayOfWeek.plus(j), hora.plusHours(i),horaFin.plusHours(i), 1000.0, 10));
+            }
+        }
+        for (int i = 0; i< canchas1.size(); i++){
+            canchaRepository.save(canchas1.get(i));
+        }
+        for (int i = 0; i< cancha1FinDeSemana.size(); i++){
+            canchaRepository.save(cancha1FinDeSemana.get(i));
+        }
+    }
+
+    private void agregarActividadesAPrimerCentro(CentroDeportivo centroDeportivo){
+        List<Actividad> actividades1 = new ArrayList<Actividad>();
+
+        LocalTime horaInicio = LocalTime.of(16, 30);
+        LocalTime horaInicio2 = LocalTime.of(8, 30);
+
+
+        //Añadiendo Tenis con dos horarios por día
+        actividades1.add(new Actividad(centroDeportivo, "Tenis Principiante", DayOfWeek.TUESDAY,
+                horaInicio, horaInicio.plusHours(1l), 150.0, 10, false));
+        actividades1.add(new Actividad(centroDeportivo, "Tenis Principiante", DayOfWeek.THURSDAY,
+                horaInicio, horaInicio.plusHours(1l), 150.0, 10, false));
+        actividades1.add(new Actividad(centroDeportivo, "Tenis Principiante", DayOfWeek.TUESDAY,
+                horaInicio2, horaInicio2.plusHours(1l), 150.0, 10, false));
+        actividades1.add(new Actividad(centroDeportivo, "Tenis Principiante", DayOfWeek.THURSDAY,
+                horaInicio2, horaInicio2.plusHours(1l), 150.0, 10, false));
+
+
+
+        horaInicio = horaInicio.plusMinutes(75l);
+
+        actividades1.add(new Actividad(centroDeportivo, "Tenis Intermedio", DayOfWeek.TUESDAY,
+                horaInicio, horaInicio.plusHours(1l), 150.0, 8, false));
+        actividades1.add(new Actividad(centroDeportivo, "Tenis Intermedio", DayOfWeek.THURSDAY,
+                horaInicio, horaInicio.plusHours(1l), 150.0, 8, false));
+
+        horaInicio = horaInicio.plusMinutes(75l);
+        actividades1.add(new Actividad(centroDeportivo, "Tenis Avanzado", DayOfWeek.TUESDAY,
+                horaInicio, horaInicio.plusHours(1l), 150.0, 8, false));
+        actividades1.add(new Actividad(centroDeportivo, "Tenis Avanzado", DayOfWeek.THURSDAY,
+                horaInicio, horaInicio.plusHours(1l), 150.0, 8, false));
+
+        for (int i = 0; i< actividades1.size(); i++){
+            actividadRepository.save(actividades1.get(i));
+        }
+
+    }
+
 }

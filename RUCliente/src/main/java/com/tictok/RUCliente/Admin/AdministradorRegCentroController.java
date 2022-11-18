@@ -63,9 +63,6 @@ public class AdministradorRegCentroController implements Initializable {
     public void mostrarTablaCentros(ActionEvent actionEvent) {
     }
 
-    public void mostrarLiquidacion(ActionEvent actionEvent) {
-    }
-
     public void guardarDatos(ActionEvent actionEvent) throws IOException {
         HttpResponse<String> responseCode = centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText(), rut.getText(),razonSocial.getText(),barrio.getText());
         if(responseCode.getCode()==409){
@@ -94,7 +91,7 @@ public class AdministradorRegCentroController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("vent_emergente_error.fxml"));
+        Parent root = fxmlLoader.load(EmpresaRegistroEmplController.class.getResourceAsStream("ventSaldoInsuficienteAct.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Error");
@@ -112,5 +109,13 @@ public class AdministradorRegCentroController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
+
+    public void mostrarBalanceEmpresas(ActionEvent actionEvent) throws IOException{
+        administradorController.mostrarBalanceEmpresas(actionEvent);
+    }
+
+    public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException {
+        administradorController.mostrarTablaCentros(actionEvent);
     }
 }

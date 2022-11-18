@@ -15,14 +15,14 @@ public interface EmpresaRepository extends JpaRepository<Empresa, String> {
 
     @Query(value = """
             select u.cedula as cedula, u.nombre as nombre, u.apellido as apellido,
-                        count(ci.precio) as cantidad_check_ins, sum(ci.precio) as importe_total,
+                        count((ci.id, ci.tipo)) as cantidad_check_ins, sum(ci.precio) as importe_total,
                         u.saldo_base as saldo_base, u.sobregiro as sobregiro
                 from usuario u
-              	left outer join (select cia.usuario_cedula as cedula, cia.precio
+              	left outer join (select cia.usuario_cedula as cedula, cia.precio, cia.id, 'Actividad' as tipo
                                     from check_in_actividad cia
                   					where cia.fecha between :inicio and :fin
                                 union
-                  				select cic.usuario_cedula as cedula, cic.precio
+                  				select cic.usuario_cedula as cedula, cic.precio, cic.id, 'Cancha' as tipo
                                     from check_in_cancha cic
                   					where cic.fecha between :inicio and :fin)
                     as ci on ci.cedula = u.cedula

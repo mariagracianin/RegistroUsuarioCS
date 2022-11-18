@@ -9,6 +9,7 @@ import com.tictok.Commons.Resumenes.UsuarioResumenDTO;
 import com.tictok.Commons.ServicioResumenDTO;
 import com.tictok.RUCliente.Empleado.CardCanchaController;
 import com.tictok.RUCliente.EmpresaRest;
+import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,10 +39,15 @@ public class EmpresaBalanceController implements Initializable {
     public ChoiceBox<String> choiceBoxMes;
     private List<UsuarioResumenDTO> lista;
 
+    private int intMes=0;
+    private int intAño=0;
+
     @Autowired
     EmpresaController empresaController;
     @Autowired
     EmpresaRest empresaRest;
+    @Autowired
+    MiniCuenta miniCuenta;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,7 +61,7 @@ public class EmpresaBalanceController implements Initializable {
         choiceBoxAño.setValue(c.get(Calendar.YEAR)+"");
         choiceBoxMes.setValue(mes[c.get(Calendar.MONTH)]);
 
-        int intMes=0;
+
         switch (choiceBoxMes.getValue()){
             case "Enero": intMes =1;
                 break;
@@ -95,10 +101,12 @@ public class EmpresaBalanceController implements Initializable {
 
         }
 
+        intAño = Integer.parseInt(choiceBoxAño.getValue());
+
         contenedor.getChildren().clear();
 
         try{
-            HttpResponse<String> response = empresaRest.obtenerBalanceGeneral(intMes,Integer.parseInt(choiceBoxAño.getValue()));
+            HttpResponse<String> response = empresaRest.obtenerBalanceGeneral(intMes,intAño);
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             this.lista = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, UsuarioResumenDTO.class));
@@ -112,13 +120,18 @@ public class EmpresaBalanceController implements Initializable {
                 //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empresa/cardEmpresaBalance.fxml"));
                 HBox filaBox = fxmlLoader.load();
+                //filaBox.setPadding(new Insets(0,0,0,5));
 
                 CardEmpresaBalanceController cardController = fxmlLoader.getController();
                 cardController.setData(lista.get(i).getCedula(), lista.get(i).getNombre(), lista.get(i).getApellido(), lista.get(i).getCantidadCheckIns(), lista.get(i).getImporte(), lista.get(i).getSaldo(), lista.get(i).getSaldoBase(), lista.get(i).getSobregiro());
                 cardController.setEsteUsuario(lista.get(i));
+                cardController.setMiniCuenta(miniCuenta);
+                cardController.setEsteMes(intMes);
+                cardController.setEsteAño(intAño);
 
                 contenedor.getChildren().add(filaBox);
                 contenedor.setSpacing(5);
+                GridPane.setMargin(filaBox, new Insets(5));
 
                 double importeTotal = 0;
 
@@ -128,6 +141,9 @@ public class EmpresaBalanceController implements Initializable {
 
                 valorImporteTotal.setText(importeTotal + "");
 
+            }
+            if (lista.isEmpty()) {
+                valorImporteTotal.setText(0 + "");
             }
 
         } catch (IOException e) {
@@ -155,7 +171,7 @@ public class EmpresaBalanceController implements Initializable {
     }
 
     public void filtrarMesAño(ActionEvent actionEvent) {
-        int intMes=0;
+
         switch (choiceBoxMes.getValue()){
             case "Enero": intMes =1;
                 break;
@@ -194,11 +210,12 @@ public class EmpresaBalanceController implements Initializable {
                 break;
 
         }
+        intAño = Integer.parseInt(choiceBoxAño.getValue());
 
         contenedor.getChildren().clear();
 
         try{
-            HttpResponse<String> response = empresaRest.obtenerBalanceGeneral(intMes,Integer.parseInt(choiceBoxAño.getValue()));
+            HttpResponse<String> response = empresaRest.obtenerBalanceGeneral(intMes,intAño);
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             this.lista = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, UsuarioResumenDTO.class));
@@ -212,14 +229,31 @@ public class EmpresaBalanceController implements Initializable {
                 //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empresa/cardEmpresaBalance.fxml"));
                 HBox filaBox = fxmlLoader.load();
+                //filaBox.setPadding(new Insets(0,0,0,5));
 
                 CardEmpresaBalanceController cardController = fxmlLoader.getController();
                 cardController.setData(lista.get(i).getCedula(), lista.get(i).getNombre(), lista.get(i).getApellido(), lista.get(i).getCantidadCheckIns(), lista.get(i).getImporte(), lista.get(i).getSaldo(), lista.get(i).getSaldoBase(), lista.get(i).getSobregiro());
                 cardController.setEsteUsuario(lista.get(i));
+                cardController.setMiniCuenta(miniCuenta);
+                cardController.setEsteMes(intMes);
+                cardController.setEsteAño(intAño);
+
 
                 contenedor.getChildren().add(filaBox);
                 contenedor.setSpacing(5);
+                GridPane.setMargin(filaBox, new Insets(5));
 
+                double importeTotal = 0;
+
+                for (UsuarioResumenDTO usuarioResumenDTO : this.lista) {
+                    importeTotal += usuarioResumenDTO.getImporte();
+                }
+
+                valorImporteTotal.setText(importeTotal + "");
+
+            }
+            if (lista.isEmpty()) {
+                valorImporteTotal.setText(0 + "");
             }
 
         } catch (IOException e) {

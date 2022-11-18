@@ -36,7 +36,12 @@
                   <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Balance">
+            <Button fx:id="btnBalanceEmpresas" mnemonicParsing="false" onAction="#mostrarBalanceEmpresas" prefHeight="35.0" prefWidth="202.0" text="Balance empresas">
+               <font>
+                  <Font name="Candara Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnBalanceCentros" mnemonicParsing="false" onAction="#mostrarBalanceCentros" prefHeight="35.0" prefWidth="202.0" text="Balance centros">
                <font>
                   <Font name="Candara Bold" size="15.0" />
                </font>

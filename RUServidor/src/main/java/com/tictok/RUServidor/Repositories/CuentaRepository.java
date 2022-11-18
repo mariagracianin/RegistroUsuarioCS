@@ -15,13 +15,13 @@ public interface CuentaRepository extends JpaRepository<Cuenta, String>{
     @Query(value = """
             select cd.nombre_centro as nombre, cd.address as address, cd.encargado as encargado,
             				cd.telefono as telefono, cd.rut as rut,
-                             count(ci.precio) as cantidad_check_ins, sum(ci.precio) as importe_total
+                             count((ci.id, ci.tipo)) as cantidad_check_ins, sum(ci.precio) as importe_total
                             from centro_deportivo cd
-                          	left outer join (select cia.actividad_centrodeportivo as centro, cia.precio
+                          	left outer join (select cia.actividad_centrodeportivo as centro, cia.precio, cia.id, 'Actividad' as tipo
                                                 from check_in_actividad cia
                               					where cia.fecha between :inicio and :fin
                                             union
-                              				select cic.cancha_centrodeportivo as centro, cic.precio
+                              				select cic.cancha_centrodeportivo as centro, cic.precio, cic.id, 'Cancha' as tipo
                                                 from check_in_cancha cic
                               					where cic.fecha between :inicio and :fin)
                                 as ci on ci.centro = cd.nombre_centro
@@ -33,14 +33,14 @@ public interface CuentaRepository extends JpaRepository<Cuenta, String>{
     @Query(value = """
             select e.nombre_empresa as nombre, e.adress as address, e.encargado as encargado,
 				e.telefono as telefono, e.rut as rut, count(u.cedula) as cantidad_usuarios,
-                count(ci.precio) as cantidad_check_ins, sum(ci.precio) as importe_total
+                count((ci.id, ci.tipo)) as cantidad_check_ins, sum(ci.precio) as importe_total
                 from empresa e
                 left outer join usuario u on u.empresa_nombre_empresa = e.nombre_empresa
-              	left outer join (select cia.usuario_cedula as usuario, cia.precio
+              	left outer join (select cia.usuario_cedula as usuario, cia.precio, cia.id, 'Actividad' as tipo
                                     from check_in_actividad cia
                   					where cia.fecha between :inicio and :fin
                                 union
-                  				select cic.usuario_cedula as usuario, cic.precio
+                  				select cic.usuario_cedula as usuario, cic.precio, cic.id, 'Cancha' as tipo
                                     from check_in_cancha cic
                   					where cic.fecha between :inicio and :fin)
                     as ci on ci.usuario = u.cedula\s

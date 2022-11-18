@@ -31,7 +31,7 @@
                   <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Ver liquidación">
+            <Button fx:id="btnLiquidacion" mnemonicParsing="false" onAction="#mostrarLiquidacion" prefHeight="35.0" prefWidth="202.0" text="Balance">
                <font>
                   <Font name="Candara Bold" size="15.0" />
                </font>
