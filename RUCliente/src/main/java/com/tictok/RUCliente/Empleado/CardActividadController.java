@@ -78,9 +78,9 @@ public class CardActividadController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
             InfoActSinReservaController controller = (InfoActSinReservaController) Main.getContext().getBean("infoActSinReservaController");
-            controller.setDatos(actividadSeleccionada);
-            Parent root = fxmlLoader.load(CardActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/infoActSinReserva.fxml"));
 
+            Parent root = fxmlLoader.load(CardActividadController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/infoActSinReserva.fxml"));
+            controller.setDatos(actividadSeleccionada);
             //ReservarActividadController controller = fxmlLoader.getController();
             //controller.setDatos(actividadSeleccionada);
 

@@ -46,7 +46,6 @@ public class CentroCheckInUsuarioSinReservaController{
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                System.out.println("-----------------------------------------wtf");
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Centro/cardCheckInSinReserva.fxml"));
                 SplitPane actBox = fxmlLoader.load();
 
@@ -54,7 +53,6 @@ public class CentroCheckInUsuarioSinReservaController{
                 cardController.setDatos(actividades.get(i), null, this.cedulaUsuario);
                 cardController.setMiniCuenta(this.miniCuenta);
                 cardController.setCedula(this.cedulaUsuario);
-                System.out.println("CEDULA EN TXT2: " +this.cedulaUsuario+ "-----------------------------");
 
                 contenedorActividades.add(actBox,0,row++);
                 GridPane.setMargin(actBox, new Insets(10));
@@ -64,53 +62,12 @@ public class CentroCheckInUsuarioSinReservaController{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        ArrayList<SuperCanchaDTO> canchas = getCanchasDeCentro();
-        row=0;
-
-        try {
-            for (int i=0; i<canchas.size(); i++){
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Centro/cardCheckInSinReserva.fxml"));
-                SplitPane actBox = fxmlLoader.load();
-
-                CardCheckInSinReservaController  cardController = fxmlLoader.getController();
-                cardController.setDatos(null, canchas.get(i), this.cedulaUsuario);
-                cardController.setMiniCuenta(this.miniCuenta);
-
-                contenedorCanchas.add(actBox,0,row++);
-                GridPane.setMargin(actBox, new Insets(10));
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private ArrayList<SuperCanchaDTO> getCanchasDeCentro() {
-        try {
-            HttpResponse<String> response = CentroDeportivoRest.obtenerCanchasFromCentroLogeado(this.miniCuenta);
-            String responseBody = response.getBody();
-            ObjectMapper mapper = new ObjectMapper();
-            ArrayList<SuperCanchaDTO> listSuperCanchasDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
-
-            return listSuperCanchasDTO;
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
     }
 
     private ArrayList<SuperActividadDTO> getActividadesDeCentro(){
         try {
             HttpResponse<String> response = CentroDeportivoRest.obtenerActividadesFromCentroLogeado(this.miniCuenta);
             String responseBody = response.getBody();
-            System.out.println("0000000000000000000000000000000");
-            System.out.println(response.getCode());
-            System.out.println("0000000000000000000000000000000");
-            System.out.println(responseBody);
             ObjectMapper mapper = new ObjectMapper();
             ArrayList<SuperActividadDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));
 
