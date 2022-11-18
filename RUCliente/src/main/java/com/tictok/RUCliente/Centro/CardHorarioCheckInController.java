@@ -1,15 +1,24 @@
 package com.tictok.RUCliente.Centro;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.HorarioConCuposDTO;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
+import com.tictok.RUCliente.Empleado.CardHorarioActividadController;
 import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -88,12 +97,44 @@ public class CardHorarioCheckInController implements Initializable {
 
     }
 
-    public void hacerCheckInHorario(ActionEvent actionEvent) throws JsonProcessingException {
+    public void hacerCheckInHorario(ActionEvent actionEvent) throws IOException {
         HorarioDTO horarioDTO = new HorarioDTO(horarioSeleccionado.getDia(),horarioSeleccionado.getHoraInicio(),horarioSeleccionado.getHoraFin());
+
+        HttpResponse<String> response = null;
         if(nombreCancha ==  null){
-            System.out.println("CEDULA MAVI :" + cedulaUsuario+ "----------------------------------------------------");
-            CentroDeportivoRest.hacerCheckInSinReserva(cedulaUsuario,nombreActividad,"Actividad", horarioDTO,null, miniCuenta);
+            response = CentroDeportivoRest.hacerCheckInSinReserva(cedulaUsuario,nombreActividad,"Actividad", horarioDTO,null, miniCuenta);
         }
-        btnCheckIn.setDisable(true);
+        else if(nombreActividad == null){
+            //hacer check in cancha
+        }
+        
+        if (response.getCode() == 200){
+            btnCheckIn.setDisable(true);
+            
+        }else if (response.getCode() == 403) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+    
+            Parent root = fxmlLoader.load(CardHorarioActividadController.class.getResourceAsStream("ventSaldoInsuficienteCheckIn.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Error");
+    
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+    
+    
+        }else{
+            throw new RuntimeException();
+        }
+        
+        
+        
+    }
+
+    public void salirVentanasEmergentes(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 }

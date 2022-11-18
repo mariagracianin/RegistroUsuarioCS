@@ -10,6 +10,7 @@ import com.tictok.RUCliente.MiniCuenta;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -67,7 +68,6 @@ public class VerHorariosActividadController implements Initializable {
         }
         contenedorHorarios.getChildren().clear();
         int row=0;
-        System.out.println("Cargando horarios");
         try {
             for (int i = 0; i < horariosConCupos.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -82,7 +82,7 @@ public class VerHorariosActividadController implements Initializable {
                 cardHorarioController.setMiniCuenta(miniCuenta);
 
                 contenedorHorarios.add(horarioBox, 1, row++);
-                //GridPane.setMargin(horarioBox, new Insets(10));
+                GridPane.setMargin(horarioBox, new Insets(5));
 
             }
 
