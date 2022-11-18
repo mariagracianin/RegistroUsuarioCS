@@ -31,22 +31,17 @@
                   <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="35.0" prefWidth="202.0" text="Ver empresas">
-               <font>
-                  <Font name="Candara Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnVerCentros" mnemonicParsing="false" onAction="#mostrarTablaCentros" prefHeight="35.0" prefWidth="202.0" text="Ver centros deportivos">
-               <font>
-                  <Font name="Candara Bold" size="15.0" />
-               </font>
-            </Button>
             <Button fx:id="btnBalanceEmpresas" mnemonicParsing="false" onAction="#mostrarBalanceEmpresas" prefHeight="35.0" prefWidth="202.0" text="Balance empresas">
                <font>
                   <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnBalanceCentros" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" text="Balance centros">
+               <font>
+                  <Font name="Candara Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCargaDeDatos" mnemonicParsing="false" onAction="#cargaDeDatos" prefHeight="35.0" prefWidth="202.0" text="Carga de datos">
                <font>
                   <Font name="Candara Bold" size="15.0" />
                </font>
@@ -102,14 +97,13 @@
             </HBox>
             <TableView fx:id="tblCentrosResumen" prefHeight="611.0" prefWidth="698.0" stylesheets="@../entidad_style.css">
                <columns>
-                  <TableColumn fx:id="colCentro" prefWidth="200.0" text="Centro" />
-                  <TableColumn fx:id="colRUT" prefWidth="130.0" text="RUT" />
-                  <TableColumn fx:id="colTelefono" prefWidth="110.0" text="Teléfono" />
-                  <TableColumn fx:id="colDireccion" prefWidth="180.0" text="Dirección" />
-                  <TableColumn fx:id="colEncargado" prefWidth="130.0" text="Encargado" />
+                  <TableColumn fx:id="colCentro" prefWidth="250.0" text="Centro" />
+                  <TableColumn fx:id="colRUT" prefWidth="150.0" text="RUT" />
+                  <TableColumn fx:id="colTelefono" prefWidth="130.0" text="Teléfono" />
+                  <TableColumn fx:id="colDireccion" prefWidth="190.0" text="Dirección" />
+                  <TableColumn fx:id="colEncargado" prefWidth="140.0" text="Encargado" />
                   <TableColumn fx:id="colCantCheckIns" prefWidth="120.0" text="Cant. Check-In" />
-                  <TableColumn fx:id="colCantUsuarios" prefWidth="120.0" text="Cant. Usuarios" />
-                  <TableColumn fx:id="colImporte" prefWidth="160.0" text="Importe" />
+                  <TableColumn fx:id="colImporte" prefWidth="170.0" text="Importe" />
                </columns>
             </TableView>
             <AnchorPane prefHeight="41.0" prefWidth="698.0" styleClass="leftPane" stylesheets="@../entidad_style.css">

@@ -1,5 +1,6 @@
 package com.tictok.RUCliente.Admin;
 
+import com.tictok.RUCliente.AdminRest;
 import com.tictok.RUCliente.JavaFXApplication;
 import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -18,10 +20,11 @@ import java.io.IOException;
 public class AdministradorController {
     public Button btnRegistrarEmpresa;
     public Button btnRegistrarCentro;
-    public Button btnVerEmpresas;
-    public Button btnVerCentros;
     public Button btnLiquidacion;
     public Button btnSalir;
+
+    @Autowired
+    AdminRest adminRest;
 
     @FXML
     public void salir(ActionEvent actionEvent) throws IOException {
@@ -51,12 +54,6 @@ public class AdministradorController {
         stage.setTitle("Registrar nueva empresa");
 
         stage.show(); //no es ventana emergente
-    }
-
-    public void mostrarTablaEmpresas(ActionEvent actionEvent) {
-    }
-    @FXML
-    public void mostrarTablaCentros(ActionEvent actionEvent) {
     }
 
     @FXML
@@ -103,5 +100,9 @@ public class AdministradorController {
         stage.setTitle("Balance centros");
 
         stage.show(); //no es ventana emergente
+    }
+
+    public void cargaDeDatos(ActionEvent actionEvent) {
+        adminRest.cargarDatos();
     }
 }

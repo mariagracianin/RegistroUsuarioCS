@@ -34,7 +34,6 @@ public class AdministradorBalanceCentrosController implements Initializable {
     public TableColumn<TableView<BalanceDTO>,String> colRUT;
     public TableColumn<TableView<BalanceDTO>,Double> colImporte;
     public TableColumn<TableView<BalanceDTO>,Integer> colCantCheckIns;
-    public TableColumn<TableView<BalanceDTO>,Integer> colCantUsuarios;
     public TableColumn<TableView<BalanceDTO>,String> colEncargado;
     public TableColumn<TableView<BalanceDTO>,String> colDireccion;
     public TableColumn<TableView<BalanceDTO>,String> colTelefono;
@@ -66,7 +65,6 @@ public class AdministradorBalanceCentrosController implements Initializable {
         this.colRUT.setCellValueFactory(new PropertyValueFactory("rut"));
         this.colImporte.setCellValueFactory(new PropertyValueFactory("importe"));
         this.colCantCheckIns.setCellValueFactory(new PropertyValueFactory("cantidadDeCheckIns"));
-        this.colCantUsuarios.setCellValueFactory(new PropertyValueFactory("cantidadUsuarios"));
         this.colEncargado.setCellValueFactory(new PropertyValueFactory("encargado"));
         this.colDireccion.setCellValueFactory(new PropertyValueFactory("address"));
         this.colTelefono.setCellValueFactory(new PropertyValueFactory("telefono"));
@@ -142,14 +140,6 @@ public class AdministradorBalanceCentrosController implements Initializable {
         administradorController.registrarCentro(actionEvent);
     }
 
-    public void mostrarTablaEmpresas(ActionEvent actionEvent) {
-        administradorController.mostrarTablaEmpresas(actionEvent);
-    }
-
-    public void mostrarTablaCentros(ActionEvent actionEvent)  {
-        administradorController.mostrarTablaCentros(actionEvent);
-    }
-
     public void mostrarBalanceEmpresas(ActionEvent actionEvent) throws IOException {
         administradorController.mostrarBalanceEmpresas(actionEvent);
     }
@@ -218,5 +208,9 @@ public class AdministradorBalanceCentrosController implements Initializable {
         }catch (Exception e){
             throw new RuntimeException(e);
         }
+    }
+
+    public void cargaDeDatos(ActionEvent actionEvent) {
+        administradorController.cargaDeDatos(actionEvent);
     }
 }
