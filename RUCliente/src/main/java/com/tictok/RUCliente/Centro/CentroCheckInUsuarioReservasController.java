@@ -118,4 +118,7 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
     public void volverAtras(ActionEvent actionEvent) throws IOException {
         centroController.irACheckIn(actionEvent);
     }
+
+    public void salirVentanasEmergentes(ActionEvent actionEvent) {
+    }
 }

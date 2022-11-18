@@ -111,18 +111,6 @@ public class CardHorarioCanchaController implements Initializable {
         if(response.getCode()==200){
             btnAgregarHorario.setText("*");
             btnAgregarHorario.setDisable(true);
-        }else if (response.getCode() == 403) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(CardHorarioActividadController.class.getResourceAsStream("ventSaldoInsuficienteCan.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Error");
-
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
 
         }else{
             throw new RuntimeException();
@@ -141,9 +129,5 @@ public class CardHorarioCanchaController implements Initializable {
         this.miniCuenta = miniCuenta;
     }
 
-    public void salirVentanasEmergentes(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stageActual  = (Stage) source.getScene().getWindow();
-        stageActual.close();
-    }
+
 }
