@@ -7,12 +7,19 @@ import com.tictok.RUCliente.MiniCuenta;
 import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -98,11 +105,25 @@ public class CardHorarioCanchaController implements Initializable {
 
     }
 
-    public void guardarReserva(ActionEvent actionEvent) {
+    public void guardarReserva(ActionEvent actionEvent) throws IOException {
         HorarioDTO horario = new HorarioDTO(horarioSeleccionado.getDia(),horarioSeleccionado.getHoraInicio(),horarioSeleccionado.getHoraFin());
         HttpResponse<String> response = UsuarioRest.hacerReserva(nombreCentro,nombreCancha,"Cancha",horario,null,this.miniCuenta);
         if(response.getCode()==200){
             btnAgregarHorario.setText("*");
+            btnAgregarHorario.setDisable(true);
+        }else if (response.getCode() == 403) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(CardHorarioActividadController.class.getResourceAsStream("ventSaldoInsuficienteCan.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Error");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+
         }else{
             throw new RuntimeException();
         }
@@ -118,5 +139,11 @@ public class CardHorarioCanchaController implements Initializable {
 
     public void setMiniCuenta(MiniCuenta miniCuenta) {
         this.miniCuenta = miniCuenta;
+    }
+
+    public void salirVentanasEmergentes(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 }

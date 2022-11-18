@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.85" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardCanchaController">
+<SplitPane dividerPositions="0.85" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="280.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardCanchaController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="294.0" styleClass="mainPane">
          <children>
@@ -26,7 +26,7 @@
                   </ImageView>
                   <Label fx:id="nombre" prefHeight="9.0" prefWidth="316.0" text="Nombre" textFill="WHITE">
                      <font>
-                        <Font name="Candara Bold" size="22.0" />
+                        <Font name="Candara Bold" size="21.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
@@ -34,7 +34,7 @@
                   </Label>
                   <Label fx:id="costo" prefHeight="22.0" prefWidth="240.0" text="Costo:" textFill="WHITE">
                      <font>
-                        <Font name="Candara Light" size="18.0" />
+                        <Font name="Candara Light" size="17.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
@@ -42,7 +42,7 @@
                   </Label>
                   <Label fx:id="centroDeportivo" prefHeight="22.0" prefWidth="241.0" text="Centro:" textFill="WHITE">
                      <font>
-                        <Font name="Candara Light" size="18.0" />
+                        <Font name="Candara Light" size="17.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
@@ -50,7 +50,7 @@
                   </Label>
                   <Label fx:id="direccionYBarrio" prefHeight="22.0" prefWidth="244.0" text="Dirección: con barrio" textFill="WHITE">
                      <font>
-                        <Font name="Calibri Light" size="18.0" />
+                        <Font name="Calibri Light" size="17.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
@@ -62,7 +62,7 @@
       </AnchorPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="50.0">
          <children>
-            <Button fx:id="btnVerInfo" alignment="CENTER" contentDisplay="CENTER" layoutX="-79.0" layoutY="74.0" mnemonicParsing="false" onAction="#abrirVentanaReservaConDatos" prefHeight="27.0" prefWidth="200.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Ver información" textAlignment="CENTER">
+            <Button fx:id="btnVerInfo" alignment="CENTER" contentDisplay="CENTER" layoutX="-73.0" layoutY="80.0" mnemonicParsing="false" onAction="#abrirVentanaReservaConDatos" prefHeight="39.0" prefWidth="186.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Ver información" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font></Button>

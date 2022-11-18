@@ -67,6 +67,11 @@
                   <Font name="Century Gothic" size="40.0" />
                </font>
             </Label>
+            <Button fx:id="btnVolver" layoutX="1030.0" layoutY="32.0" mnemonicParsing="false" onAction="#volverAtras" style="-fx-background-color: #616161;" text="Volver">
+               <font>
+                  <Font name="Candara" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </top>

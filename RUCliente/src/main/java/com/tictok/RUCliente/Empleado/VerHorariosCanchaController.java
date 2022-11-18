@@ -73,7 +73,7 @@ public class VerHorariosCanchaController implements Initializable {
                 cardController.setDatosHorario(horariosConCuposCancha.get(i));
 
                 contenedorHorarios.add(horarioBox,1,row++);
-                GridPane.setMargin(horarioBox, new Insets(10));
+                GridPane.setMargin(horarioBox, new Insets(5));
 
             }
 
