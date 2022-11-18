@@ -1,17 +1,28 @@
 package com.tictok.RUCliente.Centro;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.ActividadConHorariosYCuposDTO;
 import com.tictok.Commons.CanchaConHorariosYCuposDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
+import com.tictok.RUCliente.Empleado.CardHorarioActividadController;
+import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
+import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.MiniCuenta;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -65,12 +76,35 @@ public class CardCheckInConReservaController implements Initializable {
         codReserva.setText(reservaDTO.getCodigoReserva().toString());
     }
 
-    public void ingresarCheckIn(ActionEvent actionEvent) throws JsonProcessingException {
-        CentroDeportivoRest.hacerCheckInConReserva(reservaSeleccionada.getTipo(), reservaSeleccionada.getCodigoReserva());
-        btnCheckIn.setDisable(true);
+    public void ingresarCheckIn(ActionEvent actionEvent) throws IOException {
+
+        HttpResponse<String> response = CentroDeportivoRest.hacerCheckInConReserva(reservaSeleccionada.getTipo(), reservaSeleccionada.getCodigoReserva());
+
+        if (response.getCode() == 200){
+            btnCheckIn.setDisable(true);
+        } else if (response.getCode() == 403){
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(CardCheckInConReservaController.class.getResourceAsStream("ventSaldoInsuficienteCheckInConReserva.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Error");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        }
+
     }
 
     public void setCedula(int cedulaUsuario) {
         this.cedulaUsuario=cedulaUsuario;
+    }
+
+    public void salirVentanasEmergentes(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 }
