@@ -92,8 +92,11 @@ public class ActividadService {
         return ReservaMapper.fromReservaActividadToReservaDTO(reservaActividad);
     }
 
-    public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException, SaldoInsuficienteException {
+    public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException, SaldoInsuficienteException, CarneVencido {
         Usuario usuario = usuarioService.findOnebyId2(checkInDTO.getCedulaUsuario());
+        if(usuarioService.carneVencido(usuario)){
+            throw new CarneVencido();
+        }
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(checkInDTO.getHorario());
 
         ServicioId actividadId = new ServicioId(checkInDTO.getNombreActividad(), checkInDTO.getNombreCentro(), horarioId.getDia(), horarioId.getHoraInicio(), horarioId.getHoraFin());
@@ -130,13 +133,16 @@ public class ActividadService {
     }
 
     @Transactional
-    public void checkInActividadConReserva(Long codigoReserva) throws EntidadNoExisteException, SaldoInsuficienteException {
+    public void checkInActividadConReserva(Long codigoReserva) throws EntidadNoExisteException, SaldoInsuficienteException, CarneVencido {
          Optional<ReservaActividad> reservaActividadOptional = reservaActividadRepository.findById(codigoReserva);
          if (reservaActividadOptional.isEmpty()) {
              throw new EntidadNoExisteException("La reserva no existe");
          }
          ReservaActividad reservaActividad = reservaActividadOptional.get();
          Usuario usuario = reservaActividad.getUsuario();
+        if(usuarioService.carneVencido(usuario)){
+            throw new CarneVencido();
+        }
          Date dateFecha = reservaActividad.getFecha();
          LocalDate fecha = dateFecha.toLocalDate();
          Actividad actividad = reservaActividad.getActividad();

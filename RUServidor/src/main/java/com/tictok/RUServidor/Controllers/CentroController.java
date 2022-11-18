@@ -68,7 +68,7 @@ public class CentroController {
     }
 
     @PostMapping("/checkIn")
-    public void postNewCheckInSinReserva(@RequestBody CheckInDTO checkInDTO) throws CuentaNoExisteException, UsuarioNoExisteException, CuposAgotadosException, TipoDeCheckInNoExisteException, SaldoInsuficienteException {
+    public void postNewCheckInSinReserva(@RequestBody CheckInDTO checkInDTO) throws CuentaNoExisteException, UsuarioNoExisteException, CuposAgotadosException, TipoDeCheckInNoExisteException, SaldoInsuficienteException, CarneVencido {
         if (checkInDTO.getTipo().equals("Cancha")){
             //canchaService.checkInCancha(checkInDTO)-->sin hacer aun (NO VA A ESTAR ESTA FUNCION?)
         } else if (checkInDTO.getTipo().equals("Actividad")) {
@@ -80,7 +80,7 @@ public class CentroController {
     }
 
     @PostMapping("/checkIn/reserva")
-    public void postNewCheckInConReserva(@RequestBody CheckInDTO checkInDTO) throws EntidadNoExisteException, TipoDeCheckInNoExisteException, SaldoInsuficienteException, ReservaNoExisteException{
+    public void postNewCheckInConReserva(@RequestBody CheckInDTO checkInDTO) throws EntidadNoExisteException, TipoDeCheckInNoExisteException, SaldoInsuficienteException, ReservaNoExisteException, CarneVencido {
         if (checkInDTO.getTipo().equals("Cancha")){
             canchaService.checkInCancha(checkInDTO);
         } else if (checkInDTO.getTipo().equals("Actividad")) {
