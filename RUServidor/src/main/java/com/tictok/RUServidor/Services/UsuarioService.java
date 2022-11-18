@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -189,6 +190,20 @@ public class UsuarioService {
             gastos += checkInDTOList.get(i).getPrecio();
         }
         return gastos;
+    }
+
+    public Boolean carneVencido(Usuario usuario){
+        String fechaVen = usuario.getVencimientoCarne();
+        String[] arrayFechaVen = fechaVen.split("/",3);
+
+        LocalDate vencimiento = LocalDate.of(Integer.parseInt(arrayFechaVen[0]),Integer.parseInt(arrayFechaVen[1]),Integer.parseInt(arrayFechaVen[2]));
+        LocalDate dateActual =  LocalDate.now();
+
+        if(vencimiento.isBefore(dateActual)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
