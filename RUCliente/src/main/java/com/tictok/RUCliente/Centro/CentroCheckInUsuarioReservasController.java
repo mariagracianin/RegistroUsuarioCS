@@ -44,6 +44,7 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             reservas = getReservasDeUsuario(this.cedulaUsuario);
+            System.out.println("--------------------------- reservas size" + reservas.size());
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -117,5 +118,8 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
 
     public void volverAtras(ActionEvent actionEvent) throws IOException {
         centroController.irACheckIn(actionEvent);
+    }
+
+    public void salirVentanasEmergentes(ActionEvent actionEvent) {
     }
 }

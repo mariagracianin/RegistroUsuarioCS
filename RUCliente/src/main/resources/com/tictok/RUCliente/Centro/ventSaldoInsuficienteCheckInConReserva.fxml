@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="102.0" prefWidth="373.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardHorarioCanchaController">
+<AnchorPane prefHeight="102.0" prefWidth="446.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CardCheckInConReservaController">
    <effect>
       <Glow />
    </effect>
@@ -16,8 +16,8 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnOK" layoutX="170.0" layoutY="63.0" mnemonicParsing="false" onAction="#salirVentanasEmergentes" style="-fx-background-color: #CF6679;" text="OK" />
-      <Label fx:id="etVariableMensajeError" layoutX="55.0" layoutY="32.0" text="su saldo no es suficiente para realizar esta reserva">
+      <Button fx:id="btnOK" layoutX="207.0" layoutY="63.0" mnemonicParsing="false" onAction="#salirVentanasEmergentes" style="-fx-background-color: #CF6679;" text="OK" />
+      <Label fx:id="etVariableMensajeError" layoutX="55.0" layoutY="32.0" text="el saldo del usuario no es suficiente para realizar este Check-In">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

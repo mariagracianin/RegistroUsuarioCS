@@ -68,6 +68,7 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
         contenedorHorarios.getChildren().clear();
         int row=0;
         try {
@@ -104,10 +105,13 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
             ActividadConHorariosYCuposDTO actividadConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), ActividadConHorariosYCuposDTO.class);
             return actividadConHorariosYCuposDTO.getHorariosConCupos();
         }else if (canSeleccionada != null){
+
             HttpResponse<String> response = CentroDeportivoRest.obtenerCanchaConCupos(canSeleccionada.getNombreCentro(),canSeleccionada.getNombreServicio());
             ObjectMapper objectMapper = new ObjectMapper();
+            System.out.println(response.getBody()+ " -------------- aca lo que busco");
             CanchaConHorariosYCuposDTO canchaConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), CanchaConHorariosYCuposDTO.class);
             return canchaConHorariosYCuposDTO.getHorariosConCupos();
+
         }
         return null;
     }
@@ -134,6 +138,6 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
     }
 
     public void hacerCheckInPaseLibre(ActionEvent actionEvent) throws JsonProcessingException {
-        CentroDeportivoRest.hacerCheckInSinReserva(cedulaUsuario,actSeleccionada.getNombreServicio(),"Actividad", new HorarioDTO(1,1000,1001),null, miniCuenta);
+        CentroDeportivoRest.hacerCheckInSinReserva(cedulaUsuario,actSeleccionada.getNombreServicio(),"Actividad", new HorarioDTO(1, 0, 1),null, miniCuenta);
     }
 }

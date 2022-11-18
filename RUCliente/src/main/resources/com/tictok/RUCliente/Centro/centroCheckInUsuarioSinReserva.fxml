@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -88,28 +87,13 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Separator opacity="0.59" orientation="VERTICAL" prefHeight="60.0" prefWidth="17.0" />
-                  <Label prefHeight="51.0" prefWidth="389.0" text="Canchas" textFill="#03dac6">
-                     <font>
-                        <Font name="Century Gothic" size="40.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="450.0" prefWidth="778.0">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="463.0" prefWidth="449.0" vbarPolicy="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="450.0" prefWidth="897.0" vbarPolicy="ALWAYS">
                      <content>
                         <GridPane fx:id="contenedorActividades">
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="428.0" prefWidth="449.0" vbarPolicy="ALWAYS">
-                     <content>
-                        <GridPane fx:id="contenedorCanchas">
                         </GridPane>
                      </content>
                   </ScrollPane>

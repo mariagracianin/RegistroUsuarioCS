@@ -104,9 +104,6 @@ public class CardHorarioCheckInController implements Initializable {
         if(nombreCancha ==  null){
             response = CentroDeportivoRest.hacerCheckInSinReserva(cedulaUsuario,nombreActividad,"Actividad", horarioDTO,null, miniCuenta);
         }
-        else if(nombreActividad == null){
-            //hacer check in cancha
-        }
         
         if (response.getCode() == 200){
             btnCheckIn.setDisable(true);
@@ -115,7 +112,7 @@ public class CardHorarioCheckInController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
     
-            Parent root = fxmlLoader.load(CardHorarioActividadController.class.getResourceAsStream("ventSaldoInsuficienteCheckIn.fxml"));
+            Parent root = fxmlLoader.load(CardHorarioCheckInController.class.getResourceAsStream("ventSaldoInsuficienteCheckIn.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Error");

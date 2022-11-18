@@ -121,7 +121,7 @@ public class CardCheckInSinReservaController implements Initializable {
 
             controller.setMiniCuenta(this.miniCuenta);
 
-            controller.setActividad(this.actSeleccionada);
+            controller.setCancha(this.canSeleccionada);
             controller.cargarHorarios();
 
             Stage stage = new Stage();
