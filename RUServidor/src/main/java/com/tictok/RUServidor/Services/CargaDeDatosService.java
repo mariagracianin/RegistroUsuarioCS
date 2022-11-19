@@ -309,7 +309,7 @@ public class CargaDeDatosService {
     private void agregarEmpleadosAPrimeraEmpresa(Empresa empresa) throws Exception {
         MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("agustin@mail", "contra", 52788472,"13/12/2023","Agustin", "Pani", "012345671",3000.0,500.0,3000.0,"Av.Italia");
         MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("mavi@mail", "contra",54967202,"14/12/2023","Victoria", "Del Campo", "012345672",3000.0,500.0,3000.0,"Uruguay");
-        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("maria@mail", "contra",52137396,"12/12/2023","Maria", "Nin", "012345673",3000.0,500.0,3000.0,"B.Artias");
+        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("maria@mail", "contra",52137396,"12/12/2020","Maria", "Nin", "012345673",3000.0,500.0,3000.0,"B.Artias");
         usuarioService.saveNewUsurio(megaUsuario1DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario2DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario3DTO, empresa.getCuentas().get(0).getMail());
