@@ -1,6 +1,7 @@
 package com.tictok.RUCliente.Admin;
 
 import com.tictok.RUCliente.AdminRest;
+import com.tictok.RUCliente.Centro.CentroController;
 import com.tictok.RUCliente.JavaFXApplication;
 import com.tictok.RUCliente.Main;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,6 +39,7 @@ public class AdministradorController {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stageActual.show();
 
     }
@@ -52,7 +55,7 @@ public class AdministradorController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Registrar nueva empresa");
-
+        stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 
@@ -68,7 +71,7 @@ public class AdministradorController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Registrar nuevo centro");
-
+        stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 
@@ -83,7 +86,7 @@ public class AdministradorController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Balance empresas");
-
+        stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 
@@ -98,7 +101,7 @@ public class AdministradorController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Balance centros");
-
+        stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 

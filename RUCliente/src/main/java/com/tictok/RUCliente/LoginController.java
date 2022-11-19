@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.CuentaDTO;
 import com.tictok.Commons.MiniCuentaDTO;
+import com.tictok.RUCliente.Empresa.EmpresaController;
 import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +89,7 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("GetFit");
-
+        stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
     public void cargarVistaAdmin(ActionEvent actionEvent) throws IOException {
@@ -100,7 +102,7 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Administrador");
-
+        stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 
@@ -114,7 +116,7 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Empresa");
-
+        stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
     public void cargarVistaCentro(ActionEvent actionEvent) throws IOException {
@@ -127,7 +129,7 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Centro");
-
+        stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 

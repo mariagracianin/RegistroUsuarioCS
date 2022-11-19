@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,7 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
     }
 
@@ -51,6 +53,7 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
     }
 
@@ -64,6 +67,7 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
     }
 
@@ -77,6 +81,7 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
     }
 
@@ -93,6 +98,7 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
     }
 
@@ -106,6 +112,7 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
     }
 }

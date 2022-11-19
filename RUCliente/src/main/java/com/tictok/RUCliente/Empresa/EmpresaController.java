@@ -1,6 +1,7 @@
 package com.tictok.RUCliente.Empresa;
 
 import com.tictok.RUCliente.Centro.CentroController;
+import com.tictok.RUCliente.Empleado.EmpMisReservasController;
 import com.tictok.RUCliente.JavaFXApplication;
 import com.tictok.RUCliente.LoginController;
 import com.tictok.RUCliente.Main;
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,6 +41,7 @@ public class EmpresaController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stageActual.show();
 
     }
@@ -52,7 +55,7 @@ public class EmpresaController implements Initializable {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Empresa");
-
+        stage.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
     public void registrarUsuario(ActionEvent actionEvent) throws IOException {
@@ -66,7 +69,7 @@ public class EmpresaController implements Initializable {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Registrar nuevo empleado");
-
+        stage.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
 
     }
@@ -81,6 +84,7 @@ public class EmpresaController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stageActual.show();
     }
 
@@ -94,7 +98,7 @@ public class EmpresaController implements Initializable {
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-
+        stage.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 
@@ -112,7 +116,7 @@ public class EmpresaController implements Initializable {
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
-
+        stage.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 }
