@@ -1,5 +1,6 @@
 package com.tictok.RUServidor.Advices;
 
+import com.tictok.RUServidor.Exceptions.CarneVencido;
 import com.tictok.RUServidor.Exceptions.SaldoInsuficienteException;
 import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
@@ -31,5 +32,12 @@ public class UsuarioAdvice {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public String saldoInsuficienteHandler(SaldoInsuficienteException ex) {
         return "El saldo es insuficiente para unirse a este servicio";
+    }
+
+    @ResponseBody()
+    @ExceptionHandler(CarneVencido.class)
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    public String carneVencidoHandler(CarneVencido ex){
+        return "El carné de salud está vencido, no puede unirse a este servicio";
     }
 }
