@@ -58,5 +58,7 @@ public class CentroAgregarCuentaController implements Initializable {
 
     public void guardarDatos(ActionEvent actionEvent) {
         centroDeportivoRest.guardarNuevaCuentaDeCentro(mailCuenta.getText(), contraseñaCuenta.getText());
+        mailCuenta.setText("");
+        contraseñaCuenta.setText("");
     }
 }
