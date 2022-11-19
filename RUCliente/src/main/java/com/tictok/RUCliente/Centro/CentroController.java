@@ -95,4 +95,17 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.show();
     }
+
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroAgregarCuenta.fxml"));
+        stageActual.setTitle("Agregar cuenta asociada");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stageActual.setScene(escena);
+        stageActual.show();
+    }
 }

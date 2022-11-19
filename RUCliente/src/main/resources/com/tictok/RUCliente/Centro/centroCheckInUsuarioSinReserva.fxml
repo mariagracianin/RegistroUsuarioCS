@@ -45,6 +45,11 @@
                   <Font name="Candara Bold" size="18.0" />
                </font>
             </Button>
+            <Button fx:id="btnAgregarCuenta" mnemonicParsing="false" onAction="#agregarCuenta" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: ;" text="Agregar cuenta asociada">
+               <font>
+                  <Font name="Candara Bold" size="17.0" />
+               </font>
+            </Button>
             <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="35.0" prefWidth="202.0" styleClass="btnCerrarSesion" stylesheets="@../entidad_style.css" text="Cerrar sesión">
                <font>
                   <Font name="Candara Bold" size="18.0" />

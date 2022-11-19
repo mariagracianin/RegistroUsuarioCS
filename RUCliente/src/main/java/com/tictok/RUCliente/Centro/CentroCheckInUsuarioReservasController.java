@@ -122,4 +122,8 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
 
     public void salirVentanasEmergentes(ActionEvent actionEvent) {
     }
+
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        centroController.agregarCuenta(actionEvent);
+    }
 }
