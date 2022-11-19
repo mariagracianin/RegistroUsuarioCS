@@ -156,7 +156,6 @@ public class UsuarioService {
                 reservaDTOListFromCentro.add(reservaDTOlist.get(i));
             }
         }
-        System.out.println("-------------------estoooooooooooooooooooooo"+ reservaDTOListFromCentro.size());
         return reservaDTOListFromCentro;
     }
 
