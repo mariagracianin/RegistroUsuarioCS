@@ -41,8 +41,8 @@ public interface CanchaRepository extends JpaRepository<Cancha, ServicioId> {
                   			cd.barrio as barrio, cd.telefono as telefono
                   			from cancha c
                   			join centro_deportivo cd on c.centro_deportivo_nombre_centro = cd.nombre_centro
-                            where upper(a.nombre_servicio) like %:campoBusqueda% or
-                            upper(a.centro_deportivo_nombre_centro) like %:campoBusqueda% or
+                            where upper(c.nombre_servicio) like %:campoBusqueda% or
+                            upper(c.centro_deportivo_nombre_centro) like %:campoBusqueda% or
                             upper(cd.barrio) like %:campoBusqueda% or upper(cd.barrio) like %:campoBusqueda%
 
 """,

@@ -67,7 +67,7 @@ public class EmpCanchasController implements Initializable {
     private GridPane contenedorCanchas;
     private List<SuperCanchaDTO> canchasActuales;
 
-    private List<SuperCanchaDTO> getDatos(){
+   /* private List<SuperCanchaDTO> getDatos(){
         try {
             HttpResponse<String> response = centroDeportivoRest.obtenerCanchas();
             String responseBody = response.getBody();
@@ -79,7 +79,7 @@ public class EmpCanchasController implements Initializable {
             throw new RuntimeException(e);
         }
 
-    }
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -196,7 +196,120 @@ public class EmpCanchasController implements Initializable {
 
     }
 
+    private GridPane createPageBuscador(Integer pageIndex) {
+        if (txtBuscador.getText().isEmpty()){
+            GridPane contenedorCan = new GridPane();
+            contenedorCan.setPrefWidth(900);
+            contenedorCan.setPrefHeight(550);
+            contenedorCan.setMaxWidth(900);
+            contenedorCan.setMaxHeight(550);
+            contenedorCan.getColumnConstraints().clear();
+            contenedorCan.getRowConstraints().clear();
+            ListaCanchasDTOConCount listaCanchasDTOConCount;
+            try {
+                HttpResponse<String> response = centroDeportivoRest.obtenerCanchasPageable(pageIndex, 9);
+                String responseBody = response.getBody();
+                ObjectMapper mapper = new ObjectMapper();
+                listaCanchasDTOConCount = mapper.readValue(responseBody, ListaCanchasDTOConCount.class);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            int column = 0;
+            int row = 0;
+
+            pagination.setPageCount(listaCanchasDTOConCount.getPages());
+
+            try {
+                for (int i = 0; i < listaCanchasDTOConCount.getObjects().size(); i++) {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                    fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
+                    SplitPane actBox = fxmlLoader.load();
+
+                    CardCanchaController cardController = fxmlLoader.getController();
+                    cardController.setDatosCancha(listaCanchasDTOConCount.getObjects().get(i));
+                    cardController.setMiniCuenta(miniCuenta);
+
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+                    contenedorCan.add(actBox, column++, row);
+                    GridPane.setMargin(actBox, new Insets(10));
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return contenedorCan;
+        }else {
+            GridPane contenedorCan = new GridPane();
+            contenedorCan.setPrefWidth(900);
+            contenedorCan.setPrefHeight(550);
+            contenedorCan.setMaxWidth(900);
+            contenedorCan.setMaxHeight(550);
+            contenedorCan.getColumnConstraints().clear();
+            contenedorCan.getRowConstraints().clear();
+            ListaCanchasDTOConCount listaCanchasDTOConCount;
+            try {
+                HttpResponse<String> response = centroDeportivoRest.obtenerCanchasByFiltroPageable(txtBuscador.getText(), pageIndex, 9);
+                String responseBody = response.getBody();
+                ObjectMapper mapper = new ObjectMapper();
+                listaCanchasDTOConCount = mapper.readValue(responseBody, ListaCanchasDTOConCount.class);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            int column = 0;
+            int row = 0;
+
+            pagination.setPageCount(listaCanchasDTOConCount.getPages());
+
+            try {
+                for (int i = 0; i < listaCanchasDTOConCount.getObjects().size(); i++) {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                    fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
+                    SplitPane actBox = fxmlLoader.load();
+
+                    CardCanchaController cardController = fxmlLoader.getController();
+                    cardController.setDatosCancha(listaCanchasDTOConCount.getObjects().get(i));
+                    cardController.setMiniCuenta(miniCuenta);
+
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+                    contenedorCan.add(actBox, column++, row);
+                    GridPane.setMargin(actBox, new Insets(10));
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return contenedorCan;
+        }
+    }
+
     public void  llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
+
+        pagination.setPageFactory(new Callback<Integer, Node>() {
+            @Override
+            public Node call(Integer pageIndex) {
+                pane.setPrefHeight(650);
+                pane.setPrefWidth(1200);
+                return createPageBuscador(pageIndex);
+            }
+        });
+
+        /*
         contenedorCanchas.getChildren().clear();
         System.out.println("lo llamaaaaaaaaaaaaaaaaaaaa");
         System.out.println(txtBuscador.getText());
@@ -227,7 +340,7 @@ public class EmpCanchasController implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } */
 
     }
 }
