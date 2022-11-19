@@ -207,6 +207,7 @@ public class CanchaService {
     public ListaCanchasDTOConCount buscarCanchasPageable(String campoBusqueda, int page, int size){
         Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
         Page<Tuple> canchasInfosObjects = canchaRepository.findWithBusqueda(paging, campoBusqueda);
+        System.out.println("ACAAAAAAAAAA               "+ canchasInfosObjects.getTotalElements());
         return procesarCanchas(canchasInfosObjects);
     }
 
