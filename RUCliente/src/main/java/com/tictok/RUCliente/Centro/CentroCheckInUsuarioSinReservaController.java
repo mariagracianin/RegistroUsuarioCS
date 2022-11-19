@@ -26,7 +26,6 @@ import java.util.ResourceBundle;
 public class CentroCheckInUsuarioSinReservaController{
 
     public GridPane contenedorActividades;
-    public GridPane contenedorCanchas;
     private int cedulaUsuario;
 
     @Autowired
@@ -40,7 +39,7 @@ public class CentroCheckInUsuarioSinReservaController{
         ArrayList<SuperActividadDTO> actividades = getActividadesDeCentro();
 
         int row=0;
-
+        int column=0;
         try {
             for (int i=0; i<actividades.size(); i++){
 
@@ -54,7 +53,11 @@ public class CentroCheckInUsuarioSinReservaController{
                 cardController.setMiniCuenta(this.miniCuenta);
                 cardController.setCedula(this.cedulaUsuario);
 
-                contenedorActividades.add(actBox,0,row++);
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                contenedorActividades.add(actBox,column++,row);
                 GridPane.setMargin(actBox, new Insets(10));
 
             }

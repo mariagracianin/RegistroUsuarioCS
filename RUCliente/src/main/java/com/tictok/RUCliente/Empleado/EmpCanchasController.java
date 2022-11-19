@@ -81,7 +81,10 @@ public class EmpCanchasController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setImagenesBotones();
+        URL linkLupa = getClass().getResource("/com/tictok/RUCliente/Empleado/lupa.png");
+        Image imagenLupa = new Image(linkLupa.toString(),25,25,false,true);
+        btnBuscar.setGraphic(new ImageView(imagenLupa));
+
         canchasActuales= new ArrayList<>();
         contenedorCanchas.getChildren().clear();
         canchasActuales.addAll(getDatos());
@@ -148,28 +151,7 @@ public class EmpCanchasController implements Initializable {
         stage.showAndWait();
 
     }
-    private void setImagenesBotones(){
-        URL linkLupa = getClass().getResource("/com/tictok/RUCliente/Empleado/lupa.png");
-      /*  URL linkReservas = getClass().getResource("/com/tictok/RUCliente/Empleado/reserva.png");
-        URL linkActividades = getClass().getResource("/com/tictok/RUCliente/Empleado/actividad.png");
-        URL linkCancha = getClass().getResource("/com/tictok/RUCliente/Empleado/cancha.png");
-        URL linkMisDatos = getClass().getResource("/com/tictok/RUCliente/Empleado/datos.png");
-*/
-        Image imagenLupa = new Image(linkLupa.toString(),25,25,false,true);
-       /* Image imgReserva = new Image(linkReservas.toString(),30,30,false,true);
-        Image imgAct = new Image(linkActividades.toString(),30,30,false,true);
-        Image imgCan = new Image(linkCancha.toString(),30,30,false,true);
-        Image imgDatos = new Image(linkMisDatos.toString(),30,30,false,true);
 
-        btnMisReservas.setGraphic(new ImageView(imgReserva));
-        btnCanchas.setGraphic(new ImageView(imgCan));
-        btnActividades.setGraphic(new ImageView(imgAct));
-        btnDatos.setGraphic(new ImageView(imgDatos));
-
-        */
-        btnBuscar.setGraphic(new ImageView(imagenLupa));
-
-    }
     public void  llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
         contenedorCanchas.getChildren().clear();
         System.out.println("lo llamaaaaaaaaaaaaaaaaaaaa");

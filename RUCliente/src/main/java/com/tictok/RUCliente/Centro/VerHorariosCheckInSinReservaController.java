@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -32,6 +33,7 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
     public Label nombreServicio;
     public Label precioServicio;
     public Label lblServicio;
+    public Button btnCheckInSinReservaPaseLibre;
     private List<HorarioConCuposDTO> horariosConCupos;
     private MiniCuenta miniCuenta;
     public GridPane contenedorHorarios;
@@ -138,6 +140,11 @@ public class VerHorariosCheckInSinReservaController implements Initializable {
     }
 
     public void hacerCheckInPaseLibre(ActionEvent actionEvent) throws JsonProcessingException {
-        CentroDeportivoRest.hacerCheckInSinReserva(cedulaUsuario,actSeleccionada.getNombreServicio(),"Actividad", new HorarioDTO(1, 0, 1),null, miniCuenta);
+
+        HttpResponse<String> response = CentroDeportivoRest.hacerCheckInSinReserva(cedulaUsuario,actSeleccionada.getNombreServicio(),"Actividad", new HorarioDTO(1, 0, 1),null, miniCuenta);
+        if (response.getCode() == 200){
+            btnCheckInSinReservaPaseLibre.setDisable(true);
+        }
+
     }
 }

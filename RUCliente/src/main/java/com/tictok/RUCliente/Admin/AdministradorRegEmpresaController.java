@@ -43,12 +43,6 @@ public class AdministradorRegEmpresaController {
         administradorController.registrarCentro(actionEvent);
     }
     @FXML
-    public void mostrarTablaEmpresas(ActionEvent actionEvent) {
-    }
-    @FXML
-    public void mostrarTablaCentros(ActionEvent actionEvent) {
-    }
-    @FXML
     public void mostrarLiquidacion(ActionEvent actionEvent) {
     }
     @FXML
@@ -107,5 +101,9 @@ public class AdministradorRegEmpresaController {
 
     public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException{
         administradorController.mostrarBalanceCentros(actionEvent);
+    }
+
+    public void cargaDeDatos(ActionEvent actionEvent) {
+        administradorController.cargaDeDatos(actionEvent);
     }
 }
