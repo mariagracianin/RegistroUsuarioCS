@@ -138,14 +138,6 @@ public class AdministradorBalanceEmpresasController implements Initializable {
         administradorController.registrarCentro(actionEvent);
     }
 
-    public void mostrarTablaEmpresas(ActionEvent actionEvent) {
-        administradorController.mostrarTablaEmpresas(actionEvent);
-    }
-
-    public void mostrarTablaCentros(ActionEvent actionEvent) {
-        administradorController.mostrarTablaCentros(actionEvent);
-    }
-
     public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException {
         administradorController.mostrarBalanceCentros(actionEvent);
     }
@@ -214,5 +206,9 @@ public class AdministradorBalanceEmpresasController implements Initializable {
         }catch (Exception e){
             throw new RuntimeException(e);
         }
+    }
+
+    public void cargaDeDatos(ActionEvent actionEvent) {
+        administradorController.cargaDeDatos(actionEvent);
     }
 }

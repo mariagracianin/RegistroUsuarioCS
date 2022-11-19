@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInUsuarioSinReservaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInUsuarioSinReservaController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
@@ -89,9 +89,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="450.0" prefWidth="778.0">
+            <HBox prefHeight="552.0" prefWidth="898.0" VBox.vgrow="ALWAYS">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="450.0" prefWidth="897.0" vbarPolicy="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="450.0" prefWidth="897.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
                      <content>
                         <GridPane fx:id="contenedorActividades">
                         </GridPane>

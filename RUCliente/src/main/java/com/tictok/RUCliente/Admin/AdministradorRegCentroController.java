@@ -57,12 +57,6 @@ public class AdministradorRegCentroController implements Initializable {
         administradorController.salir(actionEvent);
     }
 
-    public void mostrarTablaEmpresas(ActionEvent actionEvent) {
-    }
-
-    public void mostrarTablaCentros(ActionEvent actionEvent) {
-    }
-
     public void guardarDatos(ActionEvent actionEvent) throws IOException {
         HttpResponse<String> responseCode = centroDeportivoRest.guardarCentroDeportivo(mailCuenta1.getText(),contraseñaCuenta1.getText(),nombre.getText(),direccion.getText(),tel.getText(),encargado.getText(), rut.getText(),razonSocial.getText(),barrio.getText());
         if(responseCode.getCode()==409){
@@ -116,6 +110,10 @@ public class AdministradorRegCentroController implements Initializable {
     }
 
     public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException {
-        administradorController.mostrarTablaCentros(actionEvent);
+        administradorController.mostrarBalanceCentros(actionEvent);
+    }
+
+    public void cargaDeDatos(ActionEvent actionEvent) {
+        administradorController.cargaDeDatos(actionEvent);
     }
 }

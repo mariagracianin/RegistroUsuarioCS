@@ -31,22 +31,17 @@
                   <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnVerEmpresas" mnemonicParsing="false" onAction="#mostrarTablaEmpresas" prefHeight="35.0" prefWidth="202.0" text="Ver empresas">
-               <font>
-                  <Font name="Candara Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnVerCentros" mnemonicParsing="false" onAction="#mostrarTablaCentros" prefHeight="35.0" prefWidth="202.0" text="Ver centros deportivos">
-               <font>
-                  <Font name="Candara Bold" size="15.0" />
-               </font>
-            </Button>
             <Button fx:id="btnBalanceEmpresas" mnemonicParsing="false" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: #03DAC6;" text="Balance empresas">
                <font>
                   <Font name="Candara Bold" size="15.0" />
                </font>
             </Button>
             <Button fx:id="btnBalanceCentros" mnemonicParsing="false" onAction="#mostrarBalanceCentros" prefHeight="35.0" prefWidth="202.0" text="Balance centros">
+               <font>
+                  <Font name="Candara Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCargaDeDatos" mnemonicParsing="false" onAction="#cargaDeDatos" prefHeight="35.0" prefWidth="202.0" text="Carga de datos">
                <font>
                   <Font name="Candara Bold" size="15.0" />
                </font>
