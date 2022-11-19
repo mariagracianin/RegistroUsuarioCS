@@ -154,7 +154,8 @@ public class EmpActividadesController implements Initializable {
     }
 
     public void llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
-       /* contenedorAct.getChildren().clear();
+        /*
+        contenedorAct.getChildren().clear();
         System.out.println(txtBuscador.getText());
         HttpResponse<String> response =  centroDeportivoRest.obtenerActividadesByFiltro(txtBuscador.getText());
         System.out.println(response.getBody());

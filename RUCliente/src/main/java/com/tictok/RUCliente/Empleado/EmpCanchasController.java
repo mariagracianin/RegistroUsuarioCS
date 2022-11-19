@@ -5,9 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.HttpResponse;
-import com.tictok.Commons.ActividadConHorariosYCuposDTO;
-import com.tictok.Commons.SuperActividadDTO;
-import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.Commons.*;
 import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.CentroDeportivoRest;
@@ -26,9 +24,11 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -50,6 +50,9 @@ public class EmpCanchasController implements Initializable {
     public Button btnMisReservas;
     public TextField txtBuscador;
     public Pagination pagination;
+    public BorderPane pane;
+
+
     @Autowired
     EmpMisDatosController empMisDatosController;
     @Autowired
@@ -64,7 +67,6 @@ public class EmpCanchasController implements Initializable {
     private GridPane contenedorCanchas;
     private List<SuperCanchaDTO> canchasActuales;
 
-    //traer solo las que tienen cod reserva padre == null, o sea q no hayan sido reservadas x nadie;
     private List<SuperCanchaDTO> getDatos(){
         try {
             HttpResponse<String> response = centroDeportivoRest.obtenerCanchas();
@@ -85,26 +87,66 @@ public class EmpCanchasController implements Initializable {
         Image imagenLupa = new Image(linkLupa.toString(),25,25,false,true);
         btnBuscar.setGraphic(new ImageView(imagenLupa));
 
-        canchasActuales= new ArrayList<>();
-        contenedorCanchas.getChildren().clear();
-        canchasActuales.addAll(getDatos());
+        pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+        pagination.setMaxHeight(550);
+        pagination.setMaxWidth(900);
+        pagination.setPageFactory(new Callback<Integer, Node>() {
+            @Override
+            public Node call(Integer pageIndex) {
+                pane.setPrefHeight(650);
+                pane.setPrefWidth(1200);
+                return createPage(pageIndex);
+            }
+        });
+        pane.setPrefHeight(650);
+        pane.setPrefWidth(1200);
+        pagination.setMaxHeight(550);
+        pagination.setMaxWidth(900);
+        pagination.setPrefHeight(550);
+        pagination.setPrefWidth(900);
+
+    }
+
+    private GridPane createPage(Integer pageIndex) {
+        GridPane contenedorCan = new GridPane();
+        contenedorCan.setPrefWidth(900);
+        contenedorCan.setPrefHeight(550);
+        contenedorCan.setMaxWidth(900);
+        contenedorCan.setMaxHeight(550);
+        contenedorCan.getColumnConstraints().clear();
+        contenedorCan.getRowConstraints().clear();
+        ListaCanchasDTOConCount listaCanchasDTOConCount;
+        try {
+            HttpResponse<String> response = centroDeportivoRest.obtenerCanchasPageable(pageIndex, 9);
+            String responseBody = response.getBody();
+            ObjectMapper mapper = new ObjectMapper();
+            listaCanchasDTOConCount = mapper.readValue(responseBody, ListaCanchasDTOConCount.class);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
         int column=0;
         int row=0;
+
+        pagination.setPageCount(listaCanchasDTOConCount.getPages());
+
         try {
-            for (int i=0; i<canchasActuales.size(); i++){
+            for (int i = 0; i< listaCanchasDTOConCount.getObjects().size(); i++){
+
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
                 SplitPane actBox = fxmlLoader.load();
 
                 CardCanchaController cardController = fxmlLoader.getController();
-                cardController.setDatosCancha(canchasActuales.get(i));
+                cardController.setDatosCancha(listaCanchasDTOConCount.getObjects().get(i));
                 cardController.setMiniCuenta(miniCuenta);
+
                 if (column == 3) {
                     column = 0;
                     row++;
                 }
-                contenedorCanchas.add(actBox,column++,row);
+                contenedorCan.add(actBox,column++,row);
                 GridPane.setMargin(actBox, new Insets(10));
 
             }
@@ -112,6 +154,8 @@ public class EmpCanchasController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return contenedorCan;
 
     }
 
