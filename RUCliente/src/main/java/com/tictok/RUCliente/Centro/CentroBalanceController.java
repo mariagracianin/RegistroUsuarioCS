@@ -208,5 +208,7 @@ public class CentroBalanceController implements Initializable {
         }
     }
 
-
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        centroController.agregarCuenta(actionEvent);
+    }
 }

@@ -110,4 +110,8 @@ public class CentroCheckInUsuarioSinReservaController{
     public void volverAtras(ActionEvent actionEvent) throws IOException {
         centroController.irACheckIn(actionEvent);
     }
+
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        centroController.agregarCuenta(actionEvent);
+    }
 }

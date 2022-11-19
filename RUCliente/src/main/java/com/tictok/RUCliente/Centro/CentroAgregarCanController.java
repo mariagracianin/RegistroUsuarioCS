@@ -182,4 +182,8 @@ public class CentroAgregarCanController implements Initializable {
     public void irACheckIn(ActionEvent actionEvent) throws IOException {
         centroController.irACheckIn(actionEvent);
     }
+
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        centroController.agregarCuenta(actionEvent);
+    }
 }

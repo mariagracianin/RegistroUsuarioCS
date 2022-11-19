@@ -73,4 +73,10 @@ public class ServiciosController {
         return canchaService.buscarCanchas(campoBusqueda);
     }
 
+    @GetMapping("canchas/{campoBusqueda}/{page}/{size}")
+    public ListaCanchasDTOConCount getCanchasBuscadas(@PathVariable String campoBusqueda, @PathVariable int page,
+                                                   @PathVariable int size){
+        return canchaService.buscarCanchasPageable(campoBusqueda, page, size);
+    }
+
 }

@@ -98,4 +98,8 @@ public class CentroCheckInController implements Initializable {
             lblDebeSeleccionar.setText("Debe seleccionar alguna de las opciones");
         }
     }
+
+    public void agregarCuenta(ActionEvent actionEvent) throws IOException {
+        centroController.agregarCuenta(actionEvent);
+    }
 }

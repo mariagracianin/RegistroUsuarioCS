@@ -3,6 +3,7 @@ package com.tictok.RUCliente;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.image.Image;
 import javafx.stage.*;
 
 public class JavaFXApplication extends Application {
@@ -18,6 +19,7 @@ public class JavaFXApplication extends Application {
 		Scene escena = new Scene(root);
 		escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
 		primaryStage.setScene(escena);
+		primaryStage.getIcons().add(new Image(JavaFXApplication.class.getResourceAsStream("logo.png")));
 		primaryStage.show();
 	}
 

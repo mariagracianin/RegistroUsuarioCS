@@ -153,8 +153,123 @@ public class EmpActividadesController implements Initializable {
         empMisReservasController.cerrarSesion(actionEvent);
     }
 
+    private GridPane createPageBuscador(Integer pageIndex) {
+        if (txtBuscador.getText().isEmpty()){
+            GridPane contenedorAct = new GridPane();
+            contenedorAct.setPrefWidth(900);
+            contenedorAct.setPrefHeight(550);
+            contenedorAct.setMaxWidth(900);
+            contenedorAct.setMaxHeight(550);
+            contenedorAct.getColumnConstraints().clear();
+            contenedorAct.getRowConstraints().clear();
+            ListaActividadesDTOConCount listaActividadesDTOConCount;
+            try {
+                HttpResponse<String> response = centroDeportivoRest.obtenerActividadesPageable(pageIndex, 9);
+                String responseBody = response.getBody();
+                ObjectMapper mapper = new ObjectMapper();
+                listaActividadesDTOConCount = mapper.readValue(responseBody, ListaActividadesDTOConCount.class);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            int column = 0;
+            int row = 0;
+
+            pagination.setPageCount(listaActividadesDTOConCount.getPages());
+
+            try {
+                for (int i = 0; i < listaActividadesDTOConCount.getObjects().size(); i++) {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                    fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardActividad.fxml"));
+                    SplitPane actBox = fxmlLoader.load();
+
+                    CardActividadController cardController = fxmlLoader.getController();
+                    cardController.setDatosActividad(listaActividadesDTOConCount.getObjects().get(i));
+                    cardController.setMiniCuenta(miniCuenta);
+
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+                    contenedorAct.add(actBox, column++, row);
+                    GridPane.setMargin(actBox, new Insets(10));
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return contenedorAct;
+        }else {
+
+            GridPane contenedorAct = new GridPane();
+            contenedorAct.setPrefWidth(900);
+            contenedorAct.setPrefHeight(550);
+            contenedorAct.setMaxWidth(900);
+            contenedorAct.setMaxHeight(550);
+            contenedorAct.getColumnConstraints().clear();
+            contenedorAct.getRowConstraints().clear();
+            ListaActividadesDTOConCount listaActividadesDTOConCount;
+            try {
+                HttpResponse<String> response = centroDeportivoRest.obtenerActividadesByFiltroPageable(txtBuscador.getText(), pageIndex, 9);
+                String responseBody = response.getBody();
+                ObjectMapper mapper = new ObjectMapper();
+                listaActividadesDTOConCount = mapper.readValue(responseBody, ListaActividadesDTOConCount.class);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            int column = 0;
+            int row = 0;
+
+            pagination.setPageCount(listaActividadesDTOConCount.getPages());
+
+            try {
+                for (int i = 0; i < listaActividadesDTOConCount.getObjects().size(); i++) {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                    fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardActividad.fxml"));
+                    SplitPane actBox = fxmlLoader.load();
+
+                    CardActividadController cardController = fxmlLoader.getController();
+                    cardController.setDatosActividad(listaActividadesDTOConCount.getObjects().get(i));
+                    cardController.setMiniCuenta(miniCuenta);
+
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+                    contenedorAct.add(actBox, column++, row);
+                    GridPane.setMargin(actBox, new Insets(10));
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return contenedorAct;
+        }
+
+    }
+
     public void llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
-       /* contenedorAct.getChildren().clear();
+
+        pagination.setPageFactory(new Callback<Integer, Node>() {
+            @Override
+            public Node call(Integer pageIndex) {
+                pane.setPrefHeight(650);
+                pane.setPrefWidth(1200);
+                return createPageBuscador(pageIndex);
+            }
+        });
+
+        /*
+        contenedorAct.getChildren().clear();
         System.out.println(txtBuscador.getText());
         HttpResponse<String> response =  centroDeportivoRest.obtenerActividadesByFiltro(txtBuscador.getText());
         System.out.println(response.getBody());

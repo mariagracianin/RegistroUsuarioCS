@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.tictok.Commons.HorarioDTO;
 import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.SuperCanchaDTO;
+import com.tictok.RUCliente.Admin.AdministradorController;
 import com.tictok.RUCliente.JavaFXApplication;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.UsuarioRest;
@@ -17,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.apache.camel.reifier.ResequenceReifier;
@@ -134,7 +136,7 @@ public class EmpMisReservasController implements Initializable {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Actividades");
-
+        stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 
@@ -148,6 +150,7 @@ public class EmpMisReservasController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stageActual.show();
     }
 
@@ -165,7 +168,7 @@ public class EmpMisReservasController implements Initializable {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Mis Datos");
-
+        stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 
@@ -179,7 +182,7 @@ public class EmpMisReservasController implements Initializable {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Canchas");
-
+        stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
     }
 }
