@@ -154,10 +154,6 @@ public class EmpMisReservasController implements Initializable {
         stageActual.show();
     }
 
-    public void verReservasPasadas(ActionEvent actionEvent) {
-
-    }
-
     public void verDatos(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);

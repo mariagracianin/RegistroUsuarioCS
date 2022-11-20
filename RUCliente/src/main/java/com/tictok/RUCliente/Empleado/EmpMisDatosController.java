@@ -90,10 +90,6 @@ public class EmpMisDatosController implements Initializable {
         empMisReservasController.verCanchas(actionEvent);
     }
 
-    public void verReservasPasadas(ActionEvent actionEvent) {
-        empMisReservasController.verReservasPasadas(actionEvent);
-    }
-
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
         empMisReservasController.cerrarSesion(actionEvent);
     }

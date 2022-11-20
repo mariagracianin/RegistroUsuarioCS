@@ -94,6 +94,19 @@ public class CardCheckInConReservaController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
+
+        } else if (response.getCode() == 405){
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            //fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(CardCheckInConReservaController.class.getResourceAsStream("ventCarnetVencidoCheckInConReserva.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Error");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
         }
 
     }

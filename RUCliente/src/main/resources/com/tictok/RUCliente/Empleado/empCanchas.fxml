@@ -99,20 +99,6 @@
                      </font></Button>
                </children>
             </HBox>
-            <HBox prefHeight="40.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="btnReservasPasadas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#verReservasPasadas" prefHeight="40.0" prefWidth="173.0" text="Reservas pasadas" textAlignment="CENTER">
-                     <font>
-                        <Font name="Candara Bold" size="19.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets left="15.0" />
-                     </padding></Button>
-               </children>
-            </HBox>
             <Button fx:id="btnCerrarSesion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="40.0" prefWidth="179.0" styleClass="btnCerrarSesion" stylesheets="@../entidad_style.css" text="Cerrar sesión" textAlignment="CENTER">
                <VBox.margin>
                   <Insets />
