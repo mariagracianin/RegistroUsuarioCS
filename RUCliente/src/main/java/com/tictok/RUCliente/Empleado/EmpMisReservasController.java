@@ -138,6 +138,7 @@ public class EmpMisReservasController implements Initializable {
         stage.setTitle("Actividades");
         stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
 
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
@@ -152,6 +153,7 @@ public class EmpMisReservasController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void verDatos(ActionEvent actionEvent) throws IOException {
@@ -166,6 +168,7 @@ public class EmpMisReservasController implements Initializable {
         stage.setTitle("Mis Datos");
         stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
 
     public void verCanchas(ActionEvent actionEvent) throws IOException {
@@ -173,12 +176,17 @@ public class EmpMisReservasController implements Initializable {
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Parent root = fxmlLoader.load(EmpMisReservasController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empCanchas.fxml"));
-        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        EmpCanchasController controller = fxmlLoader.getController();
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Canchas");
         stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
+        controller.hacerDespues();
+        System.out.println("llega hasta acaaaaaaaaaaaaa");
     }
 }

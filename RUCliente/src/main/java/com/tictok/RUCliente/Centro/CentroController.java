@@ -38,6 +38,7 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void verActividades(ActionEvent actionEvent) throws IOException {
@@ -52,6 +53,7 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
@@ -66,6 +68,7 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void salir(ActionEvent actionEvent) throws IOException {
@@ -80,6 +83,7 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void agregarCancha(ActionEvent actionEvent) throws IOException {
@@ -94,6 +98,7 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void verCanchas(ActionEvent actionEvent) throws IOException {
@@ -108,6 +113,7 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void irACheckIn(ActionEvent actionEvent) throws IOException {
@@ -122,6 +128,7 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void agregarCuenta(ActionEvent actionEvent) throws IOException {
@@ -136,5 +143,6 @@ public class CentroController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 }

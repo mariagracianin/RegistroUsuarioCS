@@ -74,6 +74,7 @@ public class EmpActividadesController implements Initializable {
     }
 
     private GridPane createPage(Integer pageIndex) {
+        System.out.println(pageIndex);
         GridPane contenedorAct = new GridPane();
         contenedorAct.setPrefWidth(900);
         contenedorAct.setPrefHeight(550);
@@ -113,7 +114,7 @@ public class EmpActividadesController implements Initializable {
                     row++;
                 }
                 contenedorAct.add(actBox,column++,row);
-                GridPane.setMargin(actBox, new Insets(10));
+                GridPane.setMargin(actBox, new Insets(5));
 
             }
 
@@ -190,7 +191,7 @@ public class EmpActividadesController implements Initializable {
                         row++;
                     }
                     contenedorAct.add(actBox, column++, row);
-                    GridPane.setMargin(actBox, new Insets(10));
+                    GridPane.setMargin(actBox, new Insets(5));
 
                 }
 
@@ -240,7 +241,7 @@ public class EmpActividadesController implements Initializable {
                         row++;
                     }
                     contenedorAct.add(actBox, column++, row);
-                    GridPane.setMargin(actBox, new Insets(10));
+                    GridPane.setMargin(actBox, new Insets(5));
 
                 }
 

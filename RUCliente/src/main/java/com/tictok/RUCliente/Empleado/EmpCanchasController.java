@@ -84,17 +84,18 @@ public class EmpCanchasController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         URL linkLupa = getClass().getResource("/com/tictok/RUCliente/Empleado/lupa.png");
-        Image imagenLupa = new Image(linkLupa.toString(),25,25,false,true);
+        Image imagenLupa = new Image(linkLupa.toString(), 25, 25, false, true);
         btnBuscar.setGraphic(new ImageView(imagenLupa));
-
         pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
         pagination.setMaxHeight(550);
         pagination.setMaxWidth(900);
+        // pagination.setPageFactory(this::createPage);
         pagination.setPageFactory(new Callback<Integer, Node>() {
             @Override
             public Node call(Integer pageIndex) {
                 pane.setPrefHeight(650);
                 pane.setPrefWidth(1200);
+                pane.getScene().getWindow().setWidth(pane.getScene().getWidth() + 0.001);
                 return createPage(pageIndex);
             }
         });
@@ -106,11 +107,16 @@ public class EmpCanchasController implements Initializable {
         pagination.setPrefWidth(900);
 
     }
+    public void hacerDespues(){
+        pagination.getScene().getWindow().setWidth(pagination.getScene().getWidth() + 0.001);
+        pane.getScene().getWindow().setWidth(pane.getScene().getWidth() + 0.001);
+
+    }
 
     private GridPane createPage(Integer pageIndex) {
         GridPane contenedorCan = new GridPane();
-        contenedorCan.setPrefWidth(900);
-        contenedorCan.setPrefHeight(550);
+        contenedorCan.setPrefWidth(800);
+        contenedorCan.setPrefHeight(450);
         contenedorCan.setMaxWidth(900);
         contenedorCan.setMaxHeight(550);
         contenedorCan.getColumnConstraints().clear();
@@ -147,14 +153,14 @@ public class EmpCanchasController implements Initializable {
                     row++;
                 }
                 contenedorCan.add(actBox,column++,row);
-                GridPane.setMargin(actBox, new Insets(10));
+                GridPane.setMargin(actBox, new Insets(5));
 
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        pane.getScene().getWindow().setWidth(pane.getScene().getWidth() + 0.001);
         return contenedorCan;
 
     }
@@ -233,7 +239,7 @@ public class EmpCanchasController implements Initializable {
                         row++;
                     }
                     contenedorCan.add(actBox, column++, row);
-                    GridPane.setMargin(actBox, new Insets(10));
+                    GridPane.setMargin(actBox, new Insets(5));
 
                 }
 
@@ -282,7 +288,7 @@ public class EmpCanchasController implements Initializable {
                         row++;
                     }
                     contenedorCan.add(actBox, column++, row);
-                    GridPane.setMargin(actBox, new Insets(10));
+                    GridPane.setMargin(actBox, new Insets(5));
 
                 }
 
@@ -299,7 +305,7 @@ public class EmpCanchasController implements Initializable {
         pagination.setPageFactory(new Callback<Integer, Node>() {
             @Override
             public Node call(Integer pageIndex) {
-                pane.setPrefHeight(650);
+                pane.setPrefHeight(750);
                 pane.setPrefWidth(1200);
                 return createPageBuscador(pageIndex);
             }

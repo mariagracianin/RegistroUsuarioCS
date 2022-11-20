@@ -41,6 +41,7 @@ public class AdministradorController {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
 
     }
     @FXML
@@ -57,6 +58,7 @@ public class AdministradorController {
         stage.setTitle("Registrar nueva empresa");
         stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
 
     @FXML
@@ -73,6 +75,7 @@ public class AdministradorController {
         stage.setTitle("Registrar nuevo centro");
         stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
 
     public void mostrarBalanceEmpresas(ActionEvent actionEvent) throws IOException {
@@ -88,6 +91,7 @@ public class AdministradorController {
         stage.setTitle("Balance empresas");
         stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
 
     public void mostrarBalanceCentros(ActionEvent actionEvent) throws IOException {
@@ -103,6 +107,7 @@ public class AdministradorController {
         stage.setTitle("Balance centros");
         stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
 
     public void cargaDeDatos(ActionEvent actionEvent) {

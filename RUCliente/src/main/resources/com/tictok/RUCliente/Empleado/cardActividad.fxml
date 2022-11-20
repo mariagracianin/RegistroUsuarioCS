@@ -9,46 +9,46 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="pane" dividerPositions="0.85" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="280.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardActividadController">
+<SplitPane fx:id="pane" dividerPositions="0.85" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="280.0" styleClass="mainPane" stylesheets="@actividad-cancha.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Empleado.CardActividadController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="294.0" styleClass="mainPane">
          <children>
-            <VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="335.0" styleClass="mainPane" stylesheets="@actividad-cancha.css">
+            <VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="233.0" styleClass="mainPane" stylesheets="@actividad-cancha.css">
                <children>
-                  <ImageView fx:id="imagen" fitHeight="95.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imagen" fitHeight="74.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                      </image>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label fx:id="nombre" prefHeight="1.0" prefWidth="316.0" text="Nombre" textFill="WHITE">
+                  <Label fx:id="nombre" prefHeight="15.0" prefWidth="223.0" text="Nombre" textFill="WHITE">
                      <font>
-                        <Font name="Candara Bold" size="21.0" />
+                        <Font name="Candara Bold" size="19.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="costo" prefHeight="11.0" prefWidth="239.0" text="Costo:" textFill="WHITE">
+                  <Label fx:id="costo" prefHeight="0.0" prefWidth="225.0" text="Costo:" textFill="WHITE">
                      <font>
-                        <Font name="Candara Light" size="17.0" />
+                        <Font name="Candara Light" size="15.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="centroDeportivo" prefHeight="12.0" prefWidth="239.0" text="Centro: " textFill="WHITE">
+                  <Label fx:id="centroDeportivo" prefHeight="0.0" prefWidth="225.0" text="Centro: " textFill="WHITE">
                      <font>
-                        <Font name="Candara Light" size="17.0" />
+                        <Font name="Candara Light" size="15.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="direccionYBarrio" prefHeight="0.0" prefWidth="241.0" text="Dirección: con barrio" textFill="WHITE">
+                  <Label fx:id="direccionYBarrio" prefHeight="4.0" prefWidth="224.0" text="Dirección: con barrio" textFill="WHITE">
                      <font>
-                        <Font name="Calibri Light" size="17.0" />
+                        <Font name="Calibri Light" size="15.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
@@ -60,9 +60,9 @@
       </AnchorPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="50.0">
          <children>
-            <Button fx:id="btnVerInfo" alignment="CENTER" contentDisplay="CENTER" layoutX="-80.0" layoutY="80.0" mnemonicParsing="false" onAction="#abrirVentanaConDatos" prefHeight="27.0" prefWidth="200.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Ver información" textAlignment="CENTER">
+            <Button fx:id="btnVerInfo" alignment="CENTER" contentDisplay="CENTER" layoutX="-57.0" layoutY="65.0" mnemonicParsing="false" onAction="#abrirVentanaConDatos" prefHeight="34.0" prefWidth="154.0" rotate="-90.0" stylesheets="@actividad-cancha.css" text="Ver información" textAlignment="CENTER">
                <font>
-                  <Font name="Century Gothic" size="20.0" />
+                  <Font name="Century Gothic" size="17.0" />
                </font></Button>
          </children>
       </AnchorPane>
