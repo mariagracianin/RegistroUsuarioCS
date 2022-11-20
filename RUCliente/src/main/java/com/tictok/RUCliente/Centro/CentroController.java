@@ -40,7 +40,18 @@ public class CentroController implements Initializable {
         stageActual.show();
     }
 
-    public void verActividades(ActionEvent actionEvent) {
+    public void verActividades(ActionEvent actionEvent) throws IOException {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroActividades.fxml"));
+        stageActual.setTitle("Actividades activas");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
+        stageActual.show();
     }
 
     public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
@@ -85,7 +96,18 @@ public class CentroController implements Initializable {
         stageActual.show();
     }
 
-    public void verCanchas(ActionEvent actionEvent) {
+    public void verCanchas(ActionEvent actionEvent) throws IOException {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+        Parent root = fxmlLoader.load(CentroController.class.getResourceAsStream("/com/tictok/RUCliente/Centro/centroCanchas.fxml"));
+        stageActual.setTitle("Canchas activas");
+        Scene escena = new Scene(root);
+        escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
+        stageActual.setScene(escena);
+        stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
+        stageActual.show();
     }
 
     public void irACheckIn(ActionEvent actionEvent) throws IOException {

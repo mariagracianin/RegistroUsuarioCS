@@ -4,45 +4,62 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.LoginController">
-   <center>
+<BorderPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.LoginController">
+   <bottom>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="etLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="318.0" layoutY="279.0" prefHeight="78.0" prefWidth="232.0" text="Login" textFill="#03DAC6" AnchorPane.bottomAnchor="343.0" AnchorPane.leftAnchor="318.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="279.0">
+            <ImageView fitHeight="610.0" fitWidth="908.0" layoutX="-1.0" layoutY="123.0" opacity="0.5" pickOnBounds="true">
+               <image>
+                  <Image url="/com/tictok/RUCliente/fondologin.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="etLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="334.0" layoutY="311.0" prefHeight="78.0" prefWidth="232.0" text="log in" textFill="#03dac6" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="311.0">
                <font>
-                  <Font name="ChunkFivePrint" size="64.0" />
+                  <Font name="Quicksand Light" size="64.0" />
                </font>
             </Label>
-            <TextField fx:id="correoElectronico" layoutX="425.0" layoutY="377.0" prefHeight="34.0" prefWidth="266.0">
+            <TextField fx:id="correoElectronico" layoutX="414.0" layoutY="428.0" prefHeight="34.0" prefWidth="266.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" layoutX="425.0" layoutY="425.0" prefHeight="34.0" prefWidth="266.0">
+            <PasswordField fx:id="password" layoutX="414.0" layoutY="484.0" prefHeight="34.0" prefWidth="266.0">
                <font>
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="btnIngresar" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="595.0" layoutY="494.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="39.0" prefWidth="96.0" stylesheets="@loginStyle.css" text="Ingresar">
+            <Button fx:id="btnIngresar" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="584.0" layoutY="563.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="39.0" prefWidth="96.0" stylesheets="@loginStyle.css" text="Ingresar">
                <font>
                   <Font name="Century Gothic" size="18.0" />
                </font>
             </Button>
-            <Label fx:id="etCorreo" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="209.0" layoutY="376.0" prefHeight="32.0" prefWidth="210.0" text="correo electrónico" textFill="WHITE">
+            <Label fx:id="etCorreo" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="201.0" layoutY="429.0" prefHeight="32.0" prefWidth="210.0" text="correo electrónico" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="etContraseña" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="280.0" layoutY="424.0" prefHeight="32.0" prefWidth="130.0" text="contraseña" textFill="WHITE">
+            <Label fx:id="etContraseña" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="266.0" layoutY="485.0" prefHeight="32.0" prefWidth="130.0" text="contraseña" textFill="WHITE">
                <font>
                   <Font name="Candara Light" size="25.0" />
                </font>
             </Label>
+            <ImageView fitHeight="170.0" fitWidth="444.0" layoutX="242.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/tictok/RUCliente/GETFITlogintransparente.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="99.0" fitWidth="65.0" layoutX="287.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/tictok/RUCliente/user.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-   </center>
+   </bottom>
 </BorderPane>

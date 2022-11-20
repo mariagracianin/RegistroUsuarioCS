@@ -36,11 +36,11 @@ public class CentroAgregarCuentaController implements Initializable {
         centroController.agregarCancha(actionEvent);
     }
 
-    public void verActividades(ActionEvent actionEvent) {
+    public void verActividades(ActionEvent actionEvent) throws IOException {
         centroController.verActividades(actionEvent);
     }
 
-    public void verCanchas(ActionEvent actionEvent) {
+    public void verCanchas(ActionEvent actionEvent) throws IOException {
         centroController.verCanchas(actionEvent);
     }
 
