@@ -8,64 +8,58 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.LoginController">
+<BorderPane fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.LoginController">
    <center>
-      <AnchorPane fx:id="mainPane" prefHeight="300.0" prefWidth="700.0" styleClass="mainPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="mainPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="639.0" fitWidth="909.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="610.0" fitWidth="908.0" layoutX="-1.0" layoutY="123.0" opacity="0.5" pickOnBounds="true">
                <image>
-                 <Image url="/com/tictok/RUCliente/GETFITlogin.png" />
+                   <Image url="/com/tictok/RUCliente/fondologin.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="etLogin" alignment="CENTER" layoutX="391.0" layoutY="240.0" prefHeight="62.0" prefWidth="141.0" text="Login" textFill="#03DAC6">
+            <Label fx:id="etLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="334.0" layoutY="311.0" prefHeight="78.0" prefWidth="232.0" text="log in" textFill="#03dac6" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="311.0">
                <font>
-                  <Font name="ChunkFivePrint" size="50.0" />
+                  <Font name="Quicksand Light" size="64.0" />
                </font>
             </Label>
-            <TextField fx:id="correoElectronico" layoutX="440.0" layoutY="316.0" prefHeight="28.0" prefWidth="206.0" />
-            <PasswordField fx:id="password" layoutX="440.0" layoutY="366.0" prefHeight="28.0" prefWidth="206.0" />
-            <Button fx:id="btnIngresar" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="550.0" layoutY="436.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="39.0" prefWidth="96.0" stylesheets="@loginStyle.css" text="Ingresar">
+            <TextField fx:id="correoElectronico" layoutX="414.0" layoutY="428.0" prefHeight="34.0" prefWidth="266.0">
                <font>
-                  <Font name="Century Gothic" size="16.0" />
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="password" layoutX="414.0" layoutY="484.0" prefHeight="34.0" prefWidth="266.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="btnIngresar" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="584.0" layoutY="563.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="39.0" prefWidth="96.0" stylesheets="@loginStyle.css" text="Ingresar">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
                </font>
             </Button>
-            <Label fx:id="etCorreo" alignment="CENTER" ellipsisString="" layoutX="227.0" layoutY="314.0" prefHeight="32.0" prefWidth="210.0" text="correo electrónico" textFill="WHITE">
+            <Label fx:id="etCorreo" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="201.0" layoutY="429.0" prefHeight="32.0" prefWidth="210.0" text="correo electrónico" textFill="WHITE">
                <font>
-                  <Font name="Candara Light" size="24.0" />
+                  <Font name="Candara Light" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="etContraseña" alignment="CENTER" ellipsisString="" layoutX="300.0" layoutY="362.0" prefHeight="32.0" prefWidth="130.0" text="contraseña" textFill="WHITE">
+            <Label fx:id="etContraseña" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="266.0" layoutY="485.0" prefHeight="32.0" prefWidth="130.0" text="contraseña" textFill="WHITE">
                <font>
-                  <Font name="Candara Light" size="24.0" />
+                  <Font name="Candara Light" size="25.0" />
                </font>
             </Label>
+            <ImageView fitHeight="170.0" fitWidth="444.0" layoutX="242.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/tictok/RUCliente/GETFITlogintransparente.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="99.0" fitWidth="65.0" layoutX="287.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/tictok/RUCliente/user.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>
-   <top>
-      <HBox fx:id="topPane" prefHeight="69.0" prefWidth="700.0" styleClass="topPane" stylesheets="@loginStyle.css" BorderPane.alignment="CENTER" />
-   </top>
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"  styleClass="mainPane" stylesheets="@loginStyle.css">
-         <children>
-            <ImageView fitHeight="467.0" fitWidth="200.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/tictok/RUCliente/111.jpg" />
-               </image></ImageView>
-         </children>
-      </AnchorPane>
-   </left>
-   <right>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"  styleClass="mainPane" stylesheets="@loginStyle.css">
-         <children>
-            <ImageView fitHeight="467.0" fitWidth="200.0" layoutX="1.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                 <Image url="/com/tictok/RUCliente/222.jpg" />
-               </image></ImageView>
-         </children>
-      </AnchorPane>
-   </right>
 </BorderPane>

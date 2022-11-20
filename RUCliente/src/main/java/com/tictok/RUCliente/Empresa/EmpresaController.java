@@ -41,8 +41,11 @@ public class EmpresaController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
 
     }
     public void volverAVistaEmpresa(ActionEvent actionEvent) throws IOException {
@@ -57,6 +60,7 @@ public class EmpresaController implements Initializable {
         stage.setTitle("Empresa");
         stage.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
     public void registrarUsuario(ActionEvent actionEvent) throws IOException {
 
@@ -71,6 +75,7 @@ public class EmpresaController implements Initializable {
         stage.setTitle("Registrar nuevo empleado");
         stage.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
 
     }
 
@@ -86,6 +91,7 @@ public class EmpresaController implements Initializable {
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stageActual.show();
+        stageActual.centerOnScreen();
     }
 
     public void mostrarTablaEmpleados(ActionEvent actionEvent) throws IOException {
@@ -100,6 +106,7 @@ public class EmpresaController implements Initializable {
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
 
     @Override
@@ -114,9 +121,11 @@ public class EmpresaController implements Initializable {
         Parent root = fxmlLoader.load(EmpresaController.class.getResourceAsStream("empresaAgregarCuenta.fxml"));
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
+
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.getIcons().add(new Image(EmpresaController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
     }
 }

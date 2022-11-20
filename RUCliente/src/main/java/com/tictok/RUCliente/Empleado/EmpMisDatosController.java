@@ -76,6 +76,7 @@ public class EmpMisDatosController implements Initializable {
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
+        escena.getWindow().setWidth(1250);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Mis Reservas");
 
@@ -88,10 +89,6 @@ public class EmpMisDatosController implements Initializable {
 
     public void verCanchas(ActionEvent actionEvent) throws IOException {
         empMisReservasController.verCanchas(actionEvent);
-    }
-
-    public void verReservasPasadas(ActionEvent actionEvent) {
-        empMisReservasController.verReservasPasadas(actionEvent);
     }
 
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {

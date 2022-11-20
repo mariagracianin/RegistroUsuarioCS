@@ -21,6 +21,7 @@ public class JavaFXApplication extends Application {
 		primaryStage.setScene(escena);
 		primaryStage.getIcons().add(new Image(JavaFXApplication.class.getResourceAsStream("logo.png")));
 		primaryStage.show();
+		primaryStage.centerOnScreen();
 	}
 
 	@Override
