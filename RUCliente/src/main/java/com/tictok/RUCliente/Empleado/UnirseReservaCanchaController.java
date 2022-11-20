@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
@@ -57,6 +58,20 @@ public class UnirseReservaCanchaController implements Initializable {
             existe = true;
         }else {
             //catrel de ERROR , no existe resreva con ese codigo
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(UnirseReservaCanchaController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/ventNoExisteReservaConEseCodigo.fxml"));
+
+            Stage stage = new Stage();
+            Scene escena = new Scene(root);
+            stage.setScene(escena);
+            stage.setTitle("Error");
+            //escena.getStylesheets().add("/com/tictok/RUCliente/Empleado/actividad-cancha.css");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
         }
 
         //buscar en la base de datos reserva con codigo txtCodigo.getText()
@@ -125,6 +140,12 @@ public class UnirseReservaCanchaController implements Initializable {
     public void confirmarUnirse(ActionEvent actionEvent) {
         UsuarioRest.hacerReservaCanchaHija(codigoPadrePosta, miniCuenta);
         //aca si persistir la reserva agregandole un integrante (este usuario)
+        Node source = (Node)  actionEvent.getSource();
+        Stage stageActual  = (Stage) source.getScene().getWindow();
+        stageActual.close();
+    }
+
+    public void salirVentanasEmergentes(ActionEvent actionEvent) {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
         stageActual.close();

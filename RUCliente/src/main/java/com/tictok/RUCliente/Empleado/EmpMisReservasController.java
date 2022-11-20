@@ -152,6 +152,8 @@ public class EmpMisReservasController implements Initializable {
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
         stageActual.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stageActual.show();
         stageActual.centerOnScreen();
     }

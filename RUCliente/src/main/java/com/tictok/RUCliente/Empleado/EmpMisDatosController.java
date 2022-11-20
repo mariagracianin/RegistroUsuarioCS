@@ -76,6 +76,7 @@ public class EmpMisDatosController implements Initializable {
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
+        escena.getWindow().setWidth(1250);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Mis Reservas");
 

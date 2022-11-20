@@ -39,6 +39,8 @@ public class AdministradorController {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
@@ -100,7 +102,7 @@ public class AdministradorController {
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
         Parent root = fxmlLoader.load(AdministradorController.class.getResourceAsStream("administradorBalanceCentros.fxml"));
-        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
