@@ -85,14 +85,17 @@ public class LoginController {
 
         Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empMisReservas.fxml"));
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        stage.setMaximized(true);
         Scene escena = new Scene(root);
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("GetFit");
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
+
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
-        stage.setMaximized(true);
+
     }
     public void cargarVistaAdmin(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
