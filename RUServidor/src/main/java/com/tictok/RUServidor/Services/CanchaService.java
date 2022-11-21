@@ -179,11 +179,11 @@ public class CanchaService {
         return listaSuperCanchaDTO;
     }
 
-    public ListaCanchasDTOConCount procesarCanchas(Page<Tuple> canchasInfosObjects){
-        int pages = canchasInfosObjects.getTotalPages();
+    public ListaCanchasDTOConCount procesarCanchas(Page<Tuple> canchasInfosObjects, int pages){
         if (canchasInfosObjects.isEmpty()){
             return null;
         }
+        System.out.println(pages);
         List<SuperCanchaDTO> superCanchaDTOList =
                 CanchaMapper.fromQueryResultListToSuperCanchaDTOList(canchasInfosObjects.getContent(), imagenRepository);
         ListaCanchasDTOConCount listaCanchasDTOConCount = new ListaCanchasDTOConCount(pages, superCanchaDTOList);
@@ -192,7 +192,10 @@ public class CanchaService {
     public ListaCanchasDTOConCount findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
         Page<Tuple> canchasInfosObjects = canchaRepository.findDistinctBy(paging);
-        return procesarCanchas(canchasInfosObjects);
+        int pages = ((int)Math.ceil((double) canchaRepository.getPages() / size));
+
+
+        return procesarCanchas(canchasInfosObjects, pages);
     }
 
     public List<SuperCanchaDTO> buscarCanchas(String campoBusqueda){
@@ -206,9 +209,10 @@ public class CanchaService {
 
     public ListaCanchasDTOConCount buscarCanchasPageable(String campoBusqueda, int page, int size){
         Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
-        Page<Tuple> canchasInfosObjects = canchaRepository.findWithBusqueda(paging, campoBusqueda);
-        System.out.println("ACAAAAAAAAAA               "+ canchasInfosObjects.getTotalElements());
-        return procesarCanchas(canchasInfosObjects);
+        Page<Tuple> canchasInfosObjects = canchaRepository.findWithBusqueda(paging, campoBusqueda.toUpperCase());
+        int pages = ((int)Math.ceil((double) canchaRepository.getPagesBuscadas(campoBusqueda.toUpperCase()) / size));
+        System.out.println(pages);
+        return procesarCanchas(canchasInfosObjects, pages);
     }
 
     @Transactional
