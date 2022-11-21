@@ -37,7 +37,6 @@ public class CentroCheckInUsuarioSinReservaController{
 
     public void inicializar(){
         ArrayList<SuperActividadDTO> actividades = getActividadesDeCentro();
-
         int row=0;
         int column=0;
         try {

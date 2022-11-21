@@ -13,7 +13,7 @@
       <String fx:value="round-layout" />
    </styleClass>
    <children>
-      <Label fx:id="lblDiaDeLaSemana" prefHeight="30.0" prefWidth="140.0" text="Día" textFill="WHITE">
+      <Label fx:id="lblDiaDeLaSemana" prefHeight="23.0" prefWidth="104.0" text="Día" textFill="WHITE">
          <font>
             <Font name="Candara Bold" size="18.0" />
          </font>
@@ -21,7 +21,7 @@
             <Insets left="15.0" top="5.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="lblHoraInicio" prefHeight="30.0" prefWidth="100.0" text="Inicio" textFill="WHITE">
+      <Label fx:id="lblHoraInicio" prefHeight="23.0" prefWidth="80.0" text="Inicio" textFill="WHITE">
          <font>
             <Font name="Candara Bold" size="18.0" />
          </font>
@@ -37,7 +37,7 @@
             <Insets top="5.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="lblCuposLibres" prefHeight="30.0" prefWidth="100.0" text="Cupos Libres" textFill="WHITE">
+      <Label fx:id="lblCuposLibres" prefHeight="23.0" prefWidth="154.0" text="Cupos Libres" textFill="WHITE">
          <font>
             <Font name="Candara Bold" size="18.0" />
          </font>
@@ -54,4 +54,7 @@
          </font>
       </Button>
    </children>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
 </HBox>
