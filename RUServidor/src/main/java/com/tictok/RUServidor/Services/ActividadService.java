@@ -197,7 +197,9 @@ public class ActividadService {
     public ListaActividadesDTOConCount buscarActividadesPageable(String campoBusqueda, int page, int size){
         Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
         Page<Tuple> actividadInfosObjects = actividadRepository.findByNombreOBarrioIsLike(paging, campoBusqueda.toUpperCase());
-        int pages = (int) actividadRepository.getPagesBuscadas(campoBusqueda) / size;
+        int pages = ((int)Math.ceil((double) actividadRepository.getPagesBuscadas(campoBusqueda) / size));
+        if (pages == 0) pages = 1;
+        System.out.println(pages);
         return procesarActividades(actividadInfosObjects, pages);
     }
     public List<SuperActividadDTO> buscarActividades(String campoBusqueda){
