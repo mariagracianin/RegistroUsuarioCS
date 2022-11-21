@@ -58,6 +58,8 @@ public class AdministradorController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Registrar nueva empresa");
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
@@ -75,6 +77,8 @@ public class AdministradorController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Registrar nuevo centro");
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
@@ -91,6 +95,8 @@ public class AdministradorController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Balance empresas");
+        escena.getWindow().setWidth(1350);
+        escena.getWindow().setHeight(700);
         stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
@@ -107,6 +113,8 @@ public class AdministradorController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Balance centros");
+        escena.getWindow().setWidth(1350);
+        escena.getWindow().setHeight(700);
         stage.getIcons().add(new Image(AdministradorController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();

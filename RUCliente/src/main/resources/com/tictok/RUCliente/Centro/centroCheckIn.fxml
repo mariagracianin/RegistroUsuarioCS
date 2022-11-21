@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
@@ -66,13 +66,13 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Separator opacity="0.0" prefHeight="112.0" prefWidth="498.0" />
+            <Separator opacity="0.0" prefHeight="158.0" prefWidth="698.0" />
             <Label text="Ingrese la cédula del usuario:" textFill="#03dac6">
                <font>
-                  <Font name="Candara Light" size="20.0" />
+                  <Font name="Candara Light" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets left="125.0" />
+                  <Insets bottom="10.0" left="200.0" />
                </VBox.margin>
             </Label>
             <Label text="(sin puntos ni guiones)" textFill="WHITE">
@@ -80,12 +80,12 @@
                   <Font name="Candara Light" size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" left="160.0" />
+                  <Insets bottom="15.0" left="255.0" />
                </VBox.margin>
             </Label>
             <TextField fx:id="txtCedulaUsuario" prefHeight="31.0" prefWidth="197.0" promptText="12345678">
                <VBox.margin>
-                  <Insets left="155.0" right="165.0" />
+                  <Insets bottom="20.0" left="220.0" right="220.0" />
                </VBox.margin>
             </TextField>
             <HBox prefHeight="37.0" prefWidth="498.0">
@@ -95,7 +95,7 @@
                         <Font size="15.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="125.0" right="20.0" top="5.0" />
+                        <Insets left="230.0" right="20.0" top="5.0" />
                      </HBox.margin>
                   </RadioButton>
                   <RadioButton fx:id="btnSinReserva" mnemonicParsing="false" text="sin reserva" textFill="WHITE">
@@ -116,7 +116,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
                <VBox.margin>
-                  <Insets left="220.0" top="10.0" />
+                  <Insets left="325.0" top="30.0" />
                </VBox.margin>
             </Button>
             <Label fx:id="lblDebeSeleccionar" prefHeight="22.0" prefWidth="312.0" textFill="WHITE">

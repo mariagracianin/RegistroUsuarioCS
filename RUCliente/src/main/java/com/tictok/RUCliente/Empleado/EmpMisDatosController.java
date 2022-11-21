@@ -76,11 +76,14 @@ public class EmpMisDatosController implements Initializable {
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
-        escena.getWindow().setWidth(1250);
+        //escena.getWindow().setHeight(600);
+        //escena.getWindow().setWidth(1250);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Mis Reservas");
 
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
+        stage.setMaximized(true);
     }
 
     public void verActividades(ActionEvent actionEvent) throws IOException {

@@ -75,8 +75,11 @@ public class CentroCheckInController implements Initializable {
 
             Scene escena = new Scene(root);
             stageActual.setScene(escena);
+            escena.getWindow().setWidth(1250);
+            escena.getWindow().setHeight(600);
             escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
             stageActual.show();
+            stageActual.centerOnScreen();
         } else if (btnSinReserva.isSelected()) {
             Node source = (Node)  actionEvent.getSource();
             Stage stageActual  = (Stage) source.getScene().getWindow();
@@ -92,8 +95,11 @@ public class CentroCheckInController implements Initializable {
 
             Scene escena = new Scene(root);
             stageActual.setScene(escena);
+            escena.getWindow().setWidth(1250);
+            escena.getWindow().setHeight(700);
             escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
             stageActual.show();
+            stageActual.centerOnScreen();
         } else {
             lblDebeSeleccionar.setText("Debe seleccionar alguna de las opciones");
         }

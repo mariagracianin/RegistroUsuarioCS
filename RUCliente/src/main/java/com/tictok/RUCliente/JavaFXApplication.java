@@ -19,6 +19,8 @@ public class JavaFXApplication extends Application {
 		Scene escena = new Scene(root);
 		escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
 		primaryStage.setScene(escena);
+		escena.getWindow().setWidth(900);
+		escena.getWindow().setHeight(600);
 		primaryStage.getIcons().add(new Image(JavaFXApplication.class.getResourceAsStream("logo.png")));
 		primaryStage.show();
 		primaryStage.centerOnScreen();

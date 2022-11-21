@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroBalanceController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroBalanceController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
@@ -105,7 +105,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="tblServicioResumen" prefHeight="611.0" prefWidth="698.0" stylesheets="@../entidad_style.css">
+            <TableView fx:id="tblServicioResumen" prefHeight="503.0" prefWidth="698.0" stylesheets="@../entidad_style.css">
                <columns>
                   <TableColumn fx:id="colServicio" prefWidth="250.0" text="Servicio" />
                   <TableColumn fx:id="colTipo" prefWidth="130.0" text="Tipo" />
