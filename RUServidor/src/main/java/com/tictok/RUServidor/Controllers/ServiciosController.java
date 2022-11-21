@@ -64,11 +64,8 @@ public class ServiciosController {
 
     @GetMapping("actividades/{campoBusqueda}/{page}/{size}")
     public ListaActividadesDTOConCount getActividadesBuscadasPageable(@PathVariable String campoBusqueda,
-                                                                  @PathVariable int page, @PathVariable int size) throws InterruptedException {
-        ListaActividadesDTOConCount lista = actividadService.buscarActividadesPageable(campoBusqueda, page, size);
-        System.out.println(lista.getObjects().get(1).getNombreServicio());
-        return lista;
-//        return actividadService.buscarActividadesPageable(campoBusqueda, page, size);
+                                                                  @PathVariable int page, @PathVariable int size){
+        return actividadService.buscarActividadesPageable(campoBusqueda, page, size);
     }
 
     @GetMapping("canchas/{campoBusqueda}")

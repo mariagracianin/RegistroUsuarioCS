@@ -36,8 +36,6 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(750);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
@@ -53,8 +51,6 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
@@ -70,8 +66,6 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
@@ -87,8 +81,6 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
@@ -104,8 +96,6 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(750);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
@@ -121,8 +111,6 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
@@ -138,8 +126,6 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();

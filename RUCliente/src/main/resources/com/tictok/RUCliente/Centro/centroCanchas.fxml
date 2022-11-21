@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroVerCanchasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="790.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroVerCanchasController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
@@ -68,8 +68,8 @@
             <HBox prefHeight="80.0" prefWidth="551.0" styleClass="leftPane" />
             <TableView fx:id="tblCan" prefHeight="580.0" prefWidth="588.0" stylesheets="@../entidad_style.css" VBox.vgrow="ALWAYS">
                <columns>
-                  <TableColumn fx:id="colNombre" prefWidth="400.0" text="Nombre" />
-                  <TableColumn fx:id="colPrecio" prefWidth="300.0" text="Precio" />
+                  <TableColumn fx:id="colNombre" prefWidth="360.0" text="Nombre" />
+                  <TableColumn fx:id="colPrecio" prefWidth="230.0" text="Precio" />
                </columns>
             </TableView>
             <AnchorPane prefHeight="41.0" prefWidth="698.0" />

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1250.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInUsuarioReservasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" styleClass="mainPane" stylesheets="@../entidad_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictok.RUCliente.Centro.CentroCheckInUsuarioReservasController">
    <left>
       <VBox fx:id="leftPane" prefHeight="500.0" prefWidth="202.0" styleClass="leftPane" stylesheets="@../entidad_style.css" BorderPane.alignment="CENTER">
          <children>
@@ -77,7 +77,7 @@
                   <Font name="Century Gothic" size="40.0" />
                </font>
             </Label>
-            <Button fx:id="btnVolver" layoutX="1172.0" layoutY="32.0" mnemonicParsing="false" onAction="#volverAtras" style="-fx-background-color: #616161;" text="Volver">
+            <Button fx:id="btnVolver" layoutX="910.0" layoutY="38.0" mnemonicParsing="false" onAction="#volverAtras" style="-fx-background-color: #616161;" text="Volver">
                <font>
                   <Font name="Candara" size="14.0" />
                </font>

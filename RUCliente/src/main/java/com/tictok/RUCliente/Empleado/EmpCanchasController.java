@@ -199,7 +199,6 @@ public class EmpCanchasController implements Initializable {
     }
 
     private GridPane createPageBuscador(Integer pageIndex) {
-        System.out.println("Page Indeeeeeeeeeeeeeeeeeeeeeeeex  "+ pageIndex);
         if (txtBuscador.getText().isEmpty()){
             GridPane contenedorCan = new GridPane();
             contenedorCan.setPrefWidth(900);

@@ -89,12 +89,9 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("GetFit");
-        //escena.getWindow().setWidth(1250);
-        //escena.getWindow().setHeight(650);
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
-        stage.setMaximized(true);
     }
     public void cargarVistaAdmin(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -106,8 +103,6 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Administrador");
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(600);
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
@@ -123,8 +118,6 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Empresa");
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(600);
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
@@ -139,8 +132,6 @@ public class LoginController {
         stage.setScene(escena);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Centro");
-        escena.getWindow().setWidth(900);
-        escena.getWindow().setHeight(600);
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
