@@ -196,8 +196,13 @@ public class UsuarioService {
     }
 
     public Boolean carneVencido(Usuario usuario){
+        System.out.println("--------------------------------------------");
         String fechaVen = usuario.getVencimientoCarne();
+        System.out.println(fechaVen);
         String[] arrayFechaVen = fechaVen.split("-");
+        System.out.println(arrayFechaVen[0]);
+        System.out.println(arrayFechaVen[1]);
+        System.out.println(arrayFechaVen[2]);
 
         LocalDate vencimiento = LocalDate.of(Integer.parseInt(arrayFechaVen[0]),Integer.parseInt(arrayFechaVen[1]),Integer.parseInt(arrayFechaVen[2]));
         LocalDate dateActual =  LocalDate.now();
