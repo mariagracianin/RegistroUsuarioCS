@@ -143,8 +143,14 @@ public class UsuarioService {
         CentroDeportivo centro = cuentaService.findOnebyId(mailCentro).getCentroDeportivo();
         String nombreCentro = centro.getNombreCentro();
 
+        int iter = 0;
         List<ReservaActividad> reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(cedula, Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
         List<ReservaCancha> reservaCanchas = reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(cedula,Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+        while (reservasActividades.isEmpty() && reservaCanchas.isEmpty() && iter<5){
+            iter++;
+            reservasActividades = reservaActividadRepository.conseguirReservasEntreFechasYDeUsuario(cedula, Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+            reservaCanchas =  reservaCanchaRepository.conseguirReservasEntreFechasYDeUsuario(cedula,Date.valueOf(LocalDate.now()),Date.valueOf(LocalDate.now().plusDays(6)));
+        }
 
         List<ReservaDTO> reservaDTOlist = ReservaMapper.fromListReservasToReservaDTO(reservaCanchas,reservasActividades);
 
