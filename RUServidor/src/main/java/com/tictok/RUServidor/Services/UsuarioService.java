@@ -199,7 +199,7 @@ public class UsuarioService {
         String fechaVen = usuario.getVencimientoCarne();
         String[] arrayFechaVen = fechaVen.split("-");
 
-        LocalDate vencimiento = LocalDate.of(Integer.parseInt(arrayFechaVen[2]),Integer.parseInt(arrayFechaVen[1]),Integer.parseInt(arrayFechaVen[0]));
+        LocalDate vencimiento = LocalDate.of(Integer.parseInt(arrayFechaVen[0]),Integer.parseInt(arrayFechaVen[1]),Integer.parseInt(arrayFechaVen[2]));
         LocalDate dateActual =  LocalDate.now();
 
         if(vencimiento.isBefore(dateActual)){
