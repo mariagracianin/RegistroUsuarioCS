@@ -38,7 +38,7 @@ public class LoginController {
     public PasswordField password;
 
     public void ingresar(ActionEvent actionEvent) throws IOException {
-        HttpResponse<String> response = loginRest.autenticar(correoElectronico.getText(), password.getText());
+        HttpResponse<String> response = loginRest.autenticarBien(correoElectronico.getText(), password.getText());
         if (response.getCode() == 200) {
             ObjectMapper objectMapper = new ObjectMapper();
             MiniCuentaDTO miniCuentaDTO = objectMapper.readValue(response.getBody(), MiniCuentaDTO.class);
