@@ -10,6 +10,7 @@ import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Empleado.CardReservaRealizadaController;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.MiniCuenta;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,6 +33,9 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
+
+    @Autowired
+    UsuarioRest usuarioRest;
 
     public GridPane contenedorReservas;
     private int cedulaUsuario;
@@ -83,7 +87,7 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
 
     private List<ReservaDTO> getReservasDeUsuario(int cedula) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        HttpResponse<String> response = centroDeportivoRest.buscarReservasFromUsuario(cedula);
+        HttpResponse<String> response = usuarioRest.buscarReservasFromUsuario(cedula);
         List<ReservaDTO> list = objectMapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, ReservaDTO.class));
         return list;
     }

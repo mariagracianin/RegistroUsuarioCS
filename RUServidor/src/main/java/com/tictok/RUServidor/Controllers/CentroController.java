@@ -33,17 +33,6 @@ public class CentroController {
 
     @PostMapping("/postActividad/{mailCentro}")
     public void postNewActividad(@RequestBody NuevoServicioDTO nuevaActividadDTO, @PathVariable String mailCentro) throws CuentaNoExisteException {
-        //nombre, precio, paseLibre, imagen
-        System.out.println("------------------------------------------------------------------");
-        System.out.println(nuevaActividadDTO.getNombreServicio()+":NombreServicio");
-        System.out.println(nuevaActividadDTO.getPrecio()+":Precio");
-        System.out.println(nuevaActividadDTO.getCupos()+":Cupos");
-        System.out.println(nuevaActividadDTO.getPaseLibre()+":PaseLibre");
-        System.out.println(nuevaActividadDTO.getImageString()+"Imagen");
-        System.out.println(nuevaActividadDTO.getHorarios().get(0).getDia());
-        System.out.println(nuevaActividadDTO.getHorarios().get(0).getHoraInicio());
-        System.out.println(nuevaActividadDTO.getHorarios().get(0).getHoraFin());
-
         actividadService.guardarActividad(nuevaActividadDTO, mailCentro);
     }
 

@@ -6,6 +6,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +34,8 @@ public class CentroVerCanchasController implements Initializable {
     CentroController centroController;
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
+    @Autowired
+    UsuarioRest usuarioRest;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,7 +43,7 @@ public class CentroVerCanchasController implements Initializable {
         this.colPrecio.setCellValueFactory(new PropertyValueFactory("precio"));
 
         try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerCanchas();
+            HttpResponse<String> response = usuarioRest.obtenerCanchas();
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             List<SuperCanchaDTO> listSuperCanchasDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));

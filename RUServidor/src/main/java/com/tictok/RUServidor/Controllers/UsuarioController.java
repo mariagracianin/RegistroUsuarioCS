@@ -103,6 +103,4 @@ public class UsuarioController  {
         return usuarioService.getCheckIns(cedulaUsuario,mes,year);
     }
 
-
-
 }

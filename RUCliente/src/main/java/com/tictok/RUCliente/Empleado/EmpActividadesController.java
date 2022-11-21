@@ -7,6 +7,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.tictok.Commons.ListaActividadesDTOConCount;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.MiniCuenta;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +49,9 @@ public class EmpActividadesController implements Initializable {
     CentroDeportivoRest centroDeportivoRest;
 
     @Autowired
+    UsuarioRest usuarioRest;
+
+    @Autowired
     MiniCuenta miniCuenta;
 
     @Override
@@ -84,7 +88,7 @@ public class EmpActividadesController implements Initializable {
         contenedorAct.getRowConstraints().clear();
         ListaActividadesDTOConCount listaActividadesDTOConCount;
         try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerActividadesPageable(pageIndex, 9);
+            HttpResponse<String> response = usuarioRest.obtenerActividadesPageable(pageIndex, 9);
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             listaActividadesDTOConCount = mapper.readValue(responseBody, ListaActividadesDTOConCount.class);
@@ -161,7 +165,7 @@ public class EmpActividadesController implements Initializable {
             contenedorAct.getRowConstraints().clear();
             ListaActividadesDTOConCount listaActividadesDTOConCount;
             try {
-                HttpResponse<String> response = centroDeportivoRest.obtenerActividadesPageable(pageIndex, 9);
+                HttpResponse<String> response = usuarioRest.obtenerActividadesPageable(pageIndex, 9);
                 String responseBody = response.getBody();
                 ObjectMapper mapper = new ObjectMapper();
                 listaActividadesDTOConCount = mapper.readValue(responseBody, ListaActividadesDTOConCount.class);
@@ -211,7 +215,7 @@ public class EmpActividadesController implements Initializable {
             contenedorAct.getRowConstraints().clear();
             ListaActividadesDTOConCount listaActividadesDTOConCount;
             try {
-                HttpResponse<String> response = centroDeportivoRest.obtenerActividadesByFiltroPageable(txtBuscador.getText(), pageIndex, 9);
+                HttpResponse<String> response = usuarioRest.obtenerActividadesByFiltroPageable(txtBuscador.getText(), pageIndex, 9);
                 String responseBody = response.getBody();
                 ObjectMapper mapper = new ObjectMapper();
                 listaActividadesDTOConCount = mapper.readValue(responseBody, ListaActividadesDTOConCount.class);

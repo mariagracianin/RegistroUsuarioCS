@@ -109,4 +109,114 @@ public class UsuarioRest {
             throw new RuntimeException(e);
         }
     }
+
+    public HttpResponse<String> buscarReservasFromUsuario(int cedula){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservasByCedula/"+cedula+"/"+ miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static HttpResponse<String> getReservaCanchaFromCodigo(String codigoReserva){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservaCanchaFromCodigo/" + codigoReserva)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerActividades(){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades")
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerActividadesPageable(int page, int size){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades/"+ page + "/" + size)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerCanchas(){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas")
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerCanchasPageable(int page, int size){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas/"+ page + "/" + size)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerActividadesByFiltro(String filtro){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades/"+filtro)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerActividadesByFiltroPageable(String filtro, int page, int size){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades/" + filtro + "/" + page + "/" + size)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerCanchasByFiltro(String filtro){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas/"+filtro)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public HttpResponse<String> obtenerCanchasByFiltroPageable(String filtro, int page, int size){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas/" + filtro + "/" + page + "/" + size)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

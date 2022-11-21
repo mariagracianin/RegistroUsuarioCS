@@ -10,6 +10,7 @@ import com.tictok.RUCliente.Empresa.EmpresaRegistroEmplController;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.MiniCuenta;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +63,9 @@ public class EmpCanchasController implements Initializable {
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
+
+    @Autowired
+    UsuarioRest usuarioRest;
 
     @FXML
     private GridPane contenedorCanchas;
@@ -123,7 +127,7 @@ public class EmpCanchasController implements Initializable {
         contenedorCan.getRowConstraints().clear();
         ListaCanchasDTOConCount listaCanchasDTOConCount;
         try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerCanchasPageable(pageIndex, 9);
+            HttpResponse<String> response = usuarioRest.obtenerCanchasPageable(pageIndex, 9);
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             listaCanchasDTOConCount = mapper.readValue(responseBody, ListaCanchasDTOConCount.class);
@@ -209,7 +213,7 @@ public class EmpCanchasController implements Initializable {
             contenedorCan.getRowConstraints().clear();
             ListaCanchasDTOConCount listaCanchasDTOConCount;
             try {
-                HttpResponse<String> response = centroDeportivoRest.obtenerCanchasPageable(pageIndex, 9);
+                HttpResponse<String> response = usuarioRest.obtenerCanchasPageable(pageIndex, 9);
                 String responseBody = response.getBody();
                 ObjectMapper mapper = new ObjectMapper();
                 listaCanchasDTOConCount = mapper.readValue(responseBody, ListaCanchasDTOConCount.class);
@@ -258,7 +262,7 @@ public class EmpCanchasController implements Initializable {
             contenedorCan.getRowConstraints().clear();
             ListaCanchasDTOConCount listaCanchasDTOConCount;
             try {
-                HttpResponse<String> response = centroDeportivoRest.obtenerCanchasByFiltroPageable(txtBuscador.getText(), pageIndex, 9);
+                HttpResponse<String> response = usuarioRest.obtenerCanchasByFiltroPageable(txtBuscador.getText(), pageIndex, 9);
                 String responseBody = response.getBody();
                 ObjectMapper mapper = new ObjectMapper();
                 listaCanchasDTOConCount = mapper.readValue(responseBody, ListaCanchasDTOConCount.class);

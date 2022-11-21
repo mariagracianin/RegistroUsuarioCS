@@ -51,7 +51,7 @@ public class UnirseReservaCanchaController implements Initializable {
         boolean existe = false;
         ReservaDTO reservaDTO = null;
 
-        HttpResponse<String> response = CentroDeportivoRest.getReservaCanchaFromCodigo(txtCodigo.getText());
+        HttpResponse<String> response = UsuarioRest.getReservaCanchaFromCodigo(txtCodigo.getText());
         if(response.getCode()==200) {
             ObjectMapper objectMapper = new ObjectMapper();
             reservaDTO = objectMapper.readValue(response.getBody(), ReservaDTO.class);
