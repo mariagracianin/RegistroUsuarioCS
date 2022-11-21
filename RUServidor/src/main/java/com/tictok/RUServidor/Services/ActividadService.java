@@ -35,22 +35,22 @@ import java.util.Optional;
 @Service
 public class ActividadService {
 
-    private final UsuarioRepository usuarioRepository;
+    //private final UsuarioRepository usuarioRepository;
     private final ActividadRepository actividadRepository;
     private final ReservaActividadRepository reservaActividadRepository;
-    private final CentroService centroService;
+    //private final CentroService centroService;
     private final CuentaService cuentaService;
     private final ImagenRepository imagenRepository;
     private final UsuarioService usuarioService;
     private final CheckInActividadRepository checkInActividadRepository;
 
     @Autowired
-    public ActividadService(UsuarioRepository usuarioRepository, ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository, CentroService centroService, CuentaService cuentaService, UsuarioService usuarioService, CheckInActividadRepository checkInActividadRepository) throws IOException {
-        this.usuarioRepository = usuarioRepository;
+    public ActividadService(ActividadRepository actividadRepository, ReservaActividadRepository reservaActividadRepository, ImagenRepository imagenRepository, CuentaService cuentaService, UsuarioService usuarioService, CheckInActividadRepository checkInActividadRepository) throws IOException {
+        //this.usuarioRepository = usuarioRepository;
         this.actividadRepository = actividadRepository;
         this.reservaActividadRepository = reservaActividadRepository;
         this.imagenRepository = imagenRepository;
-        this.centroService = centroService;
+        //this.centroService = centroService;
         this.usuarioService = usuarioService;
         this.checkInActividadRepository = checkInActividadRepository;
 
@@ -136,7 +136,7 @@ public class ActividadService {
             throw new SaldoInsuficienteException();
         }
         CheckInActividad checkInActividad = new CheckInActividad(usuario, dateFecha, actividad);
-        System.out.println("Lo cree");
+        //System.out.println("Lo cree");
         checkInActividad = checkInActividadRepository.save(checkInActividad);
         //return  CheckInMapper.fromCheckInActividadToCheckInDTO(checkInActividad); ????????
     }
@@ -190,7 +190,7 @@ public class ActividadService {
 
         int pages = ((int)Math.ceil((double) actividadRepository.getPages() / size));
 
-        System.out.println(pages);
+        //System.out.println(pages);
         return procesarActividades(actividadInfosObjects, pages);
     }
 
@@ -199,7 +199,7 @@ public class ActividadService {
         Page<Tuple> actividadInfosObjects = actividadRepository.findByNombreOBarrioIsLike(paging, campoBusqueda.toUpperCase());
         int pages = ((int)Math.ceil((double) actividadRepository.getPagesBuscadas(campoBusqueda) / size));
         if (pages == 0) pages = 1;
-        System.out.println(pages);
+        //System.out.println(pages);
         return procesarActividades(actividadInfosObjects, pages);
     }
     public List<SuperActividadDTO> buscarActividades(String campoBusqueda){
@@ -252,7 +252,7 @@ public class ActividadService {
 
     @Transactional
     public ActividadConHorariosYCuposDTO getActividadConHorariosYCuposDTO(String centroDeportivo, String actividadNombre) throws EntidadNoExisteException {
-        System.out.println(centroDeportivo + "   " + actividadNombre);
+        //System.out.println(centroDeportivo + "   " + actividadNombre);
         List<Actividad> listaDeActividades = actividadRepository.findByCentroAndNombre(centroDeportivo, actividadNombre);
         if (listaDeActividades.isEmpty()) {
             throw new EntidadNoExisteException("La actividad de ese centro y ese nombre no existe");

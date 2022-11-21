@@ -31,25 +31,25 @@ public class CentroService {
     private final CanchaRepository canchaRepository;
     private final ActividadRepository actividadRepository;
     private final CuentaService cuentaService;
-    private final ReservaActividadRepository reservaActividadRepository;
-    private final ReservaCanchaRepository reservaCanchaRepository;
+    //private final ReservaActividadRepository reservaActividadRepository;
+    //private final ReservaCanchaRepository reservaCanchaRepository;
 
-    private final CheckInActividadRepository checkInActividadRepository;
+    //private final CheckInActividadRepository checkInActividadRepository;
 
     @Autowired
-    public CentroService(CentroRepository centroRepository, CuentaRepository cuentaRepository, CanchaRepository canchaRepository, ActividadRepository actividadRepository, CuentaService cuentaService, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository, CheckInActividadRepository checkInActividadRepository) {
+    public CentroService(CentroRepository centroRepository, CuentaRepository cuentaRepository, CanchaRepository canchaRepository, ActividadRepository actividadRepository, CuentaService cuentaService) {
         this.centroRepository = centroRepository;
         this.cuentaRepository = cuentaRepository;
         this.canchaRepository = canchaRepository;
         this.actividadRepository = actividadRepository;
         this.cuentaService = cuentaService;
-        this.reservaActividadRepository = reservaActividadRepository;
-        this.reservaCanchaRepository = reservaCanchaRepository;
-        this.checkInActividadRepository = checkInActividadRepository;
+        //this.reservaActividadRepository = reservaActividadRepository;
+        //this.reservaCanchaRepository = reservaCanchaRepository;
+        //this.checkInActividadRepository = checkInActividadRepository;
 
     }
 
-    public void crearPrimerCentro(){
+    /*public void crearPrimerCentro(){
         NuevoCentroDTO primerCentroDTO = new NuevoCentroDTO("centro@mail","contra","centro", "direccion2", "telefono2", "encargado2","rut2","razonSocial2","barrio");
         NuevoCentroDTO segundoCentroDTO = new NuevoCentroDTO("centro2@mail","contra","centro2", "direccion3", "telefono3", "encargado3","rut3","razonSocial3","barrio2");
         CentroDeportivo primerCentro = saveNewCentro(primerCentroDTO);
@@ -70,20 +70,20 @@ public class CentroService {
         Cancha newCancha5 = new Cancha(segundoCentro,"cancha2",DayOfWeek.MONDAY,LocalTime.of(10,00),LocalTime.of(11,00),1000.0,10);
         Cancha newCancha6  = new Cancha(segundoCentro,"cancha_basquet2",DayOfWeek.MONDAY,LocalTime.of(9,00),LocalTime.of(10,00),1000.0,10);
 
-        canchaRepository.save(newCancha1);
-        canchaRepository.save(newCancha2);
-        canchaRepository.save(newCancha3);
-        canchaRepository.save(newCancha4);
-        canchaRepository.save(newCancha5);
-        canchaRepository.save(newCancha6);
+        //canchaRepository.save(newCancha1);
+        //canchaRepository.save(newCancha2);
+        //canchaRepository.save(newCancha3);
+        //canchaRepository.save(newCancha4);
+        //canchaRepository.save(newCancha5);
+        //canchaRepository.save(newCancha6);
 
-        actividadRepository.save(newActividad1);
-        actividadRepository.save(newActividad2);
-        actividadRepository.save(newActividad3);
-        actividadRepository.save(newActividad5);
-        actividadRepository.save(newActividad6);
-        actividadRepository.save(newActividad7);
-    }
+        //actividadRepository.save(newActividad1);
+        //actividadRepository.save(newActividad2);
+        //actividadRepository.save(newActividad3);
+        //actividadRepository.save(newActividad5);
+        //actividadRepository.save(newActividad6);
+        //actividadRepository.save(newActividad7);
+    }*/
 
     public CentroDeportivo saveNewCentro(NuevoCentroDTO nuevoCentroDTO) {
         Cuenta cuenta = CuentaMapper.toCuentaFromNuevoCentroDTO(nuevoCentroDTO);

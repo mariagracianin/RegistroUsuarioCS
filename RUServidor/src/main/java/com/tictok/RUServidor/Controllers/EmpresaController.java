@@ -33,7 +33,7 @@ public class EmpresaController {
 
     @PostMapping
     public void postNewEmpresa(@RequestBody NuevaEmpresaDTO nuevaEmpresaDTO){
-        Empresa empresa = empresaService.saveNewEmpresa(nuevaEmpresaDTO);
+        empresaService.saveNewEmpresa(nuevaEmpresaDTO);
     }
 
     @GetMapping("{mailEmpresa}/balance/{mes}/{year}")

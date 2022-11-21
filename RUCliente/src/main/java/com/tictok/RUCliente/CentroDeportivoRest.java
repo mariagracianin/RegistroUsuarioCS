@@ -155,6 +155,17 @@ public class CentroDeportivoRest {
         }
     }
 
+    public HttpResponse<String> buscarReservasFromUsuario(int cedula){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservasByCedula/"+cedula+"/"+ miniCuenta.getMailMiniCuenta())
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
     public static HttpResponse<String> hacerCheckInSinReserva(int cedula, String nombreActividad, String tipo, HorarioDTO horarioDTO, Long codigoCheckIn, MiniCuenta miniCuenta) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         HttpResponse<String> response2 = obtenerCentroLogeado(miniCuenta);

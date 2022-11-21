@@ -87,7 +87,7 @@ public class CentroCheckInUsuarioReservasController implements Initializable {
 
     private List<ReservaDTO> getReservasDeUsuario(int cedula) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        HttpResponse<String> response = usuarioRest.buscarReservasFromUsuario(cedula);
+        HttpResponse<String> response = centroDeportivoRest.buscarReservasFromUsuario(cedula);
         List<ReservaDTO> list = objectMapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, ReservaDTO.class));
         return list;
     }

@@ -110,17 +110,6 @@ public class UsuarioRest {
         }
     }
 
-    public HttpResponse<String> buscarReservasFromUsuario(int cedula){
-        try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservasByCedula/"+cedula+"/"+ miniCuenta.getMailMiniCuenta())
-                    .header("Content-Type", "application/json")
-                    .asString();
-            return response;
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-
     public static HttpResponse<String> getReservaCanchaFromCodigo(String codigoReserva){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/usuario/getReservaCanchaFromCodigo/" + codigoReserva)
@@ -212,6 +201,28 @@ public class UsuarioRest {
     public HttpResponse<String> obtenerCanchasByFiltroPageable(String filtro, int page, int size){
         try {
             HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas/" + filtro + "/" + page + "/" + size)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static HttpResponse<String> obtenerActividadConCupos(String nombreCentro, String nombreActividad){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividad/"+nombreCentro+"/"+nombreActividad)
+                    .header("Content-Type", "application/json")
+                    .asString();
+            return response;
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static HttpResponse<String> obtenerCanchaConCupos(String nombreCentro, String nombreCancha){
+        try {
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/cancha/"+nombreCentro+"/"+nombreCancha)
                     .header("Content-Type", "application/json")
                     .asString();
             return response;

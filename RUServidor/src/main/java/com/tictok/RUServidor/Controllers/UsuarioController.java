@@ -21,20 +21,20 @@ import java.util.Optional;
 public class UsuarioController  {
 
     private final UsuarioService usuarioService;
-    private final EmpresaService empresaService;
-    private final CuentaService cuentaService;
+    //private final EmpresaService empresaService;
+    //private final CuentaService cuentaService;
     private final CanchaService canchaService;
     private final ActividadService actividadService;
-    private final ReservaCanchaRepository reservaCanchaRepository;
+    //private final ReservaCanchaRepository reservaCanchaRepository;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService, EmpresaService empresaService, CuentaService cuentaService, CanchaService canchaService, ActividadService actividadService, ReservaCanchaRepository reservaCanchaRepository) {
+    public UsuarioController(UsuarioService usuarioService, CanchaService canchaService, ActividadService actividadService) {
         this.usuarioService = usuarioService;
-        this.empresaService = empresaService;
-        this.cuentaService = cuentaService;
+        //this.empresaService = empresaService;
+        //this.cuentaService = cuentaService;
         this.canchaService = canchaService;
         this.actividadService = actividadService;
-        this.reservaCanchaRepository = reservaCanchaRepository;
+        //this.reservaCanchaRepository = reservaCanchaRepository;
     }
 
     @GetMapping("/all")
@@ -49,7 +49,7 @@ public class UsuarioController  {
 
     @PostMapping("{mail}")
     public void postNewUsuario(@PathVariable String mail, @RequestBody MegaUsuarioDTO megaUsuarioDTO) throws Exception {
-        Usuario usuario = usuarioService.saveNewUsurio(megaUsuarioDTO, mail);
+        usuarioService.saveNewUsurio(megaUsuarioDTO, mail);
     }
 
     @GetMapping("{id}/reserva")

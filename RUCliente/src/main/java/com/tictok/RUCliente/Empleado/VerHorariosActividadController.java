@@ -7,6 +7,7 @@ import com.tictok.Commons.*;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.MiniCuenta;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,6 +45,9 @@ public class VerHorariosActividadController implements Initializable {
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
+
+    @Autowired
+    UsuarioRest usuarioRest;
 
 
     public void setMiniCuenta(MiniCuenta miniCuenta) {
@@ -92,18 +96,18 @@ public class VerHorariosActividadController implements Initializable {
     }
 
     private List<HorarioConCuposDTO> obtenerHorarioConCupos() throws JsonProcessingException {
-        HttpResponse<String> response = CentroDeportivoRest.obtenerActividadConCupos(estaActividad.getNombreCentro(),estaActividad.getNombreServicio());
-        System.out.println(response.getBody());
+        HttpResponse<String> response = usuarioRest.obtenerActividadConCupos(estaActividad.getNombreCentro(),estaActividad.getNombreServicio());
+        //System.out.println(response.getBody());
         ObjectMapper objectMapper = new ObjectMapper();
-        System.out.println(response.getBody() + "---------------------------------------- " + response.getCode());
+        //System.out.println(response.getBody() + "---------------------------------------- " + response.getCode());
         ActividadConHorariosYCuposDTO actividadConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), ActividadConHorariosYCuposDTO.class);
-        System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos());
-        for(int i = 0; i<actividadConHorariosYCuposDTO.getHorariosConCupos().size(); i++){
+        //System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos());
+        /*for(int i = 0; i<actividadConHorariosYCuposDTO.getHorariosConCupos().size(); i++){
             System.out.println("-----------------------");
             System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getDia());
             System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getHoraInicio());
             System.out.println(actividadConHorariosYCuposDTO.getHorariosConCupos().get(i).getHoraFin());
-        }
+        }*/
         return actividadConHorariosYCuposDTO.getHorariosConCupos();
     }
 

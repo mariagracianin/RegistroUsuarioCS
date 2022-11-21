@@ -29,15 +29,15 @@ public class CanchaService {
 
     private final CuentaService cuentaService;
     private final UsuarioService usuarioService;
-    private final UsuarioRepository usuarioRepository;
+    //private final UsuarioRepository usuarioRepository;
     private final CanchaRepository canchaRepository;
     private final ReservaCanchaRepository reservaCanchaRepository;
     private final ImagenRepository imagenRepository;
     private final CheckInCanchaRepository checkInCanchaRepository;
 
     @Autowired
-    public CanchaService(UsuarioRepository usuarioRepository, CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService, UsuarioService usuarioService, ImagenRepository imagenRepository, CheckInCanchaRepository checkInCanchaRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public CanchaService(CanchaRepository canchaRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService, UsuarioService usuarioService, ImagenRepository imagenRepository, CheckInCanchaRepository checkInCanchaRepository) {
+        //this.usuarioRepository = usuarioRepository;
         this.canchaRepository = canchaRepository;
         this.reservaCanchaRepository = reservaCanchaRepository;
         this.cuentaService = cuentaService;
@@ -183,7 +183,7 @@ public class CanchaService {
         if (canchasInfosObjects.isEmpty()){
             return null;
         }
-        System.out.println(pages);
+        //System.out.println(pages);
         List<SuperCanchaDTO> superCanchaDTOList =
                 CanchaMapper.fromQueryResultListToSuperCanchaDTOList(canchasInfosObjects.getContent(), imagenRepository);
         ListaCanchasDTOConCount listaCanchasDTOConCount = new ListaCanchasDTOConCount(pages, superCanchaDTOList);
@@ -211,7 +211,7 @@ public class CanchaService {
         Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
         Page<Tuple> canchasInfosObjects = canchaRepository.findWithBusqueda(paging, campoBusqueda.toUpperCase());
         int pages = ((int)Math.ceil((double) canchaRepository.getPagesBuscadas(campoBusqueda.toUpperCase()) / size));
-        System.out.println(pages);
+        //System.out.println(pages);
         return procesarCanchas(canchasInfosObjects, pages);
     }
 

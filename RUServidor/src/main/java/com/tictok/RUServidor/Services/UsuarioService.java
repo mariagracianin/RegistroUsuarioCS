@@ -28,27 +28,26 @@ import java.util.Optional;
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final CuentaRepository cuentaRepository;
-    private final EmpresaRepository empresaRepository;
+    //private final EmpresaRepository empresaRepository;
     private final ReservaActividadRepository reservaActividadRepository;
     private final ReservaCanchaRepository reservaCanchaRepository;
-    private final EmpresaService empresaService;
+    //private final EmpresaService empresaService;
     private final CuentaService cuentaService;
-    private final CentroService centroService;
+    //private final CentroService centroService;
     private final CheckInActividadRepository checkInActividadRepository;
     private final CheckInCanchaRepository checkInCanchaRepository;
 
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository,
-                          EmpresaRepository empresaRepository, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository, EmpresaService empresaService, CuentaService cuentaService, CentroService centroService, CheckInActividadRepository checkInActividadRepository, CheckInCanchaRepository checkInCanchaRepository) {
+    public UsuarioService(UsuarioRepository usuarioRepository, CuentaRepository cuentaRepository, ReservaActividadRepository reservaActividadRepository, ReservaCanchaRepository reservaCanchaRepository, CuentaService cuentaService, CheckInActividadRepository checkInActividadRepository, CheckInCanchaRepository checkInCanchaRepository) {
         this.usuarioRepository = usuarioRepository;
         this.cuentaRepository = cuentaRepository;
-        this.empresaRepository = empresaRepository;
+        //this.empresaRepository = empresaRepository;
         this.reservaActividadRepository = reservaActividadRepository;
         this.reservaCanchaRepository = reservaCanchaRepository;
-        this.empresaService = empresaService;
+        //this.empresaService = empresaService;
         this.cuentaService = cuentaService;
-        this.centroService = centroService;
+        //this.centroService = centroService;
         this.checkInActividadRepository = checkInActividadRepository;
         this.checkInCanchaRepository = checkInCanchaRepository;
     }
@@ -100,10 +99,10 @@ public class UsuarioService {
                 throw new UsuarioMalDefinido();
             }
             if (user.isPresent()){
-                System.out.println("Lo encontro");
+                //System.out.println("Lo encontro");
                 throw new UsuarioYaExisteException(newUsuario.getStringCuenta());
             } else{
-                System.out.println("No lo encontro");
+                //System.out.println("No lo encontro");
                 }
 
         return usuarioRepository.save(newUsuario);

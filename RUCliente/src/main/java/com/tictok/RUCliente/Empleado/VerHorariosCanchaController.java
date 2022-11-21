@@ -7,6 +7,7 @@ import com.tictok.Commons.*;
 import com.tictok.RUCliente.CentroDeportivoRest;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.MiniCuenta;
+import com.tictok.RUCliente.UsuarioRest;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -39,6 +40,9 @@ public class VerHorariosCanchaController implements Initializable {
 
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
+
+    @Autowired
+    UsuarioRest usuarioRest;
 
     public void setEstaCancha(SuperCanchaDTO estaCancha) {
         this.estaCancha = estaCancha;
@@ -82,7 +86,7 @@ public class VerHorariosCanchaController implements Initializable {
         }
     }
     private List<HorarioConCuposDTO> obtenerHorarioConCupos() throws JsonProcessingException {
-        HttpResponse<String> response = centroDeportivoRest.obtenerCanchaConCupos(estaCancha.getNombreCentro(),estaCancha.getNombreServicio());
+        HttpResponse<String> response = usuarioRest.obtenerCanchaConCupos(estaCancha.getNombreCentro(),estaCancha.getNombreServicio());
         ObjectMapper objectMapper = new ObjectMapper();
         CanchaConHorariosYCuposDTO canchaConHorariosYCuposDTO = objectMapper.readValue(response.getBody(), CanchaConHorariosYCuposDTO.class);
         return canchaConHorariosYCuposDTO.getHorariosConCupos();

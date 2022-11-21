@@ -21,21 +21,22 @@ public class CargaDeDatosService {
     private final EmpresaService empresaService;
     private final UsuarioService usuarioService;
     private final CentroService centroService;
-    private final ActividadService actividadService;
-    private final CanchaService canchaService;
+    //private final ActividadService actividadService;
+    //private final CanchaService canchaService;
     private final CanchaRepository canchaRepository;
     private final ActividadRepository actividadRepository;
-    private final UsuarioRepository usuarioRepository;
+    //private final UsuarioRepository usuarioRepository;
     private final ImagenRepository imagenRepository;
-    public CargaDeDatosService(EmpresaService empresaService, UsuarioService usuarioService, CentroService centroService, ActividadService actividadService, CanchaService canchaService, CanchaRepository canchaRepository, ActividadRepository actividadRepository, UsuarioRepository usuarioRepository, ImagenRepository imagenRepository) {
+
+    public CargaDeDatosService(EmpresaService empresaService, UsuarioService usuarioService, CentroService centroService, CanchaRepository canchaRepository, ActividadRepository actividadRepository, ImagenRepository imagenRepository) {
         this.empresaService = empresaService;
         this.usuarioService = usuarioService;
         this.centroService = centroService;
-        this.actividadService = actividadService;
-        this.canchaService = canchaService;
+        //this.actividadService = actividadService;
+        //this.canchaService = canchaService;
         this.canchaRepository = canchaRepository;
         this.actividadRepository = actividadRepository;
-        this.usuarioRepository = usuarioRepository;
+        //this.usuarioRepository = usuarioRepository;
         this.imagenRepository = imagenRepository;
     }
 

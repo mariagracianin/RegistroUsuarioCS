@@ -34,6 +34,7 @@ public class EmpresaService {
     private final UsuarioRepository usuarioRepository;
     private final CheckInActividadRepository checkInActividadRepository;
     private final CheckInCanchaRepository checkInCanchaRepository;
+
     @Autowired
     public EmpresaService(EmpresaRepository empresaRepository, CuentaRepository cuentaRepository, UsuarioRepository usuarioRepository, CheckInActividadRepository checkInActividadRepository, CheckInCanchaRepository checkInCanchaRepository) {
         this.empresaRepository = empresaRepository;
@@ -41,15 +42,15 @@ public class EmpresaService {
         this.usuarioRepository = usuarioRepository;
         this.checkInActividadRepository = checkInActividadRepository;
         this.checkInCanchaRepository = checkInCanchaRepository;
-        System.out.println("Constuctor Empresa");
-        crearPrimeraEmpresa();
+        //System.out.println("Constuctor Empresa");
+        //crearPrimeraEmpresa();
     }
 
 
-    private void crearPrimeraEmpresa(){
-        NuevaEmpresaDTO primeraEmpresaDTO = new NuevaEmpresaDTO("empresa@mail","contra","empresa", "direccion", "telefono", "encargado","rut","razonSocial");
-        saveNewEmpresa(primeraEmpresaDTO);
-    }
+    //private void crearPrimeraEmpresa(){
+      //  NuevaEmpresaDTO primeraEmpresaDTO = new NuevaEmpresaDTO("empresa@mail","contra","empresa", "direccion", "telefono", "encargado","rut","razonSocial");
+        //saveNewEmpresa(primeraEmpresaDTO);
+    //}
 
     public Empresa findById(String nombreEmpresa) throws Exception {
         Optional<Empresa> empresa1 = empresaRepository.findById(nombreEmpresa);
@@ -83,7 +84,7 @@ public class EmpresaService {
 
         Optional<Cuenta> cuentaEmpresa = cuentaRepository.findById(mailEmpresa);
         if (cuentaEmpresa.isEmpty()) {
-            System.out.println("No encontre la empresa");
+            //System.out.println("No encontre la empresa");
             throw new EntidadNoExisteException("La empresa con ese mail no existe");
         }
 
@@ -91,7 +92,7 @@ public class EmpresaService {
         LocalDate fechaFinal = fecha.plusMonths(1);
         Date fechaInicio = Date.valueOf(fecha);
         Date fechaFin = Date.valueOf(fechaFinal);
-        System.out.println(fechaInicio);
+        //System.out.println(fechaInicio);
 
 
         Empresa empresa = cuentaEmpresa.get().getEmpresa();
@@ -136,12 +137,12 @@ public class EmpresaService {
         Optional<Cuenta> cuentaEmpresa = cuentaRepository.findById(mailEmpresa);
 
         if (cuentaEmpresa.isEmpty()) {
-            System.out.println("No encontre la empresa");
+            //System.out.println("No encontre la empresa");
             throw new EntidadNoExisteException("La empresa con ese mail no existe");
         }
         Optional<Usuario> usuarioOptional = usuarioRepository.findById(cedulaUsuario);
         if (usuarioOptional.isEmpty()) {
-            System.out.println("No encontre el usuario");
+            //System.out.println("No encontre el usuario");
             throw new EntidadNoExisteException("El usuario con esa cedula no existe");
         }
 
@@ -154,7 +155,7 @@ public class EmpresaService {
         Usuario usuario = usuarioOptional.get();
 
         if (!usuario.getEmpresa().equals(empresa)){
-            System.out.println("El usuario no pertenece a la empresa");
+            //System.out.println("El usuario no pertenece a la empresa");
             throw new AccesoNoPermitidoException("El usuario no pertenece a la empresa");
         }
 
