@@ -7,6 +7,7 @@ import com.tictok.Commons.SuperActividadDTO;
 import com.tictok.Commons.SuperCanchaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUCliente.CentroDeportivoRest;
+import com.tictok.RUCliente.MiniCuenta;
 import com.tictok.RUCliente.UsuarioRest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +38,7 @@ public class CentroVerActividadesController implements Initializable {
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
     @Autowired
-    UsuarioRest usuarioRest;
+    MiniCuenta miniCuenta;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,7 +46,7 @@ public class CentroVerActividadesController implements Initializable {
         this.colPrecio.setCellValueFactory(new PropertyValueFactory("precio"));
 
         try {
-            HttpResponse<String> response = usuarioRest.obtenerActividades();
+            HttpResponse<String> response = CentroDeportivoRest.obtenerActividadesFromCentroLogeado(this.miniCuenta);
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             List<SuperActividadDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperActividadDTO.class));

@@ -34,8 +34,7 @@ public class CentroVerCanchasController implements Initializable {
     CentroController centroController;
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
-    @Autowired
-    UsuarioRest usuarioRest;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -43,7 +42,7 @@ public class CentroVerCanchasController implements Initializable {
         this.colPrecio.setCellValueFactory(new PropertyValueFactory("precio"));
 
         try {
-            HttpResponse<String> response = usuarioRest.obtenerCanchas();
+            HttpResponse<String> response = centroDeportivoRest.obtenerCanchasFromCentroLogeado();
             String responseBody = response.getBody();
             ObjectMapper mapper = new ObjectMapper();
             List<SuperCanchaDTO> listSuperCanchasDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
