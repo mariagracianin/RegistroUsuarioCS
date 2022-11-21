@@ -46,6 +46,7 @@ public class CanchaService {
         this.checkInCanchaRepository = checkInCanchaRepository;
     }
 
+    @Transactional
     public ReservaDTO reservarCancha(ReservaDTO reservaDTO) throws UsuarioNoExisteException, ReservaPosteriorAlInicioException, CanchaYaReservadaException, ReservaPadreNoExisteException, ReservaPosteriorAlFinException, CuentaNoExisteException {
         ReservaCancha reservaCancha;
         ReservaDTO reservaDTOADevolver = null;
