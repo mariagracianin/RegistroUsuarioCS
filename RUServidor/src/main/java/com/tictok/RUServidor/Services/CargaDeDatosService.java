@@ -361,27 +361,27 @@ public class CargaDeDatosService {
     }
 
     private void agregarEmpleadosAPrimeraEmpresa(Empresa empresa) throws Exception {
-        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("agustin@mail", "contra", 52788472,"13/12/2023","Agustin", "Pani", "012345671",3000.0,500.0,3000.0,"Av. Italia");
-        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("mavi@mail", "contra",54967202,"14/12/2023","Victoria", "Del Campo", "012345672",3000.0,500.0,3000.0,"Maldonado");
-        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("maria@mail", "contra",52137396,"12/12/2020","Maria", "Nin", "012345673",3000.0,500.0,3000.0,"B.Artigas");
+        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("agustin@mail", "contra", 52788472,"13-12-2023","Agustin", "Pani", "012345671",3000.0,500.0,3000.0,"Av. Italia");
+        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("mavi@mail", "contra",54967202,"14-12-2023","Victoria", "Del Campo", "012345672",3000.0,500.0,3000.0,"Maldonado");
+        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("maria@mail", "contra",52137396,"12-12-2020","Maria", "Nin", "012345673",3000.0,500.0,3000.0,"B.Artigas");
         usuarioService.saveNewUsurio(megaUsuario1DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario2DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario3DTO, empresa.getCuentas().get(0).getMail());
     }
 
     private void agregarEmpleadosASegundaEmpresa(Empresa empresa) throws Exception {
-        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("valentina@mail", "contra", 52137311,"15/10/2023","Valentina", "Gonzalez", "012345674",2000.0,1000.0,2000.0,"B.Artigas");
-        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("felipe@mail", "contra",52788412,"16/10/2023","Felipe", "Montañes", "012345675",2000.0,1000.0,2000.0,"Av. Italia");
-        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("mateo@mail", "contra",54967213,"17/10/2023","Mateo", "Patrone", "012345676",2000.0,1000.0,2000.0,"Ponce");
+        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("valentina@mail", "contra", 52137311,"15-10-2023","Valentina", "Gonzalez", "012345674",2000.0,1000.0,2000.0,"B.Artigas");
+        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("felipe@mail", "contra",52788412,"16-10-2023","Felipe", "Montañes", "012345675",2000.0,1000.0,2000.0,"Av. Italia");
+        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("mateo@mail", "contra",54967213,"17-10-2023","Mateo", "Patrone", "012345676",2000.0,1000.0,2000.0,"Ponce");
         usuarioService.saveNewUsurio(megaUsuario1DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario2DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario3DTO, empresa.getCuentas().get(0).getMail());
     }
 
     private void agregarEmpleadosATerceraEmpresa(Empresa empresa) throws Exception {
-        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("hernan@mail", "contra", 52137500,"18/11/2023","Hernan", "Puschiasis", "012345677",1000.0,500.0,1000.0,"B. Artigas");
-        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("rosina@mail", "contra",52788501,"19/11/2023","Rosina", "Varela", "012345678",1000.0,500.0,1000.0,"Av. Italia");
-        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("federico@mail", "contra",54967502,"20/11/2023","Federico", "Vazquez", "012345679",1000.0,500.0,1000.0,"San Jose");
+        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("hernan@mail", "contra", 52137500,"18-11-2023","Hernan", "Puschiasis", "012345677",1000.0,500.0,1000.0,"B. Artigas");
+        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("rosina@mail", "contra",52788501,"19-11-2023","Rosina", "Varela", "012345678",1000.0,500.0,1000.0,"Av. Italia");
+        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("federico@mail", "contra",54967502,"2011-2023","Federico", "Vazquez", "012345679",1000.0,500.0,1000.0,"San Jose");
         usuarioService.saveNewUsurio(megaUsuario1DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario2DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario3DTO, empresa.getCuentas().get(0).getMail());

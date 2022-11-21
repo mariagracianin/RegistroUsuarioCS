@@ -165,16 +165,16 @@ public class UsuarioRest {
         }
     }
 
-    public HttpResponse<String> obtenerActividadesByFiltro(String filtro){
-        try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades/"+filtro)
-                    .header("Content-Type", "application/json")
-                    .asString();
-            return response;
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
+//    public HttpResponse<String> obtenerActividadesByFiltro(String filtro){
+//        try {
+//            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/actividades/"+filtro)
+//                    .header("Content-Type", "application/json")
+//                    .asString();
+//            return response;
+//        }catch (Exception e){
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public HttpResponse<String> obtenerActividadesByFiltroPageable(String filtro, int page, int size){
         try {
@@ -187,16 +187,16 @@ public class UsuarioRest {
         }
     }
 
-    public HttpResponse<String> obtenerCanchasByFiltro(String filtro){
-        try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas/"+filtro)
-                    .header("Content-Type", "application/json")
-                    .asString();
-            return response;
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
+//    public HttpResponse<String> obtenerCanchasByFiltro(String filtro){
+//        try {
+//            HttpResponse<String> response = Unirest.get("http://localhost:8080/servicio/canchas/"+filtro)
+//                    .header("Content-Type", "application/json")
+//                    .asString();
+//            return response;
+//        }catch (Exception e){
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public HttpResponse<String> obtenerCanchasByFiltroPageable(String filtro, int page, int size){
         try {

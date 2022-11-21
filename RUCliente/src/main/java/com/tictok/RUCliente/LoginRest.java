@@ -16,16 +16,16 @@ import java.time.LocalDate;
 @Component
 public class LoginRest {
 
-    /*public HttpResponse<String> autenticar(String mail, String password) {
-        try {
-            HttpResponse<String> response = Unirest.get("http://localhost:8080/cuenta/autenticar?mail="+mail+"&password="+ password)
-                    .header("Content-Type", "application/json")
-                    .asString();
-            return response;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }*/
+//    public HttpResponse<String> autenticar(String mail, String password) {
+//        try {
+//            HttpResponse<String> response = Unirest.get("http://localhost:8080/cuenta/autenticar?mail="+mail+"&password="+ password)
+//                    .header("Content-Type", "application/json")
+//                    .asString();
+//            return response;
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public HttpResponse<String> autenticarBien(String mail, String password){
         String cuentaJSON = "";
