@@ -34,11 +34,11 @@ public class CuentaController {
         return cuentaService.save(newCuentaDTO);
     }
 
-    /*@GetMapping("/autenticar")
-    public MiniCuentaDTO autenticar(@RequestParam(name = "mail") String mail, @RequestParam(name = "password") String password) throws CuentaNoExisteException, PasswordDoesNotMatchException {
-        CuentaDTO cuentaDTOaAutenticar = new CuentaDTO(mail,password,"");
-        return cuentaService.autenticar(cuentaDTOaAutenticar);
-    }*/
+//    @GetMapping("/autenticar")
+//    public MiniCuentaDTO autenticar(@RequestParam(name = "mail") String mail, @RequestParam(name = "password") String password) throws CuentaNoExisteException, PasswordDoesNotMatchException {
+//        CuentaDTO cuentaDTOaAutenticar = new CuentaDTO(mail,password,"");
+//        return cuentaService.autenticar(cuentaDTOaAutenticar);
+//    }
 
     @PostMapping("/autenticar")
     public MiniCuentaDTO autenticarBien(@RequestBody CuentaDTO cuentaDTO) throws CuentaNoExisteException, PasswordDoesNotMatchException {

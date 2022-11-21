@@ -70,23 +70,23 @@ public class ReservaMapper {
         return reserva2DTOList;
     }
 
-    /*public static ReservaDTO fromReservaCanchaToReservaDTO(ReservaCancha reservaCancha){
-        int cedula = reservaCancha.getUsuario().getCedula();
-        String nombreCentro = reservaCancha.getCancha().getCanchaId().getCentroDeportivo();
-        String nombreActividad = reservaCancha.getCancha().getCanchaId().getNombreServicio();
-        String tipo = "Cancha";
-        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaCancha.getCancha().getCanchaId());
-        Long codigoReserva = reservaCancha.getId();
-        return new ReservaDTO(cedula, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
-    }
-
-    public static ReservaDTO fromReservaActividadToReservaDTO(ReservaActividad reservaActividad) {
-        int cedula = reservaActividad.getUsuario().getCedula();
-        String nombreCentro = reservaActividad.getActividad().getActividadId().getCentroDeportivo();
-        String nombreActividad = reservaActividad.getActividad().getActividadId().getNombreServicio();
-        String tipo = "Actividad";
-        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaActividad.getActividad().getActividadId());
-        Long codigoReserva = reservaActividad.getId();
-        return new ReservaDTO(cedula, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
-    }*/
+//    public static ReservaDTO fromReservaCanchaToReservaDTO(ReservaCancha reservaCancha){
+//        int cedula = reservaCancha.getUsuario().getCedula();
+//        String nombreCentro = reservaCancha.getCancha().getCanchaId().getCentroDeportivo();
+//        String nombreActividad = reservaCancha.getCancha().getCanchaId().getNombreServicio();
+//        String tipo = "Cancha";
+//        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaCancha.getCancha().getCanchaId());
+//        Long codigoReserva = reservaCancha.getId();
+//        return new ReservaDTO(cedula, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
+//    }
+//
+//    public static ReservaDTO fromReservaActividadToReservaDTO(ReservaActividad reservaActividad) {
+//        int cedula = reservaActividad.getUsuario().getCedula();
+//        String nombreCentro = reservaActividad.getActividad().getActividadId().getCentroDeportivo();
+//        String nombreActividad = reservaActividad.getActividad().getActividadId().getNombreServicio();
+//        String tipo = "Actividad";
+//        HorarioDTO horario = HorarioMapper.fromServicioIdtoHorarioDTO(reservaActividad.getActividad().getActividadId());
+//        Long codigoReserva = reservaActividad.getId();
+//        return new ReservaDTO(cedula, nombreCentro, nombreActividad, tipo, horario, codigoReserva);
+//    }
 }

@@ -86,7 +86,8 @@ public class CanchaService {
         return reservaCanchaRepository.save(reservaCancha);
     }
 
-    public void checkInCancha(CheckInDTO checkInCancha) throws EntidadNoExisteException, SaldoInsuficienteException, CarneVencido {
+    @Transactional
+    public void checkInCancha(CheckInDTO checkInCancha) throws EntidadNoExisteException, SaldoInsuficienteException, CarneVencidoException {
         Long codReserva = checkInCancha.getCodigoCheckIn(); //viaja en CodigoCheckIn pero es el de la reserva
 
         Optional<ReservaCancha> reserva= reservaCanchaRepository.findById(codReserva);  //get reserva de ESE usuario
@@ -108,7 +109,7 @@ public class CanchaService {
 
         Usuario usuario = reservaCancha.getUsuario();
         if(usuarioService.carneVencido(usuario)){
-            throw new CarneVencido();
+            throw new CarneVencidoException();
         }
         Cancha cancha = reservaCancha.getCancha();
         Date date = reservaCancha.getFecha();

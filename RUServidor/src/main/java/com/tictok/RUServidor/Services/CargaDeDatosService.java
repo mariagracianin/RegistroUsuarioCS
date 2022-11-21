@@ -58,40 +58,40 @@ public class CargaDeDatosService {
     }
 
     public void crearPrimerCentro(){
-        NuevoCentroDTO primerCentroDTO = new NuevoCentroDTO("centro1@mail","contra1","Club de Tenis", "Av. Arcoiris", "101234567", "Felipe Montañes","rut1","razonSocial1","Carrasco");
+        NuevoCentroDTO primerCentroDTO = new NuevoCentroDTO("centro1@mail","contra1","Club de Tenis", "Av. Arcoiris", "101234567", "Felipe Montañes","rut 1","razonSocial 1","Carrasco");
         CentroDeportivo primerCentro = centroService.saveNewCentro(primerCentroDTO);
         agregarActividadesAPrimerCentro(primerCentro);
         agregarCanchasAPrimerCentro(primerCentro);
     }
 
     public void crearSegundoCentro(){
-        NuevoCentroDTO segundoCentroDTO = new NuevoCentroDTO("centro2@mail","contra2","Club de Golf", "B. Unicornio", "201234567", "Ignacio Soler","rut2","razonSocial2","Pocitos");
+        NuevoCentroDTO segundoCentroDTO = new NuevoCentroDTO("centro2@mail","contra2","Club de Golf", "B. Unicornio", "201234567", "Ignacio Soler","rut 2","razonSocial 2","Pocitos");
         CentroDeportivo segundoCentro = centroService.saveNewCentro(segundoCentroDTO);
         agregarActividadesASegundoCentro(segundoCentro);
         agregarCanchasASegundoCentro(segundoCentro);
     }
 
     public void crearTercerCentro(){
-        NuevoCentroDTO tercerCentroDTO = new NuevoCentroDTO("centro3@mail","contra3","Club de Pani", "Av. Caramelo", "301234567", "Clara Echeverria","rut3","razonSocial3","Malvin");
+        NuevoCentroDTO tercerCentroDTO = new NuevoCentroDTO("centro3@mail","contra3","Club de Pani", "Av. Caramelo", "301234567", "Clara Echeverria","rut 3","razonSocial 3","Malvin");
         CentroDeportivo tercerCentro = centroService.saveNewCentro(tercerCentroDTO);
         agregarActividadesATercerCentro(tercerCentro);
         agregarCanchasATercerCentro(tercerCentro);
     }
 
     public void crearPrimeraEmpresa() throws Exception {
-        NuevaEmpresaDTO primeraEmpresaDTO = new NuevaEmpresaDTO("empresa1@mail","contra1","Pani Company", "Av. Panizza", "111111111", "Victoria Del Campo","rut4","razonSocial4");
+        NuevaEmpresaDTO primeraEmpresaDTO = new NuevaEmpresaDTO("empresa1@mail","contra1","Pani Company", "Av. Panizza", "111111111", "Victoria Del Campo","rut 4","razonSocial 4");
         Empresa primeraEmpresa = empresaService.saveNewEmpresa(primeraEmpresaDTO);
         agregarEmpleadosAPrimeraEmpresa(primeraEmpresa);
     }
 
     public void crearSegundaEmpresa() throws Exception {
-        NuevaEmpresaDTO segundaEmpresaDTO = new NuevaEmpresaDTO("empresa2@mail","contra2","Peewee Company", "Av. Del Campo", "2222222222", "Peewee (Vale Gonzalez)","rut5","razonSocial5");
+        NuevaEmpresaDTO segundaEmpresaDTO = new NuevaEmpresaDTO("empresa2@mail","contra2","Peewee Company", "Av. Del Campo", "2222222222", "Peewee (Vale Gonzalez)","rut 5","razonSocial 5");
         Empresa segundaEmpresa = empresaService.saveNewEmpresa(segundaEmpresaDTO);
         agregarEmpleadosASegundaEmpresa(segundaEmpresa);
     }
 
     public void crearTerceraEmpresa() throws Exception {
-        NuevaEmpresaDTO terceraEmpresaDTO = new NuevaEmpresaDTO("empresa3@mail","contra3","JPA Company", "Av. TicTok", "333333333", "Rosina Varela","rut6","razonSocial6");
+        NuevaEmpresaDTO terceraEmpresaDTO = new NuevaEmpresaDTO("empresa3@mail","contra3","JPA Company", "Av. TicTok", "333333333", "Rosina Varela","rut 6","razonSocial 6");
         Empresa terceraEmpresa = empresaService.saveNewEmpresa(terceraEmpresaDTO);
         agregarEmpleadosATerceraEmpresa(terceraEmpresa);
     }
@@ -361,27 +361,27 @@ public class CargaDeDatosService {
     }
 
     private void agregarEmpleadosAPrimeraEmpresa(Empresa empresa) throws Exception {
-        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("agustin@mail", "contra", 52788472,"13/12/2023","Agustin", "Pani", "012345671",3000.0,500.0,3000.0,"Av.Italia");
-        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("mavi@mail", "contra",54967202,"14/12/2023","Victoria", "Del Campo", "012345672",3000.0,500.0,3000.0,"Uruguay");
-        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("maria@mail", "contra",52137396,"12/12/2020","Maria", "Nin", "012345673",3000.0,500.0,3000.0,"B.Artias");
+        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("agustin@mail", "contra", 52788472,"13/12/2023","Agustin", "Pani", "012345671",3000.0,500.0,3000.0,"Av. Italia");
+        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("mavi@mail", "contra",54967202,"14/12/2023","Victoria", "Del Campo", "012345672",3000.0,500.0,3000.0,"Maldonado");
+        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("maria@mail", "contra",52137396,"12/12/2020","Maria", "Nin", "012345673",3000.0,500.0,3000.0,"B.Artigas");
         usuarioService.saveNewUsurio(megaUsuario1DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario2DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario3DTO, empresa.getCuentas().get(0).getMail());
     }
 
     private void agregarEmpleadosASegundaEmpresa(Empresa empresa) throws Exception {
-        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("valentina@mail", "contra", 52137311,"15/10/2023","Valentina", "Gonzalez", "012345674",2000.0,1000.0,2000.0,"B.Artias");
-        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("felipe@mail", "contra",52788412,"16/10/2023","Felipe", "Montañes", "012345675",2000.0,1000.0,2000.0,"Av.Italia");
-        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("mateo@mail", "contra",54967213,"17/10/2023","Mateo", "Patrone", "012345676",2000.0,1000.0,2000.0,"Uruguay");
+        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("valentina@mail", "contra", 52137311,"15/10/2023","Valentina", "Gonzalez", "012345674",2000.0,1000.0,2000.0,"B.Artigas");
+        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("felipe@mail", "contra",52788412,"16/10/2023","Felipe", "Montañes", "012345675",2000.0,1000.0,2000.0,"Av. Italia");
+        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("mateo@mail", "contra",54967213,"17/10/2023","Mateo", "Patrone", "012345676",2000.0,1000.0,2000.0,"Ponce");
         usuarioService.saveNewUsurio(megaUsuario1DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario2DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario3DTO, empresa.getCuentas().get(0).getMail());
     }
 
     private void agregarEmpleadosATerceraEmpresa(Empresa empresa) throws Exception {
-        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("hernan@mail", "contra", 52137500,"18/11/2023","Hernan", "Puschiasis", "012345677",1000.0,500.0,1000.0,"B.Artias");
-        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("rosina@mail", "contra",52788501,"19/11/2023","Rosina", "Varela", "012345678",1000.0,500.0,1000.0,"Av.Italia");
-        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("federico@mail", "contra",54967502,"20/11/2023","Federico", "Vazquez", "012345679",1000.0,500.0,1000.0,"Uruguay");
+        MegaUsuarioDTO megaUsuario1DTO = new MegaUsuarioDTO("hernan@mail", "contra", 52137500,"18/11/2023","Hernan", "Puschiasis", "012345677",1000.0,500.0,1000.0,"B. Artigas");
+        MegaUsuarioDTO megaUsuario2DTO = new MegaUsuarioDTO("rosina@mail", "contra",52788501,"19/11/2023","Rosina", "Varela", "012345678",1000.0,500.0,1000.0,"Av. Italia");
+        MegaUsuarioDTO megaUsuario3DTO = new MegaUsuarioDTO("federico@mail", "contra",54967502,"20/11/2023","Federico", "Vazquez", "012345679",1000.0,500.0,1000.0,"San Jose");
         usuarioService.saveNewUsurio(megaUsuario1DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario2DTO, empresa.getCuentas().get(0).getMail());
         usuarioService.saveNewUsurio(megaUsuario3DTO, empresa.getCuentas().get(0).getMail());

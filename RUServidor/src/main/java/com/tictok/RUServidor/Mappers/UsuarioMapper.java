@@ -55,8 +55,8 @@ public class UsuarioMapper {
         }
         return usuarioDTOList;
     }
-    public static Usuario toUpdateUsuario(Usuario user, Usuario updateUser){
-        //?
-        return null;
-    }
+//    public static Usuario toUpdateUsuario(Usuario user, Usuario updateUser){
+//        //?
+//        return null;
+//    }
 }
