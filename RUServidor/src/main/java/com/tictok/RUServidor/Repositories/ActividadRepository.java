@@ -52,4 +52,21 @@ public interface ActividadRepository extends JpaRepository<Actividad, ServicioId
     )
     Page<Tuple> findByNombreOBarrioIsLike(Pageable pageable, @Param("campoBusqueda") String campoBusqueda);
 
+    @Query(value = """
+                            select count(distinct a.nombre_servicio)
+                            from actividad a
+                    """,
+    nativeQuery = true)
+    long getPages();
+
+
+    @Query(value = """
+                    select count(distinct a.nombre_servicio)
+                    from actividad a
+                    join centro_deportivo cd on a.centro_deportivo_nombre_centro = cd.nombre_centro
+                    where upper(a.nombre_servicio) like %:campoBusqueda% or upper(a.centro_deportivo_nombre_centro) like %:campoBusqueda% or
+                            upper(cd.barrio) like %:campoBusqueda% or upper(cd.barrio) like %:campoBusqueda%
+        """,
+    nativeQuery = true)
+    long getPagesBuscadas(@Param("campoBusqueda") String campoBusqueda);
 }

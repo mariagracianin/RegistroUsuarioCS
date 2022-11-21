@@ -174,8 +174,7 @@ public class ActividadService {
         List<SuperActividadDTO> listaSuperActividadDTO = ActividadMapper.fromActividadesListToSuperActividadDTOList(actividadList);
         return listaSuperActividadDTO;
     }
-    public ListaActividadesDTOConCount procesarActividades(Page<Tuple> actividadInfosObjects){
-        int pages = actividadInfosObjects.getTotalPages();
+    public ListaActividadesDTOConCount procesarActividades(Page<Tuple> actividadInfosObjects, int pages){
         if (actividadInfosObjects.isEmpty()){
             return null;
         }
@@ -188,13 +187,18 @@ public class ActividadService {
     public ListaActividadesDTOConCount findAllPageable(int page, int size) {
         Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
         Page<Tuple> actividadInfosObjects = actividadRepository.findDistinctBy(paging);
-        return procesarActividades(actividadInfosObjects);
+
+        int pages = ((int)Math.ceil((double) actividadRepository.getPages() / size));
+
+        System.out.println(pages);
+        return procesarActividades(actividadInfosObjects, pages);
     }
 
     public ListaActividadesDTOConCount buscarActividadesPageable(String campoBusqueda, int page, int size){
         Pageable paging = PageRequest.of(page, size, Sort.by("precio"));
         Page<Tuple> actividadInfosObjects = actividadRepository.findByNombreOBarrioIsLike(paging, campoBusqueda.toUpperCase());
-        return procesarActividades(actividadInfosObjects);
+        int pages = (int) actividadRepository.getPagesBuscadas(campoBusqueda) / size;
+        return procesarActividades(actividadInfosObjects, pages);
     }
     public List<SuperActividadDTO> buscarActividades(String campoBusqueda){
         List<Actividad> actividadList = actividadRepository.findByNombreOBarrioIsLike1(campoBusqueda.toUpperCase());
