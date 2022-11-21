@@ -6,7 +6,7 @@ import com.tictok.Commons.ReservaDTO;
 import com.tictok.Commons.UsuarioDTO;
 import com.tictok.RUServidor.Entities.*;
 import com.tictok.RUServidor.Exceptions.CuentaNoExisteException;
-import com.tictok.RUServidor.Exceptions.UsuarioMalDefinido;
+import com.tictok.RUServidor.Exceptions.UsuarioMalDefinidoException;
 import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
 import com.tictok.RUServidor.Mappers.CheckInMapper;
 import com.tictok.RUServidor.Mappers.CuentaMapper;
@@ -96,7 +96,7 @@ public class UsuarioService {
             Optional<Usuario> user = usuarioRepository.findById(newUsuario.getCedula());
 
             if (!newUsuario.telefonoCorrecto()){
-                throw new UsuarioMalDefinido();
+                throw new UsuarioMalDefinidoException();
             }
             if (user.isPresent()){
                 //System.out.println("Lo encontro");

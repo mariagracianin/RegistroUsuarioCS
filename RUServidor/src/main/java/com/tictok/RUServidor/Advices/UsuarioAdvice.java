@@ -1,6 +1,6 @@
 package com.tictok.RUServidor.Advices;
 
-import com.tictok.RUServidor.Exceptions.CarneVencido;
+import com.tictok.RUServidor.Exceptions.CarneVencidoException;
 import com.tictok.RUServidor.Exceptions.SaldoInsuficienteException;
 import com.tictok.RUServidor.Exceptions.UsuarioNoExisteException;
 import com.tictok.RUServidor.Exceptions.UsuarioYaExisteException;
@@ -35,9 +35,9 @@ public class UsuarioAdvice {
     }
 
     @ResponseBody()
-    @ExceptionHandler(CarneVencido.class)
+    @ExceptionHandler(CarneVencidoException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public String carneVencidoHandler(CarneVencido ex){
+    public String carneVencidoHandler(CarneVencidoException ex){
         return "El carné de salud está vencido, no puede unirse a este servicio";
     }
 }

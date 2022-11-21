@@ -11,7 +11,6 @@ import com.tictok.RUServidor.Mappers.ActividadMapper;
 import com.tictok.RUServidor.Mappers.HorarioMapper;
 import com.tictok.RUServidor.Mappers.ReservaMapper;
 import com.tictok.RUServidor.Repositories.*;
-import net.bytebuddy.asm.Advice;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -93,10 +92,10 @@ public class ActividadService {
         return ReservaMapper.fromReservaActividadToReservaDTO(reservaActividad);
     }
 
-    public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException, SaldoInsuficienteException, CarneVencido {
+    public void checkInActividadSinReserva(CheckInDTO checkInDTO) throws CuposAgotadosException, CuentaNoExisteException, UsuarioNoExisteException, SaldoInsuficienteException, CarneVencidoException {
         Usuario usuario = usuarioService.findOnebyId2(checkInDTO.getCedulaUsuario());
         if(usuarioService.carneVencido(usuario)){
-            throw new CarneVencido();
+            throw new CarneVencidoException();
         }
         Horario horarioId = HorarioMapper.fromHorarioDTOToHorario(checkInDTO.getHorario());
 
@@ -142,7 +141,7 @@ public class ActividadService {
     }
 
     @Transactional
-    public void checkInActividadConReserva(Long codigoReserva) throws EntidadNoExisteException, SaldoInsuficienteException, CarneVencido {
+    public void checkInActividadConReserva(Long codigoReserva) throws EntidadNoExisteException, SaldoInsuficienteException, CarneVencidoException {
          Optional<ReservaActividad> reservaActividadOptional = reservaActividadRepository.findById(codigoReserva);
          if (reservaActividadOptional.isEmpty()) {
              throw new EntidadNoExisteException("La reserva no existe");
@@ -150,7 +149,7 @@ public class ActividadService {
          ReservaActividad reservaActividad = reservaActividadOptional.get();
          Usuario usuario = reservaActividad.getUsuario();
         if(usuarioService.carneVencido(usuario)){
-            throw new CarneVencido();
+            throw new CarneVencidoException();
         }
          Date dateFecha = reservaActividad.getFecha();
          LocalDate fecha = dateFecha.toLocalDate();
