@@ -1,5 +1,4 @@
 package com.tictok.RUCliente.Empleado;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
@@ -19,18 +18,15 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 @Component
 public class EmpMisDatosController implements Initializable {
-
     @Autowired
     UsuarioRest usuarioRest;
     @Autowired
     EmpMisReservasController empMisReservasController;
-
     public Label lblNombre;
     public Label lblApellido;
     public Label lblCedula;
@@ -40,7 +36,6 @@ public class EmpMisDatosController implements Initializable {
     public Label lblSaldoActual;
     public Label lblSobregiro;
     public Label lblFechaVenCarne;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HttpResponse<String> response = usuarioRest.buscarDatosFromUsuarioLogeado();
@@ -66,31 +61,29 @@ public class EmpMisDatosController implements Initializable {
             throw new RuntimeException();
         }
     }
-
-
     public void verReservas(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
         Parent root = fxmlLoader.load(EmpMisDatosController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/empMisReservas.fxml"));
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene escena = new Scene(root);
         stage.setScene(escena);
-        escena.getWindow().setWidth(1250);
+        //escena.getWindow().setHeight(600);
+        //escena.getWindow().setWidth(1250);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stage.setTitle("Mis Reservas");
 
         stage.show(); //no es ventana emergente
+        stage.centerOnScreen();
+        stage.setMaximized(true);
     }
 
     public void verActividades(ActionEvent actionEvent) throws IOException {
         empMisReservasController.verActividades(actionEvent);
     }
-
     public void verCanchas(ActionEvent actionEvent) throws IOException {
         empMisReservasController.verCanchas(actionEvent);
     }
-
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
         empMisReservasController.cerrarSesion(actionEvent);
     }

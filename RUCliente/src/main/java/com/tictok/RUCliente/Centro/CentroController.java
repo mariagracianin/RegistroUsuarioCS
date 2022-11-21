@@ -1,5 +1,4 @@
 package com.tictok.RUCliente.Centro;
-
 import com.tictok.RUCliente.JavaFXApplication;
 import com.tictok.RUCliente.Main;
 import com.tictok.RUCliente.MiniCuenta;
@@ -13,19 +12,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 @Component
 public class CentroController implements Initializable {
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
-
     public void agregarAct(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
@@ -36,11 +30,12 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(750);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
     }
-
     public void verActividades(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
@@ -51,11 +46,12 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
     }
-
     public void mostrarLiquidacion(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
@@ -66,11 +62,12 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
     }
-
     public void salir(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
@@ -81,11 +78,12 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/loginStyle.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
     }
-
     public void agregarCancha(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
@@ -96,11 +94,12 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(750);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
     }
-
     public void verCanchas(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
@@ -111,11 +110,12 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
     }
-
     public void irACheckIn(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();
@@ -126,11 +126,12 @@ public class CentroController implements Initializable {
         Scene escena = new Scene(root);
         escena.getStylesheets().add("/com/tictok/RUCliente/entidad_style.css");
         stageActual.setScene(escena);
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
         stageActual.getIcons().add(new Image(CentroController.class.getResourceAsStream("logo.png")));
         stageActual.show();
         stageActual.centerOnScreen();
     }
-
     public void agregarCuenta(ActionEvent actionEvent) throws IOException {
         Node source = (Node)  actionEvent.getSource();
         Stage stageActual  = (Stage) source.getScene().getWindow();

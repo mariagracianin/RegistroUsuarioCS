@@ -139,6 +139,7 @@ public class EmpMisReservasController implements Initializable {
         stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
+        stage.setMaximized(true);
     }
 
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
@@ -171,6 +172,7 @@ public class EmpMisReservasController implements Initializable {
         stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
+        stage.setMaximized(true);
     }
 
     public void verCanchas(ActionEvent actionEvent) throws IOException {
@@ -188,6 +190,7 @@ public class EmpMisReservasController implements Initializable {
         stage.getIcons().add(new Image(EmpMisReservasController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
+        stage.setMaximized(true);
         controller.hacerDespues();
         System.out.println("llega hasta acaaaaaaaaaaaaa");
     }

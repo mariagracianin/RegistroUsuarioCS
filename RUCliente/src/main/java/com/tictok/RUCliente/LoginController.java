@@ -92,6 +92,7 @@ public class LoginController {
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
+        stage.setMaximized(true);
     }
     public void cargarVistaAdmin(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -106,6 +107,8 @@ public class LoginController {
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
     }
 
     public void cargarVistaEmpresa(ActionEvent actionEvent) throws IOException {
@@ -121,6 +124,8 @@ public class LoginController {
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
     }
     public void cargarVistaCentro(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -135,6 +140,8 @@ public class LoginController {
         stage.getIcons().add(new Image(LoginController.class.getResourceAsStream("logo.png")));
         stage.show(); //no es ventana emergente
         stage.centerOnScreen();
+        escena.getWindow().setWidth(900);
+        escena.getWindow().setHeight(600);
     }
 
 }

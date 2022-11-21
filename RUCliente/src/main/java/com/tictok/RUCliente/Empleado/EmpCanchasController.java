@@ -1,5 +1,4 @@
 package com.tictok.RUCliente.Empleado;
-
 //import com.tictok.Commons.HorarioConCuposDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,13 +31,11 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 @Component
 public class EmpCanchasController implements Initializable {
     public Button btnBuscar;
@@ -52,39 +49,30 @@ public class EmpCanchasController implements Initializable {
     public TextField txtBuscador;
     public Pagination pagination;
     public BorderPane pane;
-
-
     @Autowired
     EmpMisDatosController empMisDatosController;
     @Autowired
     EmpMisReservasController empMisReservasController;
     @Autowired
     MiniCuenta miniCuenta;
-
     @Autowired
     CentroDeportivoRest centroDeportivoRest;
-
     @Autowired
     UsuarioRest usuarioRest;
-
     @FXML
     private GridPane contenedorCanchas;
     private List<SuperCanchaDTO> canchasActuales;
-
-   /* private List<SuperCanchaDTO> getDatos(){
-        try {
-            HttpResponse<String> response = centroDeportivoRest.obtenerCanchas();
-            String responseBody = response.getBody();
-            ObjectMapper mapper = new ObjectMapper();
-            List<SuperCanchaDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
-
-            return listSuperActividadesDTO;
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-
-    }*/
-
+    /* private List<SuperCanchaDTO> getDatos(){
+         try {
+             HttpResponse<String> response = centroDeportivoRest.obtenerCanchas();
+             String responseBody = response.getBody();
+             ObjectMapper mapper = new ObjectMapper();
+             List<SuperCanchaDTO> listSuperActividadesDTO = mapper.readValue(responseBody, TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
+             return listSuperActividadesDTO;
+         }catch (Exception e){
+             throw new RuntimeException(e);
+         }
+     }*/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         URL linkLupa = getClass().getResource("/com/tictok/RUCliente/Empleado/lupa.png");
@@ -109,14 +97,11 @@ public class EmpCanchasController implements Initializable {
         pagination.setMaxWidth(900);
         pagination.setPrefHeight(550);
         pagination.setPrefWidth(900);
-
     }
     public void hacerDespues(){
         pagination.getScene().getWindow().setWidth(pagination.getScene().getWidth() + 0.001);
         pane.getScene().getWindow().setWidth(pane.getScene().getWidth() + 0.001);
-
     }
-
     private GridPane createPage(Integer pageIndex) {
         GridPane contenedorCan = new GridPane();
         contenedorCan.setPrefWidth(800);
@@ -134,75 +119,58 @@ public class EmpCanchasController implements Initializable {
         }catch (Exception e){
             throw new RuntimeException(e);
         }
-
         int column=0;
         int row=0;
-
         pagination.setPageCount(listaCanchasDTOConCount.getPages());
-
         try {
             for (int i = 0; i< listaCanchasDTOConCount.getObjects().size(); i++){
-
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
                 SplitPane actBox = fxmlLoader.load();
-
                 CardCanchaController cardController = fxmlLoader.getController();
                 cardController.setDatosCancha(listaCanchasDTOConCount.getObjects().get(i));
                 cardController.setMiniCuenta(miniCuenta);
-
                 if (column == 3) {
                     column = 0;
                     row++;
                 }
                 contenedorCan.add(actBox,column++,row);
                 GridPane.setMargin(actBox, new Insets(5));
-
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
         pane.getScene().getWindow().setWidth(pane.getScene().getWidth() + 0.001);
         return contenedorCan;
-
     }
-
     public void verReservas(ActionEvent actionEvent) throws IOException {
         empMisDatosController.verReservas(actionEvent);
     }
-
     public void verActividades(ActionEvent actionEvent) throws IOException {
         empMisReservasController.verActividades(actionEvent);
     }
-
     public void verDatos(ActionEvent actionEvent) throws IOException {
         empMisReservasController.verDatos(actionEvent);
     }
-
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
         empMisReservasController.cerrarSesion(actionEvent);
     }
-
     public void ventanaIntroducirCodigoPadre(ActionEvent actionEvent) throws IOException {
-
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
         Parent root = fxmlLoader.load(EmpCanchasController.class.getResourceAsStream("/com/tictok/RUCliente/Empleado/ventEmergenteCodigoPadre.fxml"));
         Stage stage = new Stage();
         Scene escena = new Scene(root);
         stage.setScene(escena);
         stage.setTitle("Unirse a una reserva");
         escena.getStylesheets().add("/com/tictok/RUCliente/Empleado/actividad-cancha.css");
-
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-
     }
 
     private GridPane createPageBuscador(Integer pageIndex) {
+        System.out.println("Page Indeeeeeeeeeeeeeeeeeeeeeeeex  "+ pageIndex);
         if (txtBuscador.getText().isEmpty()){
             GridPane contenedorCan = new GridPane();
             contenedorCan.setPrefWidth(900);
@@ -220,37 +188,28 @@ public class EmpCanchasController implements Initializable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-
             int column = 0;
             int row = 0;
-
             pagination.setPageCount(listaCanchasDTOConCount.getPages());
-
             try {
                 for (int i = 0; i < listaCanchasDTOConCount.getObjects().size(); i++) {
-
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                     fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
                     SplitPane actBox = fxmlLoader.load();
-
                     CardCanchaController cardController = fxmlLoader.getController();
                     cardController.setDatosCancha(listaCanchasDTOConCount.getObjects().get(i));
                     cardController.setMiniCuenta(miniCuenta);
-
                     if (column == 3) {
                         column = 0;
                         row++;
                     }
                     contenedorCan.add(actBox, column++, row);
                     GridPane.setMargin(actBox, new Insets(5));
-
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             return contenedorCan;
         }else {
             GridPane contenedorCan = new GridPane();
@@ -269,43 +228,32 @@ public class EmpCanchasController implements Initializable {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-
             int column = 0;
             int row = 0;
-
             pagination.setPageCount(listaCanchasDTOConCount.getPages());
-
             try {
                 for (int i = 0; i < listaCanchasDTOConCount.getObjects().size(); i++) {
-
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     // fxmlLoader.setControllerFactory(Main.getContext()::getBean);
                     fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
                     SplitPane actBox = fxmlLoader.load();
-
                     CardCanchaController cardController = fxmlLoader.getController();
                     cardController.setDatosCancha(listaCanchasDTOConCount.getObjects().get(i));
                     cardController.setMiniCuenta(miniCuenta);
-
                     if (column == 3) {
                         column = 0;
                         row++;
                     }
                     contenedorCan.add(actBox, column++, row);
                     GridPane.setMargin(actBox, new Insets(5));
-
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             return contenedorCan;
         }
     }
-
     public void  llamarBuscador(ActionEvent actionEvent) throws JsonProcessingException {
-
         pagination.setPageFactory(new Callback<Integer, Node>() {
             @Override
             public Node call(Integer pageIndex) {
@@ -314,39 +262,33 @@ public class EmpCanchasController implements Initializable {
                 return createPageBuscador(pageIndex);
             }
         });
-
-        /*
-        contenedorCanchas.getChildren().clear();
-        System.out.println("lo llamaaaaaaaaaaaaaaaaaaaa");
-        System.out.println(txtBuscador.getText());
-        HttpResponse<String> response =  centroDeportivoRest.obtenerCanchasByFiltro(txtBuscador.getText());
-        System.out.println(response.getBody());
-        ObjectMapper mapper = new ObjectMapper();
-        List<SuperCanchaDTO> listSuperDTO = mapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
-
-        int column=0;
-        int row=0;
-        try {
-            for (int i=0; i<listSuperDTO.size(); i++){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
-                SplitPane actBox = fxmlLoader.load();
-
-                CardCanchaController cardController = fxmlLoader.getController();
-                cardController.setDatosCancha(listSuperDTO.get(i));
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
-                contenedorCanchas.add(actBox,column++,row);
-                GridPane.setMargin(actBox, new Insets(10));
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } */
-
+//        /*
+//        contenedorCanchas.getChildren().clear();
+//        System.out.println("lo llamaaaaaaaaaaaaaaaaaaaa");
+//        System.out.println(txtBuscador.getText());
+//        HttpResponse<String> response =  centroDeportivoRest.obtenerCanchasByFiltro(txtBuscador.getText());
+//        System.out.println(response.getBody());
+//        ObjectMapper mapper = new ObjectMapper();
+//        List<SuperCanchaDTO> listSuperDTO = mapper.readValue(response.getBody(), TypeFactory.defaultInstance().constructCollectionType(List.class, SuperCanchaDTO.class));
+//        int column=0;
+//        int row=0;
+//        try {
+//            for (int i=0; i<listSuperDTO.size(); i++){
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+//                fxmlLoader.setLocation(getClass().getResource("/com/tictok/RUCliente/Empleado/cardCancha.fxml"));
+//                SplitPane actBox = fxmlLoader.load();
+//                CardCanchaController cardController = fxmlLoader.getController();
+//                cardController.setDatosCancha(listSuperDTO.get(i));
+//                if (column == 3) {
+//                    column = 0;
+//                    row++;
+//                }
+//                contenedorCanchas.add(actBox,column++,row);
+//                GridPane.setMargin(actBox, new Insets(10));
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } */
     }
 }
